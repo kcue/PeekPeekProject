@@ -80,3 +80,9 @@ fabric.properties
 
 # Sonarlint plugin
 .idea/sonarlint
+.idea/encodings.xml
+.idea/inspectionProfiles/Project_Default.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/PeekPeekProject.iml
+.idea/vcs.xml
