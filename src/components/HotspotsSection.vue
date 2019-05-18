@@ -13,3 +13,7 @@ export default {
     name: "HotspotsSection"
 }
 </script>
+
+<style scoped>
+
+</style>

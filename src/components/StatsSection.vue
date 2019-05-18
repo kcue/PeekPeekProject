@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>We do work better than most, actually.</h1>
+        <div  class="we-do-work">We do work better than most, actually.</div>
         <Cards v-bind:cardsList="cardsList"/>
     </div>
 </template>
@@ -42,3 +42,8 @@ export default {
 }
 </script>
 
+<style scoped>
+#we-do-work {
+    font-size: 60px;
+}
+</style>

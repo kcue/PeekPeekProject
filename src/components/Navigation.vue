@@ -21,3 +21,6 @@ export default class Navigation extends Vue {
 
 </style>
 
+<style scoped>
+
+</style>
