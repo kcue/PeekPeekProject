@@ -1,41 +1,56 @@
 <template>
-    <div>
-        <img src="../assets/MountainBG.jpg"/>
-        <h1>It's all about you.</h1>
-        <div class=separator></div>
-        <Buttons v-bind:buttonList="buttonList"/>
-        
-    </div>
+    <section class="peek-section" id="home-section">
+        <img src='../assets/images/mountain_bg.jpg'/>
+        <div class="home-section-headers">
+            <h1>It's all about you.</h1>
+            <div class=separator></div>
+            <div class="home-section-buttons">
+                <button>Watch video</button>
+                <button>Take a peek</button>
+            </div>
+        </div>
+    </section>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import Buttons from "./Buttons.vue";
-
-
-export default {
-    name: 'HomeSection',
-    components: {
-        Buttons,
-    },
-    data() {
-        return {
-            buttonList: [
-                {
-                    id: 1,
-                    label: "Watch video",
-                    target: "_blank"
-                },
-                {
-                    id: 2,
-                    label: "Take a peek",
-                    target: "_blank"
-                }
-            ]
-        }
-    }
+import Vue from 'vue'
+export default class HomeSection extends Vue {
+    
 }
 </script>
 
+<style lang="scss" scoped>
+img {
+    height: auto;
+    width: 40%;
+    object-fit: cover;
+}
 
+.home-section-headers {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: 50px;
 
+    h1 {
+        margin: 20px auto 0 auto;
+    }
+
+    .separator {
+        width: 40%;
+        height: 4px;
+        border-radius: 2px;
+        background-color: #8f8f94;
+        margin: 20px 0 20px 0;
+    }
+}
+
+.home-section-buttons {
+    margin-top: 10px;
+
+    button {
+        float: left;
+        margin-right: 25px;
+    }
+}
+</style>

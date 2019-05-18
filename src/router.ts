@@ -23,10 +23,10 @@ export default new Router({
         import(/* webpackChunkName: "about" */ "./views/About.vue")
     },
     {
-      path: "/testbed",
-      name: "testbed",
-      component: () =>
-      import("./views/Testbed.vue")
+      path: "/playground",
+      name: "playground",
+      component: () => 
+        import("./views/Playground.vue")
     }
   ]
 });

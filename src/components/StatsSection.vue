@@ -1,44 +1,50 @@
 <template>
-    <div>
-        <h1>We do work better than most, actually.</h1>
-        <Cards v-bind:cardsList="cardsList"/>
-    </div>
+    <section class="peek-section" id="stats-section">
+        <div class="stats-cards">
+            <StatsCard :cardNumber="'36%'" :supportiveTitle="'Increase in'" :title="'Lead Generation'"/>
+            <StatsCard :cardNumber="'70%'" :supportiveTitle="'Increase in'" :title="'Engagement'"/>
+            <StatsCard :cardNumber="'25'" :supportiveTitle="'Current'" :title="'Affiliates'"/>
+            <StatsCard :cardNumber="'10'" :supportiveTitle="'Minutes of'" :title="'Excitement'"/>
+        </div>
+        <div class="stats-captions">
+            <h2>We do work</h2>
+            <h4>Better than most, actually</h4>
+        </div>
+    </section>
 </template>
 
 <script lang="ts">
-import Cards from "./Cards.vue";
+import { Component, Vue } from "vue-property-decorator";
+import StatsCard from "@/components/StatsCard.vue";
 
-export default {
-    name: "StatsSection",
-    components: {
-        Cards
-    },
-    data() {
-        return {
-            cardsList: [
-                {
-                    id: 1,
-                    num: 10,
-                    words: 'beep borp'
-                },
-                {
-                    id: 2,
-                    num: 15,
-                    words: 'beep borp'
-                },
-                {
-                    id: 3,
-                    num: 20,
-                    words: 'beep borp'
-                },
-                {
-                    id: 4,
-                    num: 25,
-                    words: 'beep borp'
-                }
-            ]
-        }
-    }
+@Component({
+  components: {
+    StatsCard,
+  }
+})
+export default class StatsSection extends Vue {
+    
 }
 </script>
 
+<style lang="scss" scoped>
+    .stats-captions {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-left: 50px;
+        justify-content: center;
+
+
+        h2 {
+            font-size: 60px;
+            margin: 0;
+        }
+
+        h4 {
+            font-size: 40px;
+            font-weight: normal;
+            margin: 0;
+        }
+    }
+</style>
