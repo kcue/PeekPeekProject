@@ -1,5 +1,5 @@
 <template>
-    <div> 
+    <div class="fit-screen">
         <h1>Trusted by...</h1>
         <Cards v-bind:cardsList="cardsList"/>
         <Buttons v-bind:buttonList="buttonList"/>

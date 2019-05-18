@@ -13,13 +13,10 @@
     }
 </script>
 
-<style scoped>
-
-
+<style>
     .blue-btns {
-        pointer-events: auto;
-        position: absolute;
-        z-index: 5;
+        /*pointer-events: auto;*/
+        /*position: absolute;*/
         padding: 6px;
         user-select: none;
         background-color: rgb(23, 164, 169);
@@ -39,8 +36,8 @@
         text-shadow: none;
         width: 130px;
         height: 32px;
-        top: 479px;
-        left: 639px;
+        /*top: 479px;*/
+        /*left: 639px;*/
     }
 
 </style>

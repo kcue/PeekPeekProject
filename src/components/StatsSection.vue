@@ -1,6 +1,7 @@
 <template>
     <div>
-        <div  class="we-do-work">We do work better than most, actually.</div>
+        <div  id="we-do-work">We do work</div>
+        <div id="better-than-most" class="container"> better than most, actually. </div>
         <Cards v-bind:cardsList="cardsList"/>
     </div>
 </template>
@@ -45,5 +46,14 @@ export default {
 <style scoped>
 #we-do-work {
     font-size: 60px;
+    font-family: "Libre Franklin", sans-serif;
+}
+    #better-than-most {
+        font-size: 40px;
+        letter-spacing: -0.75px;
+    }
+.container {
+    width:40%;
+    text-align:right;
 }
 </style>

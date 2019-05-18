@@ -41,24 +41,24 @@ export default {
 <style scoped>
 
     .mountain-pic {
-        pointer-events: auto;
-        position: absolute;
+        /*pointer-events: auto;*/
+        /*position: absolute;*/
         background: url(https://thomashuang.xyz/demo/HorizontalScrollingTest.hyperesources/Pasted.jpg) no-repeat;
         overflow: visible;
         background-size: 100% 100%;
-        z-index: 1;
+        /*z-index: 1;*/
         filter: none;
         transform: none;
         display: inline;
         width: 667px;
         height: 1001px;
-        top: -201px;
-        left: -90px;
+        /*top: -201px;*/
+        /*left: -90px;*/
     }
 
     #about-you {
-        pointer-events: auto;
-        position: absolute;
+        /*pointer-events: auto;*/
+        /*position: absolute;*/
         color: rgb(0, 0, 0);
         padding: 8px;
         display: inline;
@@ -70,11 +70,11 @@ export default {
         overflow-wrap: break-word;
         font-weight: normal;
         overflow: visible;
-        z-index: 2;
+        /*z-index: 2;*/
         word-spacing: 0px;
         width: 601px;
         height: 145px;
-        top: 253px;
-        left: 639px;
+        /*top: 253px;*/
+        /*left: 639px;*/
     }
 </style>

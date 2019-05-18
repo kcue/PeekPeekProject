@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="fit-screen">
         <h3>So, your turn.</h3>
         <h1>Tell me your story.</h1>
         <Buttons v-bind:buttonList="buttonList"/>

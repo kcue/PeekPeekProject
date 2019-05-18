@@ -1,5 +1,5 @@
 <template>
-    <div> 
+    <div>
         <div>PLACEHOLDER FOR THE 360 VIDEO GRID IGNORE THIS</div> 
         <h1>Every single one of you is special.</h1>
         <Buttons v-bind:buttonList="buttonList"/>
