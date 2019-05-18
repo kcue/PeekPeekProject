@@ -8,7 +8,8 @@
             src="https://www.youtube-nocookie.com/embed/GbpJN-nZt8A" 
             frameborder="0" 
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-            allowfullscreen=""></iframe>
+            allowfullscreen=""
+            scrolling="no"></iframe>
             <p>Get the full <b>Experience</b></p>
         </div>
     </section>
@@ -40,7 +41,7 @@ export default class VideoSection extends Vue {
 
     iframe {
         width: 80%;
-        max-width: 800px;
+        max-width: 1200px;
         margin: 0 auto;
     }
 }
