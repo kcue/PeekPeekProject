@@ -2,7 +2,7 @@
     <div class="fit-screen"> 
         <h1><span>Customized Branding</span> with PeekPeek</h1>
         <h2>Lorem ipsum dolor sit amet, dolore magna aliqua. 
-            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nurra pariatur.
+            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nurra pariatur.</h2>
         <h1>Trusted by...</h1>
         <Cards v-bind:cardsList="cardsList"/>
         <Buttons v-bind:buttonList="buttonList"/>
