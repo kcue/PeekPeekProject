@@ -1,7 +1,7 @@
 <template>
     <div>
         <div v-bind:key="item.id" v-for="item in buttonList">
-            <button type="button">{{item.label}}</button>
+            <button :id="item.id" type="button">{{item.label}}</button>
         </div>
     </div>
 </template>

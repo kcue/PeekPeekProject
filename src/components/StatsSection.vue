@@ -1,6 +1,8 @@
 <template>
     <div>
-        <h1>We do work better than most, actually.</h1>
+        <h1>We do work <span>better than most, actually.</span></h1>
+        <h2>New Challenge?</h2>
+        <h2>New Solution</h2>
         <Cards v-bind:cardsList="cardsList"/>
     </div>
 </template>
@@ -18,23 +20,23 @@ export default {
             cardsList: [
                 {
                     id: 1,
-                    num: 10,
-                    words: 'beep borp'
+                    num: 18,
+                    words: 'Longer Stay'
                 },
                 {
                     id: 2,
-                    num: 15,
-                    words: 'beep borp'
+                    num: 130,
+                    words: 'Booking Rate'
                 },
                 {
                     id: 3,
-                    num: 20,
-                    words: 'beep borp'
+                    num: 12,
+                    words: 'Engagement Rate'
                 },
                 {
                     id: 4,
-                    num: 25,
-                    words: 'beep borp'
+                    num: 28,
+                    words: 'Physical Visit'
                 }
             ]
         }

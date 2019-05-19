@@ -1,7 +1,6 @@
 <template>
     <div>
-        <h3>So, your turn.</h3>
-        <h1>Tell me your story.</h1>
+        <h1>So... your turn to <span>Tell me about yourself...</span></h1>
         <Buttons v-bind:buttonList="buttonList"/>
     </div> 
 </template>

@@ -1,5 +1,8 @@
 <template>
     <div> 
+        <h1><span>Customized Branding</span> with PeekPeek</h1>
+        <h2>Lorem ipsum dolor sit amet, dolore magna aliqua. 
+            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nurra pariatur.
         <h1>Trusted by...</h1>
         <Cards v-bind:cardsList="cardsList"/>
         <Buttons v-bind:buttonList="buttonList"/>
@@ -20,7 +23,7 @@ export default {
         return {
             buttonList: [
                 {
-                    id: 6,
+                    id: 'sneak_peek',
                     label: 'Take a sneak peek',
                     target: "_blank"
                 }
@@ -44,6 +47,16 @@ export default {
                 {
                     id: 8,
                     num: 4,
+                    words: 'moving card!'
+                },
+                {
+                    id: 9,
+                    num: 5,
+                    words: 'moving card!'
+                },
+                {
+                    id: 10,
+                    num: 6,
                     words: 'moving card!'
                 }
             ]
