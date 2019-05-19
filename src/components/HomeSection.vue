@@ -1,7 +1,7 @@
 <template>
     <div>
-        <img src="../assets/MountainBG.jpg"/>
-        <h1>It's all about you.</h1>
+        <img src="../assets/MountainBG.jpg" class="mountain-pic"/>
+        <div id="about-you"> <h1>It's all about you.</h1> </div>
         <div class=separator></div>
         <Buttons v-bind:buttonList="buttonList"/>
         
@@ -38,4 +38,43 @@ export default {
 </script>
 
 
+<style scoped>
 
+    .mountain-pic {
+        /*pointer-events: auto;*/
+        /*position: absolute;*/
+        background: url(https://thomashuang.xyz/demo/HorizontalScrollingTest.hyperesources/Pasted.jpg) no-repeat;
+        overflow: visible;
+        background-size: 100% 100%;
+        /*z-index: 1;*/
+        filter: none;
+        transform: none;
+        display: inline;
+        width: 667px;
+        height: 1001px;
+        /*top: -201px;*/
+        /*left: -90px;*/
+    }
+
+    #about-you {
+        /*pointer-events: auto;*/
+        /*position: absolute;*/
+        color: rgb(0, 0, 0);
+        padding: 8px;
+        display: inline;
+        font-family: "Libre Franklin", sans-serif;
+        letter-spacing: 0;
+        font-size: 100px;
+        line-height: 77px;
+        font-style: normal;
+        overflow-wrap: break-word;
+        font-weight: normal;
+        overflow: visible;
+        /*z-index: 2;*/
+        word-spacing: 0px;
+        width: 601px;
+        height: 145px;
+        /*top: 253px;*/
+        /*left: 639px;*/
+    }
+</style>

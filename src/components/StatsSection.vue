@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>We do work <span>better than most, actually.</span></h1>
+        <h1 id="we-do-work">We do work <span id="better-than-most" class="container">better than most, actually.</span></h1>
         <h2>New Challenge?</h2>
         <h2>New Solution</h2>
         <Cards v-bind:cardsList="cardsList"/>
@@ -44,3 +44,17 @@ export default {
 }
 </script>
 
+<style scoped>
+#we-do-work {
+    font-size: 60px;
+    font-family: "Libre Franklin", sans-serif;
+}
+    #better-than-most {
+        font-size: 40px;
+        letter-spacing: -0.75px;
+    }
+.container {
+    width:40%;
+    text-align:right;
+}
+</style>

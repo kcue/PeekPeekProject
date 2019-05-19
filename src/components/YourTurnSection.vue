@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="fit-screen">
         <h1>So... your turn to <span>Tell me about yourself...</span></h1>
         <Buttons v-bind:buttonList="buttonList"/>
     </div> 
@@ -26,3 +26,7 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+
+</style>
