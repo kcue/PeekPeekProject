@@ -46,14 +46,15 @@ export default class StatsSection extends Vue {
         display: flex;
 
         .stats-cards {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+            // display: flex;
+            // flex-direction: column;
+            // justify-content: center;
 
             .stats-cards-container {
                 width: 300px;
                 height: 300px;
                 position: relative;
+                top: calc(100% - 150px);
 
                 .stats-card {
                     position: absolute;
