@@ -23,13 +23,28 @@
 import { Component, Vue } from "vue-property-decorator";
 import StatsCard from "@/components/StatsCard.vue";
 
+import { TweenMax } from 'gsap';
+
+// var controller = Vue.prototype.$scrollmagic.Controller({vertical: false})
 @Component({
   components: {
     StatsCard,
   }
 })
 export default class StatsSection extends Vue {
-    
+    mounted() {
+        var tween = new TweenMax.to('#stats-card-one', 1, { y: '-200%', x: '-50%' });
+        let scene = new Vue.prototype.$scrollmagic.scene({
+            duration: 600,
+            offset: 0,
+            triggerHook: 'onCenter',
+            triggerElement: '#stats-section',
+        })
+
+        Vue.prototype.$scrollmagic.addScene(
+            scene.setTween(tween).addIndicators()
+        )
+    }
 }
 </script>
 
