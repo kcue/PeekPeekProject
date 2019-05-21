@@ -43,6 +43,7 @@ export default class VideoSection extends Vue {
         width: 80%;
         max-width: 1200px;
         margin: 0 auto;
+        pointer-events: none;
     }
 }
 </style>

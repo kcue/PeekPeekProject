@@ -23,7 +23,7 @@
 import { Component, Vue } from "vue-property-decorator";
 import StatsCard from "@/components/StatsCard.vue";
 
-import { TweenMax } from 'gsap';
+import { TweenMax, TimelineMax } from 'gsap';
 
 // var controller = Vue.prototype.$scrollmagic.Controller({vertical: false})
 @Component({
@@ -33,17 +33,71 @@ import { TweenMax } from 'gsap';
 })
 export default class StatsSection extends Vue {
     mounted() {
-        var tween = new TweenMax.to('#stats-card-one', 1, { y: '-200%', x: '-50%' });
-        let scene = new Vue.prototype.$scrollmagic.scene({
-            duration: 600,
-            offset: 0,
+        const cards = document.getElementsByClassName("stats-card");
+        const cardheight = document.getElementById('stats-card-one').clientHeight;
+        const cardWidth = document.getElementById('stats-card-one').clientWidth;
+        for(let i = 0; i < cards.length; ++i)
+        {
+
+            var flightPath = {
+                tree : {
+                    curviness: 1.25,
+                    //autorotate:false,
+                    values: [
+                        { x: 0 , y: 0 },
+                        { x: 0, y: -cardheight*.6*i - cardheight/2},
+                        { x: i % 2 === 0 ? -cardWidth*.4 : cardWidth*.4, y: -cardheight*.8*i - cardheight/2}
+                    ]
+                }
+            }
+            var treeTween = TweenMax.to(cards[i], 1, {css:{bezier:flightPath.tree } , ease:Power1.easeInOut} )
+            
+            // if (i % 2 === 0)
+            // {
+            //     tween = new TweenMax.to(`#${cards[i].id}`, 1, { y: `-${100 + (75*i)}%`, x: `-40%` });
+            //     document.getElementById(cards[i].id).style.alignItems = 'baseline';
+            // } else {
+            //     tween = new TweenMax.to(`#${cards[i].id}`, 1, { y: `-${100 + (75*i)}%`, x: `40%` });
+            //     document.getElementById(cards[i].id).style.alignItems = 'flex-end';
+            // }
+            
+            // tween = new TweenMax.to(`#${cards[i].id}`, 1, { y: `-${100 + (75*i)}%`, x: `${i % 2 === 0 ? -40 : 40}%`});
+             document.getElementById(cards[i].id).style.alignItems = i % 2 === 0 ? 'baseline' : 'flex-end';
+
+            //Getting the width of the element
+            let elementWidth = document.getElementById('stats-card-one').clientWidth;
+            console.log(elementWidth);
+
+            let scene = new Vue.prototype.$scrollmagic.scene({
+            duration: 800,
+            offset: -200,
             triggerHook: 'onCenter',
             triggerElement: '#stats-section',
-        })
+            })
 
-        Vue.prototype.$scrollmagic.addScene(
-            scene.setTween(tween).addIndicators()
-        )
+            Vue.prototype.$scrollmagic.addScene(
+                scene.setTween(treeTween).addIndicators(),
+            )
+        }
+        // var tween = new TweenMax.to('#stats-card-one', 1, { y: '-200%', x: '-50%' });
+        // var rotationTween = new TweenMax.to('#stats-card-one', 1, {rotation:-15})
+
+        // let timeline = new TimelineMax();
+
+        // timeline.add(tween).add(rotationTween);
+
+        // let scene = new Vue.prototype.$scrollmagic.scene({
+        //     duration: 800,
+        //     offset: -200,
+        //     triggerHook: 'onCenter',
+        //     triggerElement: '#stats-section',
+        // })
+        // // Vue.prototype.$scrollmagic.addScene(
+        // //     scene.setTween(tween).addIndicators(),
+        // // )
+
+        // scene.setTween(timeline).addIndicators();
+        // Vue.prototype.$scrollmagic.addScene(scene)
     }
 }
 </script>
