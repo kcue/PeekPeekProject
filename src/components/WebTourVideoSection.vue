@@ -4,7 +4,7 @@
         <iframe width="100%" height="100%" src="https://www.youtube.com/embed/Wy9q22isx3U" 
         frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
         allowfullscreen></iframe>        
-        <h1>Get the full experience.</h1>
+        <h1>Get the full <span>experience.</span></h1>
     </div>
 </template>
 

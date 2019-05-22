@@ -1,9 +1,20 @@
 <template>
   <div>
-    <div v-bind:key="item.id" v-for="item in cardsList" class="card">
-      <div class="num">{{ item.num }}</div>
-      <div class="separator-cards"></div>
-      <div class="lower-words">{{ item.words }}</div>
+    <!--<div v-bind:key="item.id" v-for="item in cardsList" class="card">-->
+    <!--<div class="num">{{ item.num }}</div>-->
+    <!--<div class="separator-cards"></div>-->
+    <!--<div class="lower-words">{{ item.words }}</div>-->
+    <div>
+      <div
+        class="card"
+        v-bind:key="item.id"
+        :id="item.id"
+        v-for="item in cardsList"
+      >
+        <div class="num">{{ item.num }}</div>
+        <div class="separator-cards"></div>
+        <div class="lower-words">Lower Text</div>
+      </div>
     </div>
   </div>
 </template>
@@ -62,8 +73,8 @@ export default {
   /*left: 21px;*/
 }
 /*.card-words {*/
-  /*letter-spacing: -1.16165px;*/
-  /*font-family: "Libre Franklin", sans-serif;*/
+/*letter-spacing: -1.16165px;*/
+/*font-family: "Libre Franklin", sans-serif;*/
 /*}*/
 .lower-words {
   font-weight: 700;

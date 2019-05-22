@@ -1,8 +1,18 @@
 <template>
   <div>
-    <div id="we-do-work">We do work</div>
-    <div id="better-than-most" class="container">
-      better than most, actually.
+    <!--<div id="we-do-work">We do work</div>-->
+    <!--<div id="better-than-most" class="container">-->
+    <!--better than most, actually.-->
+    <div>
+      <h1 id="we-do-work">
+        We do work
+        <span id="better-than-most" class="container"
+          >better than most, actually.</span
+        >
+      </h1>
+      <h2>New Challenge?</h2>
+      <h2>New Solution</h2>
+      <Cards v-bind:cardsList="cardsList" />
     </div>
     <Cards v-bind:cardsList="cardsList" />
   </div>
