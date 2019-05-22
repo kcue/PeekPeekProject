@@ -2,7 +2,7 @@
   <div id="app" class="scrolling-wrapper-flexbox fit-screen">
     <Navigation />
     <HomeSection />
-    <!--<StatsSection />-->
+    <StatsSection />
     <!--<WebTourVideoSection class="page" />-->
     <!--<HotspotsSection class="page" />-->
     <!--<SpecialSection class="page" />-->
@@ -26,7 +26,7 @@ export default {
   components: {
     Navigation,
     HomeSection,
-    // StatsSection,
+    StatsSection,
     // WebTourVideoSection,
     // HotspotsSection,
     // SpecialSection,

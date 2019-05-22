@@ -1,20 +1,22 @@
 <template>
-  <div>
+  <div class="flex-container">
     <!--<div id="we-do-work">We do work</div>-->
     <!--<div id="better-than-most" class="container">-->
     <!--better than most, actually.-->
-    <div>
-      <h1 id="we-do-work">
-        We do work
-        <span id="better-than-most" class="container"
-          >better than most, actually.</span
-        >
-      </h1>
-      <h2>New Challenge?</h2>
-      <h2>New Solution</h2>
+    <div id="card-col-1">
       <Cards v-bind:cardsList="cardsList" />
     </div>
-    <Cards v-bind:cardsList="cardsList" />
+    <div id="card-col-2">
+      <Cards v-bind:cardsList="cardsList" />
+    </div>
+    <h1 id="we-do-work">
+      We do work
+      <span id="better-than-most" class="container"
+        >better than most, actually.</span
+      >
+    </h1>
+    <h2>New Challenge?</h2>
+    <h2>New Solution</h2>
   </div>
 </template>
 
@@ -56,6 +58,14 @@ export default {
 </script>
 
 <style scoped>
+    .flex-container {
+        display: flex;
+    }
+
+#card-col-1 {
+    height: 100%;
+    width: auto;
+}
 #we-do-work {
   font-size: 60px;
   font-family: "Libre Franklin", sans-serif;

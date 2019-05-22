@@ -58,6 +58,7 @@ export default {
 }
 
 #about-you {
+font-weight: bold;
   margin-top: 20%;
   margin-left: 2%;
   /*pointer-events: auto;*/

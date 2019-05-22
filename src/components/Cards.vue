@@ -11,9 +11,11 @@
         :id="item.id"
         v-for="item in cardsList"
       >
-        <div class="num">{{ item.num }}</div>
-        <div class="separator-cards"></div>
-        <div class="lower-words">Lower Text</div>
+        <div style="text-align: center; background-color: rgb(254, 255, 254);">
+          <div class="num">{{ item.num }}</div>
+          <div><div class="separator-cards"></div></div>
+          <div class="lower-words">Lower Text</div>
+        </div>
       </div>
     </div>
   </div>
@@ -38,14 +40,13 @@ export default {
   box-shadow: rgba(0, 0, 0, 0.18) 0 2px 15px;
   width: 311px;
   height: 266px;
-  /*top: 4px;*/
-  /*left: 0;*/
+  top: 4px;
+  left: 0;
 }
 .num {
-  /*pointer-events: auto;*/
-  /*position: absolute;*/
+  background-color: rgb(254, 255, 254);
   color: rgb(0, 0, 0);
-  padding: 8px;
+  /*padding: 8px;*/
   display: inline;
   font-family: "Libre Franklin", sans-serif;
   font-size: 100px;
@@ -56,7 +57,8 @@ export default {
   /*z-index: 4;*/
   width: 285px;
   height: 93px;
-  /*top: 10px;*/
+  /*top: 10px;*/  top: 10px;
+    left: 10px;
   /*left: 10px;*/
 }
 .separator-cards {
@@ -66,7 +68,7 @@ export default {
   border-radius: 24px;
   border: 0 none rgb(216, 221, 228);
   overflow: visible;
-  /*z-index: 2;*/
+  z-index: 2;
   width: 62px;
   height: 7px;
   /*top: 146px;*/
@@ -77,6 +79,7 @@ export default {
 /*font-family: "Libre Franklin", sans-serif;*/
 /*}*/
 .lower-words {
+  background-color: rgb(254, 255, 254);
   font-weight: 700;
   font-size: 27px;
   color: rgb(4, 125, 131);
