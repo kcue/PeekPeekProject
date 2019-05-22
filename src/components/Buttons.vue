@@ -1,18 +1,17 @@
 <template>
   <div>
-    <!--<div style= "margin-right: 20%" v-bind:key="item.id" v-for="item in buttonList">-->
-    <!--<button type="button" class="blue-btns">{{ item.label }}</button>-->
-    <div>
-      <div
-        style="margin-right: 20%"
-        v-bind:key="item.id"
-        v-for="item in buttonList"
-      >
-        <button class="blue-btns" :id="item.id" type="button">
-          {{ item.label }}
-        </button>
-      </div>
+    <div style= "margin-right: 20%" v-bind:key="item.id" v-for="item in buttonList">
+    <button type="button" class="blue-btns">{{ item.label }}</button>
     </div>
+      <!--<div-->
+        <!--style="margin-right: 20%"-->
+        <!--v-bind:key="item.id"-->
+        <!--v-for="item in buttonList">-->
+        <!--<button class="blue-btns" :id="item.id" type="button">-->
+          <!--{{ item.label }}-->
+        <!--</button>-->
+      <!--</div>-->
+    <!--</div>-->
   </div>
 </template>
 
