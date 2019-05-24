@@ -30,6 +30,8 @@ import DemoSection from '@/components/DemoSection.vue';
 import PartnersSection from '@/components/PartnersSection.vue';
 import ContactSection from '@/components/ContactSection.vue';
 
+import { TweenMax, TimelineMax } from 'gsap';
+
 @Component({
   components: {
     Navigation,
@@ -43,12 +45,62 @@ import ContactSection from '@/components/ContactSection.vue';
   }
 })
 export default class App extends Vue {
-  
-}
+  mounted(){
+    let titles = document.getElementsByClassName("title");
+    let subtitles = document.getElementsByClassName("subtitle");
+    let media = document.getElementsByClassName("media");
+    console.log(titles);
+    console.log(subtitles);
+    let windowWidth = window.innerWidth;
+    let windowHeight = window.innerHeight;
 
+    for(let i = 0; i < titles.length; ++i)
+    {
+      Vue.prototype.$scrollmagic.addScene(new Vue.prototype.$scrollmagic.scene(
+        {
+          triggerElement:`#${this.getParentSection(titles[i].id)}`,
+          duration: windowWidth * 2,
+          offset: -windowWidth * .2,
+        }).setTween(`#${titles[i].id}`, {x:"200%", ease: Linear.easeNone})
+        .addIndicators())
+    }
+    for(let i = 0; i < subtitles.length; ++i)
+    {
+      Vue.prototype.$scrollmagic.addScene(new Vue.prototype.$scrollmagic.scene(
+        {
+          triggerElement:`#${this.getParentSection(subtitles[i].id)}`,
+          duration: windowWidth * 2,
+          offset: -windowWidth * .2,
+        }).setTween(`#${subtitles[i].id}`, {x:"100%", ease: Linear.easeNone})
+        .addIndicators())
+    }
+    for(let i = 0; i < media.length; ++i)
+    {
+      Vue.prototype.$scrollmagic.addScene(new Vue.prototype.$scrollmagic.scene(
+        {
+          triggerElement: `#${this.getParentSection(media[i].id)}`,
+          duration: windowWidth * 2,
+          offset: -windowWidth * .2,
+        }).setTween(`#${media[i].id}`, {x:"50%", ease: Linear.easeNone})
+        .addIndicators())
+    }
+
+  }
+
+  getParentSection(elementName: string): string {
+    const element = document.getElementById(elementName);
+    let result = element.parentElement;
+    while (result !== null) {
+        if (result.tagName === 'SECTION') {
+            break;
+        }
+        result = result.parentElement;
+    }
+    return result.id;
+  }
+}
 // Scrolling vertically will move the page horizontally
 window.addEventListener('wheel', event => window.scrollTo(window.scrollX + event.deltaY, window.scrollY));
-
 </script>
 
 
