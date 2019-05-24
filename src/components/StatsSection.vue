@@ -12,12 +12,12 @@
             </div>
             <div class="stats-captions">
                 <div class="stats-titles">
-                    <h2 class="title">We do work</h2>
-                    <h4 class="subtitle">Better than most, actually</h4>
+                    <h2 class="title" id="work">We do work</h2>
+                    <h4 class="subtitle" id ="better">Better than most, actually</h4>
                 </div>
                 <div class="stats-text">
-                    <p class="main-text">New Challenge?</p>
-                    <p class="main-text">New solution -></p>
+                    <p class="main-text" id="challenge">New Challenge?</p>
+                    <p class="main-text" id="solution">New solution -></p>
                 </div>
             </div>
                 

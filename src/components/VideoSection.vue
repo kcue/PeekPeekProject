@@ -1,7 +1,8 @@
 <template>
     <section class="peek-section" id="video-section">
         <div class="video-section-container">
-            <iframe 
+            <iframe class = "media"
+            id = "firstVideo"
             width="100%" 
             height="100%" 
             src="https://www.youtube-nocookie.com/embed/GbpJN-nZt8A" 
@@ -9,7 +10,7 @@
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
             allowfullscreen=""
             scrolling="no"></iframe>
-            <h2 class="title">It's the full <b>Experience</b></h2>
+            <h2 class="title" id="fullexperience">It's the full <b>Experience</b></h2>
         </div>
     </section>
 </template>

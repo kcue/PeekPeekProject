@@ -2,8 +2,8 @@
     <section class="peek-section" id="demo-section">
         <div class="demo-section-text">
             <div class="demo-section-titles">
-                <h2 class="title">Something <b>special</b></h2>
-                <h4 class="subtitle">for every single one of you</h4>
+                <h2 class="title" id="special">Something <b>special</b></h2>
+                <h4 class="subtitle" id="everysingleone">for every single one of you</h4>
             </div>
             <p class="main-text">
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
@@ -12,12 +12,12 @@
             </p>
         </div>
         <div class="demo-section-frames">
-            <div class="demo-section-frame" id="demo-frame-one">
+            <div class="demo-section-frame media" id="demo-frame-one">
                 <h6>Cal State Long Beach</h6>
                 <p>Interactive tour</p>
                 <img src="../assets/images/csulb.jpg"/>
             </div>
-            <div class="demo-section-frame" id="demo-frame-two">
+            <div class="demo-section-frame media" id="demo-frame-two">
                 <h6>Cal State Long Beach</h6>
                 <p>Interactive tour</p>
                 <img src="../assets/images/csulb.jpg"/>

@@ -2,8 +2,8 @@
     <section class="peek-section" id="partners-section">
         <div class="partners-section-text">
             <div class="partners-section-titles">
-                <h2 class="title"><b>Customized branding</b> with PeekPeek</h2>
-                <p class="main-text">
+                <h2 class="title" id="branding"><b>Customized branding</b> with PeekPeek</h2>
+                <p class="main-text" id="examples">
                     Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
                     Debitis vitae dicta harum, accusamus ab, atque saepe optio nostrum nesciunt, facilis consequatur nemo dolorum pariatur provident ducimus expedita? 
                     Pariatur, quidem necessitatibus.

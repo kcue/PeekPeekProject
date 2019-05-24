@@ -2,9 +2,9 @@
     <section class="peek-section" id="hotspot-section">
         <img class="hotspot-skyline" src="../assets/images/transparent_skyline.png"/>
         <div class="hotspot-titles">
-            <h4 class="subtitle">It's not just the space</h4>
-            <h2 class="title">Tell me about your story</h2>
-            <h4 class="subtitle">with Spotlights</h4>
+            <h4 class="subtitle" id="space">It's not just the space</h4>
+            <h2 class="title" id="story">Tell me about your story</h2>
+            <h4 class="subtitle" id="spotlights">with Spotlights</h4>
         </div>
     </section>
 </template>

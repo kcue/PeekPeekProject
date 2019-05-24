@@ -43,8 +43,12 @@ export default class App extends Vue {
     let titles = document.getElementsByClassName("title");
     let subtitles = document.getElementsByClassName("subtitle");
     let media = document.getElementsByClassName("media");
+    console.log("Titles:")
     console.log(titles);
+    console.log("Subtitles:")
     console.log(subtitles);
+    console.log("Media:")
+    console.log(media)
     let windowWidth = window.innerWidth;
     let windowHeight = window.innerHeight;
 
@@ -55,7 +59,7 @@ export default class App extends Vue {
           triggerElement:`#${this.getParentSection(titles[i].id)}`,
           duration: windowWidth * 2,
           offset: -windowWidth * .2,
-        }).setTween(`#${titles[i].id}`, {x:"200%", ease: Linear.easeNone})
+        }).setTween(`#${titles[i].id}`, {x:"75%", ease: Linear.easeNone})
         .addIndicators())
     }
     for(let i = 0; i < subtitles.length; ++i)
@@ -65,7 +69,7 @@ export default class App extends Vue {
           triggerElement:`#${this.getParentSection(subtitles[i].id)}`,
           duration: windowWidth * 2,
           offset: -windowWidth * .2,
-        }).setTween(`#${subtitles[i].id}`, {x:"100%", ease: Linear.easeNone})
+        }).setTween(`#${subtitles[i].id}`, {x:"50%", ease: Linear.easeNone})
         .addIndicators())
     }
     for(let i = 0; i < media.length; ++i)
@@ -82,7 +86,9 @@ export default class App extends Vue {
   }
 
   getParentSection(elementName: string): string {
+    console.log(elementName)
     const element = document.getElementById(elementName);
+    console.log(element)
     let result = element.parentElement;
     while (result !== null) {
         if (result.tagName === 'SECTION') {
