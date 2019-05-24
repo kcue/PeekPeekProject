@@ -1,6 +1,6 @@
 <template>
     <section class="peek-section" id="home-section">
-        <img src='../assets/images/mountain_bg.jpg'/>
+        <div class=home-pic><img src='../assets/images/tinyWorld.png'/></div>
         <div class="home-section-headers">
             <h1>It's all about you.</h1>
             <div class=separator></div>
@@ -21,9 +21,13 @@ export default class HomeSection extends Vue {
 
 <style lang="scss" scoped>
 img {
-    height: auto;
+    width: 100%;
+    justify-content: center;
+}
+
+.home-pic {
     width: 40%;
-    object-fit: cover;
+    
 }
 
 .home-section-headers {

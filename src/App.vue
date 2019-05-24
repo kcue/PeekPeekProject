@@ -9,12 +9,12 @@
     <router-view /> -->
     <div id="sections-container">
       <HomeSection/>
-      <StatsSection/>
+      <!-- <StatsSection/> -->
       <VideoSection/>
-      <HotspotSection/>
+      <!-- <HotspotSection/>
       <DemoSection/>
       <PartnersSection/>
-      <ContactSection/>
+      <ContactSection/> -->
     </div>
   </div>
 </template>
