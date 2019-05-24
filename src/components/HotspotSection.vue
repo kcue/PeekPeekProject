@@ -1,9 +1,11 @@
 <template>
     <section class="peek-section" id="hotspot-section">
-        <p>It's not just a place</p>
         <img class="hotspot-skyline" src="../assets/images/transparent_skyline.png"/>
-        <h2>Tell your story</h2>
-        <p>With hotspots</p>
+        <div class="hotspot-titles">
+            <h4 class="subtitle">It's not just the space</h4>
+            <h2 class="title">Tell me about your story</h2>
+            <h4 class="subtitle">with Spotlights</h4>
+        </div>
     </section>
 </template>
 
@@ -17,11 +19,38 @@ export default class HotspotSection extends Vue {
 </script>
 
 <style lang="scss" scoped>
-.hotspot-skyline {
-    width: 95%;
-    object-fit: contain;
-    position: absolute;
-    bottom: 0;
-    max-height: 80%;
+#hotspot-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+
+    .hotspot-skyline {
+        width: 95%;
+        object-fit: contain;
+        position: absolute;
+        bottom: 0;
+        max-height: 80%;
+    }
+
+    .hotspot-titles {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-end;
+        margin-top: 80px;
+        margin-right: 5vw;
+        z-index: 10;
+
+        h2 {
+            margin: 0;
+        }
+
+        h4 {
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+    }
 }
+
+
 </style>
