@@ -1,20 +1,14 @@
 <template>
   <div id="app">
     <Navigation id="floating-nav"/>
-    <!-- <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> | 
-      <router-link to="./playground">Playground</router-link>
-    </div>
-    <router-view /> -->
     <div id="sections-container">
       <HomeSection/>
-      <!-- <StatsSection/> -->
+      <StatsSection/>
       <VideoSection/>
-      <!-- <HotspotSection/>
+      <HotspotSection/>
       <DemoSection/>
       <PartnersSection/>
-      <ContactSection/> -->
+      <ContactSection/>
     </div>
   </div>
 </template>
@@ -87,6 +81,20 @@ h1 {
   text-align: left;
 }
 
+.title {
+  font-size: 60px;
+  font-weight: bold;
+}
+
+.subtitle {
+  font-size: 40px;
+  font-weight: normal;
+}
+
+.main-text {
+  font-size: 28px;
+  font-weight: normal;
+}
 .peek-section {
   display: flex;
 }

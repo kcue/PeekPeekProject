@@ -1,7 +1,6 @@
 <template>
     <section class="peek-section" id="video-section">
         <div class="video-section-container">
-            <h2>Welcome to WebTour<sup>TM</sup></h2>
             <iframe 
             width="100%" 
             height="100%" 
@@ -10,7 +9,7 @@
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
             allowfullscreen=""
             scrolling="no"></iframe>
-            <p>Get the full <b>Experience</b></p>
+            <h2 class="title">It's the full <b>Experience</b></h2>
         </div>
     </section>
 </template>
@@ -26,24 +25,24 @@ export default class VideoSection extends Vue {
 
 <style lang="scss" scoped>
 .video-section-container {
-    margin-top: 100px;
-    margin-bottom: 100px;
+    margin-top: 10vh;
+    margin-bottom: 10vh;
     display: flex;
     width: 100%;
     flex-direction: column;
     justify-content: center;
-
-    h2, p {
-        font-size: 48px;
-        margin-top: 20px;
-        margin-bottom: 20px;
-    }
 
     iframe {
         width: 80%;
         max-width: 1200px;
         margin: 0 auto;
         pointer-events: none;
+    }
+
+    h2 {
+        font-weight: normal;
+        margin-top: 20px;
+        margin-bottom: 0;
     }
 }
 </style>

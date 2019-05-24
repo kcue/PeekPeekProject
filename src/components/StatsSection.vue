@@ -4,16 +4,23 @@
         <div class="stats-section-content">
             <div class="stats-cards">
                 <div class="stats-cards-container">
-                    <StatsCard :cardNumber="'36%'" :supportiveTitle="'Increase in'" :title="'Lead Generation'" id="stats-card-one"/>
-                    <StatsCard :cardNumber="'70%'" :supportiveTitle="'Increase in'" :title="'Engagement'" id="stats-card-two"/>
-                    <StatsCard :cardNumber="'25'" :supportiveTitle="'Current'" :title="'Affiliates'" id="stats-card-three"/>
-                    <StatsCard :cardNumber="'10'" :supportiveTitle="'Minutes of'" :title="'Excitement'" id="stats-card-four"/>
+                    <StatsCard :cardNumber="'18x'" :supportiveTitle="'Longer'" :title="'Duration of Stay'" id="stats-card-one"/>
+                    <StatsCard :cardNumber="'130%'" :supportiveTitle="'Increase in'" :title="'Booking Rate'" id="stats-card-two"/>
+                    <StatsCard :cardNumber="'12%'" :supportiveTitle="'Increase in'" :title="'Engagement Rate'" id="stats-card-three"/>
+                    <StatsCard :cardNumber="'28%'" :supportiveTitle="'Conversion of '" :title="'Physical Visit'" id="stats-card-four"/>
                 </div>
             </div>
             <div class="stats-captions">
-                <h2>We do work</h2>
-                <h4>Better than most, actually</h4>
+                <div class="stats-titles">
+                    <h2 class="title">We do work</h2>
+                    <h4 class="subtitle">Better than most, actually</h4>
+                </div>
+                <div class="stats-text">
+                    <p class="main-text">New Challenge?</p>
+                    <p class="main-text">New solution -></p>
+                </div>
             </div>
+                
         </div> 
         
     </section>
@@ -62,7 +69,9 @@ export default class StatsSection extends Vue {
             // }
             
             // tween = new TweenMax.to(`#${cards[i].id}`, 1, { y: `-${100 + (75*i)}%`, x: `${i % 2 === 0 ? -40 : 40}%`});
-             document.getElementById(cards[i].id).style.alignItems = i % 2 === 0 ? 'baseline' : 'flex-end';
+            document.getElementById(cards[i].id).style.alignItems = i % 2 === 0 ? 'baseline' : 'flex-end';
+            document.getElementById(cards[i].id).firstElementChild.style.margin = i % 2 === 0 ? 'auto 0 auto 25px' : 'auto 25px auto 0';
+            document.getElementById(cards[i].id).firstElementChild.style.alignItems = i % 2 === 0 ? 'baseline' : 'flex-end';
 
             //Getting the width of the element
             let elementWidth = document.getElementById('stats-card-one').clientWidth;
@@ -113,6 +122,7 @@ export default class StatsSection extends Vue {
     .stats-section-content {
         flex-grow: 9;
         display: flex;
+        justify-content: space-around;
 
         .stats-cards {
             // display: flex;
@@ -159,7 +169,7 @@ export default class StatsSection extends Vue {
         flex-direction: column;
         align-items: center;
         margin-left: 50px;
-        justify-content: center;
+        justify-content: space-around;
 
 
         h2 {
@@ -172,6 +182,11 @@ export default class StatsSection extends Vue {
             font-weight: normal;
             margin: 0;
         }
+
+        .stats-text {
+            align-self: flex-end;
+        }
     }
+
 }
 </style>
