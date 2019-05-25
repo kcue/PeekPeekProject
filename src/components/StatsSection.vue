@@ -85,7 +85,8 @@ export default class StatsSection extends Vue {
             })
 
             Vue.prototype.$scrollmagic.addScene(
-                scene.setTween(treeTween).addIndicators(),
+                scene.setTween(treeTween)
+                /*.addIndicators() */,
             )
         }
         // var tween = new TweenMax.to('#stats-card-one', 1, { y: '-200%', x: '-50%' });
@@ -114,6 +115,7 @@ export default class StatsSection extends Vue {
 <style lang="scss" scoped>
 #stats-section {
     flex-direction: row;
+    background-color: #4792f8;
 
     .stats-section-left-padding {
         flex-grow: 1;

@@ -1,26 +1,32 @@
 <template>
     <section class="peek-section" id="demo-section">
-        <div class="demo-section-text">
-            <div class="demo-section-titles">
-                <h2 class="title" id="special">Something <b>special</b></h2>
-                <h4 class="subtitle" id="everysingleone">for every single one of you</h4>
-            </div>
-            <p class="main-text">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
-                Debitis vitae dicta harum, accusamus ab, atque saepe optio nostrum nesciunt, facilis consequatur nemo dolorum pariatur provident ducimus expedita? 
-                Pariatur, quidem necessitatibus.
-            </p>
-        </div>
         <div class="demo-section-frames">
-            <div class="demo-section-frame media" id="demo-frame-one">
-                <h6>Cal State Long Beach</h6>
-                <p>Interactive tour</p>
+            <div class="demo-section-frame flippety bottom" id="demo-frame-one">
+                <h6>University of California, Irvine</h6>
+                <p>Anteater Recreational Center tour</p>
                 <img src="../assets/images/csulb.jpg"/>
             </div>
-            <div class="demo-section-frame media" id="demo-frame-two">
+            <div class="demo-section-frame flippety top" id="demo-frame-two">
                 <h6>Cal State Long Beach</h6>
-                <p>Interactive tour</p>
+                <p>Wellness Center tour</p>
                 <img src="../assets/images/csulb.jpg"/>
+            </div>
+                        <div class="demo-section-frame flippety top" id="demo-frame-three">
+                <h6>Fish on Tap</h6>
+                <p>Resturaunt tour</p>
+                <img src="../assets/images/csulb.jpg"/>
+            </div>
+                        <div class="demo-section-frame flippety top" id="demo-frame-four">
+                <h6>West Covina Estates</h6>
+                <p>Home tour</p>
+                <img src="../assets/images/csulb.jpg"/>
+            </div>
+            
+            <div class="demo-section-text">
+                <div class="demo-section-titles">
+                    <h2 class="title" id="special">Something <b>special</b></h2>
+                    <h4 class="subtitle" id="everysingleone">for every single one of you</h4>
+                </div>
             </div>
         </div>
     </section>
@@ -29,9 +35,46 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 
+import { TweenMax, TimelineMax } from 'gsap';
+
 @Component
 export default class DemoSection extends Vue {
+    mounted(){
+        // let windowWidth = window.innerWidth;
+        // let windowHeight = window.innerHeight;
+        // let demos = document.getElementsByClassName("flippety");
+
+        // for (let i = 0; i < demos.length; ++i)
+        // {
+        //     let roomLeft = ((windowWidth * 1.5) + windowWidth * 0.05) - (demos[i].offsetLeft + (demos[i].clientWidth * 1.5));
+        //     console.log(roomLeft);
+        //     Vue.prototype.$scrollmagic.addScene(new Vue.prototype.$scrollmagic.scene(
+        //         {
+        //         triggerElement:`#${this.getParentSection(demos[i].id)}`,
+        //         duration: roomLeft,
+        //         offset: 0,
+        //         triggerHook: 1
+        //         }).setTween(`#${demos[i].id}`, {x:`${roomLeft}`, ease: Linear.easeNone})
+        //         .addIndicators())
+        // }
+        //             console.log(this.getParentSection(demos[1].id))
+
+    }
     
+    getParentSection(elementName: string): string {
+    //console.log(elementName)
+    const element = document.getElementById(elementName);
+    //console.log(element)
+    let result = element.parentElement;
+    while (result !== null) {
+        if (result.tagName === 'SECTION') {
+            break;
+        }
+        result = result.parentElement;
+    }
+    return result.id;
+  }
+
 }
 </script>
 
@@ -70,17 +113,47 @@ export default class DemoSection extends Vue {
         display: flex;
         flex-direction: row;
         justify-content: space-around;
-        align-items: flex-end;
+        align-items: center;
+
+
+        .demo-section-frame:nth-child(odd) {
+            box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.18);
+            border-radius: 10px 10px 0 0;
+            margin: auto auto 0 auto;
+            
+            img {
+                margin: auto auto 0 auto;
+            }
+        }
+
+        .demo-section-frame:nth-child(even) {
+            box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.18);
+            border-radius: 0 0px 10px 10px;
+            margin: 0 auto auto auto;
+
+            img {
+                margin: 0 auto auto auto;
+            }
+
+            h6, p {
+                order: 2;
+            }
+
+        }
 
         .demo-section-frame {
             width: 40%;
             height: 85%;
             background: white;
-            box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.18);
-            border-radius: 10px 10px 0 0;
 
             display: flex;
             flex-direction: column;
+
+            img {
+                max-width: 100%;
+                height: 85%;
+                object-fit: cover;
+            }
 
             h6 {
                 font-size: 28px;
@@ -92,13 +165,6 @@ export default class DemoSection extends Vue {
                 margin-bottom: 10px;
                 margin-top: 0;
                 padding: 0 15px;
-            }
-
-            img {
-                max-width: 100%;
-                height: 85%;
-                object-fit: cover;
-                margin: auto auto 0 auto;
             }
         }
     }   

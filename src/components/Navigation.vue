@@ -1,10 +1,13 @@
 <template>
-    <ul class="nav-buttons">
-        <li><span class="nav-item">Who</span></li>
-        <li><span class="nav-item">What</span></li>
-        <li><span class="nav-item">Why</span></li>
-        <li><button>Contact Us</button></li>
-    </ul>
+    <nav>
+        <ul class="nav-buttons">
+            <li><span class="nav-item">Who</span></li>
+            <li><span class="nav-item">What</span></li>
+            <li><span class="nav-item">Why</span></li>
+            <li><button>Contact Us</button></li>
+        </ul>
+        <div class="nav-backdrop"></div>
+    </nav>
 </template>
 
 <script lang="ts">
@@ -17,32 +20,44 @@ export default class Navigation extends Vue {
 </script>
 
 <style lang="scss" scoped>
-.nav-buttons {
+nav {
     z-index: 10;
 
-    li {
-        display: inline-block;
-        margin: 10px 25px;
+    .nav-buttons {
+        li {
+            display: inline-block;
+            margin: 10px 25px;
 
-        text-transform: capitalize;
+            text-transform: capitalize;
 
-        span {
-            font-size: 20px;
-            color: #16a4a9;
-            text-transform: uppercase;
+            span {
+                font-size: 20px;
+                color: #16a4a9;
+                text-transform: uppercase;
+            }
+        }
+
+        span::after {
+            display: block;
+            content: '';
+            border-bottom: solid 2px #17a4a9;
+            transform: scaleX(0);
+            transition: transform 250ms ease-in-out;
+        }
+
+        span:hover::after {
+            transform: scaleX(0.90);
         }
     }
+}
 
-    span::after {
-        display: block;
-        content: '';
-        border-bottom: solid 2px #17a4a9;
-        transform: scaleX(0);
-        transition: transform 250ms ease-in-out;
-    }
-
-    span:hover::after {
-        transform: scaleX(0.90);
-    }
+.nav-backdrop {
+    position: absolute;
+    top: 0;
+    height: 96px;
+    width: 100vw;
+    background-color: rgba(255, 255, 255, 0.01);
+    z-index: -1;
+    filter: blur(2px);
 }
 </style>

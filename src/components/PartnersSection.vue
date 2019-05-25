@@ -35,6 +35,8 @@ export default class PartnersSection extends Vue {
 #partners-section {
     display: flex;
     flex-direction: row;
+    background-color: #4792f8;
+
 
     .partners-section-text, .partners-section-icons {
         display: flex;

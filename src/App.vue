@@ -40,55 +40,72 @@ import { TweenMax, TimelineMax } from 'gsap';
 })
 export default class App extends Vue {
   mounted(){
+    let windowLength = {
+      titles: 3,
+      subtitles: 4.5,
+      media: 4,
+      maintext: 5.25
+    }
+
     let titles = document.getElementsByClassName("title");
     let subtitles = document.getElementsByClassName("subtitle");
     let media = document.getElementsByClassName("media");
-    console.log("Titles:")
-    console.log(titles);
-    console.log("Subtitles:")
-    console.log(subtitles);
-    console.log("Media:")
-    console.log(media)
+    let mainText = document.getElementsByClassName("main-text");
+    
+    this.makeTween(titles, windowLength["titles"]);
+    this.makeTween(subtitles, windowLength['subtitles']);
+    this.makeTween(media, windowLength['media']);
+    this.makeTween(mainText, windowLength['maintext']);  
+    
     let windowWidth = window.innerWidth;
     let windowHeight = window.innerHeight;
-
-    for(let i = 0; i < titles.length; ++i)
-    {
-      Vue.prototype.$scrollmagic.addScene(new Vue.prototype.$scrollmagic.scene(
-        {
-          triggerElement:`#${this.getParentSection(titles[i].id)}`,
-          duration: windowWidth * 2,
-          offset: -windowWidth * .2,
-        }).setTween(`#${titles[i].id}`, {x:"75%", ease: Linear.easeNone})
-        .addIndicators())
-    }
-    for(let i = 0; i < subtitles.length; ++i)
-    {
-      Vue.prototype.$scrollmagic.addScene(new Vue.prototype.$scrollmagic.scene(
-        {
-          triggerElement:`#${this.getParentSection(subtitles[i].id)}`,
-          duration: windowWidth * 2,
-          offset: -windowWidth * .2,
-        }).setTween(`#${subtitles[i].id}`, {x:"50%", ease: Linear.easeNone})
-        .addIndicators())
-    }
-    for(let i = 0; i < media.length; ++i)
-    {
-      Vue.prototype.$scrollmagic.addScene(new Vue.prototype.$scrollmagic.scene(
-        {
-          triggerElement: `#${this.getParentSection(media[i].id)}`,
-          duration: windowWidth * 2,
-          offset: -windowWidth * .2,
-        }).setTween(`#${media[i].id}`, {x:"50%", ease: Linear.easeNone})
-        .addIndicators())
-    }
+    // let demos = document.getElementsByClassName("flippety");
+    // console.log("Demos:")
+    // console.log(demos)
+    // for (let i = 0; i < demos.length; ++i)
+    // {
+    //   debugger;
+    //   let roomLeft = ((windowWidth * 1.5) + windowWidth * 0.05) - (demos[i].offsetLeft + (demos[i].clientWidth * 1.5));
+    //   console.log(roomLeft);
+    //   Vue.prototype.$scrollmagic.addScene(new Vue.prototype.$scrollmagic.scene(
+    //       {
+    //       triggerElement:`#${this.getParentSection(demos[i].id)}`,
+    //       duration: windowWidth,
+    //       offset: 0,
+    //       triggerHook: 1
+    //       }).setTween(`#${demos[i].id}`, {x:`${roomLeft}`, ease: Linear.easeNone})
+    //       .addIndicators())
+    // }
+    // console.log(this.getParentSection(demos[1].id))
 
   }
 
+  makeTween(array: HTMLCollectionOf<Element>, lengthOfTween: number)
+  {
+    console.log(lengthOfTween);
+    let windowWidth = window.innerWidth;
+    let windowHeight = window.innerHeight;
+    for (let i = 0; i < array.length; ++i)
+    {
+      let roomLeft = ((windowWidth * 1.5) + windowWidth * 0.05) - (array[i].offsetLeft + (array[i].clientWidth * 1.5));
+      console.log(array[i].id);
+      console.log(roomLeft);
+      Vue.prototype.$scrollmagic.addScene(new Vue.prototype.$scrollmagic.scene(
+        {
+          triggerElement:`#${this.getParentSection(array[i].id)}`,
+          duration: windowWidth * lengthOfTween,
+          offset: windowWidth/5,
+          triggerHook: 1,
+        }).setTween(`#${array[i].id}`, {x:`${roomLeft}`, ease: Linear.easeNone})
+        // .addIndicators()
+        )
+    }
+  }
+
   getParentSection(elementName: string): string {
-    console.log(elementName)
+    //console.log(elementName)
     const element = document.getElementById(elementName);
-    console.log(element)
+    //console.log(element)
     let result = element.parentElement;
     while (result !== null) {
         if (result.tagName === 'SECTION') {
@@ -164,7 +181,7 @@ h1 {
 
 .peek-section {
   height: 100%;
-  width: 100vw;
+  width: 150vw;
   position: absolute;
 
   p {
@@ -177,27 +194,27 @@ h1 {
 }
 
 .peek-section:nth-child(2) {
-  left: 100%;
+  left: 150%;
 }
 
 .peek-section:nth-child(3) {
-  left: 200%;
-}
-
-.peek-section:nth-child(4) {
   left: 300%;
 }
 
+.peek-section:nth-child(4) {
+  left: 450%;
+}
+
 .peek-section:nth-child(5) {
-  left: 400%;
+  left: 600%;
 }
 
 .peek-section:nth-child(6) {
-  left: 500%;
+  left: 750%;
 }
 
 .peek-section:nth-child(7) {
-  left: 600%;
+  left: 900%;
 }
 
 #app {

@@ -25,6 +25,9 @@ export default class VideoSection extends Vue {
 </script>
 
 <style lang="scss" scoped>
+#video-section {
+    background-color: #7b329b;
+}
 .video-section-container {
     margin-top: 10vh;
     margin-bottom: 10vh;

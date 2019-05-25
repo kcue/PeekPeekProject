@@ -23,6 +23,7 @@ export default class HotspotSection extends Vue {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
+    background-color: #4792f8;
 
     .hotspot-skyline {
         width: 95%;
