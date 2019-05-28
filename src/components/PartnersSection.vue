@@ -1,16 +1,16 @@
 <template>
     <section class="peek-section wide-peek-section" id="partners-section">
         <div class="partners-section-text">
-            <div class="partners-section-titles">
-                <h2 class="title" id="branding"><b>Customized branding</b> with PeekPeek</h2>
-                <p class="main-text" id="examples">
+            <h2 class="title" id="branding"><b>Customized branding</b> with PeekPeek</h2>
+            <div class="main-text" id="examples">
+                <p>
                     PeekPeek was created to help companies enhance the way that they present themselves through digital means. 
                     PeekPeek’s WebTour technology converts prospects to customers by allowing them to virtually visit and experience 
                     a company’s physical location. Surpassing other 3D technologies, WebTour seamlessly integrates customized design, 
                     digital assets, and interactive features to dramatically augment the experience of users.
                 </p>
+                <a class="link">Check out our case studies</a>
             </div>
-            <a class="link">Check out our case studies</a>
         </div>
         <div class="partners-section-icons">
             <div class="partners-section-icon-container media" id="Waterford">
@@ -56,6 +56,13 @@ export default class PartnersSection extends Vue {
         width: 50%;
     }
 
+    .partners-section-titles {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: baseline;
+    }
+
     .partners-section-text {
         margin-top: 5vh;
         margin-left: 20px;
@@ -73,9 +80,16 @@ export default class PartnersSection extends Vue {
             text-align: left;
         }
 
+        p {
+            margin-bottom: 4vh;
+        }
+
         a {
+            font-size: 2vh;
+            margin-top: 2vh;
             margin-bottom: 15vh;
             text-decoration: underline;
+            text-align: left
         }
     }
 
