@@ -1,5 +1,5 @@
 <template>
-    <section class="peek-section" id="demo-section">
+    <section class="peek-section wide-peek-section" id="demo-section">
         <div class="demo-section-frames">
             <div class="demo-section-frame flippety bottom" id="demo-frame-one">
                 <h6>University of California, Irvine</h6>

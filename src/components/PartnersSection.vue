@@ -1,5 +1,5 @@
 <template>
-    <section class="peek-section" id="partners-section">
+    <section class="peek-section wide-peek-section" id="partners-section">
         <div class="partners-section-text">
             <div class="partners-section-titles">
                 <h2 class="title" id="branding"><b>Customized branding</b> with PeekPeek</h2>
@@ -13,12 +13,12 @@
             <a class="link">Check out our case studies</a>
         </div>
         <div class="partners-section-icons">
-            <img src="../assets/images/sample-logo.png"/>
-            <img src="../assets/images/sample-logo.png"/>
-            <img src="../assets/images/sample-logo.png"/>
-            <img src="../assets/images/sample-logo.png"/>
-            <img src="../assets/images/sample-logo.png"/>
-            <img src="../assets/images/sample-logo.png"/>
+            <img src="../assets/images/City Square Waterford.png"/>
+            <img src="../assets/images/Felixstowe Chamber.png"/>
+            <img src="../assets/images/Paypal.png"/>
+            <img src="../assets/images/UCI.png"/>
+            <img src="../assets/images/Hilton.png"/>
+            <img src="../assets/images/Pierce College.png"/>
         </div>
     </section>
 </template>
@@ -69,12 +69,16 @@ export default class PartnersSection extends Vue {
 
     .partners-section-icons {
         flex-wrap: wrap;
-        margin-top: 85px;
+        margin-top: 9vh;
+        margin-bottom: 2.5vh;
 
         img {
             max-width: 50%;
             max-height: 33%;
+            padding-top: 1vh;
+            padding-bottom: 1vh;
             object-fit: contain;
+            margin: 0 auto;
         }
     }   
 }

@@ -189,6 +189,10 @@ h1 {
   }
 }
 
+.wide-peek-section{
+  width: 150vw;
+}
+
 .peek-section:nth-child(1) {
   left: 0%;
 }
@@ -206,15 +210,15 @@ h1 {
 }
 
 .peek-section:nth-child(5) {
-  left: 400%;
+  left: 450%;
 }
 
 .peek-section:nth-child(6) {
-  left: 500%;
+  left: 600%;
 }
 
 .peek-section:nth-child(7) {
-  left: 600%;
+  left: 750%;
 }
 
 #app {

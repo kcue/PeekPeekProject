@@ -40,6 +40,10 @@ import { TweenMax, TimelineMax } from 'gsap';
 })
 export default class StatsSection extends Vue {
     mounted() {
+        this.cardAnimation();
+    }
+
+    cardAnimation() {
         const cards = document.getElementsByClassName("stats-card");
         const cardheight = document.getElementById('stats-card-one').clientHeight;
         const cardWidth = document.getElementById('stats-card-one').clientWidth;
@@ -132,10 +136,10 @@ export default class StatsSection extends Vue {
             // justify-content: center;
 
             .stats-cards-container {
-                width: 300px;
-                height: 300px;
+                width: 51.25vh;
+                height: 51.25vh;
                 position: relative;
-                top: calc(100% - 150px);
+                top: 80vh;
 
                 .stats-card {
                     position: absolute;

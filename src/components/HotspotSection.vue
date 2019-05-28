@@ -1,5 +1,5 @@
 <template>
-    <section class="peek-section" id="hotspot-section">
+    <section class="peek-section wide-peek-section" id="hotspot-section">
         <img class="hotspot-skyline" src="../assets/images/transparent_skyline.png"/>
         <div class="hotspot-titles">
             <h4 class="subtitle" id="space">It's not just the space</h4>

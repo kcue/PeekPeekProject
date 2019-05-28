@@ -31,7 +31,7 @@ nav {
             text-transform: capitalize;
 
             span {
-                font-size: 20px;
+                font-size: 2.4vh;
                 color: #16a4a9;
                 text-transform: uppercase;
             }
