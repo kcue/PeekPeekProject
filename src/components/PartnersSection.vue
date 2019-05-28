@@ -13,12 +13,24 @@
             <a class="link">Check out our case studies</a>
         </div>
         <div class="partners-section-icons">
-            <img src="../assets/images/City Square Waterford.png"/>
-            <img src="../assets/images/Felixstowe Chamber.png"/>
-            <img src="../assets/images/Paypal.png"/>
-            <img src="../assets/images/UCI.png"/>
-            <img src="../assets/images/Hilton.png"/>
-            <img src="../assets/images/Pierce College.png"/>
+            <div class="partners-section-icon-container media" id="Waterford">
+                <img src="../assets/images/City Square Waterford.png"/>
+            </div>
+            <div class="partners-section-icon-container media" id="Felixstowe">
+                <img src="../assets/images/Felixstowe Chamber.png"/>
+            </div>
+            <div class="partners-section-icon-container media" id="Paypal">
+                <img src="../assets/images/Paypal.png"/>
+            </div>
+            <div class="partners-section-icon-container media" id="UCI">
+                <img src="../assets/images/UCI.png"/>
+            </div>
+            <div class="partners-section-icon-container media" id="Hilton">
+                <img src="../assets/images/Hilton.png"/>
+            </div>
+            <div class="partners-section-icon-container media" id="Pierce">
+                <img src="../assets/images/Pierce College.png"/>
+            </div>
         </div>
     </section>
 </template>
@@ -72,14 +84,20 @@ export default class PartnersSection extends Vue {
         margin-top: 9vh;
         margin-bottom: 2.5vh;
 
-        img {
-            max-width: 50%;
-            max-height: 33%;
+        .partners-section-icon-container {
+            width: 50%;
+            max-height: 32%;
             padding-top: 1vh;
             padding-bottom: 1vh;
-            object-fit: contain;
-            margin: 0 auto;
-        }
+            display: flex;
+            justify-content: center;
+
+            img {
+                max-height: 100%;
+                max-width: 100%;
+                object-fit: contain;
+            }
+        }        
     }   
 }
 </style>

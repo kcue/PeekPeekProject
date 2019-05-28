@@ -52,10 +52,10 @@ export default class App extends Vue {
     let media = document.getElementsByClassName("media");
     let mainText = document.getElementsByClassName("main-text");
     
-    // this.makeTween(titles, windowLength["titles"]);
-    // this.makeTween(subtitles, windowLength['subtitles']);
-    // this.makeTween(media, windowLength['media']);
-    // this.makeTween(mainText, windowLength['maintext']);  
+    this.makeTween(titles, windowLength["titles"]);
+    this.makeTween(subtitles, windowLength['subtitles']);
+    this.makeTween(media, windowLength['media']);
+    this.makeTween(mainText, windowLength['maintext']);  
     
     let windowWidth = window.innerWidth;
     let windowHeight = window.innerHeight;

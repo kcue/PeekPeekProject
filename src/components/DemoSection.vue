@@ -90,7 +90,7 @@ export default class DemoSection extends Vue {
         margin-top: 5vh;
         margin-left: 30px;
         display: flex;
-        width: 35%;
+        width: 45%;
 
         flex-direction: column;
         align-items: flex-start;
@@ -109,7 +109,7 @@ export default class DemoSection extends Vue {
     }
 
     .demo-section-frames {
-        width: 65%;
+        width: 55%;
         display: flex;
         flex-direction: row;
         justify-content: space-around;
