@@ -55,8 +55,8 @@ export default class StatsSection extends Vue {
                     curviness: 1.25,
                     //autorotate:false,
                     values: [
-                        // { x: 0 , y: 0 },
-                        // { x: 0, y: -cardheight*.6*i - cardheight/2},
+                        { x: 0 , y: 0 },
+                        { x: 0, y: -cardheight*.6*i - cardheight/2},
                         { x: i % 2 === 0 ? -cardWidth*.4 : cardWidth*.4, y: -cardheight*.8*i - cardheight/2}
                     ]
                 }
@@ -82,9 +82,9 @@ export default class StatsSection extends Vue {
             console.log(elementWidth);
 
             let scene = new Vue.prototype.$scrollmagic.scene({
-            duration: 1,
-            offset: -window.innerWidth,
-            triggerHook: 'onCenter',
+            duration: window.innerWidth * 0.65,
+            offset: window.innerWidth / 3,
+            triggerHook: 'onEnter',
             triggerElement: '#stats-section',
             })
 
