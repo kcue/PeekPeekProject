@@ -4,29 +4,28 @@
             <div class="demo-section-frame flippety bottom" id="demo-frame-one">
                 <h6>University of California, Irvine</h6>
                 <p>Anteater Recreational Center tour</p>
-                <img src="../assets/images/csulb.jpg"/>
+                <img src="../assets/images/uci-arc.png"/>
             </div>
             <div class="demo-section-frame flippety top" id="demo-frame-two">
                 <h6>Cal State Long Beach</h6>
                 <p>Wellness Center tour</p>
-                <img src="../assets/images/csulb.jpg"/>
+                <img src="../assets/images/csulb-wellness.png"/>
             </div>
                         <div class="demo-section-frame flippety top" id="demo-frame-three">
                 <h6>Fish on Tap</h6>
                 <p>Resturaunt tour</p>
-                <img src="../assets/images/csulb.jpg"/>
+                <img src="../assets/images/fish-on-tap.png"/>
             </div>
                         <div class="demo-section-frame flippety top" id="demo-frame-four">
                 <h6>West Covina Estates</h6>
                 <p>Home tour</p>
-                <img src="../assets/images/csulb.jpg"/>
+                <img src="../assets/images/west-covina.png"/>
             </div>
-            
-            <div class="demo-section-text">
-                <div class="demo-section-titles">
-                    <h2 class="title" id="special">Something <b>special</b></h2>
-                    <h4 class="subtitle" id="everysingleone">for every single one of you</h4>
-                </div>
+        </div>
+        <div class="demo-section-text">
+            <div class="demo-section-titles">
+                <h2 class="title" id="special">Something <b>special</b></h2>
+                <h4 class="subtitle" id="everysingleone">for every single one of you</h4>
             </div>
         </div>
     </section>
@@ -89,6 +88,7 @@ export default class DemoSection extends Vue {
 
     .demo-section-text {
         margin-top: 5vh;
+        margin-left: 30px;
         display: flex;
         width: 35%;
 
@@ -114,12 +114,13 @@ export default class DemoSection extends Vue {
         flex-direction: row;
         justify-content: space-around;
         align-items: center;
+        margin-left: 20px;
 
 
         .demo-section-frame:nth-child(odd) {
             box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.18);
             border-radius: 10px 10px 0 0;
-            margin: auto auto 0 auto;
+            margin: auto 10px 0 10px;
             
             img {
                 margin: auto auto 0 auto;
@@ -129,7 +130,7 @@ export default class DemoSection extends Vue {
         .demo-section-frame:nth-child(even) {
             box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.18);
             border-radius: 0 0px 10px 10px;
-            margin: 0 auto auto auto;
+            margin: 0 10px auto 10px;
 
             img {
                 margin: 0 auto auto auto;

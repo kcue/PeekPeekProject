@@ -52,10 +52,10 @@ export default class App extends Vue {
     let media = document.getElementsByClassName("media");
     let mainText = document.getElementsByClassName("main-text");
     
-    this.makeTween(titles, windowLength["titles"]);
-    this.makeTween(subtitles, windowLength['subtitles']);
-    this.makeTween(media, windowLength['media']);
-    this.makeTween(mainText, windowLength['maintext']);  
+    // this.makeTween(titles, windowLength["titles"]);
+    // this.makeTween(subtitles, windowLength['subtitles']);
+    // this.makeTween(media, windowLength['media']);
+    // this.makeTween(mainText, windowLength['maintext']);  
     
     let windowWidth = window.innerWidth;
     let windowHeight = window.innerHeight;
@@ -175,13 +175,13 @@ h1 {
 }
 
 #floating-nav {
-  position: fixed;
+  position: absolute;
   right: 20px;
 }
 
 .peek-section {
   height: 100%;
-  width: 150vw;
+  width: 100vw;
   position: absolute;
 
   p {
@@ -194,27 +194,27 @@ h1 {
 }
 
 .peek-section:nth-child(2) {
-  left: 150%;
+  left: 100%;
 }
 
 .peek-section:nth-child(3) {
-  left: 300%;
+  left: 200%;
 }
 
 .peek-section:nth-child(4) {
-  left: 450%;
+  left: 300%;
 }
 
 .peek-section:nth-child(5) {
-  left: 600%;
+  left: 400%;
 }
 
 .peek-section:nth-child(6) {
-  left: 750%;
+  left: 500%;
 }
 
 .peek-section:nth-child(7) {
-  left: 900%;
+  left: 600%;
 }
 
 #app {

@@ -4,9 +4,10 @@
             <div class="partners-section-titles">
                 <h2 class="title" id="branding"><b>Customized branding</b> with PeekPeek</h2>
                 <p class="main-text" id="examples">
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
-                    Debitis vitae dicta harum, accusamus ab, atque saepe optio nostrum nesciunt, facilis consequatur nemo dolorum pariatur provident ducimus expedita? 
-                    Pariatur, quidem necessitatibus.
+                    PeekPeek was created to help companies enhance the way that they present themselves through digital means. 
+                    PeekPeek’s WebTour technology converts prospects to customers by allowing them to virtually visit and experience 
+                    a company’s physical location. Surpassing other 3D technologies, WebTour seamlessly integrates customized design, 
+                    digital assets, and interactive features to dramatically augment the experience of users.
                 </p>
             </div>
             <a class="link">Check out our case studies</a>
@@ -35,7 +36,7 @@ export default class PartnersSection extends Vue {
 #partners-section {
     display: flex;
     flex-direction: row;
-    background-color: #4792f8;
+    // background-color: #4792f8;
 
 
     .partners-section-text, .partners-section-icons {
@@ -45,7 +46,7 @@ export default class PartnersSection extends Vue {
 
     .partners-section-text {
         margin-top: 5vh;
-
+        margin-left: 20px;
         flex-direction: column;
         align-items: flex-start;
         justify-content: space-around;
