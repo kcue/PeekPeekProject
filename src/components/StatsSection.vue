@@ -184,7 +184,7 @@ export default class StatsSection extends Vue {
         }
 
         h4 {
-            font-size: 40px;
+            font-size: 6vh;
             font-weight: normal;
             margin: 0;
         }
