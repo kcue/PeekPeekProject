@@ -29,7 +29,7 @@ export default class ContactSection extends Vue {
         margin-top: 100px;
 
         p {
-            font-size: 48px;
+            font-size: 5.5vh;
             text-align: left;
         }
     }
@@ -46,7 +46,7 @@ export default class ContactSection extends Vue {
         }
 
         button {
-            font-size: 36px;
+            font-size: 4vh;
             width: 300px;
             margin: 20px auto 20px auto;
         }

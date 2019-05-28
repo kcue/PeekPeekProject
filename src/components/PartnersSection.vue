@@ -52,6 +52,7 @@ export default class PartnersSection extends Vue {
         justify-content: space-around;
 
         .main-text {
+            font-size: 2.8vh;
             text-align: left;
         }
 

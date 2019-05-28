@@ -70,7 +70,7 @@ export default class StatsSection extends Vue {
             
             // tween = new TweenMax.to(`#${cards[i].id}`, 1, { y: `-${100 + (75*i)}%`, x: `${i % 2 === 0 ? -40 : 40}%`});
             document.getElementById(cards[i].id).style.alignItems = i % 2 === 0 ? 'baseline' : 'flex-end';
-            document.getElementById(cards[i].id).firstElementChild.style.margin = i % 2 === 0 ? 'auto 0 auto 25px' : 'auto 25px auto 0';
+            document.getElementById(cards[i].id).firstElementChild.style.margin = i % 2 === 0 ? 'auto 0 auto 1.5vw' : 'auto 1.5vw auto 0';
             document.getElementById(cards[i].id).firstElementChild.style.alignItems = i % 2 === 0 ? 'baseline' : 'flex-end';
 
             //Getting the width of the element
@@ -175,7 +175,7 @@ export default class StatsSection extends Vue {
 
 
         h2 {
-            font-size: 60px;
+            font-size: 7vh;
             margin: 0;
         }
 

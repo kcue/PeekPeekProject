@@ -22,8 +22,8 @@ export default class StatsCard extends Vue {
 
 <style lang="scss" scoped>
 .stats-card {
-    width: 300px;
-    height: 240px;
+    width: 31.25vh;
+    height: 25vh;
     background-color: rgb(254, 255, 254);
     border-radius: 10px;
     box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.18);
@@ -43,24 +43,24 @@ export default class StatsCard extends Vue {
         }
 
         .card-number {
-            font-size: 84px;
+            font-size: 9vh;
             font-weight: bold;
         }
 
         .card-separator {
             width: 80px;
-            margin: 15px 0;
+            margin: 1.4vh 0;
             height: 8px;
             background-color: #8f8f94;
             border-radius: 4px;
         }
 
         .card-subtitle {
-            font-size: 24px;
+            font-size: 2.5vh;
         }
 
         .card-title {
-            font-size: 24px;
+            font-size: 2.5vh;
             font-weight: bold;
             color: #1c7d83;
         }

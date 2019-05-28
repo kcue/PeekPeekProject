@@ -142,7 +142,7 @@ body {
 }
 
 button {
-  font-size: 20px;
+  font-size: 2.4vh;
   padding: 10px 18px;
   background-color: #16a4a9;
   color: white;
@@ -152,22 +152,22 @@ button {
 }
 
 h1 {
-  font-size: 84px;
+  font-size: 9vh;
   text-align: left;
 }
 
 .title {
-  font-size: 60px;
+  font-size: 7vh;
   font-weight: bold;
 }
 
 .subtitle {
-  font-size: 40px;
+  font-size: 4.8vh;
   font-weight: normal;
 }
 
 .main-text {
-  font-size: 28px;
+  font-size: 3.5vh;
   font-weight: normal;
 }
 .peek-section {
