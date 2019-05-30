@@ -46,10 +46,10 @@ export default class DemoSection extends Vue {
         for (let i = 0; i < demos.length; ++i) {
             Vue.prototype.$scrollmagic.addScene(new Vue.prototype.$scrollmagic.scene({
                 triggerElement: `#${demos[i].id}`,
-                duration: demos[i].clientWidth * 1.25,
+                duration: demos[i].clientWidth * 3,
                 offset: demos[i].clientWidth * 0.75,
                 triggerHook: 'onEnter',
-            }).setTween(`#${demos[i].id}`, {y: i % 2 === 0 ? -window.innerHeight * 0.85 : window.innerHeight * 0.85, ease: Linear.easeNone})
+            }).setTween(`#${demos[i].id}`, {y: i % 2 === 0 ? -window.innerHeight * 0.85 : window.innerHeight * 0.85, ease: Sine.easeNone})
             )
         }
 
