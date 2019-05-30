@@ -32,24 +32,33 @@ import StatsCard from "@/components/StatsCard.vue";
 
 import { TweenMax, TimelineMax } from 'gsap';
 
+let scenes;
 // var controller = Vue.prototype.$scrollmagic.Controller({vertical: false})
 @Component({
   components: {
     StatsCard,
   }
 })
-export default class StatsSection extends Vue {
+
+
+export default class StatsSection extends Vue { 
     mounted() {
         window.addEventListener('resize', ()=> {
+            for (let i = 0; i < scenes.length; ++i)
+            {
+                scenes[i].destroy(true);
+            }
+            scenes = [];
             this.cardAnimation();
         })
+        scenes = []; 
         this.cardAnimation();
     }
 
     cardAnimation() {
-        const cards = document.getElementsByClassName("stats-card");
-        const cardheight = document.getElementById('stats-card-one').clientHeight;
-        const cardWidth = document.getElementById('stats-card-one').clientWidth;
+        let cards = document.getElementsByClassName("stats-card");
+        let cardheight = document.getElementById('stats-card-one')!.clientHeight;
+        let cardWidth = document.getElementById('stats-card-one')!.clientWidth;
         for(let i = 0; i < cards.length; ++i)
         {
 
@@ -90,7 +99,7 @@ export default class StatsSection extends Vue {
             triggerHook: 'onEnter',
             triggerElement: '#stats-section',
             })
-
+            scenes.push(scene);
             Vue.prototype.$scrollmagic.addScene(
                 scene.setTween(treeTween)
                 /*.addIndicators() */,

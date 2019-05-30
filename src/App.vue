@@ -25,6 +25,8 @@ import PartnersSection from '@/components/PartnersSection.vue';
 import ContactSection from '@/components/ContactSection.vue';
 
 import { TweenMax, TimelineMax } from 'gsap';
+let windowLength;
+let scenes;
 
 @Component({
   components: {
@@ -40,25 +42,42 @@ import { TweenMax, TimelineMax } from 'gsap';
 })
 export default class App extends Vue {
   mounted(){
-    let windowLength = {
+    windowLength = {
       titles: 3,
       subtitles: 4.5,
       media: 4,
       maintext: 5.25
     }
+    
+    window.addEventListener('resize', ()=> {
+      for (let i = 0; i < scenes.length; ++i)
+      {
+          scenes[i].destroy(true);
+      }
+      scenes = [];
+      this.parallaxAnimation();
+    })  
+    scenes = []; 
+    this.parallaxAnimation();
+  }
 
+  parallaxAnimation()
+  {
     let titles = document.getElementsByClassName("title");
     let subtitles = document.getElementsByClassName("subtitle");
     let media = document.getElementsByClassName("media");
     let mainText = document.getElementsByClassName("main-text");
-    
+    let windowWidth = window.innerWidth;
+    let windowHeight = window.innerHeight;
+
     this.makeTween(titles, windowLength["titles"]);
     this.makeTween(subtitles, windowLength['subtitles']);
     this.makeTween(media, windowLength['media']);
     this.makeTween(mainText, windowLength['maintext']);  
     
-    let windowWidth = window.innerWidth;
-    let windowHeight = window.innerHeight;
+  }
+
+    
     // let demos = document.getElementsByClassName("flippety");
     // console.log("Demos:")
     // console.log(demos)
@@ -78,7 +97,6 @@ export default class App extends Vue {
     // }
     // console.log(this.getParentSection(demos[1].id))
 
-  }
 
   makeTween(array: HTMLCollectionOf<Element>, lengthOfTween: number)
   {
@@ -90,7 +108,7 @@ export default class App extends Vue {
       let roomLeft = ((windowWidth * 1.5) + windowWidth * 0.05) - (array[i].offsetLeft + (array[i].clientWidth * 1.5));
       console.log(array[i].id);
       console.log(roomLeft);
-      Vue.prototype.$scrollmagic.addScene(new Vue.prototype.$scrollmagic.scene(
+      let scene = new Vue.prototype.$scrollmagic.scene(
         {
           triggerElement:`#${this.getParentSection(array[i].id)}`,
           duration: windowWidth * lengthOfTween,
@@ -98,7 +116,8 @@ export default class App extends Vue {
           triggerHook: 1,
         }).setTween(`#${array[i].id}`, {x:`${roomLeft}`, ease: Linear.easeNone})
         // .addIndicators()
-        )
+        scenes.push(scene);
+      Vue.prototype.$scrollmagic.addScene(scene)
     }
   }
 

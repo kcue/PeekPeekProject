@@ -36,9 +36,25 @@ import { Component, Vue } from "vue-property-decorator";
 
 import { TweenMax, TimelineMax } from 'gsap';
 
+let scenes = [];
+
 @Component
 export default class DemoSection extends Vue {
     mounted(){
+        window.addEventListener('resize', ()=> {
+            for (let i = 0; i < scenes.length; ++i)
+            {
+                scenes[i].destroy(true);
+            }
+            scenes = [];
+            this.demoAnimations();
+        })
+        scenes = []; 
+        this.demoAnimations();
+
+    }
+
+    demoAnimations(){
         let windowWidth = window.innerWidth;
         let windowHeight = window.innerHeight;
         let demos = document.getElementsByClassName("flippety");
@@ -49,10 +65,10 @@ export default class DemoSection extends Vue {
                 duration: demos[i].clientWidth * 3,
                 offset: demos[i].clientWidth * 0.75,
                 triggerHook: 'onEnter',
+                reverse: false,
             }).setTween(`#${demos[i].id}`, {y: i % 2 === 0 ? -window.innerHeight * 0.85 : window.innerHeight * 0.85, ease: Sine.easeNone})
             )
         }
-
     }
     
     getParentSection(elementName: string): string {
