@@ -48,9 +48,9 @@ export default class StatsCard extends Vue {
         }
 
         .card-separator {
-            width: 80px;
+            width: 9vh;
             margin: 1.4vh 0;
-            height: 8px;
+            height: 1vh;
             background-color: #8f8f94;
             border-radius: 4px;
         }

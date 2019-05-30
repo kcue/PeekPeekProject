@@ -117,7 +117,16 @@ export default class App extends Vue {
   }
 }
 // Scrolling vertically will move the page horizontally
-window.addEventListener('wheel', event => window.scrollTo(window.scrollX + event.deltaY, window.scrollY));
+window.onwheel = event => {
+  if (navigator.userAgent.includes('Safari') && !navigator.userAgent.includes('Chrome')) {
+    // Need to prevent default behavior for Safari for touchpad scrolling gesture to work
+    event.preventDefault();
+    window.scrollTo(window.scrollX + event.deltaX + event.deltaY, window.scrollY); // Added deltaX to ensure native horizontal scrolling
+  } else {
+    // For all other browsers
+    window.scrollTo(window.scrollX + event.deltaY, window.scrollY);
+  }
+}
 </script>
 
 
@@ -188,9 +197,16 @@ h1 {
     margin: 0;
   }
 }
+.medium-peek-section {
+  width: 125vw;
+}
 
 .wide-peek-section{
   width: 150vw;
+}
+
+.super-wide-peek-section {
+  width: 175vw;
 }
 
 .peek-section:nth-child(1) {
@@ -218,7 +234,7 @@ h1 {
 }
 
 .peek-section:nth-child(7) {
-  left: 750%;
+  left: 775%;
 }
 
 #app {

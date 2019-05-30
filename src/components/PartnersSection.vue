@@ -1,5 +1,5 @@
 <template>
-    <section class="peek-section wide-peek-section" id="partners-section">
+    <section class="peek-section super-wide-peek-section" id="partners-section">
         <div class="partners-section-text">
             <h2 class="title" id="branding"><b>Customized branding</b> with PeekPeek</h2>
             <div class="main-text" id="examples">

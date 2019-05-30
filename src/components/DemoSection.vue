@@ -39,39 +39,32 @@ import { TweenMax, TimelineMax } from 'gsap';
 @Component
 export default class DemoSection extends Vue {
     mounted(){
-        // let windowWidth = window.innerWidth;
-        // let windowHeight = window.innerHeight;
-        // let demos = document.getElementsByClassName("flippety");
+        let windowWidth = window.innerWidth;
+        let windowHeight = window.innerHeight;
+        let demos = document.getElementsByClassName("flippety");
 
-        // for (let i = 0; i < demos.length; ++i)
-        // {
-        //     let roomLeft = ((windowWidth * 1.5) + windowWidth * 0.05) - (demos[i].offsetLeft + (demos[i].clientWidth * 1.5));
-        //     console.log(roomLeft);
-        //     Vue.prototype.$scrollmagic.addScene(new Vue.prototype.$scrollmagic.scene(
-        //         {
-        //         triggerElement:`#${this.getParentSection(demos[i].id)}`,
-        //         duration: roomLeft,
-        //         offset: 0,
-        //         triggerHook: 1
-        //         }).setTween(`#${demos[i].id}`, {x:`${roomLeft}`, ease: Linear.easeNone})
-        //         .addIndicators())
-        // }
-        //             console.log(this.getParentSection(demos[1].id))
+        for (let i = 0; i < demos.length; ++i) {
+            Vue.prototype.$scrollmagic.addScene(new Vue.prototype.$scrollmagic.scene({
+                triggerElement: `#${demos[i].id}`,
+                duration: demos[i].clientWidth * 1.25,
+                offset: demos[i].clientWidth * 0.75,
+                triggerHook: 'onEnter',
+            }).setTween(`#${demos[i].id}`, {y: i % 2 === 0 ? -window.innerHeight * 0.85 : window.innerHeight * 0.85, ease: Linear.easeNone})
+            )
+        }
 
     }
     
     getParentSection(elementName: string): string {
-    //console.log(elementName)
-    const element = document.getElementById(elementName);
-    //console.log(element)
-    let result = element.parentElement;
-    while (result !== null) {
-        if (result.tagName === 'SECTION') {
-            break;
+        const element = document.getElementById(elementName);
+        let result = element.parentElement;
+        while (result !== null) {
+            if (result.tagName === 'SECTION') {
+                break;
+            }
+            result = result.parentElement;
         }
-        result = result.parentElement;
-    }
-    return result.id;
+        return result.id;
   }
 
 }
@@ -120,7 +113,7 @@ export default class DemoSection extends Vue {
         .demo-section-frame:nth-child(odd) {
             box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.18);
             border-radius: 10px 10px 0 0;
-            margin: auto 10px 0 10px;
+            margin: auto 10px -85vh 10px;
             
             img {
                 margin: auto auto 0 auto;
@@ -130,7 +123,7 @@ export default class DemoSection extends Vue {
         .demo-section-frame:nth-child(even) {
             box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.18);
             border-radius: 0 0px 10px 10px;
-            margin: 0 10px auto 10px;
+            margin: -85vh 10px auto 10px;
 
             img {
                 margin: 0 auto auto auto;

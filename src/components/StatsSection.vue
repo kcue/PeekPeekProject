@@ -40,6 +40,9 @@ import { TweenMax, TimelineMax } from 'gsap';
 })
 export default class StatsSection extends Vue {
     mounted() {
+        window.addEventListener('resize', ()=> {
+            this.cardAnimation();
+        })
         this.cardAnimation();
     }
 
@@ -57,7 +60,7 @@ export default class StatsSection extends Vue {
                     values: [
                         { x: 0 , y: 0 },
                         { x: 0, y: -cardheight*.6*i - cardheight/2},
-                        { x: i % 2 === 0 ? -cardWidth*.4 : cardWidth*.4, y: -cardheight*.8*i - cardheight/2}
+                        { x: i % 2 === 0 ? -cardWidth*.42 : cardWidth*.42, y: -cardheight*.8*i - cardheight/2}
                     ]
                 }
             }
@@ -74,7 +77,7 @@ export default class StatsSection extends Vue {
             
             // tween = new TweenMax.to(`#${cards[i].id}`, 1, { y: `-${100 + (75*i)}%`, x: `${i % 2 === 0 ? -40 : 40}%`});
             document.getElementById(cards[i].id).style.alignItems = i % 2 === 0 ? 'baseline' : 'flex-end';
-            document.getElementById(cards[i].id).firstElementChild.style.margin = i % 2 === 0 ? 'auto 0 auto 1.5vw' : 'auto 1.5vw auto 0';
+            document.getElementById(cards[i].id).firstElementChild.style.margin = i % 2 === 0 ? 'auto 0 auto 2.5vh' : 'auto 2.5vh auto 0';
             document.getElementById(cards[i].id).firstElementChild.style.alignItems = i % 2 === 0 ? 'baseline' : 'flex-end';
 
             //Getting the width of the element
@@ -134,7 +137,7 @@ export default class StatsSection extends Vue {
             // display: flex;
             // flex-direction: column;
             // justify-content: center;
-
+            margin-left: 12vh;
             .stats-cards-container {
                 width: 51.25vh;
                 height: 51.25vh;
@@ -174,7 +177,7 @@ export default class StatsSection extends Vue {
         display: flex;
         flex-direction: column;
         align-items: center;
-        margin-left: 50px;
+        // margin-left: 50px;
         justify-content: space-around;
 
 
@@ -191,6 +194,7 @@ export default class StatsSection extends Vue {
 
         .stats-text {
             align-self: flex-end;
+            margin-right: 4vh;
         }
     }
 
