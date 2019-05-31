@@ -106,8 +106,8 @@ export default class App extends Vue {
     for (let i = 0; i < array.length; ++i)
     {
       let roomLeft = ((windowWidth * 1.5) + windowWidth * 0.05) - (array[i].offsetLeft + (array[i].clientWidth * 1.5));
-      console.log(array[i].id);
-      console.log(roomLeft);
+      //console.log(array[i].id);
+      //console.log(roomLeft);
       let scene = new Vue.prototype.$scrollmagic.scene(
         {
           triggerElement:`#${this.getParentSection(array[i].id)}`,
