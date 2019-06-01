@@ -10,7 +10,7 @@
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
             allowfullscreen=""
             scrolling="no"></iframe>
-            <h2 class="title" id="fullexperience">It's the full <b>Experience</b></h2>
+            <h2 class="title" id="fullexperience">It's the full <b>experience</b></h2>
         </div>
     </section>
 </template>

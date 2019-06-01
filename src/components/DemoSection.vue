@@ -2,7 +2,7 @@
     <section class="peek-section super-wide-peek-section" id="demo-section">
         <div class="demo-section-frames" id="demo-section-frames">
             <DemoCard v-for="(item, index) in cardData" :key="index" :id="'demo-card-' + index">
-                <iframe slot="iframe" :src="item.iframe" style="display: none;"></iframe>
+                <iframe slot="iframe" :src="item.iframe"></iframe>
                 <h6 slot="title">{{item.title}}</h6>
                 <p slot="subtitle">{{item.subtitle}}</p>
                 <img slot="img" :src="imagePath(item.img)"/> 
@@ -56,7 +56,7 @@ export default class DemoSection extends Vue {
                 // console.log(event.srcElement.classList);
                 // const targetElement = event.srcElement.classList.value === '' ? event.srcElement.parentElement : event.srcElement;
                 const targetElement = event.srcElement.className.toString().includes("demo-section-frame") ? event.srcElement : event.srcElement.parentElement;
-                console.log(targetElement);
+                this.openCard(targetElement, cards);
             });
         }
     }
@@ -66,6 +66,8 @@ export default class DemoSection extends Vue {
             imagePath: function (name:string): any {
                 return require('../assets/images/' + name + '.png')
             }, 
+            //To rearrange the content of the cards, do not change the structure of the data here.
+            //Go to the Style section of this page and change the flex-order. 
             cardData: [
             {
                 iframe: "http://panosensing.com/temp/peekpeek/LB_Rec_Center/v3.html",
@@ -93,6 +95,19 @@ export default class DemoSection extends Vue {
             }
         ]
         }
+    }
+
+
+    openCard(elem, cards) {
+        for (let i = 0; i < cards.length; ++i) {
+            if (cards[i].id != elem.id) {
+                console.log(cards[i].id + " is not the one you clicked");
+                cards[i].classList.add("flat");
+            } 
+        }
+
+        elem.classList.add("opened");
+
     }
 
     demoAnimations(){
@@ -132,9 +147,61 @@ export default class DemoSection extends Vue {
     display: flex;
     flex-direction: row;
 
+    iframe {
+        border-width: 0px;
+        height: 0; opacity: 0;
+    }
+
     .demo-section-text, .demo-section-icons {
         display: flex;
     }
+
+    .flat {
+        transition: height 1s;
+        height: 0px !important;
+        
+        * {
+            transition: opacity .2s;
+            opacity: 0.0 !important;
+        }
+    }
+    
+    .opened {
+        transition: all 1s;
+        background-color: black !important;
+        width: 80vw !important;
+        height: 60vh !important;
+        position: absolute !important;
+
+
+        iframe {
+            transition: opacity 1s ease-in-out 1s;
+            height: 100%;
+            width: 100%;
+            opacity: 1;
+            position: absolute;
+        }
+
+        img {
+            transition: opacity .5s;
+            opacity: 0.0;
+            //display: none;
+        }
+
+        h6 {
+            transition: opacity .5s;
+            opacity: 0.0;
+            //display: none;
+        }
+
+        p {            
+            transition: opacity .5s;
+            opacity: 0.0;
+            //display: none;
+        }
+
+    }
+
 
     .demo-section-text {
         margin-top: 5vh;

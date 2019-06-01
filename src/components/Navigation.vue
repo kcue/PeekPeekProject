@@ -1,5 +1,6 @@
 <template>
     <nav>
+        <img id="logo" src="../assets/images/117-peek-teal.png">
         <ul class="nav-buttons">
             <li><span class="nav-item">Who</span></li>
             <li><span class="nav-item">What</span></li>
@@ -20,7 +21,16 @@ export default class Navigation extends Vue {
 
 <style lang="scss" scoped>
 nav {
-    z-index: 10;
+    z-index: 11;
+
+    #logo {
+        margin: 16px 0 16px 0;
+        padding: 0 18px 0 18px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 50px;
+    }
 
     .nav-buttons {
         li {
