@@ -22,25 +22,17 @@ import { Component, Vue } from "vue-property-decorator";
 
 export default class HomeSection extends Vue {
     mounted () {
-        console.log('mounted activated');
         document.onreadystatechange = () => {
             if (document.readyState == "complete") {
-                console.log('Page completed with image and files!')
                 this.splashScreen();
-
             }   
         }
     }
    
     splashScreen() {
-        console.log('splash screen started!')
         document.getElementsByClassName("home-pic")[0].classList.add("collapsed"); 
-        document.getElementById("splash-text").classList.add("hidden");
-        document.getElementsByClassName("secondary")[0].classList.remove("hidden"); 
-
-         
-        
-
+        document.getElementById("splash-text")!.classList.add("hidden");
+        document.getElementsByClassName("secondary")[0].classList.remove("hidden");
     }
 }
 </script>

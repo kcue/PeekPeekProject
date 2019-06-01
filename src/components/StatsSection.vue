@@ -1,28 +1,25 @@
 <template>
     <section class="peek-section" id="stats-section">
-        <div class="stats-section-left-padding"></div>
-        <div class="stats-section-content">
-            <div class="stats-cards">
-                <div class="stats-cards-container">
-                    <StatsCard v-for="(card, index) in cardData" :key="index" :cardNumber="card.cardNumber" :supportiveTitle="card.supportiveTitle" :title="card.title" :id="'stats-card-' + (index + 1)" class="stats-card"/>
-                </div>
+        <div class="stats-cards-left-margin"></div>
+        <div class="stats-cards">
+            <div class="stats-cards-container">
+                <StatsCard v-for="(card, index) in cardData" :key="index" :cardNumber="card.cardNumber" :supportiveTitle="card.supportiveTitle" :title="card.title" :id="'stats-card-' + (index + 1)" class="stats-card"/>
             </div>
-        
-            <div class="stats-captions">
-                <div class="stats-titles">
-                    <h2 class="title" id="work">We do work</h2>
-                    <h4 class="subtitle" id ="better">better than most, actually</h4>
-                </div>
-                <div class="stats-text">
-                    <p class="main-text" id="challenge">New challenge?</p>
-                    <p class="main-text" id="solution">New solution <i class="fas fa-long-arrow-alt-right"></i></p>
-                    
-                </div>
+        </div>
+    
+        <div class="stats-captions">
+            <div class="stats-titles">
+                <h2 class="title" id="work">We do work</h2>
+                <h4 class="subtitle" id ="better">better than most, actually</h4>
+            </div>
+            <div class="stats-text">
+                <p class="main-text" id="challenge">New challenge?</p>
+                <p class="main-text" id="solution">New solution <i class="fas fa-long-arrow-alt-right"></i></p>
+                
             </div>
         </div>
 
         <div class="stats-captions-parallax-margin"></div>
-        
     </section>
 </template>
 
@@ -33,14 +30,12 @@ import StatsCard from "@/components/StatsCard.vue";
 import { TweenMax, TimelineMax } from 'gsap';
 
 let scenes;
-// var controller = Vue.prototype.$scrollmagic.Controller({vertical: false})
+
 @Component({
   components: {
     StatsCard,
   }
 })
-
-
 export default class StatsSection extends Vue { 
     mounted() {
         window.addEventListener('resize', ()=> {
@@ -134,7 +129,6 @@ export default class StatsSection extends Vue {
             var flightPath = {
                 tree : {
                     curviness: 1.25,
-                    //autorotate:false,
                     values: [
                         { x: 0 , y: 0 },
                         { x: 0, y: -cardheight*.6*i - cardheight/2},
@@ -144,23 +138,12 @@ export default class StatsSection extends Vue {
             }
             var treeTween = TweenMax.to(cards[i], 1, {css:{bezier:flightPath.tree } , ease:Power1.easeInOut} )
             
-            // if (i % 2 === 0)
-            // {
-            //     tween = new TweenMax.to(`#${cards[i].id}`, 1, { y: `-${100 + (75*i)}%`, x: `-40%` });
-            //     document.getElementById(cards[i].id).style.alignItems = 'baseline';
-            // } else {
-            //     tween = new TweenMax.to(`#${cards[i].id}`, 1, { y: `-${100 + (75*i)}%`, x: `40%` });
-            //     document.getElementById(cards[i].id).style.alignItems = 'flex-end';
-            // }
-            
-            // tween = new TweenMax.to(`#${cards[i].id}`, 1, { y: `-${100 + (75*i)}%`, x: `${i % 2 === 0 ? -40 : 40}%`});
             document.getElementById(cards[i].id).style.alignItems = i % 2 === 0 ? 'baseline' : 'flex-end';
             document.getElementById(cards[i].id).firstElementChild.style.margin = i % 2 === 0 ? 'auto 0 auto 2.5vh' : 'auto 2.5vh auto 0';
             document.getElementById(cards[i].id).firstElementChild.style.alignItems = i % 2 === 0 ? 'baseline' : 'flex-end';
 
             //Getting the width of the element
             let elementWidth = document.getElementById(cards[0].id)!.clientWidth;
-            //console.log(elementWidth);
 
             let scene = new Vue.prototype.$scrollmagic.scene({
             duration: window.innerWidth * 0.65,
@@ -171,7 +154,6 @@ export default class StatsSection extends Vue {
             scenes.push(scene);
             Vue.prototype.$scrollmagic.addScene(
                 scene.setTween(treeTween)
-                /*.addIndicators() */,
             )
             let numberScene = new Vue.prototype.$scrollmagic.scene({
                 duration: 2000,
@@ -179,31 +161,8 @@ export default class StatsSection extends Vue {
                 triggerHook: 'onEnter',
                 triggerElement: `#${cards[i].id}`})
                 .on("enter", () => this.animateValue(cards[i].getElementsByClassName("card-number")[0]));
-                // .on("enter", function(e: object) {
-                //     let cardNumber = cards[i].getElementsByClassName("card-number")[0];
-                //     animateValue(cardNumber);
-                // }); 
             Vue.prototype.$scrollmagic.addScene(numberScene)
         }
-        // var tween = new TweenMax.to('#stats-card-one', 1, { y: '-200%', x: '-50%' });
-        // var rotationTween = new TweenMax.to('#stats-card-one', 1, {rotation:-15})
-
-        // let timeline = new TimelineMax();
-
-        // timeline.add(tween).add(rotationTween);
-
-        // let scene = new Vue.prototype.$scrollmagic.scene({
-        //     duration: 800,
-        //     offset: -200,
-        //     triggerHook: 'onCenter',
-        //     triggerElement: '#stats-section',
-        // })
-        // // Vue.prototype.$scrollmagic.addScene(
-        // //     scene.setTween(tween).addIndicators(),
-        // // )
-
-        // scene.setTween(timeline).addIndicators();
-        // Vue.prototype.$scrollmagic.addScene(scene)
     }
 }
 </script>

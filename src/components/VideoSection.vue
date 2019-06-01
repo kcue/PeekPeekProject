@@ -10,9 +10,7 @@
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
             allowfullscreen=""
             scrolling="no"></iframe>
-            <div>
-                <h2 class="wide-title" id="fullexperience">It's the full <b>experience</b></h2>
-            </div>
+            <h2 class="wide-title" id="fullexperience">It's the full <b>experience</b></h2>
         </div>
     </section>
 </template>
@@ -27,9 +25,6 @@ export default class VideoSection extends Vue {
 </script>
 
 <style lang="scss" scoped>
-#video-section {
-    // background-color: #7b329b;
-}
 .video-section-container {
     margin-top: 10vh;
     margin-bottom: 10vh;

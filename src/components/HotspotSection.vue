@@ -6,7 +6,6 @@
             <h2 class="wide-title" id="story">Tell me about your story</h2>
             <h4 class="subtitle" id="spotlights">with Spotlights</h4>
         </div>
-        <!-- <div class="hotspot-titles-parallax-margin"></div> -->
     </section>
 </template>
 
@@ -24,7 +23,6 @@ export default class HotspotSection extends Vue {
     display: flex;
     flex-direction: row;
     justify-content: baseline;
-    // background-color: #4792f8;
 
     .hotspot-skyline {
         width: 95%;

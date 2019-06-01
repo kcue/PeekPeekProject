@@ -45,19 +45,12 @@ export default class DemoSection extends Vue {
         scenes = []; 
         this.demoAnimations();
 
-        let cards = document.getElementById("demo-section-frames").children;
-        console.log(cards);
+        let cards = document.getElementById("demo-section-frames")!.children;
         for (let i = 0; i < cards.length; ++i)
         {
-            console.log("Here")
             cards[i].classList.add(i % 2 === 0 ? "demo-section-even": "demo-section-odd");
-            cards[i].addEventListener("click", /*function(cards[i].id)
-            }*/
-            event => {
-                // console.log(event.srcElement);
-                // console.log(event.srcElement.classList);
-                // const targetElement = event.srcElement.classList.value === '' ? event.srcElement.parentElement : event.srcElement;
-                const targetElement = event.srcElement.className.toString().includes("demo-section-frame") ? event.srcElement : event.srcElement.parentElement;
+            cards[i].addEventListener("click", event => {
+                const targetElement = event.srcElement!.className.toString().includes("demo-section-frame") ? event.srcElement : event.srcElement!.parentElement;
                 this.openCard(targetElement, cards);
             });
         }
@@ -131,14 +124,14 @@ export default class DemoSection extends Vue {
     
     getParentSection(elementName: string): string {
         const element = document.getElementById(elementName);
-        let result = element.parentElement;
+        let result = element!.parentElement;
         while (result !== null) {
             if (result.tagName === 'SECTION') {
                 break;
             }
             result = result.parentElement;
         }
-        return result.id;
+        return result!.id;
   }
 
 }
@@ -208,6 +201,7 @@ export default class DemoSection extends Vue {
     .demo-section-text {
         margin-top: 5vh;
         margin-left: 30px;
+    }
     .placeholder {
         max-width: 300px;
         position: absolute;
