@@ -26,6 +26,7 @@ import ContactSection from '@/components/ContactSection.vue';
 
 import { TweenMax, TimelineMax } from 'gsap';
 let windowLength;
+let parallaxLength;
 let scenes;
 
 @Component({
@@ -47,6 +48,14 @@ export default class App extends Vue {
       subtitles: 4.5,
       media: 4,
       maintext: 5.25
+    };
+
+    parallaxLength = {
+      widetitle: 60,
+      titles: 40,
+      subtitles: 35,
+      media: 30,
+      maintext: 50,
     }
     console.log(`Width: ${window.innerWidth}, navMaxTouchIsNotZero: ${navigator.maxTouchPoints !== 0}, ots: ${'ontouchstart' in window}`)
     console.log(`notTouch: ${!(navigator.maxTouchPoints !== 0 || 'ontouchstart' in window)}`);
@@ -77,15 +86,17 @@ export default class App extends Vue {
     let subtitles = document.getElementsByClassName("subtitle");
     let media = document.getElementsByClassName("media");
     let mainText = document.getElementsByClassName("main-text");
+    let wideTitle = document.getElementsByClassName("wide-title");
     let windowWidth = window.innerWidth > 992 ? window.innerWidth : 992;
     let windowHeight = window.innerHeight;
 
     console.log(`Window width: ${windowWidth}`)
 
-    this.makeTween(titles, windowLength["titles"]);
-    this.makeTween(subtitles, windowLength['subtitles']);
-    this.makeTween(media, windowLength['media']);
-    this.makeTween(mainText, windowLength['maintext']);  
+    this.makeTween(titles, parallaxLength["titles"]);
+    this.makeTween(subtitles, parallaxLength['subtitles']);
+    this.makeTween(media, parallaxLength['media']);
+    this.makeTween(mainText, parallaxLength['maintext']);  
+    this.makeTween(wideTitle, parallaxLength['widetitle']);
     
   }
 
@@ -99,16 +110,17 @@ export default class App extends Vue {
       // let roomLeft = ((windowWidth * 1.5) + windowWidth * 0.05) - (array[i].offsetLeft + (array[i].clientWidth * 1.5));
       console.log(`parent of section: ${this.getParentSection(array[i].id)}`);
       let sectionWidth = document.getElementById(this.getParentSection(array[i].id))!.clientWidth;
+      let tweenLength = lengthOfTween * windowHeight/100
       let roomLeft = sectionWidth - array[i].offsetLeft - array[i].clientWidth;
       // roomLeft = roomLeft > array[i].clientWidth * 1 ? array[i].clientWidth * 1 : roomLeft;
-      console.log(`Element: ${array[i].id} RoomLeft: ${roomLeft}`);
+      console.log(`Element: ${array[i].id} RoomLeft: ${lengthOfTween}`);
       let scene = new Vue.prototype.$scrollmagic.scene(
         {
-          triggerElement:`#${this.getParentSection(array[i].id)}`,
-          duration: sectionWidth * lengthOfTween,
-          offset: windowWidth/5,
+          triggerElement:`#${array[i].id}`,
+          duration: windowHeight*2.75,
+          offset: 0,
           triggerHook: 1,
-        }).setTween(`#${array[i].id}`, {x:`${roomLeft}`, ease: Linear.easeNone})
+        }).setTween(`#${array[i].id}`, {x:`${tweenLength}`, ease: Linear.easeNone})
         // .addIndicators()
         scenes.push(scene);
       Vue.prototype.$scrollmagic.addScene(scene)
@@ -180,17 +192,21 @@ h1 {
   text-align: left;
 }
 
-.title {
+.title:not(.wide-title), .subtitle:not(.wide-subtitle), .main-text:not(.wide-text) {
+  max-width: 70vh;
+}
+
+.title, .wide-title {
   font-size: 7vh;
   font-weight: bold;
 }
 
-.subtitle {
+.subtitle, .wide-subtitle {
   font-size: 4.8vh;
   font-weight: normal;
 }
 
-.main-text {
+.main-text, .wide-text {
   font-size: 3.5vh;
   font-weight: normal;
 }

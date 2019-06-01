@@ -1,8 +1,8 @@
 <template>
     <section class="peek-section super-wide-peek-section" id="partners-section">
         <div class="partners-section-text">
-            <h2 class="title" id="branding"><b>Customized branding</b> with PeekPeek</h2>
-            <div class="main-text" id="examples">
+            <h2 class="wide-title" id="branding"><b>Customized branding</b> with PeekPeek</h2>
+            <div class="main-text wide-text" id="examples">
                 <p>
                     PeekPeek was created to help companies enhance the way that they present themselves through digital means. 
                     PeekPeek’s WebTour technology converts prospects to customers by allowing them to virtually visit and experience 
@@ -55,27 +55,20 @@ export default class PartnersSection extends Vue {
         display: flex;
     }
 
-    .partners-section-titles {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        align-items: baseline;
-    }
-
     .partners-section-text {
-        width: 30%;
+        width: 80vh;
         margin-top: 5vh;
         margin-left: 20px;
         flex-direction: column;
         align-items: flex-start;
         justify-content: space-around;
 
-        .main-text {
+        .wide-text {
             font-size: 2.8vh;
             text-align: left;
         }
 
-        .title {
+        .wide-title {
             font-weight: normal;
             text-align: left;
         }
@@ -94,11 +87,11 @@ export default class PartnersSection extends Vue {
     }
 
     .partners-section-text-padding {
-        width: 7.5%;
+        width: 50vh;
     }
 
     .partners-section-icons {
-        width: 52.5%;
+        width: 102.5vh;
         flex-wrap: wrap;
         margin-top: 9vh;
         margin-bottom: 2.5vh;
@@ -120,7 +113,7 @@ export default class PartnersSection extends Vue {
     }   
 
     .partners-section-icons-padding {
-        width: 10%;
+        width: 30vh;
     }
 }
 </style>

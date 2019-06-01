@@ -10,7 +10,9 @@
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
             allowfullscreen=""
             scrolling="no"></iframe>
-            <h2 class="title" id="fullexperience">It's the full <b>Experience</b></h2>
+            <div>
+                <h2 class="wide-title" id="fullexperience">It's the full <b>Experience</b></h2>
+            </div>
         </div>
     </section>
 </template>
@@ -32,13 +34,12 @@ export default class VideoSection extends Vue {
     margin-top: 10vh;
     margin-bottom: 10vh;
     display: flex;
-    width: 100%;
+    width: 80%;
+    max-width: 1200px;
     flex-direction: column;
     justify-content: center;
 
     iframe {
-        width: 80%;
-        max-width: 1200px;
         margin: 0 auto;
         pointer-events: none;
     }
@@ -47,6 +48,7 @@ export default class VideoSection extends Vue {
         font-weight: normal;
         margin-top: 20px;
         margin-bottom: 0;
+        text-align: left;
     }
 }
 </style>

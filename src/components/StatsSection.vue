@@ -1,28 +1,28 @@
 <template>
     <section class="peek-section" id="stats-section">
-        <div class="stats-section-left-padding"></div>
-        <div class="stats-section-content">
-            <div class="stats-cards">
-                <div class="stats-cards-container">
-                    <StatsCard :cardNumber="'18x'" :supportiveTitle="'Longer'" :title="'Duration of Stay'" id="stats-card-one"/>
-                    <StatsCard :cardNumber="'130%'" :supportiveTitle="'Increase in'" :title="'Booking Rate'" id="stats-card-two"/>
-                    <StatsCard :cardNumber="'12%'" :supportiveTitle="'Increase in'" :title="'Engagement Rate'" id="stats-card-three"/>
-                    <StatsCard :cardNumber="'28%'" :supportiveTitle="'Conversion of '" :title="'Physical Visit'" id="stats-card-four"/>
-                </div>
+        <div class="stats-cards-left-margin"></div>
+
+        <div class="stats-cards">
+            <div class="stats-cards-container">
+                <StatsCard :cardNumber="'18x'" :supportiveTitle="'Longer'" :title="'Duration of Stay'" id="stats-card-one"/>
+                <StatsCard :cardNumber="'130%'" :supportiveTitle="'Increase in'" :title="'Booking Rate'" id="stats-card-two"/>
+                <StatsCard :cardNumber="'12%'" :supportiveTitle="'Increase in'" :title="'Engagement Rate'" id="stats-card-three"/>
+                <StatsCard :cardNumber="'28%'" :supportiveTitle="'Conversion of '" :title="'Physical Visit'" id="stats-card-four"/>
             </div>
-        
-            <div class="stats-captions">
-                <div class="stats-titles">
-                    <h2 class="title" id="work">We do work</h2>
-                    <h4 class="subtitle" id ="better">Better than most, actually</h4>
-                </div>
-                <div class="stats-text">
-                    <p class="main-text" id="challenge">New Challenge?</p>
-                    <p class="main-text" id="solution">New solution -></p>
-                </div>
+        </div>
+    
+        <div class="stats-captions">
+            <div class="stats-titles">
+                <h2 class="title" id="work">We do work</h2>
+                <h4 class="subtitle" id ="better">Better than most, actually</h4>
             </div>
-                
-        </div> 
+            <div class="stats-text">
+                <p class="subtitle" id="challenge">New Challenge?</p>
+                <p class="subtitle" id="solution">New solution -></p>
+            </div>
+        </div>
+
+        <div class="stats-captions-parallax-margin"></div>
         
     </section>
 </template>
@@ -132,80 +132,79 @@ export default class StatsSection extends Vue {
 <style lang="scss" scoped>
 #stats-section {
     flex-direction: row;
-    // background-color: #4792f8;
+    display: flex;
 
-    .stats-section-left-padding {
-        flex-grow: 1;
+    .stats-cards-left-margin {
+        width: 10vh;
     }
 
-    .stats-section-content {
-        flex-grow: 9;
-        display: flex;
-        justify-content: space-around;
+    .stats-cards {
+        .stats-cards-container {
+            width: 51.25vh;
+            height: 51.25vh;
+            position: relative;
+            top: 80vh;
 
-        .stats-cards {
-            // display: flex;
-            // flex-direction: column;
-            // justify-content: center;
-            margin-left: 12vh;
-            .stats-cards-container {
-                width: 51.25vh;
-                height: 51.25vh;
-                position: relative;
-                top: 80vh;
-
-                .stats-card {
-                    position: absolute;
-                    display: flex;
-                    flex-direction: column
-                }
-
-                .stats-card:nth-child(1) {
-                    z-index: 4;
-                    top: 0px;
-                }
-
-                .stats-card:nth-child(2) {
-                    z-index: 3;
-                    top: 10px;
-                }
-
-                .stats-card:nth-child(3) {
-                    z-index: 2;
-                    top: 20px;
-                }
-
-                .stats-card:nth-child(4) {
-                    z-index: 1;
-                    top: 30px;
-                }
+            .stats-card {
+                position: absolute;
+                display: flex;
+                flex-direction: column
             }
-        }        
-    }
+
+            .stats-card:nth-child(1) {
+                z-index: 4;
+                top: 0px;
+            }
+
+            .stats-card:nth-child(2) {
+                z-index: 3;
+                top: 10px;
+            }
+
+            .stats-card:nth-child(3) {
+                z-index: 2;
+                top: 20px;
+            }
+
+            .stats-card:nth-child(4) {
+                z-index: 1;
+                top: 30px;
+            }
+        }
+    }        
 
     .stats-captions {
         display: flex;
         flex-direction: column;
         align-items: center;
-        // margin-left: 50px;
         justify-content: space-around;
 
 
         h2 {
             font-size: 7vh;
             margin: 0;
+            text-align: left;
         }
 
         h4 {
             font-size: 6vh;
             font-weight: normal;
             margin: 0;
+            text-align: left;
         }
 
         .stats-text {
             align-self: flex-end;
             margin-right: 4vh;
+
+            p {
+                font-size: 3.5vh;
+            }
         }
+    }
+
+    .stats-captions-parallax-margin {
+        flex: auto;
     }
 
 }
