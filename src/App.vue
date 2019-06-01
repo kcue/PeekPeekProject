@@ -42,23 +42,33 @@ let scenes;
 })
 export default class App extends Vue {
   mounted(){
-    windowLength = {
+     windowLength = {
       titles: 3,
       subtitles: 4.5,
       media: 4,
       maintext: 5.25
     }
-    
-    window.addEventListener('resize', ()=> {
-      for (let i = 0; i < scenes.length; ++i)
-      {
-          scenes[i].destroy(true);
-      }
-      scenes = [];
+    console.log(`Width: ${window.innerWidth}, navMaxTouchIsNotZero: ${navigator.maxTouchPoints !== 0}, ots: ${'ontouchstart' in window}`)
+    console.log(`notTouch: ${!(navigator.maxTouchPoints !== 0 || 'ontouchstart' in window)}`);
+    if (window.innerWidth > 992 || (window.innerWidth <= 992 && !(navigator.maxTouchPoints !== 0 || 'ontouchstart' in window))) {
+      // This means the device is a laptop that is touchscreen, a laptop that is not touch screen, or a large touchscreen thing
+      // Here is where we want to put parallax into the website
+      console.log('should enable parallax');
+      scenes = []; 
       this.parallaxAnimation();
+    }
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 992 || (window.innerWidth <= 992 && !(navigator.maxTouchPoints !== 0 || (navigator.msMaxTouchPoints !== undefined || navigator.msMaxTouchPoints !== 0) || 'ontouchstart' in window))) {
+      // This means the device is a laptop that is touchscreen, a laptop that is not touch screen, or a large touchscreen thing
+      // Here is where we want to put parallax into the website
+      for (let i = 0; i < scenes.length; ++i)
+        {
+            scenes[i].destroy(true);
+        }
+      scenes = []; 
+      this.parallaxAnimation();
+      }
     })  
-    scenes = []; 
-    this.parallaxAnimation();
   }
 
   parallaxAnimation()
