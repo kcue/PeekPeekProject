@@ -176,7 +176,7 @@ button {
   color: white;
   border: none;
   box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 15px;
-  border-radius: 4px;
+  border-radius: 50px;
 }
 
 h1 {
@@ -203,7 +203,7 @@ h1 {
 }
 
 #floating-nav {
-  position: absolute;
+  position: fixed;
   right: 20px;
 }
 
