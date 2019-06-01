@@ -8,6 +8,7 @@
                 <img slot="img" :src="imagePath(item.img)"/> 
             </DemoCard>
         </div>
+        <div class="demo-section-frames-parallax-margin"></div>
         <div class="demo-section-text">
             <div class="demo-section-titles">
                 <h2 class="title" id="special">Something <b>special</b></h2>
@@ -15,6 +16,7 @@
             </div>
         </div>
         <div class="demo-section-text-parallax-margin"></div>
+        <img class="placeholder" src="../assets/images/dotted-linez.png"/>
     </section>
 </template>
 
@@ -206,23 +208,15 @@ export default class DemoSection extends Vue {
     .demo-section-text {
         margin-top: 5vh;
         margin-left: 30px;
+    .placeholder {
+        max-width: 300px;
+        position: absolute;
+        right: -10vh;
+        z-index: -1;
+    }
+
+    .demo-section-text, .demo-section-icons {
         display: flex;
-        width: 78.75vh; // 175vh * 0.45
-
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: space-around;
-
-        .main-text {
-            text-align: left;
-            margin-bottom: 15vh;
-        }
-
-        .title, .subtitle {
-            font-weight: normal;
-            text-align: left;
-            margin: 0;
-        }
     }
 
     .demo-section-frames {
@@ -231,8 +225,6 @@ export default class DemoSection extends Vue {
         flex-direction: row;
         justify-content: space-around;
         align-items: center;
-        margin-left: 20px;
-
 
         .demo-section-frame:nth-child(odd) {
             border-radius: 10px 10px 0 0;
@@ -287,8 +279,34 @@ export default class DemoSection extends Vue {
         }
     }  
 
+    .demo-section-frames-parallax-margin {
+        width: 12.5vh;
+    }
+
+    .demo-section-text {
+        margin-top: 5vh;
+        margin-left: 30px;
+        display: flex;
+        width: 70vh;
+
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: space-around;
+
+        .main-text {
+            text-align: left;
+            margin-bottom: 15vh;
+        }
+
+        .title, .subtitle {
+            font-weight: normal;
+            text-align: left;
+            margin: 0;
+        }
+    }
+
     .demo-section-text-parallax-margin {
-        width: 43.75vh;
+        width: 40vh;
     }
 }
 </style>

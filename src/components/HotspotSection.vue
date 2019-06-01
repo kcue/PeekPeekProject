@@ -3,10 +3,10 @@
         <img class="hotspot-skyline" src="../assets/images/transparent_skyline.png"/>
         <div class="hotspot-titles">
             <h4 class="subtitle" id="space">It's not just the space</h4>
-            <h2 class="title" id="story">Tell me about your story</h2>
+            <h2 class="wide-title" id="story">Tell me about your story</h2>
             <h4 class="subtitle" id="spotlights">with Spotlights</h4>
         </div>
-        <div class="hotspot-titles-parallax-margin"></div>
+        <!-- <div class="hotspot-titles-parallax-margin"></div> -->
     </section>
 </template>
 
@@ -23,7 +23,7 @@ export default class HotspotSection extends Vue {
 #hotspot-section {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: baseline;
     // background-color: #4792f8;
 
     .hotspot-skyline {
@@ -39,7 +39,7 @@ export default class HotspotSection extends Vue {
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
-        align-items: center;
+        align-items: flex-start;
         margin-top: 80px;
         margin-right: 5vw;
         z-index: 10;
