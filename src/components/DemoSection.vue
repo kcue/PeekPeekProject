@@ -1,5 +1,5 @@
 <template>
-    <section class="peek-section wide-peek-section" id="demo-section">
+    <section class="peek-section super-wide-peek-section" id="demo-section">
         <div class="demo-section-frames" id="demo-section-frames">
             <DemoCard v-for="(item, index) in cardData" :key="index" :id="'demo-card-' + index">
                 <iframe slot="iframe" :src="item.iframe" style="display: none;"></iframe>
@@ -7,26 +7,6 @@
                 <p slot="subtitle">{{item.subtitle}}</p>
                 <img slot="img" :src="imagePath(item.img)"/> 
             </DemoCard>
-            <!-- <div class="demo-section-frame flippety" id="demo-frame-one">
-                <h6>University of California, Irvine</h6>
-                <p>Anteater Recreational Center tour</p>
-                <img src="../assets/images/uci-arc.png"/>
-            </div>
-            <div class="demo-section-frame flippety" id="demo-frame-two">
-                <h6>Cal State Long Beach</h6>
-                <p>Wellness Center tour</p>
-                <img src="../assets/images/csulb-wellness.png"/>
-            </div>
-            <div class="demo-section-frame flippety top" id="demo-frame-three">
-                <h6>Fish on Tap</h6>
-                <p>Resturaunt tour</p>
-                <img src="../assets/images/fish-on-tap.png"/>
-            </div>
-            <div class="demo-section-frame flippety top" id="demo-frame-four">
-                <h6>West Covina Estates</h6>
-                <p>Home tour</p>
-                <img src="../assets/images/west-covina.png"/>
-            </div> -->
         </div>
         <div class="demo-section-text">
             <div class="demo-section-titles">
@@ -34,6 +14,7 @@
                 <h4 class="subtitle" id="everysingleone">for every single one of you</h4>
             </div>
         </div>
+        <div class="demo-section-text-parallax-margin"></div>
     </section>
 </template>
 
@@ -159,7 +140,7 @@ export default class DemoSection extends Vue {
         margin-top: 5vh;
         margin-left: 30px;
         display: flex;
-        width: 45%;
+        width: 78.75vh; // 175vh * 0.45
 
         flex-direction: column;
         align-items: flex-start;
@@ -178,7 +159,7 @@ export default class DemoSection extends Vue {
     }
 
     .demo-section-frames {
-        width: 55%;
+        width: 140vh; // 175vh * 55% + 43.75vh (175vh * 50% / 2)
         display: flex;
         flex-direction: row;
         justify-content: space-around;
@@ -237,6 +218,10 @@ export default class DemoSection extends Vue {
                 padding: 0 15px;
             }
         }
-    }   
+    }  
+
+    .demo-section-text-parallax-margin {
+        width: 43.75vh;
+    }
 }
 </style>

@@ -201,7 +201,7 @@ h1 {
 }
 
 #floating-nav {
-  position: absolute;
+  position: fixed;
   right: 20px;
 }
 
@@ -215,45 +215,70 @@ h1 {
   }
 }
 
-.medium-peek-section {
-  width: 125vw;
-}
-
 .wide-peek-section{
-  width: 150vw;
+  width: calc(175vh * 1.25);
 }
 
 .super-wide-peek-section {
-  width: 175vw;
+  width: calc(175vh * 1.5);
 }
 
 .peek-section:nth-child(1) {
   left: 0%;
+  width: 100vw;
 }
 
 .peek-section:nth-child(2) {
-  left: 100%;
+  left: 100vw;
 }
 
 .peek-section:nth-child(3) {
-  left: 200%;
+  left: calc(100vw + 175vh);
 }
 
 .peek-section:nth-child(4) {
-  left: 300%;
+  left: calc(100vw + 350vh);
 }
 
 .peek-section:nth-child(5) {
-  left: 450%;
+  left: calc(100vw + 568.75vh);
 }
 
 .peek-section:nth-child(6) {
-  left: 600%;
+  left: calc(100vw + 831.25vh);
 }
 
 .peek-section:nth-child(7) {
-  left: 775%;
+  left: calc(100vw + 1093.75vh);
+  width: 100vw;
 }
+// .peek-section:nth-child(1) {
+//   left: 0%;
+// }
+
+// .peek-section:nth-child(2) {
+//   left: 100%;
+// }
+
+// .peek-section:nth-child(3) {
+//   left: 200%;
+// }
+
+// .peek-section:nth-child(4) {
+//   left: 300%;
+// }
+
+// .peek-section:nth-child(5) {
+//   left: 450%;
+// }
+
+// .peek-section:nth-child(6) {
+//   left: 600%;
+// }
+
+// .peek-section:nth-child(7) {
+//   left: 775%;
+// }
 
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;

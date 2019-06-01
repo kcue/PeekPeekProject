@@ -6,6 +6,7 @@
             <h2 class="title" id="story">Tell me about your story</h2>
             <h4 class="subtitle" id="spotlights">with Spotlights</h4>
         </div>
+        <div class="hotspot-titles-parallax-margin"></div>
     </section>
 </template>
 
@@ -22,7 +23,7 @@ export default class HotspotSection extends Vue {
 #hotspot-section {
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
+    justify-content: center;
     // background-color: #4792f8;
 
     .hotspot-skyline {
@@ -30,17 +31,26 @@ export default class HotspotSection extends Vue {
         object-fit: contain;
         position: absolute;
         bottom: 0;
-        max-height: 80%;
+        left: 0;
+        max-height: 70%;
     }
 
     .hotspot-titles {
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
-        align-items: flex-end;
+        align-items: center;
         margin-top: 80px;
         margin-right: 5vw;
         z-index: 10;
+
+        #space {
+            align-self: baseline;
+        }
+        
+        #spotlights {
+            align-self: flex-end;
+        }
 
         h2 {
             margin: 0;
@@ -50,6 +60,11 @@ export default class HotspotSection extends Vue {
             margin-top: 5px;
             margin-bottom: 5px;
         }
+    }
+
+    .hotspot-titles-parallax-margin {
+        width: 25vh;
+        align-items: flex-end;
     }
 }
 
