@@ -98,13 +98,14 @@ export default class App extends Vue {
     {
       // let roomLeft = ((windowWidth * 1.5) + windowWidth * 0.05) - (array[i].offsetLeft + (array[i].clientWidth * 1.5));
       console.log(`parent of section: ${this.getParentSection(array[i].id)}`);
-      let roomLeft = document.getElementById(this.getParentSection(array[i].id))!.clientWidth - array[i].offsetLeft - array[i].clientWidth;
-
+      let sectionWidth = document.getElementById(this.getParentSection(array[i].id))!.clientWidth;
+      let roomLeft = sectionWidth - array[i].offsetLeft - array[i].clientWidth;
+      // roomLeft = roomLeft > array[i].clientWidth * 1 ? array[i].clientWidth * 1 : roomLeft;
       console.log(`Element: ${array[i].id} RoomLeft: ${roomLeft}`);
       let scene = new Vue.prototype.$scrollmagic.scene(
         {
           triggerElement:`#${this.getParentSection(array[i].id)}`,
-          duration: windowWidth * lengthOfTween,
+          duration: sectionWidth * lengthOfTween,
           offset: windowWidth/5,
           triggerHook: 1,
         }).setTween(`#${array[i].id}`, {x:`${roomLeft}`, ease: Linear.easeNone})
@@ -206,7 +207,7 @@ h1 {
 
 .peek-section {
   height: 100%;
-  width: 100vw;
+  width: 175vh;
   position: absolute;
 
   p {
@@ -273,6 +274,20 @@ h1 {
   }
 }
 
+@media (max-height: 480px), (max-width: 768px) {
+  // vertical stack
+  body {
+    overflow-y: auto;
+  }
+
+  .peek-section {
+    position: relative;
+    left: 0% !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    margin-bottom: 10vh;
+  }
+}
 
 @media (max-width: 992px) {
   .medium-peek-section {

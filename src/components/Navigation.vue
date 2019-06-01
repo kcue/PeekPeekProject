@@ -6,7 +6,6 @@
             <li><span class="nav-item">Why</span></li>
             <li><button>Contact Us</button></li>
         </ul>
-        <div class="nav-backdrop"></div>
     </nav>
 </template>
 

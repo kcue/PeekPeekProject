@@ -34,7 +34,7 @@
             </div>
         </div>
         <div class="partners-section-icons-padding"></div>
->    </section>
+    </section>
 </template>
 
 <script lang="ts">
@@ -96,11 +96,11 @@ export default class PartnersSection extends Vue {
     }
 
     .partners-section-text-padding {
-        width: 2%;
+        width: 7.5%;
     }
 
     .partners-section-icons {
-        width: 40%;
+        width: 52.5%;
         flex-wrap: wrap;
         margin-top: 9vh;
         margin-bottom: 2.5vh;
@@ -122,7 +122,7 @@ export default class PartnersSection extends Vue {
     }   
 
     .partners-section-icons-padding {
-        width: 5%;
+        width: 10%;
     }
 }
 </style>
