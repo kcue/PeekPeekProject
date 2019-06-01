@@ -1,5 +1,5 @@
 <template>
-    <section class="peek-section super-wide-peek-section" id="partners-section">
+    <section class="peek-section wide-peek-section" id="partners-section">
         <div class="partners-section-text">
             <h2 class="title" id="branding"><b>Customized branding</b> with PeekPeek</h2>
             <div class="main-text" id="examples">
@@ -12,6 +12,7 @@
                 <a class="link">Check out our case studies</a>
             </div>
         </div>
+        <div class="partners-section-text-padding"></div>
         <div class="partners-section-icons">
             <div class="partners-section-icon-container media" id="Waterford">
                 <img src="../assets/images/City Square Waterford.png"/>
@@ -32,7 +33,8 @@
                 <img src="../assets/images/Pierce College.png"/>
             </div>
         </div>
-    </section>
+        <div class="partners-section-icons-padding"></div>
+>    </section>
 </template>
 
 <script lang="ts">
@@ -53,7 +55,6 @@ export default class PartnersSection extends Vue {
 
     .partners-section-text, .partners-section-icons {
         display: flex;
-        width: 50%;
     }
 
     .partners-section-titles {
@@ -64,6 +65,7 @@ export default class PartnersSection extends Vue {
     }
 
     .partners-section-text {
+        width: 30%;
         margin-top: 5vh;
         margin-left: 20px;
         flex-direction: column;
@@ -93,7 +95,12 @@ export default class PartnersSection extends Vue {
         }
     }
 
+    .partners-section-text-padding {
+        width: 2%;
+    }
+
     .partners-section-icons {
+        width: 40%;
         flex-wrap: wrap;
         margin-top: 9vh;
         margin-bottom: 2.5vh;
@@ -113,5 +120,9 @@ export default class PartnersSection extends Vue {
             }
         }        
     }   
+
+    .partners-section-icons-padding {
+        width: 5%;
+    }
 }
 </style>

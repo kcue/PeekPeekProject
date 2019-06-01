@@ -77,8 +77,10 @@ export default class App extends Vue {
     let subtitles = document.getElementsByClassName("subtitle");
     let media = document.getElementsByClassName("media");
     let mainText = document.getElementsByClassName("main-text");
-    let windowWidth = window.innerWidth;
+    let windowWidth = window.innerWidth > 992 ? window.innerWidth : 992;
     let windowHeight = window.innerHeight;
+
+    console.log(`Window width: ${windowWidth}`)
 
     this.makeTween(titles, windowLength["titles"]);
     this.makeTween(subtitles, windowLength['subtitles']);
@@ -87,37 +89,18 @@ export default class App extends Vue {
     
   }
 
-    
-    // let demos = document.getElementsByClassName("flippety");
-    // console.log("Demos:")
-    // console.log(demos)
-    // for (let i = 0; i < demos.length; ++i)
-    // {
-    //   debugger;
-    //   let roomLeft = ((windowWidth * 1.5) + windowWidth * 0.05) - (demos[i].offsetLeft + (demos[i].clientWidth * 1.5));
-    //   console.log(roomLeft);
-    //   Vue.prototype.$scrollmagic.addScene(new Vue.prototype.$scrollmagic.scene(
-    //       {
-    //       triggerElement:`#${this.getParentSection(demos[i].id)}`,
-    //       duration: windowWidth,
-    //       offset: 0,
-    //       triggerHook: 1
-    //       }).setTween(`#${demos[i].id}`, {x:`${roomLeft}`, ease: Linear.easeNone})
-    //       .addIndicators())
-    // }
-    // console.log(this.getParentSection(demos[1].id))
-
-
   makeTween(array: HTMLCollectionOf<Element>, lengthOfTween: number)
   {
     console.log(lengthOfTween);
-    let windowWidth = window.innerWidth;
+    let windowWidth = window.innerWidth > 992 ? window.innerWidth : 992;
     let windowHeight = window.innerHeight;
     for (let i = 0; i < array.length; ++i)
     {
-      let roomLeft = ((windowWidth * 1.5) + windowWidth * 0.05) - (array[i].offsetLeft + (array[i].clientWidth * 1.5));
-      //console.log(array[i].id);
-      //console.log(roomLeft);
+      // let roomLeft = ((windowWidth * 1.5) + windowWidth * 0.05) - (array[i].offsetLeft + (array[i].clientWidth * 1.5));
+      console.log(`parent of section: ${this.getParentSection(array[i].id)}`);
+      let roomLeft = document.getElementById(this.getParentSection(array[i].id))!.clientWidth - array[i].offsetLeft - array[i].clientWidth;
+
+      console.log(`Element: ${array[i].id} RoomLeft: ${roomLeft}`);
       let scene = new Vue.prototype.$scrollmagic.scene(
         {
           triggerElement:`#${this.getParentSection(array[i].id)}`,
@@ -160,6 +143,8 @@ window.onwheel = event => {
 
 
 <style lang="scss">
+$min-section-width: 992;
+
 p, h1, h2, h4, h6, span, button {
   font-family: "Libre Franklin", Helvetica, sans-serif;
   color: black;
@@ -208,8 +193,10 @@ h1 {
   font-size: 3.5vh;
   font-weight: normal;
 }
+
 .peek-section {
   display: flex;
+  min-width: $min-section-width * 1px;
 }
 
 #floating-nav {
@@ -226,6 +213,7 @@ h1 {
     margin: 0;
   }
 }
+
 .medium-peek-section {
   width: 125vw;
 }
@@ -282,6 +270,55 @@ h1 {
     &.router-link-exact-active {
       color: #42b983;
     }
+  }
+}
+
+
+@media (max-width: 992px) {
+  .medium-peek-section {
+    width: $min-section-width * 1.25px;
+  }
+
+  .wide-peek-section{
+    width: $min-section-width * 1.5px;
+  }
+
+  .super-wide-peek-section {
+    width: $min-section-width * 1.75px;
+  }
+
+  .peek-section:nth-child(1) {
+    // 1st section has normal width
+    left: 0%;
+  }
+
+  .peek-section:nth-child(2) {
+    // 2nd section has normal width
+    left: $min-section-width * 1px;
+  }
+
+  .peek-section:nth-child(3) {
+    // 3rd section has normal width
+    left: $min-section-width * 2px;
+  }
+
+  .peek-section:nth-child(4) {
+    // 4th section is a wide section (150%)
+    left: $min-section-width * 3px;
+  }
+
+  .peek-section:nth-child(5) {
+    // 5th section is a wide section (150%)
+    left: $min-section-width * 4.5px;
+  }
+
+  .peek-section:nth-child(6) {
+    // 6th section is a super wide section (175%)
+    left: $min-section-width * 6px;
+  }
+
+  .peek-section:nth-child(7) {
+    left: $min-section-width * 7.75px;
   }
 }
 </style>
