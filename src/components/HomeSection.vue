@@ -2,46 +2,93 @@
     <section class="peek-section" id="home-section">
         <div class="home-pic"><img src='../assets/images/tinyWorld.png'/></div>
         <div class="home-section-headers">
-            <h1>It's all about you.</h1>
-            <div class=separator></div>
-            <div class="home-section-buttons">
-                <button>Watch video</button>
-                <button>Take a peek</button>
+            <h1 id="splash-text">Welcome<br>to<br>PeekPeek</h1>
+            <div class="secondary hidden">
+                <h1>It's all<br>about you.</h1>
+                <div class="separator"></div>
+                <div class="home-section-buttons">
+                    <button>Watch video</button>
+                    <button>Take a peek</button>
+                </div>
             </div>
         </div>
     </section>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import { Component, Vue } from "vue-property-decorator";
+
+@Component({})
+
 export default class HomeSection extends Vue {
-    
+    mounted () {
+        console.log('mounted activated');
+        document.onreadystatechange = () => {
+            if (document.readyState == "complete") {
+                console.log('Page completed with image and files!')
+                this.splashScreen();
+
+            }   
+        }
+    }
+   
+    splashScreen() {
+        console.log('splash screen started!')
+        document.getElementsByClassName("home-pic")[0].classList.add("collapsed"); 
+        document.getElementById("splash-text").classList.add("hidden");
+        document.getElementsByClassName("secondary")[0].classList.remove("hidden"); 
+
+         
+        
+
+    }
 }
 </script>
 
 <style lang="scss" scoped>
 .home-pic {
-    width: 40%;
+    width: 120%;
     position: relative;
     display: flex;
     justify-content: center;
     flex-direction: column;
 
     img {
-        height: 80%;
-        position: absolute;
-        right: 0;
+        width: 100%;
+        height: auto;
     }
 }
 
+#splash-text {
+        margin-top: 10%;
+}
+
+.collapsed {
+    transition: all 1.25s;
+    height: auto !important;
+    width: 55% !important;
+}
+
+.hidden {
+    transition: opacity .5s ease-in-out 1s;
+    opacity: 0 !important;
+}
+
+.secondary {
+    margin-top: -60%;
+    transition: opacity .5s ease-in-out 1.5s;
+    opacity: 1;
+}
+
 .home-section-headers {
+    min-width: 30%;
     display: flex;
     justify-content: center;
     flex-direction: column;
     margin-left: 50px;
 
     h1 {
-        margin: 20px auto 0 auto;
+        margin: 20px auto 0 0;
     }
 
     .separator {
