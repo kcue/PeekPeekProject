@@ -11,11 +11,12 @@
             <div class="stats-captions">
                 <div class="stats-titles">
                     <h2 class="title" id="work">We do work</h2>
-                    <h4 class="subtitle" id ="better">Better than most, actually</h4>
+                    <h4 class="subtitle" id ="better">better than most, actually</h4>
                 </div>
                 <div class="stats-text">
-                    <p class="main-text" id="challenge">New Challenge?</p>
-                    <p class="main-text" id="solution">New solution -></p>
+                    <p class="main-text" id="challenge">New challenge?</p>
+                    <p class="main-text" id="solution">New solution <i class="fas fa-long-arrow-alt-right"></i></p>
+                    
                 </div>
             </div>
                 
