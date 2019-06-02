@@ -24,12 +24,12 @@ nav {
     z-index: 11;
 
     #logo {
-        margin: 16px 0 16px 0;
-        padding: 0 18px 0 18px;
+        margin: 2vh 0 2vh 0;
+        padding: 0 3vh 0 3vh;
         position: fixed;
         top: 0;
         left: 0;
-        width: 50px;
+        width: 6vh;
     }
 
     .nav-buttons {

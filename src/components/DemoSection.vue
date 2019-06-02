@@ -202,6 +202,7 @@ export default class DemoSection extends Vue {
         margin-top: 5vh;
         margin-left: 30px;
     }
+
     .placeholder {
         max-width: 300px;
         position: absolute;
@@ -301,6 +302,12 @@ export default class DemoSection extends Vue {
 
     .demo-section-text-parallax-margin {
         width: 40vh;
+    }
+}
+
+@media (max-height: 480px), (min-width: 768px) {
+    .placeholder {
+        display: none;
     }
 }
 </style>

@@ -141,22 +141,29 @@ export default class App extends Vue {
     return result.id;
   }
 }
-// Scrolling vertically will move the page horizontally
-window.onwheel = event => {
-  if (navigator.userAgent.includes('Safari') && !navigator.userAgent.includes('Chrome')) {
-    // Need to prevent default behavior for Safari for touchpad scrolling gesture to work
-    event.preventDefault();
-    window.scrollTo(window.scrollX + event.deltaX + event.deltaY, window.scrollY); // Added deltaX to ensure native horizontal scrolling
-  } else {
-    // For all other browsers
-    window.scrollTo(window.scrollX + event.deltaY, window.scrollY);
+
+if (window.innerHeight > 480 && window.innerWidth > 768) {
+  // Scrolling vertically will move the page horizontally
+  // Only activated when the website is stacked horizontally
+  window.onwheel = event => {
+    if (navigator.userAgent.includes('Safari') && !navigator.userAgent.includes('Chrome')) {
+      // Need to prevent default behavior for Safari for touchpad scrolling gesture to work
+      event.preventDefault();
+      window.scrollTo(window.scrollX + event.deltaX + event.deltaY, window.scrollY); // Added deltaX to ensure native horizontal scrolling
+    } else {
+      // For all other browsers
+      window.scrollTo(window.scrollX + event.deltaY, window.scrollY);
+    }
   }
 }
+
 </script>
 
 
 <style lang="scss">
-$min-section-width: 992;
+$base-section-aspect-ratio: 1.75;
+$wide-section-ratio: 1.25;
+$super-wide-section-ratio: 1.5;
 
 p, h1, h2, h4, h6, span, button {
   font-family: "Libre Franklin", Helvetica, sans-serif;
@@ -213,7 +220,6 @@ h1 {
 
 .peek-section {
   display: flex;
-  min-width: $min-section-width * 1px;
 }
 
 #floating-nav {
@@ -223,7 +229,7 @@ h1 {
 
 .peek-section {
   height: 100%;
-  width: 175vh;
+  width: 100vh * $base-section-aspect-ratio; // All sections will maintain a base 1.75:1 aspect ratio except for wide and superwide
   position: absolute;
 
   p {
@@ -232,11 +238,11 @@ h1 {
 }
 
 .wide-peek-section{
-  width: calc(175vh * 1.25);
+  width: 100vh * $base-section-aspect-ratio * $wide-section-ratio; // 25% wider than a normal section
 }
 
 .super-wide-peek-section {
-  width: calc(175vh * 1.5);
+  width: 100vh * $base-section-aspect-ratio * $super-wide-section-ratio; // 50% wider than a normal section
 }
 
 .peek-section:nth-child(1) {
@@ -249,52 +255,30 @@ h1 {
 }
 
 .peek-section:nth-child(3) {
-  left: calc(100vw + 175vh);
+  left: calc(100vw + 100vh * #{$base-section-aspect-ratio});
 }
 
 .peek-section:nth-child(4) {
-  left: calc(100vw + 350vh);
+  left: calc(100vw + 100vh * 2 * #{$base-section-aspect-ratio});
 }
 
 .peek-section:nth-child(5) {
-  left: calc(100vw + 568.75vh);
+  left: calc(100vw + 100vh * 2 * #{$base-section-aspect-ratio} 
+  + 100vh * #{$base-section-aspect-ratio} * #{$wide-section-ratio});
 }
 
 .peek-section:nth-child(6) {
-  left: calc(100vw + 831.25vh);
+  left: calc(100vw + 100vh * 2 * #{$base-section-aspect-ratio} 
+  + 100vh * #{$base-section-aspect-ratio} * #{$wide-section-ratio} 
+  + 100vh * #{$base-section-aspect-ratio} * #{$super-wide-section-ratio});
 }
 
 .peek-section:nth-child(7) {
-  left: calc(100vw + 1093.75vh);
+  left: calc(100vw + 100vh * 2 * #{$base-section-aspect-ratio} 
+  + 100vh * #{$base-section-aspect-ratio} * #{$wide-section-ratio} 
+  + 100vh * 2 * #{$base-section-aspect-ratio} * #{$super-wide-section-ratio});
   width: 100vw;
 }
-// .peek-section:nth-child(1) {
-//   left: 0%;
-// }
-
-// .peek-section:nth-child(2) {
-//   left: 100%;
-// }
-
-// .peek-section:nth-child(3) {
-//   left: 200%;
-// }
-
-// .peek-section:nth-child(4) {
-//   left: 300%;
-// }
-
-// .peek-section:nth-child(5) {
-//   left: 450%;
-// }
-
-// .peek-section:nth-child(6) {
-//   left: 600%;
-// }
-
-// .peek-section:nth-child(7) {
-//   left: 775%;
-// }
 
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
@@ -306,6 +290,7 @@ h1 {
 
 #nav {
   padding: 30px;
+
   a {
     font-weight: bold;
     color: #2c3e50;
@@ -316,7 +301,7 @@ h1 {
 }
 
 @media (max-height: 480px), (max-width: 768px) {
-  // vertical stack
+  // Vertically stack
   body {
     overflow-y: auto;
   }
@@ -330,51 +315,41 @@ h1 {
   }
 }
 
-@media (max-width: 992px) {
-  .medium-peek-section {
-    width: $min-section-width * 1.25px;
-  }
-
-  .wide-peek-section{
-    width: $min-section-width * 1.5px;
-  }
-
-  .super-wide-peek-section {
-    width: $min-section-width * 1.75px;
-  }
-
+$home-width-breakpoint: 992px;
+@media (max-width: $home-width-breakpoint) and (min-width: 769px) {
   .peek-section:nth-child(1) {
-    // 1st section has normal width
+    width: $home-width-breakpoint;
     left: 0%;
   }
 
   .peek-section:nth-child(2) {
-    // 2nd section has normal width
-    left: $min-section-width * 1px;
+    left: $home-width-breakpoint;
   }
 
   .peek-section:nth-child(3) {
-    // 3rd section has normal width
-    left: $min-section-width * 2px;
+    left: calc(#{$home-width-breakpoint} + 100vh * #{$base-section-aspect-ratio});
   }
 
   .peek-section:nth-child(4) {
-    // 4th section is a wide section (150%)
-    left: $min-section-width * 3px;
+    left: calc(#{$home-width-breakpoint} + 100vh * 2 * #{$base-section-aspect-ratio});
   }
 
   .peek-section:nth-child(5) {
-    // 5th section is a wide section (150%)
-    left: $min-section-width * 4.5px;
+    left: calc(#{$home-width-breakpoint} + 100vh * 2 * #{$base-section-aspect-ratio} 
+      + 100vh * #{$base-section-aspect-ratio} * #{$wide-section-ratio});
   }
 
   .peek-section:nth-child(6) {
-    // 6th section is a super wide section (175%)
-    left: $min-section-width * 6px;
+    left: calc(#{$home-width-breakpoint} + 100vh * 2 * #{$base-section-aspect-ratio} 
+      + 100vh * #{$base-section-aspect-ratio} * #{$wide-section-ratio} 
+      + 100vh * #{$base-section-aspect-ratio} * #{$super-wide-section-ratio});
   }
 
   .peek-section:nth-child(7) {
-    left: $min-section-width * 7.75px;
+    left: calc(#{$home-width-breakpoint} + 100vh * 2 * #{$base-section-aspect-ratio} 
+      + 100vh * #{$base-section-aspect-ratio} * #{$wide-section-ratio} 
+      + 100vh * 2 * #{$base-section-aspect-ratio} * #{$super-wide-section-ratio});
+    width: $home-width-breakpoint;
   }
 }
 </style>
