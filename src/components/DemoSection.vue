@@ -1,13 +1,14 @@
 <template>
     <section class="peek-section super-wide-peek-section" id="demo-section">
+        <div id="fake-card"></div>
         <div class="demo-section-frames" id="demo-section-frames">
             <DemoCard v-for="(item, index) in cardData" :key="index" :id="'demo-card-' + index">
-                <iframe slot="iframe" :src="item.iframe"></iframe>
                 <h6 slot="title">{{item.title}}</h6>
                 <p slot="subtitle">{{item.subtitle}}</p>
                 <img slot="img" :src="imagePath(item.img)"/> 
             </DemoCard>
         </div>
+        <iframe class="demo-iframes" v-for="(item,index) in cardData" :key="index" :id="'demo-frame-' + index" :src="item.iframe"></iframe>
         <div class="demo-section-frames-parallax-margin"></div>
         <div class="demo-section-text">
             <div class="demo-section-titles">
@@ -94,15 +95,38 @@ export default class DemoSection extends Vue {
 
 
     openCard(elem, cards) {
+        let foundIndex: number = -1;
         for (let i = 0; i < cards.length; ++i) {
             if (cards[i].id != elem.id) {
                 console.log(cards[i].id + " is not the one you clicked");
                 cards[i].classList.add("flat");
-            } 
+            }
+            else{
+                foundIndex = i;
+            }
+        }
+        let fakeCard = document.getElementById("fake-card");
+        fakeCard.style.width = `${elem.clientWidth}px`;
+        fakeCard.style.height = `${elem.clientHeight}px`;
+        fakeCard.style.left = `${elem.offsetLeft}px`;
+        if (foundIndex % 2 === 0) {
+            fakeCard.style.top = `${window.innerHeight - elem.clientHeight}px`;
+            fakeCard.style.borderRadius = '10px 10px 0px 0px';
+        } else {
+            fakeCard.style.top = `0px`;
+            fakeCard.style.borderRadius = '0px 0px 10px 10px';
         }
 
-        elem.classList.add("opened");
+        setTimeout(() => {
+            fakeCard.style.transition = 'all 1s';
+            fakeCard.style.top = '20vh';
+            fakeCard.style.left = '10vw';
+        }, 1000)
 
+        elem.classList.add("opened");
+        fakeCard.classList.add("clicked");
+        let currentFrame = document.getElementById(`demo-frame-${foundIndex}`);
+        currentFrame.classList.add("active-frame");          
     }
 
     demoAnimations(){
@@ -143,8 +167,29 @@ export default class DemoSection extends Vue {
     flex-direction: row;
 
     iframe {
+        transition: all 1s ease 0s;
+        height: 60vh;
+        width: 60vw;
+        top: 20vh;
+        left: 10vw;
+        position: absolute;
+        visibility: hidden;
         border-width: 0px;
-        height: 0; opacity: 0;
+        opacity: 0;
+    }
+
+    #fake-card {
+        transition: border-radius 1s ease 0s, width 1s ease 1s, height 1s ease 0s, transform 1s;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: black;
+    }
+
+    .clicked {
+        width: 60vw !important;
+        height: 60vh !important;
+        border-radius: 0 !important;
     }
 
     .demo-section-text, .demo-section-icons {
@@ -160,22 +205,15 @@ export default class DemoSection extends Vue {
             opacity: 0.0 !important;
         }
     }
+
+    .active-frame {
+        visibility: visible;
+        transition: visbility 0s, opacity 5s;
+        opacity: 1;
+    }
     
     .opened {
-        transition: all 1s;
-        background-color: black !important;
-        width: 80vw !important;
-        height: 60vh !important;
-        position: absolute !important;
-
-
-        iframe {
-            transition: opacity 1s ease-in-out 1s;
-            height: 100%;
-            width: 100%;
-            opacity: 1;
-            position: absolute;
-        }
+        visibility: hidden;
 
         img {
             transition: opacity .5s;
