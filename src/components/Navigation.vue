@@ -1,5 +1,6 @@
 <template>
     <nav>
+        <div class="nav-backdrop"></div>
         <img id="logo" src="../assets/images/117-peek-teal.png">
         <ul class="nav-buttons">
             <li><span class="nav-item">Who</span></li>
@@ -21,6 +22,7 @@ export default class Navigation extends Vue {
 
 <style lang="scss" scoped>
 nav {
+    transition: all 1s;
     z-index: 11;
 
     #logo {
@@ -62,11 +64,12 @@ nav {
 
 .nav-backdrop {
     position: absolute;
-    top: 0;
-    height: 96px;
+    border-radius: 50px;
+    top: 23px;
+    height: 50px;
     width: 100vw;
-    background-color: rgba(255, 255, 255, 0.01);
+    background-color: rgba(251, 246, 240, .8);
     z-index: -1;
-    filter: blur(2px);
 }
+
 </style>

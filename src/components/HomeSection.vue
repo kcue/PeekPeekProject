@@ -1,6 +1,6 @@
 <template>
     <section class="peek-section" id="home-section">
-        <div class="home-pic"><img src='../assets/images/tinyWorld.png'/></div>
+        <div class="home-pic"><img src='../assets/images/TinyWorld-Ness.png'/></div>
         <div class="home-section-headers">
             <h1 id="splash-text">Welcome<br>to<br>PeekPeek</h1>
             <div class="secondary hidden">
@@ -33,6 +33,8 @@ export default class HomeSection extends Vue {
         document.getElementsByClassName("home-pic")[0].classList.add("collapsed"); 
         document.getElementById("splash-text")!.classList.add("hidden");
         document.getElementsByClassName("secondary")[0].classList.remove("hidden");
+        //document.getElementById("floating-nav").style.transform('translateY(100px)');
+
     }
 }
 </script>
@@ -46,8 +48,8 @@ export default class HomeSection extends Vue {
     flex-direction: column;
 
     img {
-        width: 100%;
-        height: auto;
+        height: 100%;
+        object-fit: contain;
     }
 }
 
@@ -58,7 +60,7 @@ export default class HomeSection extends Vue {
 .collapsed {
     transition: all 1.25s;
     height: auto !important;
-    width: 55% !important;
+    width: 50% !important;
 }
 
 .hidden {
@@ -77,7 +79,7 @@ export default class HomeSection extends Vue {
     display: flex;
     justify-content: center;
     flex-direction: column;
-    margin-left: 50px;
+    //margin-left: 50px;
 
     h1 {
         margin: 20px auto 0 0;
