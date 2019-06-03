@@ -1,6 +1,6 @@
 <template>
     <section class="peek-section wide-peek-section" id="hotspot-section">
-        <img class="hotspot-skyline" src="../assets/images/transparent_skyline.png"/>
+        <img class="hotspot-skyline" src="../assets/images/peekvideogif.gif"/>
         <div class="hotspot-titles">
             <h4 class="subtitle" id="space">It's not just the space</h4>
             <h2 class="wide-title" id="story">Tell me about your story</h2>
