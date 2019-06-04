@@ -34,7 +34,7 @@
                     <input placeholder="Email" type="text" v-model="formData.contact.email"/>
                 </div>
 
-                <div class="phone form-element">
+                <div class="phone form-element">e
                     <input placeholder="Phone" type="text" v-model="formData.contact.phone"/>
                 </div>
 
@@ -109,7 +109,10 @@ export default class Form extends Vue {
 
 <style lang="scss" scoped>
 #form-container {
-    background-color: black;
+    background-image: url("../assets/images/possible-bg.png");
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover;
     
     .form-page {
         width: 100%;
@@ -126,6 +129,7 @@ export default class Form extends Vue {
             font-size: 6vh;
             margin-top: 3vh;
             margin-bottom: 0;
+            text-shadow: 1px 3px 0 rgba(1, 38, 39, 0.5), 1px 13px 5px rgba(1, 38, 39, 0.5);        
         }
 
         .form-buttons-container {
@@ -136,8 +140,11 @@ export default class Form extends Vue {
             align-items: center;
 
             .form-button {
-                background: grey;
-                border-radius: 50%;
+                color: black;
+                background-image: url("../assets/images/blob.png");
+                background-position: center; /* Center the image */
+                background-repeat: no-repeat; /* Do not repeat the image */
+                background-size: contain;
                 height: 20vh;
                 width: 20vh;
 
@@ -146,6 +153,12 @@ export default class Form extends Vue {
                 justify-content: center;
 
                 cursor: pointer;
+
+                @for $i from 1 through 8 {
+                    &.form-button:nth-child(#{$i}) {
+                        transform:  rotate((random(40) - 20) + deg);
+                    }
+                }
 
                 span {
                     font-size: 3vh;
@@ -166,7 +179,7 @@ export default class Form extends Vue {
         left: 200%;
     }
 
-    .form-button, h2, p, span {
+    .form-button, h2, p,{
         color: white;
     }
 
