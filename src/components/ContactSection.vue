@@ -7,17 +7,35 @@
         <div class="contact-section-main">
             <h1>Tell me</h1>
             <h1>your story</h1>
-            <button>Contact Us</button>
+            <button @click="onContactButtonClicked">Contact Us</button>
         </div>
+        <div v-if="showContactForm" class="contact-form-overlay" @click="exitForm"></div>
+        <Form v-if="showContactForm" class="contact-form"></Form>
     </section>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import Form from '@/components/Form.vue';
 
-@Component
+@Component({
+    components: {
+        Form,
+    }
+})
 export default class ContactSection extends Vue {
-    
+    showContactForm: boolean = false;
+
+    onContactButtonClicked() {
+        this.showContactForm = true;
+        document.getElementById('first-page')!.style.left = '0';
+        document.getElementById('second-page')!.style.left = '100%';
+        document.getElementById('third-page')!.style.left = '200%';
+    }
+
+    exitForm() {
+        this.showContactForm = false;
+    }
 }
 </script>
 
@@ -50,6 +68,31 @@ export default class ContactSection extends Vue {
             width: 300px;
             margin: 20px auto 20px auto;
         }
+    }
+
+    .contact-form {
+        position: fixed;
+        width: 100vw;
+        height: 80vh;
+        left: 0;
+        top: 10vh;
+        border-radius: 2vh;
+
+        z-index: 20;
+    }
+
+    .contact-form-overlay {
+        background-color: black;
+        opacity: 0.75;
+
+        width: 100vw;
+        height: 100vh;
+        
+        position: fixed;
+        top: 0;
+        left: 0;
+
+        z-index: 19;
     }
 }
 
