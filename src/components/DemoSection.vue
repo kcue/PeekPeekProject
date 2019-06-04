@@ -8,6 +8,8 @@
                 <img slot="img" :src="imagePath(item.img)"/> 
             </DemoCard>
         </div>
+
+        <img @click="closeAll" id="x-button" src="../assets/images/X.png"/>
         <iframe class="demo-iframes" v-for="(item,index) in cardData" :key="index" :id="'demo-frame-' + index" :src="item.iframe"></iframe>
         <div class="demo-section-frames-parallax-margin"></div>
         <div class="demo-section-text">
@@ -66,10 +68,10 @@ export default class DemoSection extends Vue {
             //Go to the Style section of this page and change the flex-order. 
             cardData: [
             {
-                iframe: "http://panosensing.com/temp/peekpeek/LB_Rec_Center/v3.html",
+                iframe: "http://vr.peekpeek.com/UCI_ARC/",
                 title: "University of California, Irvine",
                 subtitle: "Anteater Recreational Center Tour",
-                img: "uci-arc",
+                img: "ARC",
             },
             {
                 iframe: "http://panosensing.com/temp/peekpeek/LB_Rec_Center/v3.html",
@@ -125,6 +127,7 @@ export default class DemoSection extends Vue {
 
         elem.classList.add("opened");
         fakeCard.classList.add("clicked");
+        document.getElementById("x-button").style.opacity = "1";
         let currentFrame = document.getElementById(`demo-frame-${foundIndex}`);
         currentFrame.classList.add("active-frame");          
     }
@@ -144,6 +147,40 @@ export default class DemoSection extends Vue {
             }).setTween(`#${demos[i].id}`, {y: i % 2 === 0 ? -window.innerHeight * 0.85 : window.innerHeight * 0.85, ease: Sine.easeNone})
             )
         }
+    }
+
+    closeAll() {
+        console.log("x-button-clicked");
+        let cards = document.getElementsByClassName("demo-section-frames")[0].children;
+    
+        for (let i = 0; i < cards.length; ++i) {
+            cards[i].classList.remove("flat");
+        }
+
+        let fakeCard = document.getElementById("fake-card");
+        fakeCard.style.width = '';
+        fakeCard.style.height = '';
+        fakeCard.style.left = '';
+        fakeCard.style.top = '';
+        fakeCard.style.borderRadius = '';        
+        
+        fakeCard.classList.remove("clicked");
+        document.getElementsByClassName("opened")[0].classList.remove("opened");
+        document.getElementsByClassName("active-frame")[0].classList.remove("active-frame");
+        let x_button = document.getElementById("x-button");     
+        x_button.style.transition = "transition: opacity .5s ease-in-out 0s";
+        x_button.style.opacity = "0";
+        x_button.style.transition = "transition: opacity .5s ease-in-out 1.5s";
+
+        
+
+
+
+        // setTimeout(() => {
+        //     fakeCard.style.transition = 'all 1s';
+        //     fakeCard.style.top = '20vh';
+        //     fakeCard.style.left = '10vw';
+        // }, 1000)       
     }
     
     getParentSection(elementName: string): string {
@@ -166,12 +203,24 @@ export default class DemoSection extends Vue {
     display: flex;
     flex-direction: row;
 
+    #x-button {
+        //transition: opacity .5s ease-in-out 1.5s;
+        text-align: left;
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        opacity: 0;
+        left: 10vw;
+        top: calc(20vh - 40px);
+        cursor: pointer;
+    }
+
     iframe {
-        transition: all 1s ease 0s;
         height: 60vh;
         width: 60vw;
         top: 20vh;
         left: 10vw;
+        transition: opacity 1s ease 5s;
         position: absolute;
         visibility: hidden;
         border-width: 0px;
@@ -208,7 +257,7 @@ export default class DemoSection extends Vue {
 
     .active-frame {
         visibility: visible;
-        transition: visbility 0s, opacity 5s;
+        transition: visbility 0s, opacity 1s ease-in-out 2s;
         opacity: 1;
     }
     
@@ -343,7 +392,7 @@ export default class DemoSection extends Vue {
     }
 }
 
-@media (max-height: 480px), (min-width: 768px) {
+@media (max-height: 480px), (max-width: 768px) {
     .placeholder {
         display: none;
     }
