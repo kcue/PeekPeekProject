@@ -89,7 +89,7 @@ export default class Form extends Vue {
                 inquiry: this._data.formData.contact.inquiry,
             }
         }
-
+            //email the completed form to peekpeekTest@gmail.com
            var data = {
             service_id: 'gmail',
                 template_id: 'customer_info',
@@ -103,8 +103,7 @@ export default class Form extends Vue {
                         'inquery' : `${formData.contact.inquiry}`
                         }
                         };
-                        console.log("before ajax request");
-
+                       
                         $.ajax('https://api.emailjs.com/api/v1.0/email/send', {
                         type: 'POST',
                         data: JSON.stringify(data),
@@ -112,28 +111,6 @@ export default class Form extends Vue {
                         }).fail(function(error) {
                         alert('Oops... ' + JSON.stringify(error));
                         });
-
-        //email form info
-    //     var data = {
-    // service_id: 'gmail',
-    // template_id: 'customer_info',
-    // user_id: 'user_fff9Opb1hmekqqBL26773',
-    // template_params: {
-    //     'name' : `${formData.contact.name}`,
-    //     'email' : `${formData.contact.email}`,
-    //     'phone' : `${formData.contact.phone}`,
-    //     'industry' : `${formData.industry}`,
-    //     'location' : `${formData.location}`,
-    //     'inquery' : `${formData.contact.inquiry}`
-    //     }
-    // };
-
-    // console.log("data is " + data.template_params.name);
-
-    //     axios.post('https://api.emailjs.com/api/v1.0/email/send', JSON.stringify(data)).catch(r => console.log("sending email " + r) );
-
-
-
     }
 
     scrollToLocation(event) {
