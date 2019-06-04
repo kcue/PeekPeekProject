@@ -27,23 +27,23 @@
             </p>
             <div class="form-content-container">
                 <div class="name form-element">
-                    <input placeholder="Name" type="text"/>
+                    <input placeholder="Name" type="text" v-model="formData.contact.name"/>
                 </div>
 
                 <div class="email form-element">
-                    <input placeholder="Email" type="text"/>
+                    <input placeholder="Email" type="text" v-model="formData.contact.email"/>
                 </div>
 
                 <div class="phone form-element">
-                    <input placeholder="Phone" type="text"/>
+                    <input placeholder="Phone" type="text" v-model="formData.contact.phone"/>
                 </div>
 
                 <div class="inquiry form-element">
-                    <textarea placeholder="Inquiry" type="text"/>
+                    <textarea placeholder="Inquiry" type="text" v-model="formData.contact.inquiry"/>
                 </div>
             </div>
 
-            <button>Submit</button>
+            <button @click="printForm">Submit</button>
         </div>
     </div>
 </template>
@@ -58,22 +58,48 @@ export default class Form extends Vue {
             buttonData: {
                 industryPage: ['Hospitality', 'Restaurant', 'Campus', 'Other'],
                 locationPage: ['Los Angeles', 'Orange County', 'Riverside', 'Other']
+            },
+            formData: {
+                industry: '',
+                location: '',
+                contact: {
+                    name: '',
+                    email: '',
+                    phone: '',
+                    inquiry: '',
+                }
+            }
+        }
+    }
+
+    printForm() {
+        let formData = {
+            'industry': this._data.formData.industry,
+            'location': this._data.formData.location,
+            'contact': {
+                name: this._data.formData.contact.name,
+                email: this._data.formData.contact.email,
+                phone: this._data.formData.contact.phone,
+                inquiry: this._data.formData.contact.inquiry,
             }
         }
     }
 
     scrollToLocation(event) {
-        console.log(event);
         let target = event.srcElement;
         target = target.tagName === 'SPAN' ? target.innerHTML : target.children[0].innerHTML;
-        console.log(`You clicked: ${target}`)
+        this._data.formData.industry = target;
+        
         document.getElementById('first-page')!.style.left = '-100%';
         document.getElementById('second-page')!.style.left = '0';
         document.getElementById('third-page')!.style.left = '100%';
     }
 
     scrollToCustomerInformation(event) {
-        console.log(event);
+        let target = event.srcElement;
+        target = target.tagName === 'SPAN' ? target.innerHTML : target.children[0].innerHTML;
+        this._data.formData.location = target;
+
         document.getElementById('first-page')!.style.left = '-200%';
         document.getElementById('second-page')!.style.left = '-100%';
         document.getElementById('third-page')!.style.left = '0';
