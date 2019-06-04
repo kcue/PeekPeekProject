@@ -39,7 +39,6 @@ export default class HomeSection extends Vue {
     document.getElementsByClassName("home-pic")[0].classList.add("collapsed");
     document.getElementById("splash-text")!.classList.add("hidden");
     document.getElementsByClassName("secondary")[0].classList.remove("hidden");
-    //document.getElementById("floating-nav").style.transform('translateY(100px)');
   }
 }
 </script>

@@ -77,7 +77,7 @@ export default class DemoSection extends Vue {
                 iframe: "http://panosensing.com/temp/peekpeek/LB_Rec_Center/v3.html",
                 title: "Cal State Long Beach",
                 subtitle: "Wellness Center Tour",
-                img: "csulb-wellness",
+                img: "CSULB",
             },
             {
                 iframe: "http://panosensing.com/temp/peekpeek/LB_Rec_Center/v3.html",
