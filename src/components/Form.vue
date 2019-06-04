@@ -50,6 +50,7 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import $ from 'jquery';
 
 @Component
 export default class Form extends Vue {
@@ -83,6 +84,28 @@ export default class Form extends Vue {
                 inquiry: this._data.formData.contact.inquiry,
             }
         }
+           //email the completed form to peekpeekTest@gmail.com
+           var data = {
+            service_id: 'gmail',
+                template_id: 'customer_info',
+                    user_id: 'user_fff9Opb1hmekqqBL26773',
+                        template_params: {
+                        'name' : `${formData.contact.name}`,
+                        'email' : `${formData.contact.email}`,
+                        'phone' : `${formData.contact.phone}`,
+                        'industry' : `${formData.industry}`,
+                        'location' : `${formData.location}`,
+                        'inquery' : `${formData.contact.inquiry}`
+                        }
+                        };
+                       
+                        $.ajax('https://api.emailjs.com/api/v1.0/email/send', {
+                        type: 'POST',
+                        data: JSON.stringify(data),
+                        contentType: 'application/json'
+                        }).fail(function(error) {
+                        alert('Oops... ' + JSON.stringify(error));
+                        });
     }
 
     scrollToLocation(event) {
