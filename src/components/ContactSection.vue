@@ -40,34 +40,31 @@ export default class ContactSection extends Vue {
 </script>
 
 <style lang="scss" scoped>
+  a {
+    text-decoration: none;
+    color: white
+  }
 #contact-section {
+  justify-content: center;
+
+  .contact-section-interlude {
+    margin-top: 100px;
+
+    p {
+      font-size: 5.5vh;
+      text-align: left;
+    }
+  }
+
+  .contact-section-main {
+    display: flex;
+    flex-direction: column;
     justify-content: center;
 
-    .contact-section-interlude {
-        margin-top: 100px;
-
-        p {
-            font-size: 5.5vh;
-            text-align: left;
-        }
-    }
-
-    .contact-section-main {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-
-        h1 {
-            margin-top: 0;
-            margin-bottom: 0;
-            text-align: center;
-        }
-
-        button {
-            font-size: 4vh;
-            width: 300px;
-            margin: 20px auto 20px auto;
-        }
+    h1 {
+      margin-top: 0;
+      margin-bottom: 0;
+      text-align: center;
     }
 
     .contact-form {
@@ -96,4 +93,11 @@ export default class ContactSection extends Vue {
     }
 }
 
+    button {
+      font-size: 4vh;
+      width: 300px;
+      margin: 20px auto 20px auto;
+    }
+  }
+}
 </style>

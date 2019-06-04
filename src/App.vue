@@ -192,6 +192,7 @@ button {
   border: none;
   box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 15px;
   border-radius: 50px;
+  text-decoration: none;
 }
 
 h1 {
