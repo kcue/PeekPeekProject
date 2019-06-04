@@ -20,9 +20,10 @@ export default class ContactSection extends Vue {}
 </script>
 
 <style lang="scss" scoped>
-a {
-  text-decoration: none;
-}
+  a {
+    text-decoration: none;
+    color: white
+  }
 #contact-section {
   justify-content: center;
 

@@ -10,8 +10,7 @@
         <div class="separator"></div>
         <div class="home-section-buttons">
           <button>
-            <a href="https://www.youtube.com/watch?v=s4EEhXH_pz0"
-              >Watch video
+            <a href="https://www.youtube.com/watch?v=s4EEhXH_pz0">Watch video
             </a>
           </button>
           <button>
@@ -46,6 +45,10 @@ export default class HomeSection extends Vue {
 </script>
 
 <style lang="scss" scoped>
+  a {
+    text-decoration: none;
+    color: white
+  }
 .home-pic {
   width: 120%;
   position: relative;

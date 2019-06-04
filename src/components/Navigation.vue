@@ -1,7 +1,7 @@
 <template>
   <nav>
     <div class="nav-backdrop"></div>
-    <img id="logo" src="../assets/images/117-peek-teal.png" />
+    <a href="/" ><img id="logo" src="../assets/images/117-peek-teal.png"/> </a>
     <ul class="nav-buttons">
       <li>
         <span class="nav-item"
@@ -20,7 +20,7 @@
       </li>
       <li>
         <button>
-          <a href="https://www.peekpeek.com/contact">Contact Us</a>
+          <a style="color: white" href="https://www.peekpeek.com/contact">Contact Us</a>
         </button>
       </li>
     </ul>
@@ -35,6 +35,10 @@ export default class Navigation extends Vue {}
 </script>
 
 <style lang="scss" scoped>
+  a {
+    text-decoration: none;
+    color: #16a4a9;
+  }
 nav {
   transition: all 1s;
   z-index: 11;
