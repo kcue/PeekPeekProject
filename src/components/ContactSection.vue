@@ -40,10 +40,11 @@ export default class ContactSection extends Vue {
 </script>
 
 <style lang="scss" scoped>
-  a {
+a {
     text-decoration: none;
     color: white
-  }
+}
+
 #contact-section {
   justify-content: center;
 
@@ -51,8 +52,8 @@ export default class ContactSection extends Vue {
     margin-top: 100px;
 
     p {
-      font-size: 5.5vh;
-      text-align: left;
+        font-size: 5.5vh;
+        text-align: left;
     }
   }
 
@@ -66,8 +67,9 @@ export default class ContactSection extends Vue {
       margin-bottom: 0;
       text-align: center;
     }
+}
 
-    .contact-form {
+.contact-form {
         position: fixed;
         width: 100vw;
         height: 80vh;
@@ -93,11 +95,10 @@ export default class ContactSection extends Vue {
     }
 }
 
-    button {
-      font-size: 4vh;
-      width: 300px;
-      margin: 20px auto 20px auto;
-    }
-  }
+button {
+    font-size: 4vh;
+    width: 300px;
+    margin: 20px auto 20px auto;
 }
+
 </style>
