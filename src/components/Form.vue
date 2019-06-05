@@ -106,7 +106,7 @@ export default class Form extends Vue {
                         }).fail(function(error) {
                         alert('Oops... ' + JSON.stringify(error));
                         });
-        console.log('printForm started');
+        //onsole.log('printForm started');
         this.$parent.$data.showContactForm = false;
     }
 

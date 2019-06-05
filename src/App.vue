@@ -113,7 +113,7 @@ export default class App extends Vue {
       let tweenLength = lengthOfTween * windowHeight/100
       let roomLeft = sectionWidth - array[i].offsetLeft - array[i].clientWidth;
       // roomLeft = roomLeft > array[i].clientWidth * 1 ? array[i].clientWidth * 1 : roomLeft;
-      console.log(`Element: ${array[i].id} RoomLeft: ${lengthOfTween}`);
+      //console.log(`Element: ${array[i].id} RoomLeft: ${lengthOfTween}`);
       let scene = new Vue.prototype.$scrollmagic.scene(
         {
           triggerElement:`#${array[i].id}`,
