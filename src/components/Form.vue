@@ -34,7 +34,7 @@
                     <input placeholder="Email" type="text" v-model="formData.contact.email"/>
                 </div>
 
-                <div class="phone form-element">
+                <div class="phone form-element">e
                     <input placeholder="Phone" type="text" v-model="formData.contact.phone"/>
                 </div>
 
@@ -50,6 +50,7 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import $ from 'jquery';
 
 @Component
 export default class Form extends Vue {
