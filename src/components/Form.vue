@@ -43,7 +43,7 @@
                 </div>
             </div>
 
-            <button @click="printForm">Submit</button>
+            <button id="submit-button" @click="printForm">Submit</button>
         </div>
     </div>
 </template>
@@ -106,6 +106,8 @@ export default class Form extends Vue {
                         }).fail(function(error) {
                         alert('Oops... ' + JSON.stringify(error));
                         });
+        console.log('printForm started');
+        this.$parent.$data.showContactForm = false;
     }
 
     scrollToLocation(event) {
@@ -136,6 +138,12 @@ export default class Form extends Vue {
     background-position: center; /* Center the image */
     background-repeat: no-repeat; /* Do not repeat the image */
     background-size: cover;
+
+    #submit-button {
+        background: #FBF6F0;
+        color: #16a4a9;
+        border: 3px solid white;
+    }
     
     .form-page {
         width: 100%;
