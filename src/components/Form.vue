@@ -34,7 +34,7 @@
                     <input placeholder="Email" type="text" v-model="formData.contact.email"/>
                 </div>
 
-                <div class="phone form-element">e
+                <div class="phone form-element">
                     <input placeholder="Phone" type="text" v-model="formData.contact.phone"/>
                 </div>
 

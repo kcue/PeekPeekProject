@@ -42,7 +42,7 @@ export default class ContactSection extends Vue {
 <style lang="scss" scoped>
 a {
     text-decoration: none;
-    color: white
+    color: white;
 }
 
 #contact-section {
