@@ -10,11 +10,11 @@
         <div class="separator"></div>
         <div class="home-section-buttons">
           <button>
-            <a href="https://www.youtube.com/watch?v=s4EEhXH_pz0">Watch video
+            <a target="_blank" href="https://www.youtube.com/watch?v=s4EEhXH_pz0">Watch video
             </a>
           </button>
           <button>
-            <a href="https://www.peekpeek.com/industries">Take a peek </a>
+            <a target="_blank" href="https://www.peekpeek.com/industries">Take a peek </a>
           </button>
         </div>
       </div>
