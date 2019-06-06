@@ -1,26 +1,34 @@
 <template>
   <nav>
     <div class="nav-backdrop"></div>
-    <a href="/" ><img id="logo" src="../assets/images/117-peek-teal.png"/> </a>
+    <a href="/"><img id="logo" src="../assets/images/117-peek-teal.png" /> </a>
     <ul class="nav-buttons">
       <li>
         <span class="nav-item"
-          ><a href="https://www.peekpeek.com/about-us">Who</a></span
+          ><a target="_blank" href="https://www.peekpeek.com/about-us"
+            >Who</a
+          ></span
         >
       </li>
       <li>
         <span class="nav-item"
-          ><a href="https://www.peekpeek.com/about-us">What</a></span
+          ><a target="_blank" href="https://www.peekpeek.com/about-us"
+            >What</a
+          ></span
         >
       </li>
       <li>
         <span class="nav-item"
-          ><a href="https://www.peekpeek.com/industries">Why</a></span
+          ><a target="_blank" href="https://www.peekpeek.com/industries"
+            >Why</a
+          ></span
         >
       </li>
       <li>
         <button>
-          <a style="color: white" href="https://www.peekpeek.com/contact">Contact Us</a>
+          <a style="color: white" href="https://www.peekpeek.com/contact"
+            >Contact Us</a
+          >
         </button>
       </li>
     </ul>
@@ -35,10 +43,10 @@ export default class Navigation extends Vue {}
 </script>
 
 <style lang="scss" scoped>
-  a {
-    text-decoration: none;
-    color: #16a4a9;
-  }
+a {
+  text-decoration: none;
+  color: #16a4a9;
+}
 nav {
   transition: all 1s;
   z-index: 11;
