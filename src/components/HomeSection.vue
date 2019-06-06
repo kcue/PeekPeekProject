@@ -1,7 +1,7 @@
 <template>
   <section class="peek-section" id="home-section">
     <div class="home-pic">
-      <img src="../assets/images/TinyWorld-Ness.png" />
+      <img src="../assets/images/tinyWorld.png" />
     </div>
     <div class="home-section-headers">
       <h1 id="splash-text">Welcome<br />to<br />PeekPeek</h1>

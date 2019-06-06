@@ -9,8 +9,15 @@
             <h1>your story</h1>
             <button @click="onContactButtonClicked">Contact Us</button>
         </div>
-        <div v-if="showContactForm" class="contact-form-overlay" @click="exitForm"></div>
-        <Form v-if="showContactForm" class="contact-form"></Form>
+        <transition name="fade">
+        </transition>
+        <transition name="fade">
+            <div class="transition-container" v-if="showContactForm">
+                <div class="contact-form-overlay" @click="exitForm"></div>
+                <Form class="contact-form"></Form>
+            </div>
+        </transition>
+       
     </section>
 </template>
 
@@ -40,6 +47,14 @@ export default class ContactSection extends Vue {
 </script>
 
 <style lang="scss" scoped>
+.fade-enter-active, .fade-leave-active {
+        transition: opacity .5s;
+    }
+
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0;
+}
+
 a {
     text-decoration: none;
     color: white;
@@ -80,19 +95,22 @@ a {
         z-index: 20;
     }
 
+    .transition-container {
+        z-index: 18;
 
-    .contact-form-overlay {
-        background-color: black;
-        opacity: 0.75;
+        .contact-form-overlay {
+            background-color: black;
+            opacity: 0.75;
 
-        width: 100vw;
-        height: 100vh;
-        
-        position: fixed;
-        top: 0;
-        left: 0;
+            width: 100vw;
+            height: 100vh;
+            
+            position: fixed;
+            top: 0;
+            left: 0;
 
-        z-index: 19;
+            z-index: 19;
+        }
     }
 }
 
@@ -100,6 +118,8 @@ button {
     font-size: 4vh;
     width: 300px;
     margin: 20px auto 20px auto;
+
+    cursor: pointer;
 }
 
 </style>
