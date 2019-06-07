@@ -9,7 +9,7 @@
                     a company’s physical location. Surpassing other 3D technologies, WebTour seamlessly integrates customized design, 
                     digital assets, and interactive features to dramatically augment the experience of users.
                 </p>
-                <a class="link">Check out our case studies</a>
+                <a class="link" href="https://www.peekpeek.com/industries">Check out our case studies</a>
             </div>
         </div>
         <div class="partners-section-text-padding"></div>
