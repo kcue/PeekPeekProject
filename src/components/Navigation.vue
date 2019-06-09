@@ -19,8 +19,9 @@
         </span>
       </li>
       <li>
-        <button>
-          <a style="color: white" href="https://www.peekpeek.com/contact">Contact Us</a>
+        <button @click="scrollToContact">
+          <!-- <a style="color: white" href="https://www.peekpeek.com/contact">Contact Us</a> -->
+          Contact Us
         </button>
       </li>
     </ul>
@@ -31,7 +32,24 @@
 import { Component, Vue } from "vue-property-decorator";
 
 @Component
-export default class Navigation extends Vue {}
+export default class Navigation extends Vue {
+  scrollToContact() {
+    const contactSection: HTMLElement = document.getElementById('contact-section')!;
+    window.scrollTo({
+      "left": contactSection.offsetLeft,
+      "behavior": "smooth"
+    })
+    
+    const contactSectionComponent: any = this.$parent.$children[this.$parent.$children.length - 1];
+    if (window.scrollX === contactSection.offsetLeft) {
+      contactSectionComponent.onContactButtonClicked();
+    } else {
+      setTimeout(() => {
+        contactSectionComponent.onContactButtonClicked();
+      }, 1750)
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -63,6 +81,10 @@ nav {
         font-size: 2.4vh;
         color: #16a4a9;
         text-transform: uppercase;
+      }
+
+      button {
+        cursor: pointer;
       }
     }
 

@@ -35,9 +35,12 @@ export default class ContactSection extends Vue {
 
     onContactButtonClicked() {
         this.showContactForm = true;
-        document.getElementById('first-page')!.style.left = '0';
-        document.getElementById('second-page')!.style.left = '100%';
-        document.getElementById('third-page')!.style.left = '200%';
+        try {
+            document.getElementById('first-page')!.style.left = '0';
+            document.getElementById('second-page')!.style.left = '100%';
+            document.getElementById('third-page')!.style.left = '200%';
+        } catch (e) {}
+        
     }
 
     exitForm() {
