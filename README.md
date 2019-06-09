@@ -269,7 +269,15 @@ To keep the project cohesive and organized, it is recommended you put any images
         </li>
         ```
 
+# File Manifest
 
+### .vscode
+    Settings.json
+### public
+    favicon
+    Index.html
+### src
+####    assets 
 ## Project setup
 ```
 npm install
