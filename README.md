@@ -118,7 +118,7 @@ To keep the project cohesive and organized, it is recommended you put any images
     </div>
     ```
 3. Video Section: `VideoSection.vue`
-    * This section contains the large video and the words “It’s the full experience.
+    * This section contains the large video and the words “It’s the full experience".
     * **To change the video**:
     * Find the following code block in `VideoSection.vue`. Replace the `src` on the iframe. It is recommended that you leave the link and only add the video’s code. For example, if the video you wanted was located at the link https://www.youtube.com/watch?v=s4EEhXH_pz0 , the video’s code would be `s4EEhXH_pz0`. Add that after https://www.youtube-nocookie.com/embed/.
         ```html
