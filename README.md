@@ -278,7 +278,95 @@ To keep the project cohesive and organized, it is recommended you put any images
     * Index.html
 * **src**
     * **assets**
-        logo.png
+        * logo.png
+        * **images**
+            * City Square Waterford.png
+            * csulb.jpg
+            * csulb-wellness.png
+            * Felixstowe Chamber.png
+            * fish-on-tap.png
+            * Hilton.png
+            * info-symbol.png
+            * moutain_bg.jpg
+            * Paypal.png
+            * Pierce College.png
+            * sample-logo.png
+            * tinyWorld.png
+            * transparent_skyline.png
+            * UCI.png
+            * uci-arc.png
+            * West-covina.png
+    * **components**
+        * ContactSection.vue
+        * DemoSection.vue
+        * FormButton.vue
+        * HelloWorld.vue
+        * HomeSection.vue
+        * HotspotSection.vue
+        * StatsCard.vue
+        * StatsSection.vue
+        * VideoSection.vue
+    * **views**
+        * About.vue
+        * Home.vue
+        * Playground.vue
+    * app.vue
+    * main.ts
+    * router.ts
+    * shims-tsx.d.ts
+    * Shims-vue.d.ts
+* .gitignore
+* babel.config.js
+* Package.json
+* Package-lock.json
+* README.md
+* tsconfig.json
+
+# Copyright and Licensing Information
+
+This project was completed in accordance to the rules and regulations set upon students completing their project at the University of California, Irvine. Since the website was completed for credit as part of a college course, the programmers/designers do not hold any rights related to the code used to create this project. For all NPM libraries, please refer to package.json for a full list of licensing information from all libraries used.
+
+# Contact Information for Developers
+
+### David Brown
+* **Email**: daviddb@uci.edu
+
+### Thomas Huang
+* **Email**: yiminh3@uci.edu
+
+### Hailey Karter
+* **Email**: hkarter@uci.edu
+
+### Tayler Nielsen
+* **Email**: tanielse@uci.edu
+
+### Samantha Rollins
+* **Email**: rollinss@uci.edu
+
+### Nessa Scott
+* **Email**: nvscott@uci.edu
+
+# Known Bugs
+1. At extremely wide aspect ratios, the scrolling animations and parallax will not work as expected, since the triggerhooks are set to “onEnter” (1). 
+2. Scrollmagic does not work well with Google’s device toolbar in responsive mode. It is unclear why this issue exists.
+3. After reloading the page, attempting to scroll left or right before scrollmagic loads can cause stuttering effects.
+
+# Troubleshooting
+## Tweens
+    If a tween isn’t moving even though the console isn’t throwing any errors, then the most likely scenario is that the element does not have an ID. If the element doesn’t have an ID, then scrollmagic can’t add styling to it.
+
+## CSS Precedence
+    If you make a change to the CSS, and it doesn’t effect the element, make sure that there are no “!important” attributes being assigned to that element. Some breakpoints set attributes as “!important” to override traditional css precedences
+
+# Credits and Achnowledgements
+    Thank you Professor Ziv for the opportunity to work with project Sponsors and get real world experiences that can be used on our resumes!
+
+	Used the FontAwesome arrow icon for the “New Challenge, New Solution” section.
+	Placeholder images for demo cards courtesy of Unsplash.
+
+
+
+
     
 
 
@@ -309,13 +397,3 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
-
-1. Home Section: `HomeSection.vue`
-  * This section contains the tiny-world picture, as well as the opening text ("Welcome to Peek Peek" & "It's All About You") and the buttons labeled "Watch the video" and "Take a peek".
-  * **To change the picture**:
-    Find the following code block in `HomeSection.vue`. Replace the img `src` with the new image's name.
-    ```html
-    <div class="home-pic">
-        <img src="../assets/images/tinyWorld.png" />
-    </div>
-    ```
