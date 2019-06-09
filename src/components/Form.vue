@@ -120,12 +120,12 @@ export default class Form extends Vue {
                         // }).fail(function(error: any) {
                         // alert('Oops... ' + JSON.stringify(error));
                         // });
-        //console.log('printForm started');
+                        //console.log('printForm started');
         this.$parent.$data.showContactForm = false;
     }
 
     scrollToLocation(event: MouseEvent) {
-        let target = event.srcElement!;
+        let target: HTMLElement = <HTMLElement> event.srcElement!;
         let targetHTML = target.tagName === 'SPAN' ? target.innerHTML : target.children[0].innerHTML;
         this.$data.formData.industry = targetHTML;
         
@@ -135,7 +135,7 @@ export default class Form extends Vue {
     }
 
     scrollToCustomerInformation(event: MouseEvent) {
-        let target = event.srcElement!;
+        let target: HTMLElement = <HTMLElement> event.srcElement!;
         let targetHTML = target.tagName === 'SPAN' ? target.innerHTML : target.children[0].innerHTML;
         this.$data.formData.location = targetHTML;
 

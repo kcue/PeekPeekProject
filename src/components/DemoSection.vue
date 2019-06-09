@@ -55,7 +55,8 @@ export default class DemoSection extends Vue {
         {
             cards[i].classList.add(i % 2 === 0 ? "demo-section-even": "demo-section-odd");
             cards[i].addEventListener("click", event => {
-                const targetElement = event.srcElement!.className.toString().includes("demo-section-frame") ? <HTMLElement> event.srcElement : <HTMLElement> event.srcElement!.parentElement;
+                let targetElement: HTMLElement = <HTMLElement> event.srcElement;
+                targetElement = targetElement.className.toString().includes("demo-section-frame") ? targetElement : <HTMLElement> targetElement.parentElement;
                 this.openCard(targetElement!, cards);
             });
         }
