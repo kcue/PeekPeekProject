@@ -75,15 +75,16 @@ export default class Form extends Vue {
 
     printForm() {
         let formData = {
-            'industry': this._data.formData.industry,
-            'location': this._data.formData.location,
+            'industry': this.$data.formData.industry,
+            'location': this.$data.formData.location,
             'contact': {
-                name: this._data.formData.contact.name,
-                email: this._data.formData.contact.email,
-                phone: this._data.formData.contact.phone,
-                inquiry: this._data.formData.contact.inquiry,
+                name: this.$data.formData.contact.name,
+                email: this.$data.formData.contact.email,
+                phone: this.$data.formData.contact.phone,
+                inquiry: this.$data.formData.contact.inquiry,
             }
         }
+        console.log(formData);
            //email the completed form to peekpeekTest@gmail.com
            var data = {
             service_id: 'gmail',
@@ -103,27 +104,27 @@ export default class Form extends Vue {
                         type: 'POST',
                         data: JSON.stringify(data),
                         contentType: 'application/json'
-                        }).fail(function(error) {
+                        }).fail(function(error: any) {
                         alert('Oops... ' + JSON.stringify(error));
                         });
         //onsole.log('printForm started');
         this.$parent.$data.showContactForm = false;
     }
 
-    scrollToLocation(event) {
-        let target = event.srcElement;
-        target = target.tagName === 'SPAN' ? target.innerHTML : target.children[0].innerHTML;
-        this._data.formData.industry = target;
+    scrollToLocation(event: MouseEvent) {
+        let target = event.srcElement!;
+        let targetHTML = target.tagName === 'SPAN' ? target.innerHTML : target.children[0].innerHTML;
+        this.$data.formData.industry = targetHTML;
         
         document.getElementById('first-page')!.style.left = '-100%';
         document.getElementById('second-page')!.style.left = '0';
         document.getElementById('third-page')!.style.left = '100%';
     }
 
-    scrollToCustomerInformation(event) {
-        let target = event.srcElement;
-        target = target.tagName === 'SPAN' ? target.innerHTML : target.children[0].innerHTML;
-        this._data.formData.location = target;
+    scrollToCustomerInformation(event: MouseEvent) {
+        let target = event.srcElement!;
+        let targetHTML = target.tagName === 'SPAN' ? target.innerHTML : target.children[0].innerHTML;
+        this.$data.formData.location = targetHTML;
 
         document.getElementById('first-page')!.style.left = '-200%';
         document.getElementById('second-page')!.style.left = '-100%';
@@ -210,7 +211,7 @@ export default class Form extends Vue {
         left: 200%;
     }
 
-    .form-button, h2, p,{
+    .form-button, h2, p {
         color: white;
     }
 

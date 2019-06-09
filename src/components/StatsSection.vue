@@ -26,9 +26,9 @@
 import { Component, Vue } from "vue-property-decorator";
 import StatsCard from "@/components/StatsCard.vue";
 
-import { TweenMax, TimelineMax } from 'gsap';
+import { TweenMax, TimelineMax, Power1 } from 'gsap';
 
-let scenes;
+let scenes: any;
 
 @Component({
   components: {
@@ -76,7 +76,7 @@ export default class StatsSection extends Vue {
         }
     }
 
-    animateValue(obj, start = 0, end = null, duration = 1500) {
+    animateValue(obj:Element, start = 0, end:any = null, duration = 1500) {
         if (obj) {
 
             // save starting text for later (and as a fallback text if JS not running and/or google)
@@ -99,14 +99,15 @@ export default class StatsSection extends Vue {
             // get current time and calculate desired end time
             var startTime = new Date().getTime();
             var endTime = startTime + duration;
-            var timer;
+            var timer:number;
 
             function run() {
                 var now = new Date().getTime();
                 var remaining = Math.max((endTime - now) / duration, 0);
                 var value = Math.round(end - (remaining * range));
+                var text:string = value + "";
                 // replace numeric digits only in the original string
-                obj.innerHTML = textStarting.replace(/([0-9]+)/g, value);
+                obj.innerHTML = textStarting.replace(/([0-9]+)/g, text);
                 if (value == end) {
                     clearInterval(timer);
                 }
@@ -137,9 +138,10 @@ export default class StatsSection extends Vue {
             }
             var treeTween = TweenMax.to(cards[i], 1, {css:{bezier:flightPath.tree } , ease:Power1.easeInOut} )
             
-            document.getElementById(cards[i].id).style.alignItems = i % 2 === 0 ? 'baseline' : 'flex-end';
-            document.getElementById(cards[i].id).firstElementChild.style.margin = i % 2 === 0 ? 'auto 0 auto 2.5vh' : 'auto 2.5vh auto 0';
-            document.getElementById(cards[i].id).firstElementChild.style.alignItems = i % 2 === 0 ? 'baseline' : 'flex-end';
+            document.getElementById(cards[i].id)!.style.alignItems = i % 2 === 0 ? 'baseline' : 'flex-end';
+            let firstElement: HTMLElement= <HTMLElement>(document.getElementById(cards[i].id)!.firstElementChild!)
+            firstElement.style.margin = i % 2 === 0 ? 'auto 0 auto 2.5vh' : 'auto 2.5vh auto 0';
+            firstElement.style.alignItems = i % 2 === 0 ? 'baseline' : 'flex-end';
 
             //Getting the width of the element
             let elementWidth = document.getElementById(cards[0].id)!.clientWidth;

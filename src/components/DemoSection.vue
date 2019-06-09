@@ -28,7 +28,9 @@ import { Component, Vue } from "vue-property-decorator";
 import DemoCard from '@/components/DemoCard.vue';
 import { TweenMax, TimelineMax } from 'gsap';
 
-let scenes = [];
+declare var Sine: any;
+
+let scenes: any[] = [];
 
 @Component({
     components: {
@@ -53,8 +55,8 @@ export default class DemoSection extends Vue {
         {
             cards[i].classList.add(i % 2 === 0 ? "demo-section-even": "demo-section-odd");
             cards[i].addEventListener("click", event => {
-                const targetElement = event.srcElement!.className.toString().includes("demo-section-frame") ? event.srcElement : event.srcElement!.parentElement;
-                this.openCard(targetElement, cards);
+                const targetElement = event.srcElement!.className.toString().includes("demo-section-frame") ? <HTMLElement> event.srcElement : <HTMLElement> event.srcElement!.parentElement;
+                this.openCard(targetElement!, cards);
             });
         }
     }
@@ -96,7 +98,7 @@ export default class DemoSection extends Vue {
     }
 
 
-    openCard(elem, cards) {
+    openCard(elem: HTMLElement, cards: HTMLCollection) {
         let foundIndex: number = -1;
         for (let i = 0; i < cards.length; ++i) {
             if (cards[i].id != elem.id) {
@@ -107,7 +109,7 @@ export default class DemoSection extends Vue {
                 foundIndex = i;
             }
         }
-        let fakeCard = document.getElementById("fake-card");
+        let fakeCard = document.getElementById("fake-card")!;
         fakeCard.style.width = `${elem.clientWidth}px`;
         fakeCard.style.height = `${elem.clientHeight}px`;
         fakeCard.style.left = `${elem.offsetLeft}px`;
@@ -127,9 +129,9 @@ export default class DemoSection extends Vue {
 
         elem.classList.add("opened");
         fakeCard.classList.add("clicked");
-        document.getElementById("x-button").style.opacity = "1";
+        document.getElementById("x-button")!.style.opacity = "1";
         let currentFrame = document.getElementById(`demo-frame-${foundIndex}`);
-        currentFrame.classList.add("active-frame");          
+        currentFrame!.classList.add("active-frame");          
     }
 
     demoAnimations(){
@@ -157,7 +159,7 @@ export default class DemoSection extends Vue {
             cards[i].classList.remove("flat");
         }
 
-        let fakeCard = document.getElementById("fake-card");
+        let fakeCard = document.getElementById("fake-card")!;
         fakeCard.style.width = '';
         fakeCard.style.height = '';
         fakeCard.style.left = '';
@@ -167,7 +169,7 @@ export default class DemoSection extends Vue {
         fakeCard.classList.remove("clicked");
         document.getElementsByClassName("opened")[0].classList.remove("opened");
         document.getElementsByClassName("active-frame")[0].classList.remove("active-frame");
-        let x_button = document.getElementById("x-button");     
+        let x_button = document.getElementById("x-button")!;     
         x_button.style.transition = "transition: opacity .5s ease-in-out 0s";
         x_button.style.opacity = "0";
         x_button.style.transition = "transition: opacity .5s ease-in-out 1.5s";
