@@ -24,10 +24,10 @@ import DemoSection from '@/components/DemoSection.vue';
 import PartnersSection from '@/components/PartnersSection.vue';
 import ContactSection from '@/components/ContactSection.vue';
 
-import { TweenMax, TimelineMax } from 'gsap';
+import { TweenMax, TimelineMax, Linear } from 'gsap';
 let windowLength;
-let parallaxLength;
-let scenes;
+let parallaxLength: { [index:string] : number };
+let scenes:any;
 
 @Component({
   components: {
@@ -50,7 +50,7 @@ export default class App extends Vue {
       maintext: 5.25
     };
 
-    parallaxLength = {
+    parallaxLength= {
       widetitle: 60,
       titles: 40,
       subtitles: 35,
@@ -82,11 +82,11 @@ export default class App extends Vue {
 
   parallaxAnimation()
   {
-    let titles = document.getElementsByClassName("title");
-    let subtitles = document.getElementsByClassName("subtitle");
-    let media = document.getElementsByClassName("media");
-    let mainText = document.getElementsByClassName("main-text");
-    let wideTitle = document.getElementsByClassName("wide-title");
+    let titles = <HTMLCollectionOf<HTMLElement>> document.getElementsByClassName("title");
+    let subtitles = <HTMLCollectionOf<HTMLElement>> document.getElementsByClassName("subtitle");
+    let media = <HTMLCollectionOf<HTMLElement>> document.getElementsByClassName("media");
+    let mainText = <HTMLCollectionOf<HTMLElement>> document.getElementsByClassName("main-text");
+    let wideTitle = <HTMLCollectionOf<HTMLElement>> document.getElementsByClassName("wide-title");
     let windowWidth = window.innerWidth > 992 ? window.innerWidth : 992;
     let windowHeight = window.innerHeight;
 
@@ -100,7 +100,7 @@ export default class App extends Vue {
     
   }
 
-  makeTween(array: HTMLCollectionOf<Element>, lengthOfTween: number)
+  makeTween(array: HTMLCollectionOf<HTMLElement>, lengthOfTween: number)
   {
     console.log(lengthOfTween);
     let windowWidth = window.innerWidth > 992 ? window.innerWidth : 992;
@@ -131,14 +131,14 @@ export default class App extends Vue {
     //console.log(elementName)
     const element = document.getElementById(elementName);
     //console.log(element)
-    let result = element.parentElement;
+    let result = element!.parentElement;
     while (result !== null) {
         if (result.tagName === 'SECTION') {
             break;
         }
         result = result.parentElement;
     }
-    return result.id;
+    return result!.id;
   }
 }
 
