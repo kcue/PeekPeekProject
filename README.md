@@ -21,7 +21,7 @@ Once the project is open in your preferred IDE, open up the built-in terminal at
 
 ## Operating Instructions
 
-### tarting the Project
+### Starting the Project
 There are a few options to start the project:
 
 1. The first option is to run the command `npm run serve` in your command line. This will build the project and provide you with a link to view the website on your computer’s browser if it was successful.
@@ -268,6 +268,11 @@ To keep the project cohesive and organized, it is recommended you put any images
             </span>
         </li>
         ```
+### Building the Project
+To minify the project size and to get the website ready for production, run the command `npm run build`, or navigate to the same page in the UI where you serve the website and click on the `build` option instead of `serve`. The project will not build unless there are **no errors** from typescript, so it is recommended to follow proper coding principles to reduce future work before building.
+
+### Lints and fixes files
+To Lint the program and fix simple errors in formatting, run the command `npm run lint`.
 
 # File Manifest
 
@@ -363,37 +368,6 @@ This project was completed in accordance to the rules and regulations set upon s
 
 	Used the FontAwesome arrow icon for the “New Challenge, New Solution” section.
 	Placeholder images for demo cards courtesy of Unsplash.
-
-
-
-
-    
-
-
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
