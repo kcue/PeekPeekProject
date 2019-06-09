@@ -358,16 +358,16 @@ This project was completed in accordance to the rules and regulations set upon s
 
 # Troubleshooting
 ## Tweens
-    If a tween isn’t moving even though the console isn’t throwing any errors, then the most likely scenario is that the element does not have an ID. If the element doesn’t have an ID, then scrollmagic can’t add styling to it.
+If a tween isn’t moving even though the console isn’t throwing any errors, then the most likely scenario is that the element does not have an ID. If the element doesn’t have an ID, then scrollmagic can’t add styling to it.
 
 ## CSS Precedence
-    If you make a change to the CSS, and it doesn’t effect the element, make sure that there are no “!important” attributes being assigned to that element. Some breakpoints set attributes as “!important” to override traditional css precedences
+If you make a change to the CSS, and it doesn’t effect the element, make sure that there are no “!important” attributes being assigned to that element. Some breakpoints set attributes as “!important” to override traditional css precedences
 
 # Credits and Achnowledgements
-    Thank you Professor Ziv for the opportunity to work with project Sponsors and get real world experiences that can be used on our resumes!
+Thank you Professor Ziv for the opportunity to work with project Sponsors and get real world experiences that can be used on our resumes!
 
-	Used the FontAwesome arrow icon for the “New Challenge, New Solution” section.
-	Placeholder images for demo cards courtesy of Unsplash.
+Used the FontAwesome arrow icon for the “New Challenge, New Solution” section.
+Placeholder images for demo cards courtesy of Unsplash.
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
