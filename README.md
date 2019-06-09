@@ -1,22 +1,22 @@
 # Readme
 
-##Configuration Instruction
+## Configuration Instruction
 
-###NPM
+### NPM
 Serving the webapp live in the browser to see hot reload in action as well as making any changes to the code requires the Node Package Manager (NPM). This software requires version 10 or newer of NPM, which can be found here: https://nodejs.org/en/. For macOS environments, it is suggested that Node Version Manager (NVM) is used to install NPM to avoid any potential permission issues. The newest version of NVM can be found here: https://github.com/nvm-sh/nvm#installation-and-update. 
 
-###Cloning the Repository
+### Cloning the Repository
 The first step is to clone the repository. To do this, the project can be found at https://github.com/RollinsS/PeekPeekProject, and since it’s a public repository there is no need to be added as a contributor.
 
-###Installing Necessary Frameworks (Currently only Vue Client)
+### Installing Necessary Frameworks (Currently only Vue Client)
 The second step is to install the Vue Client. This needs to be installed globally. To do this, run the command `npm install -g vue-cli`.
 
-###Opening the Project in a Preferred IDE
+### Opening the Project in a Preferred IDE
 The third step is to get the project open in your IDE.  Once you clone the repository, open up your IDE (The project was built using Visual Studio Code) and open an existing project. Navigate to the folder that was installed from github, and press “open”
 
-##Installation Instructions
+## Installation Instructions
 
-###Installing Project Dependencies
+### Installing Project Dependencies
 Once the project is open in your preferred IDE, open up the built-in terminal at the project’s location or navigate a terminal to the root folder of the project. Run `npm install` to download all dependencies that are needed to run the project
 
 ##Operating Instructions
