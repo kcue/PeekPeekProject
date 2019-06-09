@@ -50,7 +50,7 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import $ from 'jquery';
+// import $ from 'jquery';
 
 @Component
 export default class Form extends Vue {
@@ -99,15 +99,28 @@ export default class Form extends Vue {
                         'inquery' : `${formData.contact.inquiry}`
                         }
                         };
+
+                        let request = new XMLHttpRequest();
+                        request.open('POST', 'https://api.emailjs.com/api/v1.0/email/send');
+                        request.setRequestHeader('Content-Type', 'application/json');
+                        request.onreadystatechange = function() {
+                            if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+                                console.log('All good');
+                            } else {
+                                console.log('Status: ' + this.status)
+                                console.log(this.response);
+                            }
+                        }
+                        request.send(JSON.stringify(data));
                        
-                        $.ajax('https://api.emailjs.com/api/v1.0/email/send', {
-                        type: 'POST',
-                        data: JSON.stringify(data),
-                        contentType: 'application/json'
-                        }).fail(function(error: any) {
-                        alert('Oops... ' + JSON.stringify(error));
-                        });
-        //onsole.log('printForm started');
+                        // $.ajax('https://api.emailjs.com/api/v1.0/email/send', {
+                        // type: 'POST',
+                        // data: JSON.stringify(data),
+                        // contentType: 'application/json'
+                        // }).fail(function(error: any) {
+                        // alert('Oops... ' + JSON.stringify(error));
+                        // });
+        //console.log('printForm started');
         this.$parent.$data.showContactForm = false;
     }
 
