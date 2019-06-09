@@ -1,43 +1,43 @@
 # Readme
 
-##Configuration Instruction
+## Configuration Instruction
 
-###NPM
+### NPM
 Serving the webapp live in the browser to see hot reload in action as well as making any changes to the code requires the Node Package Manager (NPM). This software requires version 10 or newer of NPM, which can be found here: https://nodejs.org/en/. For macOS environments, it is suggested that Node Version Manager (NVM) is used to install NPM to avoid any potential permission issues. The newest version of NVM can be found here: https://github.com/nvm-sh/nvm#installation-and-update. 
 
-###Cloning the Repository
+### Cloning the Repository
 The first step is to clone the repository. To do this, the project can be found at https://github.com/RollinsS/PeekPeekProject, and since it’s a public repository there is no need to be added as a contributor.
 
-###Installing Necessary Frameworks (Currently only Vue Client)
+### Installing Necessary Frameworks (Currently only Vue Client)
 The second step is to install the Vue Client. This needs to be installed globally. To do this, run the command `npm install -g vue-cli`.
 
-###Opening the Project in a Preferred IDE
+### Opening the Project in a Preferred IDE
 The third step is to get the project open in your IDE.  Once you clone the repository, open up your IDE (The project was built using Visual Studio Code) and open an existing project. Navigate to the folder that was installed from github, and press “open”
 
-##Installation Instructions
+## Installation Instructions
 
-###Installing Project Dependencies
+### Installing Project Dependencies
 Once the project is open in your preferred IDE, open up the built-in terminal at the project’s location or navigate a terminal to the root folder of the project. Run `npm install` to download all dependencies that are needed to run the project
 
-##Operating Instructions
+## Operating Instructions
 
-###Starting the Project
+### tarting the Project
 There are a few options to start the project:
 
 1. The first option is to run the command `npm run serve` in your command line. This will build the project and provide you with a link to view the website on your computer’s browser if it was successful.
 2. The second option is to run the command `vue ui` to start Vue’s Graphical user interface. When this starts up, the first thing you will want to do is to import the project. There is an import button in the navigation section of the GUI, you will need to navigate to the project’s root folder and click on the button that says “Import this folder”.
-  * Once the project is imported, you will be brought to the project dashboard. To get the project to run, you will want to click on the “Tasks” menu on the left side of the screen.
-  * Once you click on tasks, a submenu will come up directly to the right. Click on the “serve” option in the secondary menu that comes up to the right of the navigation menu. 
-  * Once you’ve clicked on “serve”, there will be a green button that shows up towards the top of the page that has a play symbol and the words “run task”.
-  * Once the app has compiled, the “Open App” button on the right of the page will open another tab with the project.
+    * Once the project is imported, you will be brought to the project dashboard. To get the project to run, you will want to click on the “Tasks” menu on the left side of the screen.
+    * Once you click on tasks, a submenu will come up directly to the right. Click on the “serve” option in the secondary menu that comes up to the right of the navigation menu. 
+    * Once you’ve clicked on “serve”, there will be a green button that shows up towards the top of the page that has a play symbol and the words “run task”.
+    * Once the app has compiled, the “Open App” button on the right of the page will open another tab with the project.
 
-###Editing the Project
+### Editing the Project
 Once the project is started, it will update when any changes are saved to the code. In other words, it does not need to be “served” after making changes in the editor. This is referred to as “hot-reload”.
 
-####Images
+#### Images
 To keep the project cohesive and organized, it is recommended you put any images you want on the website inside the folder at `PeekPeekProject/src/assets/images/`. If this is done, then changing a specific picture requires only changing the filename and not the entire path.
 
-####Section Breakdown
+#### Section Breakdown
 1. Home Section: `HomeSection.vue`
   * This section contains the tiny-world picture, as well as the opening text (“Welcome to Peek Peek & It’s All About You”) and the buttons labeled “Watch the video” and “Take a peek”.
   * **To change the picture**:
