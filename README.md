@@ -271,6 +271,9 @@ To keep the project cohesive and organized, it is recommended you put any images
 ### Building the Project
 To minify the project size and to get the website ready for production, run the command `npm run build`, or navigate to the same page in the UI where you serve the website and click on the `build` option instead of `serve`. The project will not build unless there are **no errors** from typescript, so it is recommended to follow proper coding principles to reduce future work before building.
 
+### Hosting
+If you want to host the website under a path that's not the root directory, change the `publicPath` variable in the config file `vue.config.js`. This field needs to lead to the folder where the project is held. For example, if you wanted to host the website under a single-layer deep subfolder called 117, you would have to specify the publicPath as `/117/`.
+ 
 ### Lints and fixes files
 To Lint the program and fix simple errors in formatting, run the command `npm run lint`.
 
@@ -362,6 +365,9 @@ If a tween isn’t moving even though the console isn’t throwing any errors, t
 
 ## CSS Precedence
 If you make a change to the CSS, and it doesn’t effect the element, make sure that there are no “!important” attributes being assigned to that element. Some breakpoints set attributes as “!important” to override traditional css precedences
+
+## Email form not sending
+THe EMailJS servers tend to go down from time to time. It specifies that the token has expired, however this is their way of saying that their server is down
 
 # Credits and Achnowledgements
 Thank you Professor Ziv for the opportunity to work with project Sponsors and get real world experiences that can be used on our resumes!
