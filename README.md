@@ -277,7 +277,8 @@ To keep the project cohesive and organized, it is recommended you put any images
     favicon
     Index.html
 ### src
-####    assets 
+   #### assets
+   **assets**
 ## Project setup
 ```
 npm install
