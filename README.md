@@ -271,14 +271,17 @@ To keep the project cohesive and organized, it is recommended you put any images
 
 # File Manifest
 
-### .vscode
-    Settings.json
-### public
-    favicon
-    Index.html
-### src
-   #### assets
-   **assets**
+* **.vscode**
+    * Settings.json
+* **public**
+    * favicon
+    * Index.html
+* **src**
+    * **assets**
+        logo.png
+    
+
+
 ## Project setup
 ```
 npm install
