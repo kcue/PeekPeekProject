@@ -1,34 +1,26 @@
 <template>
   <nav>
     <div class="nav-backdrop"></div>
-    <a href="/"><img id="logo" src="../assets/images/117-peek-teal.png" /> </a>
+    <a href="/"><img id="logo" src="../assets/images/117-peek-teal.png"/> </a>
     <ul class="nav-buttons">
       <li>
-        <span class="nav-item"
-          ><a target="_blank" href="https://www.peekpeek.com/about-us"
-            >Who</a
-          ></span
-        >
+        <span class="nav-item">
+          <a target="_blank" href="https://www.peekpeek.com/about-us">Who</a>
+        </span>
       </li>
       <li>
-        <span class="nav-item"
-          ><a target="_blank" href="https://www.peekpeek.com/about-us"
-            >What</a
-          ></span
-        >
+        <span class="nav-item">
+          <a target="_blank" href="https://www.peekpeek.com/about-us">What</a>
+        </span>
       </li>
       <li>
-        <span class="nav-item"
-          ><a target="_blank" href="https://www.peekpeek.com/industries"
-            >Why</a
-          ></span
-        >
+        <span class="nav-item">
+          <a target="_blank" href="https://www.peekpeek.com/industries">Why</a>
+        </span>
       </li>
       <li>
         <button>
-          <a style="color: white" href="https://www.peekpeek.com/contact"
-            >Contact Us</a
-          >
+          <a style="color: white" href="https://www.peekpeek.com/contact">Contact Us</a>
         </button>
       </li>
     </ul>

@@ -15,7 +15,6 @@
             <div class="stats-text">
                 <p class="main-text" id="challenge">New challenge?</p>
                 <p class="main-text" id="solution">New solution <i class="fas fa-long-arrow-alt-right"></i></p>
-                
             </div>
         </div>
 
@@ -72,7 +71,7 @@ export default class StatsSection extends Vue {
                     cardNumber: '28%',
                     supportiveTitle: 'Conversion of',
                     title: 'Physical Visit',
-                }
+                },
             ]
         }
     }
