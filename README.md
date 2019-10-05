@@ -1,4 +1,26 @@
-# Readme
+# PeekPeek
+
+## Getting Started
+
+### Requirements & Dependencies
+- Node & npm
+- Vue-CLI
+
+### Development Setup Instructions
+1. Install node & npm
+    MacOS 
+    Windows
+    Ubuntu
+        ```
+            $ sudo apt update
+            $ curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+            $ sudo apt install nodejs
+            $ node --version
+            $ npm --version
+        ```
+2. Install Vue-CLI globally `npm install -g vue-cli`
+3. Go to project directory, and install dependencies with `npm install`
+4. Run development server `npm run serve`
 
 ## Configuration Instruction
 
