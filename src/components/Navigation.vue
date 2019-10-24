@@ -5,17 +5,17 @@
     <ul class="nav-buttons">
       <li>
         <span class="nav-item">
-          <a target="_blank" href="https://www.peekpeek.com/about-us">Who</a>
+          <router-link to="/who">WHO</router-link>
         </span>
       </li>
       <li>
         <span class="nav-item">
-          <a target="_blank" href="https://www.peekpeek.com/about-us">What</a>
+          <router-link to="/what">WHAT</router-link>
         </span>
       </li>
       <li>
         <span class="nav-item">
-          <a target="_blank" href="https://www.peekpeek.com/industries">Why</a>
+          <router-link to="/why">WHY</router-link>
         </span>
       </li>
       <li>
