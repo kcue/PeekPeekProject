@@ -1,12 +1,14 @@
 <template>
   <section class="peek-section" id="home-section">
     <div class="home-pic">
-      <img src="../assets/images/tinyWorld.png" />
+      <img src="../assets/images/main-globe.png" />
     </div>
     <div class="home-section-headers">
-      <h1 id="splash-text">Welcome<br />to<br />PeekPeek</h1>
-      <div class="secondary hidden">
-        <h1>It's all<br />about you.</h1>
+      
+      <div class="primary">
+      	<h1 id="minimize-text">Pictures are worth <br/> a thousand words.<br/></h1>
+        <h1 id="degree">360 &deg <br/>Virtual Tours:</h1>
+        <h1 id="millions"> Millions</h1>
         <div class="separator"></div>
         <div class="home-section-buttons">
           <button>
@@ -37,77 +39,108 @@ export default class HomeSection extends Vue {
 
   splashScreen() {
     document.getElementsByClassName("home-pic")[0].classList.add("collapsed");
-    document.getElementById("splash-text")!.classList.add("hidden");
+    document.getElementById("minimize-text")!.classList.add("minimize");
     document.getElementsByClassName("secondary")[0].classList.remove("hidden");
   }
 }
 </script>
 
 <style lang="scss" scoped>
-  a {
+ a {
     text-decoration: none;
     color: white;
-  }
+ }
+
 .home-pic {
   width: 120%;
   position: relative;
   display: flex;
-  justify-content: center;
+  justify-content: left;
   flex-direction: column;
-
   img {
-    height: 100%;
+	height: 100%;
     object-fit: contain;
   }
-}
 
-#splash-text {
-  margin-top: 10%;
 }
 
 .collapsed {
-  transition: all 1.25s;
   height: auto !important;
   width: 50% !important;
 }
 
-.hidden {
-  transition: opacity 0.5s ease-in-out 1s;
-  opacity: 0 !important;
-}
 
-.secondary {
-  margin-top: -60%;
-  transition: opacity 0.5s ease-in-out 1.5s;
-  opacity: 1;
-}
 
 .home-section-headers {
   min-width: 30%;
   display: flex;
   justify-content: center;
-  flex-direction: column;
-  //margin-left: 50px;
+  text-align: left;
 
-  h1 {
-    margin: 20px auto 0 0;
-  }
+  flex-direction: column;
+  margin-left: 50px;
 
   .separator {
-    width: 40%;
+  	width: 40%;
     height: 4px;
     border-radius: 2px;
     background-color: #8f8f94;
     margin: 20px 0 20px 0;
   }
+  .primary h1 {
+	margin-top:-5%;
+	color: cadetblue;
+	margin-bottom: 0%; //todo: resolve conflicting bottom margins (degree has large margin w/o this line)
+	}
+	#degree, #millions{
+		font-size: 40px;
+	}
 }
+
+@keyframes min {
+	0% {font-size: 40px;}
+	100% {font-size: 20px;}
+}
+
+#minimize-text{
+	margin-bottom: 5%;
+	font-size:20px;
+}
+
+.minimize {
+	margin-bottom:5%;
+	animation-name: min;
+	animation-duration: 2s;
+	
+}
+
+/*
+
+todo add animation in ts script
+
+*/
+
+#degree{
+	font-size:50px;
+}
+
+#millions {
+	color:black;
+}
+#degree,#millions{
+	
+	display:inline;
+	
+}
+
 
 .home-section-buttons {
   margin-top: 10px;
-
-  button {
-    float: left;
+  button{
+	float: left;
     margin-right: 25px;
   }
 }
+
+
 </style>

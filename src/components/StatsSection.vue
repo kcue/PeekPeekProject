@@ -9,13 +9,12 @@
     
         <div class="stats-captions">
             <div class="stats-titles">
-                <h2 class="title" id="work">We do work</h2>
-                <h4 class="subtitle" id ="better">better than most, actually</h4>
+                <h2 class="title" id="work">Seeing is <br/> believing</h2>
+                <h3 id="stat-subtext"> 90% of customers make purchase decisions based on a <br/>website's visual content alone.  <br/><br/> Impress engage and impace potential customers by <br/> adding PeePeek's 360&deg virtual reality tour to your<br/> websit. With our results, we could be the best tool in<br/> your toolbox</h3>
+                <h3 id="button-prompt">New challenge?</h3>
+                <button id="solution-button"><a target="_blank" href="">New solution</a></button>
             </div>
-            <div class="stats-text">
-                <p class="main-text" id="challenge">New challenge?</p>
-                <p class="main-text" id="solution">New solution <i class="fas fa-long-arrow-alt-right"></i></p>
-            </div>
+         
         </div>
 
         <div class="stats-captions-parallax-margin"></div>
@@ -169,13 +168,41 @@ export default class StatsSection extends Vue {
 </script>
 
 <style lang="scss" scoped>
+
+a{
+    text-decoration: none;
+    color:white;
+}
+
 #stats-section {
+    justify-content: center;
+    text-align: left;
     flex-direction: row;
     display: flex;
-
+    .stats-captions{
+        margin-left: 40px;
+    }
+    #work{
+        font-size: 70px;
+    }
     .stats-cards-left-margin {
         width: 10vh;
     }
+
+    
+    #stat-subtext{
+        color:gray;
+    }
+
+    #solution-button,#button-prompt{
+        color:gray;
+        display: inline;
+    }
+
+    #solution-button{
+        margin-left: 20px;
+    }
+
 
     .stats-cards {
         .stats-cards-container {
