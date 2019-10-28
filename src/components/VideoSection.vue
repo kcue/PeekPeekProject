@@ -1,16 +1,22 @@
 <template>
     <section class="peek-section" id="video-section">
+        <div class = "video-header">
+          <h1 id = "welcome"> Welcome to <br/> the webtour</h1>
+          <h2 id="fullexperience">It's the full <b>experience</b></h2>
+          <button id="learn-button"><a target="_blank" href="">Learn More</a></button>
+        </div> 
         <div class="video-section-container">
-            <iframe class = "media"
-            id = "firstVideo"
-            width="100%" 
-            height="100%" 
-            src="https://www.youtube-nocookie.com/embed/s4EEhXH_pz0" 
-            frameborder="0" 
-            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-            allowfullscreen=""
-            scrolling="no"></iframe>
-            <h2 class="wide-title" id="fullexperience">It's the full <b>experience</b></h2>
+
+          <iframe class = "media"
+          id = "firstVideo"
+          width="100%" 
+          height="100%" 
+          src="https://www.youtube-nocookie.com/embed/s4EEhXH_pz0" 
+          frameborder="0" 
+          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+          allowfullscreen=""
+          scrolling="no"></iframe>
+            
         </div>
     </section>
 </template>
@@ -23,6 +29,14 @@ export default class VideoSection extends Vue {}
 </script>
 
 <style lang="scss" scoped>
+.video-header{
+  margin-top: 50px;
+  #welcome{
+    font-size: 50px;
+  }
+
+}
+
 .video-section-container {
   margin-top: 10vh;
   margin-bottom: 10vh;
