@@ -1,9 +1,9 @@
 <template>
     <section class="peek-section wide-peek-section" id="hotspot-section">
-        <img class="hotspot-skyline" src="../assets/images/peekvideogif.gif"/>
+        <img class="hotspot-skyline" src="../assets/images/city.png"/>
         <div class="hotspot-titles">
             <h4 >It's not just the place</h4>
-            <h2 >Tell me about your story</h2>
+            <h2 >Tell me about <br> your story</h2>
             <h4 >with the hotspots!</h4>
         </div>
     </section>

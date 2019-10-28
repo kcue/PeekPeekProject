@@ -1,25 +1,14 @@
 <template>
     <section class="peek-section super-wide-peek-section" id="partners-section">
         <div class="partners-section-text">
-            <h2 class="wide-title" id="branding"><b>Customized branding</b> with PeekPeek</h2>
+            <h2 class="wide-title" id="branding"><b>Trusted by</b> </h2>
             <div class="main-text wide-text" id="examples">
-                <p>
-                    PeekPeek was created to help companies enhance the way that they present themselves through digital means. 
-                    PeekPeek’s WebTour technology converts prospects to customers by allowing them to virtually visit and experience 
-                    a company’s physical location. Surpassing other 3D technologies, WebTour seamlessly integrates customized design, 
-                    digital assets, and interactive features to dramatically augment the experience of users.
-                </p>
-                <a class="link" href="https://www.peekpeek.com/industries">Check out our case studies</a>
+                <button id="learn-button"><a target="_blank" href="">Learn More</a></button>
+                
             </div>
         </div>
         <div class="partners-section-text-padding"></div>
         <div class="partners-section-icons">
-            <div class="partners-section-icon-container media" id="Waterford">
-                <img src="../assets/images/City Square Waterford.png"/>
-            </div>
-            <div class="partners-section-icon-container media" id="Felixstowe">
-                <img src="../assets/images/Felixstowe Chamber.png"/>
-            </div>
             <div class="partners-section-icon-container media" id="Paypal">
                 <img src="../assets/images/Paypal.png"/>
             </div>
@@ -47,6 +36,12 @@ export default class PartnersSection extends Vue {
 </script>
 
 <style lang="scss" scoped>
+    #learn-button #branding{
+        height: 80px;
+        
+
+
+    }
 #partners-section {
     display: flex;
     flex-direction: row;
@@ -73,9 +68,7 @@ export default class PartnersSection extends Vue {
             text-align: left;
         }
 
-        p {
-            margin-bottom: 4vh;
-        }
+        
 
         a {
             font-size: 2vh;
@@ -95,6 +88,7 @@ export default class PartnersSection extends Vue {
         flex-wrap: wrap;
         margin-top: 9vh;
         margin-bottom: 2.5vh;
+
 
         .partners-section-icon-container {
             width: 50%;
