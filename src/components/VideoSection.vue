@@ -2,7 +2,7 @@
     <section class="peek-section" id="video-section">
         <div class = "video-header">
           <h1 id = "welcome"> Welcome to <br/> the webtour</h1>
-          <h2 id="fullexperience">It's the full <b>experience</b></h2>
+          <h2 id="fullexperience">It's the full <br> experience</h2>
           <button id="learn-button"><a target="_blank" href="">Learn More</a></button>
         </div> 
         <div class="video-section-container">
@@ -33,6 +33,9 @@ export default class VideoSection extends Vue {}
   margin-top: 50px;
   #welcome{
     font-size: 50px;
+  }
+  #fullexperience{
+    color: silver;
   }
 
 }
