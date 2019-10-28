@@ -2,9 +2,9 @@
     <section class="peek-section wide-peek-section" id="hotspot-section">
         <img class="hotspot-skyline" src="../assets/images/peekvideogif.gif"/>
         <div class="hotspot-titles">
-            <h4 class="subtitle" id="space">It's not just the space</h4>
-            <h2 class="wide-title" id="story">Tell me about your story</h2>
-            <h4 class="subtitle" id="spotlights">with Spotlights</h4>
+            <h4 >It's not just the place</h4>
+            <h2 >Tell me about your story</h2>
+            <h4 >with the hotspots!</h4>
         </div>
     </section>
 </template>
@@ -26,29 +26,26 @@ export default class HotspotSection extends Vue {
 
     .hotspot-skyline {
         width: 95%;
+        height:50%;
         object-fit: contain;
         position: absolute;
-        bottom: 0;
+        top: 9%;
         left: 0;
-        max-height: 70%;
+       
     }
-
+    h4{
+        color:grey;
+    }
     .hotspot-titles {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: flex-start;
+        position: absolute;
+        top:40%;
+        left:55%;
+        font-size: 30px;
         margin-top: 80px;
-        margin-right: 5vw;
+        margin-right: 10%;
         z-index: 10;
-
-        #space {
-            align-self: baseline;
-        }
+        text-align: left;
         
-        #spotlights {
-            align-self: flex-end;
-        }
 
         h2 {
             margin: 0;

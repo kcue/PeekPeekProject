@@ -9,7 +9,7 @@
     
         <div class="stats-captions">
             <div class="stats-titles">
-                <h2 class="title" id="work">Seeing is <br/> believing</h2>
+                <h2 id="work">Seeing is <br/> believing</h2>
                 <h3 id="stat-subtext"> 90% of customers make purchase decisions based on a <br/>website's visual content alone.  <br/><br/> Impress engage and impace potential customers by <br/> adding PeePeek's 360&deg virtual reality tour to your<br/> websit. With our results, we could be the best tool in<br/> your toolbox</h3>
                 <h3 id="button-prompt">New challenge?</h3>
                 <button id="solution-button"><a target="_blank" href="">New solution</a></button>
@@ -175,35 +175,9 @@ a{
 }
 
 #stats-section {
-    justify-content: center;
-    text-align: left;
     flex-direction: row;
+    justify-content: center;
     display: flex;
-    .stats-captions{
-        margin-left: 40px;
-    }
-    #work{
-        font-size: 70px;
-    }
-    .stats-cards-left-margin {
-        width: 10vh;
-    }
-
-    
-    #stat-subtext{
-        color:gray;
-    }
-
-    #solution-button,#button-prompt{
-        color:gray;
-        display: inline;
-    }
-
-    #solution-button{
-        margin-left: 20px;
-    }
-
-
     .stats-cards {
         .stats-cards-container {
             width: 51.25vh;
@@ -242,36 +216,32 @@ a{
     .stats-captions {
         display: flex;
         flex-direction: column;
-        align-items: center;
-        justify-content: space-around;
+        justify-content: center;
+        text-align: left;
+        .stats-captions{
+            margin-left: 40px;
+        }
 
-
-        h2 {
-            font-size: 7vh;
+        #work{
+            font-size: 60px;
             margin: 0;
-            text-align: left;
+        }
+        
+        #stat-subtext{
+            color:gray;
         }
 
-        h4 {
-            font-size: 6vh;
-            font-weight: normal;
-            margin: 0;
-            text-align: left;
+        #solution-button,#button-prompt{
+            color:gray;
+            display: inline;
         }
 
-        .stats-text {
-            align-self: flex-end;
-            margin-right: 4vh;
-
-            p {
-                font-size: 3.5vh;
-            }
+        #solution-button{
+            margin-left: 20px;
         }
+
+     
+
     }
-
-    .stats-captions-parallax-margin {
-        flex: auto;
-    }
-
 }
 </style>

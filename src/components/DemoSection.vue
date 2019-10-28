@@ -14,8 +14,12 @@
         <div class="demo-section-frames-parallax-margin"></div>
         <div class="demo-section-text">
             <div class="demo-section-titles">
-                <h2 class="title" id="special">Something <b>special</b></h2>
-                <h4 class="subtitle" id="everysingleone">for every single one of you</h4>
+                <h2  id="special">Every single <br/>one of you<br/>
+                is special </h2>
+                <h4 id ="take-a-peek">Take a peek at how we bring the <br/> following industries to life<br/><br/>Check out these real WebTours and <br/>see how they're setting the standard</h4>
+                <button  id="study-button">
+                    <a target="_blank" href="">Check out case study </a>
+                </button>
             </div>
         </div>
         <div class="demo-section-text-parallax-margin"></div>
@@ -175,15 +179,7 @@ export default class DemoSection extends Vue {
         x_button.style.opacity = "0";
         x_button.style.transition = "transition: opacity .5s ease-in-out 1.5s";
 
-        
-
-
-
-        // setTimeout(() => {
-        //     fakeCard.style.transition = 'all 1s';
-        //     fakeCard.style.top = '20vh';
-        //     fakeCard.style.left = '10vw';
-        // }, 1000)       
+   
     }
     
     getParentSection(elementName: string): string {
@@ -202,12 +198,21 @@ export default class DemoSection extends Vue {
 </script>
 
 <style lang="scss" scoped>
+
+a{
+    text-decoration: none;
+    color: white;
+    font-size: 15px;
+   
+}
+
+
 #demo-section {
+    
     display: flex;
     flex-direction: row;
 
     #x-button {
-        //transition: opacity .5s ease-in-out 1.5s;
         text-align: left;
         position: absolute;
         width: 40px;
@@ -288,10 +293,6 @@ export default class DemoSection extends Vue {
     }
 
 
-    .demo-section-text {
-        margin-top: 5vh;
-        margin-left: 30px;
-    }
 
     .placeholder {
         max-width: 300px;
@@ -303,6 +304,7 @@ export default class DemoSection extends Vue {
     .demo-section-text, .demo-section-icons {
         display: flex;
     }
+
 
     .demo-section-frames {
         width: 140vh; // 175vh * 55% + 43.75vh (175vh * 50% / 2)
@@ -373,20 +375,25 @@ export default class DemoSection extends Vue {
         margin-left: 30px;
         display: flex;
         width: 70vh;
-
         flex-direction: column;
-        align-items: flex-start;
-        justify-content: space-around;
+        align-items: left;
+        justify-content: center;
+        margin-bottom: 10%;
+        text-align: left;
+        #special{
+            font-size: 50px;
+            font-weight: bold;
+        }
+
+        h4{
+            font-size: 15px;
+            color:grey;
+            font-weight:normal;
+        }
 
         .main-text {
             text-align: left;
             margin-bottom: 15vh;
-        }
-
-        .title, .subtitle {
-            font-weight: normal;
-            text-align: left;
-            margin: 0;
         }
     }
 

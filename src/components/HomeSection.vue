@@ -38,7 +38,7 @@ export default class HomeSection extends Vue {
   }
 
   splashScreen() {
-    document.getElementsByClassName("home-pic")[0].classList.add("collapsed");
+   
     document.getElementById("minimize-text")!.classList.add("minimize");
     document.getElementsByClassName("secondary")[0].classList.remove("hidden");
   }
@@ -52,22 +52,19 @@ export default class HomeSection extends Vue {
  }
 
 .home-pic {
-  width: 120%;
+  width: 50%;
   position: relative;
   display: flex;
-  justify-content: left;
+  justify-content: center;
   flex-direction: column;
   img {
-	height: 100%;
+	height: 50%;
     object-fit: contain;
   }
 
 }
 
-.collapsed {
-  height: auto !important;
-  width: 50% !important;
-}
+
 
 
 
@@ -78,7 +75,7 @@ export default class HomeSection extends Vue {
   text-align: left;
 
   flex-direction: column;
-  margin-left: 50px;
+  margin-left: 0px;
 
   .separator {
   	width: 40%;
@@ -90,7 +87,7 @@ export default class HomeSection extends Vue {
   .primary h1 {
 	margin-top:-5%;
 	color: cadetblue;
-	margin-bottom: 0%; //todo: resolve conflicting bottom margins (degree has large margin w/o this line)
+	margin-bottom: 0%; 
 	}
 	#degree, #millions{
 		font-size: 40px;
