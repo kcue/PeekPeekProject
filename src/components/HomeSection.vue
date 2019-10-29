@@ -46,10 +46,6 @@ export default class HomeSection extends Vue {
 </script>
 
 <style lang="scss" scoped>
- a {
-    text-decoration: none;
-    color: white;
- }
 
 .home-pic {
   width: 50%;

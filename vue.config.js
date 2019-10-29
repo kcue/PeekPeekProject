@@ -10,4 +10,11 @@ module.exports = {
       public: '0.0.0.0' // vagrant machine address
     }
   },
+  css: {
+    loaderOptions: {
+      sass: {
+        data: '@import "@/assets/css/_variables.scss";'
+      }
+    }
+  }
 };

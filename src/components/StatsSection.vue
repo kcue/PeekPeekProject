@@ -169,11 +169,6 @@ export default class StatsSection extends Vue {
 
 <style lang="scss" scoped>
 
-a{
-    text-decoration: none;
-    color:white;
-}
-
 #stats-section {
     flex-direction: row;
     justify-content: center;

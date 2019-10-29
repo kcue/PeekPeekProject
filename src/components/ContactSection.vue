@@ -58,11 +58,6 @@ export default class ContactSection extends Vue {
     opacity: 0;
 }
 
-a {
-    text-decoration: none;
-    color: white;
-}
-
 #contact-section {
   justify-content: center;
 

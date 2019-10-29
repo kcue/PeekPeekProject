@@ -199,13 +199,6 @@ export default class DemoSection extends Vue {
 
 <style lang="scss" scoped>
 
-a{
-    text-decoration: none;
-    color: white;
-    font-size: 15px;
-   
-}
-
 
 #demo-section {
     

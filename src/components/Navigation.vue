@@ -1,114 +1,78 @@
 <template>
-  <nav>
-    <div class="nav-backdrop"></div>
-    <a href="/"><img id="logo" src="../assets/images/117-peek-teal.png"/> </a>
-    <ul class="nav-buttons">
-      <li>
-        <span class="nav-item">
-          <router-link to="/who">WHO</router-link>
-        </span>
-      </li>
-      <li>
-        <span class="nav-item">
-          <router-link to="/what">WHAT</router-link>
-        </span>
-      </li>
-      <li>
-        <span class="nav-item">
-          <router-link to="/why">WHY</router-link>
-        </span>
-      </li>
-      <li>
-        <button @click="scrollToContact">
-          <!-- <a style="color: white" href="https://www.peekpeek.com/contact">Contact Us</a> -->
-          Contact Us
-        </button>
-      </li>
-    </ul>
-  </nav>
+    <nav>
+        <div class="nav-backdrop"></div>
+        <a href="/"><img id="logo" src="../assets/images/117-peek-teal.png"/></a>
+        <ul class="nav-buttons">
+            <li>
+                <span class="nav-item"><router-link to="/who">WHO</router-link></span>
+            </li>
+            <li>
+                <span class="nav-item"><router-link to="/what">WHAT</router-link></span>
+            </li>
+            <li>
+                <span class="nav-item"><router-link to="/why">WHY</router-link></span>
+            </li>
+        </ul>
+    </nav>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+    import { Component, Vue } from "vue-property-decorator";
 
-@Component
-export default class Navigation extends Vue {
-  scrollToContact() {
-    const contactSection: HTMLElement = document.getElementById('contact-section')!;
-    window.scrollTo({
-      "left": contactSection.offsetLeft,
-      "behavior": "smooth"
-    })
-    
-    const contactSectionComponent: any = this.$parent.$children[this.$parent.$children.length - 1];
-    if (window.scrollX === contactSection.offsetLeft) {
-      contactSectionComponent.onContactButtonClicked();
-    } else {
-      setTimeout(() => {
-        contactSectionComponent.onContactButtonClicked();
-      }, 1750)
+    export default class Navigation extends Vue {
     }
-  }
-}
 </script>
 
 <style lang="scss" scoped>
-a {
-  text-decoration: none;
-  color: #16a4a9;
-}
-nav {
-  transition: all 1s;
-  z-index: 11;
+    
+    nav {
+        transition: all 1s;
+        z-index: 11;
 
-  #logo {
-    margin: 2vh 0 2vh 0;
-    padding: 0 3vh 0 3vh;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 6vh;
-  }
+        .nav-backdrop {
+            background-color: rgba(#FFF, 0.8);
+            border-radius: 50px;
 
-  .nav-buttons {
-    li {
-      display: inline-block;
-      margin: 10px 25px;
+            position: absolute;
+            height: 50px;
+            width: 100vw;
+            z-index: -1;
+        }
 
-      text-transform: capitalize;
+        #logo {
+            position: fixed;
+            top: 40px;
+            left: 70px;
+            width: 6vh;
+        }
 
-      span {
-        font-size: 2.4vh;
-        color: #16a4a9;
-        text-transform: uppercase;
+      .nav-buttons {
+        margin-left: 20px;
+
+        li {
+            display: inline-block;
+            margin: 12px 30px;
+            text-transform: uppercase;
+
+            span {
+                font-size: 0.85em;
+                font-weight: 700;
+                color: $heading-color;
+                text-transform: uppercase;
+            }
+        }
+
+        span::after {
+            display: block;
+            content: "";
+            border-bottom: solid 2px $heading-color;
+            transform: scaleX(0);
+            transition: transform 250ms ease-in-out;
+        }
+
+        span:hover::after {
+            transform: scaleX(0.9);
+        }
       }
-
-      button {
-        cursor: pointer;
-      }
     }
-
-    span::after {
-      display: block;
-      content: "";
-      border-bottom: solid 2px #17a4a9;
-      transform: scaleX(0);
-      transition: transform 250ms ease-in-out;
-    }
-
-    span:hover::after {
-      transform: scaleX(0.9);
-    }
-  }
-}
-
-.nav-backdrop {
-  position: absolute;
-  border-radius: 50px;
-  top: 23px;
-  height: 50px;
-  width: 100vw;
-  background-color: rgba(251, 246, 240, 0.8);
-  z-index: -1;
-}
 </style>

@@ -48,11 +48,6 @@ export default class VideoSection extends Vue {}
       font-size:35px;
       margin-top: -50px;
     }
-
-    a{
-      text-decoration: none;
-      color:white;
-    }
   }
 
   .video-section-container {
