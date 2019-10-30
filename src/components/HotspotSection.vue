@@ -1,10 +1,10 @@
 <template>
     <section class="peek-section wide-peek-section" id="hotspot-section">
-        <img class="hotspot-skyline" src="../assets/images/city.png"/>
+        <img class="hotspot-skyline" src="../assets/images/city-with-infopoints.png"/>
         <div class="hotspot-titles">
             <h4 >It's not just the place</h4>
-            <h2 >Tell me about <br> your story</h2>
-            <h4 >with the hotspots!</h4>
+            <h2 ><b>Tell me about</b> <br> <b>your story</b></h2>
+            <h4 ><b>with the hotspots!</b></h4>
         </div>
     </section>
 </template>
@@ -45,6 +45,7 @@ export default class HotspotSection extends Vue {
         margin-right: 10%;
         z-index: 10;
         text-align: left;
+        
         
 
         h2 {
