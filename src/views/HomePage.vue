@@ -1,12 +1,12 @@
 <template>
     <div id="sections-container">
-        <HomeSection/>
-        <StatsSection/>
-        <VideoSection/>
-        <HotspotSection/>
-        <DemoSection/>
-        <PartnersSection/>
-        <ContactSection/>
+        <HomeSection class="section" id="home-section"/>
+        <StatsSection class="section" id="stats-section"/>
+        <VideoSection class="section" id="video-section"/>
+        <HotspotSection class="section" id="hotspot-section"/>
+        <DemoSection class="section" id="demo-section"/>
+        <PartnersSection class="section" id="partners-section"/>
+        <ContactSection class="section" id="contact-section"/>
     </div>
 </template>
 
@@ -60,27 +60,22 @@
 <style lang="scss">
     /* Home page specific styles here */
 
-$base-section-aspect-ratio: 1.75;
-$wide-section-ratio: 1.25;
-$super-wide-section-ratio: 1.5;
+    $base-section-aspect-ratio: 1.75;
+    $wide-section-ratio: 1.25;
+    $super-wide-section-ratio: 1.5;
+
+    .section {
+        position: relative;
+        height: 100%;
+        width: 100vw;
+
+        @include medium-screen-landscape {
+            float: left;
+        }
+    }
 
 
 
-button {
-  font-size: 2.4vh;
-  padding: 10px 18px;
-  background-color: #16a4a9;
-  color: white;
-  border: none;
-  box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 15px;
-  border-radius: 50px;
-  text-decoration: none;
-}
-
-h1 {
-  font-size: 9vh;
-  text-align: left;
-}
 
 .title:not(.wide-title), .subtitle:not(.wide-subtitle), .main-text:not(.wide-text) {
   max-width: 70vh;
@@ -103,11 +98,6 @@ h1 {
 
 .peek-section {
   display: flex;
-}
-
-#floating-nav {
-  position: fixed;
-  right: 20px;
 }
 
 .peek-section {

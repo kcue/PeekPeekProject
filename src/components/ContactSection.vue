@@ -1,5 +1,5 @@
 <template>
-    <section class="peek-section" id="contact-section">
+    <section>
         <div class="contact-section-interlude">
             <p>So, </p>
             <p>your turn</p>

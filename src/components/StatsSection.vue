@@ -1,5 +1,5 @@
 <template>
-    <section class="peek-section" id="stats-section">
+    <section>
         <div class="stats-cards-left-margin"></div>
         <div class="stats-cards">
             <div class="stats-cards-container">

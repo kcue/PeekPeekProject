@@ -1,5 +1,5 @@
 <template>
-    <section class="peek-section" id="video-section">
+    <section>
         <div class = "video-header">
           <h1 id = "welcome"> Welcome to <br/> the webtour</h1>
           <h2 id="fullexperience">It's the full <br/>experience</h2>

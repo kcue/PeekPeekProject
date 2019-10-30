@@ -1,5 +1,5 @@
 <template>
-    <section class="peek-section super-wide-peek-section" id="demo-section">
+    <section>
         <div id="fake-card"></div>
         <div class="demo-section-frames" id="demo-section-frames">
             <DemoCard v-for="(item, index) in cardData" :key="index" :id="'demo-card-' + index">

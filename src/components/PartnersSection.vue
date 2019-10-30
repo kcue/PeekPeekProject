@@ -1,5 +1,5 @@
 <template>
-    <section class="peek-section super-wide-peek-section" id="partners-section">
+    <section>
         <div class="partners-section-text">
             <h2 class="wide-title" id="branding"><b>Trusted by</b> </h2>
             <div class="main-text wide-text" id="examples">

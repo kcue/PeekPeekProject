@@ -1,5 +1,5 @@
 <template>
-    <section class="peek-section wide-peek-section" id="hotspot-section">
+    <section>
         <img class="hotspot-skyline" src="../assets/images/city-with-infopoints.png"/>
         <div class="hotspot-titles">
             <h4 >It's not just the place</h4>
