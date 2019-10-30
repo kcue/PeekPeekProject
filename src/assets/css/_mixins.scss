@@ -1,0 +1,11 @@
+@mixin small-screen-landscape {
+	@media (min-width: 576px) { @content; }
+}
+
+@mixin medium-screen-landscape {
+	@media (min-width: 768px) { @content; }
+}
+
+@mixin large-screen-landscape {
+	@media (min-width: 1200px) { @content; }
+}
