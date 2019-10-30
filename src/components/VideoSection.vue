@@ -39,14 +39,15 @@ export default class VideoSection extends Vue {}
   justify-content: center;
   .video-header{
     text-align: left;
-    margin-top: -190px;
+    
     #welcome{
+      margin-top: -5%;
       font-size: 70px;
     }
     #fullexperience{
       color:grey;
       font-size:35px;
-      margin-top: -50px;
+      
     }
   }
 
