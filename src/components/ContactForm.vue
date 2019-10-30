@@ -186,7 +186,7 @@ export default class Form extends Vue {
 
             .form-button {
                 color: black;
-                background-image: url("../assets/images/blob.png");
+                // background-image: url("../assets/images/blob.png");
                 background-position: center; /* Center the image */
                 background-repeat: no-repeat; /* Do not repeat the image */
                 background-size: contain;

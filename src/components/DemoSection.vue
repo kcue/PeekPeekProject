@@ -9,7 +9,7 @@
             </DemoCard>
         </div>
 
-        <img @click="closeAll" id="x-button" src="../assets/images/X.png"/>
+        <!-- <img @click="closeAll" id="x-button" src="../assets/images/X.png"/> -->
         <iframe class="demo-iframes" v-for="(item,index) in cardData" :key="index" :id="'demo-frame-' + index" :src="item.iframe"></iframe>
         <div class="demo-section-frames-parallax-margin"></div>
         <div class="demo-section-text">
@@ -42,27 +42,27 @@ let scenes: any[] = [];
 })
 export default class DemoSection extends Vue {
     mounted() {
-        window.addEventListener('resize', ()=> {
-            for (let i = 0; i < scenes.length; ++i)
-            {
-                scenes[i].destroy(true);
-            }
-            scenes = [];
-            this.demoAnimations();
-        })
-        scenes = []; 
-        this.demoAnimations();
+        // window.addEventListener('resize', ()=> {
+        //     for (let i = 0; i < scenes.length; ++i)
+        //     {
+        //         scenes[i].destroy(true);
+        //     }
+        //     scenes = [];
+        //     this.demoAnimations();
+        // })
+        // scenes = []; 
+        // this.demoAnimations();
 
-        let cards = document.getElementById("demo-section-frames")!.children;
-        for (let i = 0; i < cards.length; ++i)
-        {
-            cards[i].classList.add(i % 2 === 0 ? "demo-section-even": "demo-section-odd");
-            cards[i].addEventListener("click", event => {
-                let targetElement: HTMLElement = <HTMLElement> event.srcElement;
-                targetElement = targetElement.className.toString().includes("demo-section-frame") ? targetElement : <HTMLElement> targetElement.parentElement;
-                this.openCard(targetElement!, cards);
-            });
-        }
+        // let cards = document.getElementById("demo-section-frames")!.children;
+        // for (let i = 0; i < cards.length; ++i)
+        // {
+        //     cards[i].classList.add(i % 2 === 0 ? "demo-section-even": "demo-section-odd");
+        //     cards[i].addEventListener("click", event => {
+        //         let targetElement: HTMLElement = <HTMLElement> event.srcElement;
+        //         targetElement = targetElement.className.toString().includes("demo-section-frame") ? targetElement : <HTMLElement> targetElement.parentElement;
+        //         this.openCard(targetElement!, cards);
+        //     });
+        // }
     }
 
     data() {
@@ -200,9 +200,6 @@ export default class DemoSection extends Vue {
 
 
 #demo-section {
-    
-    display: flex;
-    flex-direction: row;
 
     #x-button {
         text-align: left;

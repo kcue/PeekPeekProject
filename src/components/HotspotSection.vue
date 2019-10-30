@@ -20,9 +20,9 @@ export default class HotspotSection extends Vue {
 
 <style lang="scss" scoped>
 #hotspot-section {
-    display: flex;
-    flex-direction: row;
-    justify-content: baseline;
+    // display: flex;
+    // flex-direction: row;
+    // justify-content: baseline;
 
     .hotspot-skyline {
         width: 95%;

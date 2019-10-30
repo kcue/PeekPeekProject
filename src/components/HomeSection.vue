@@ -1,21 +1,17 @@
 <template>
     <section>
-        <div class="home-pic">
-            <img src="../assets/images/main-globe.png" />
-        </div>
-        <div class="home-section-headers">
-            <div class="primary">
-            	<h1 id="minimize-text">Pictures are worth <br/> a thousand words.<br/></h1>
-                <h1 id="degree">360 &deg <br/>Virtual Tours:</h1>
-                <h1 id="millions"> Millions</h1>
-                <div class="separator"></div>
-                <div class="home-section-buttons">
-                    <button>
-                        <a target="_blank" href="https://www.youtube.com/watch?v=s4EEhXH_pz0">Watch video</a>
-                    </button>
-                    <button>
-                        <a target="_blank" href="https://www.peekpeek.com/industries">Take a peek</a>
-                    </button>
+        <div class="container" id="home-section-container">
+            <div class="home-pic">
+                <img src="../assets/images/main-globe.png" />
+            </div>
+            <div class="home-section-headers">
+                <div class="primary">
+                	<h2 id="minimize-text">Pictures are worth 1,000 words -</h2>
+                    <h2 id="highlight-text"><span id="degree">360&deg</span> Virtual Tours: <span id="millions">Millions</span></h2>
+                    <div class="home-section-buttons">
+                        <a class="button primary-button" target="_blank" href="https://www.youtube.com/watch?v=s4EEhXH_pz0">Watch a video</a>
+                        <a class="button secondary-button" target="_blank" href="https://www.peekpeek.com/industries">Take a peek</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -42,82 +38,111 @@
 </script>
 
 <style lang="scss" scoped>
+    #home-section-container {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
 
-.home-pic {
-  width: 50%;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  img {
-	height: 50%;
-    object-fit: contain;
-  }
-}
+        @include medium-screen-landscape {
+            justify-content: center;
+            flex-direction: row;
+            align-items: center;
+        }
 
-    .home-section-buttons {
-        margin-top: 10px;
-        button {
-            float: left;
-            margin-right: 25px;
+        .home-pic {
+            position: relative;
+            text-align: center;
+
+            @include medium-screen-landscape {
+                // flex-basis: 80%;
+            }
+
+            img {
+                width: 50%;
+                max-width: 700px;
+
+                @include medium-screen-landscape {
+                    width: 80%;
+                }
+            }
+        }
+
+        .home-section-headers {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            margin-left: 0px;
+
+            @include medium-screen-landscape {
+                white-space: normal;
+                text-align: left;
+                flex-basis: 80%;
+            }
+
+            @include large-screen-landscape {
+                flex-basis: 60%;
+            }
+
+            .primary {
+                font-weight: 700;
+                color: $alt-heading-color;
+
+                #minimize-text {
+                    color: $heading-color;
+                    font-size: 1em;
+                    margin: 20px 0 10px;
+
+                    @include medium-screen-landscape {
+                        margin: 0;
+                    }
+                }
+
+                #highlight-text {
+                    font-size: 3em;
+                    line-height: 1.1em;
+
+                    @include medium-screen-landscape {
+                        font-size: 2em;
+                    }
+
+                    #degree {
+                        @include medium-screen-landscape {
+                            display: block;
+                            font-size: 3em;
+                            line-height: 1.1em;
+                        }
+                    }
+
+                    #millions {
+                        color: $heading-color;
+                    }
+                }
+            }
+        }
+
+        .home-section-buttons {
+            text-align: center;
+            margin-top: 10px;
+
+            @include medium-screen-landscape {
+                text-align: left;
+                margin-top: 25px;
+            }
+
+            .button {
+                @include medium-screen-landscape {
+                    width: 160px;
+                }
+
+                @include large-screen-landscape {
+                    width: 170px;
+                }
+            }
         }
     }
 
 
 
-.home-section-headers {
-  min-width: 30%;
-  display: flex;
-  justify-content: center;
-  text-align: left;
-
-  flex-direction: column;
-  margin-left: 0px;
-
-  .separator {
-  	width: 40%;
-    height: 4px;
-    border-radius: 2px;
-    background-color: #8f8f94;
-    margin: 20px 0 20px 0;
-  }
-  .primary h1 {
-	margin-top:-5%;
-	color: cadetblue;
-	margin-bottom: 0%; 
-	}
-	#degree, #millions{
-		font-size: 40px;
-	}
-}
-
-
-
-    /*
-    todo add animation in ts script
-    */
-    @keyframes min {
-        0% { font-size: 40px; }
-        100% { font-size: 20px; }
-    }
-    #minimize-text{
-        margin-bottom: 5%;
-        font-size:20px;
-    }
-    .minimize {
-        margin-bottom:5%;
-        animation-name: min;
-        animation-duration: 2s;
-    }
-    #degree{
-        font-size:50px;
-    }
-    #millions {
-        color:black;
-    }
-    #degree, #millions{
-        display:inline;
-    }
-    
 
 </style>

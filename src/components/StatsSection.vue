@@ -36,40 +36,40 @@ let scenes: any;
 })
 export default class StatsSection extends Vue { 
     mounted() {
-        window.addEventListener('resize', ()=> {
-            for (let i = 0; i < scenes.length; ++i)
-            {
-                scenes[i].destroy(true);
-            }
-            scenes = [];
-            this.cardAnimation();
-        })
-        scenes = []; 
-        this.cardAnimation();
+        // window.addEventListener('resize', ()=> {
+        //     for (let i = 0; i < scenes.length; ++i)
+        //     {
+        //         scenes[i].destroy(true);
+        //     }
+        //     scenes = [];
+        //     this.cardAnimation();
+        // })
+        // scenes = []; 
+        // this.cardAnimation();
     }
 
     data() {
         return {
             cardData: [
                 {
-                    cardNumber: '18x',
-                    supportiveTitle: 'Longer',
-                    title: 'Duration of Stay',
+                    cardId: '18x',
+                    cardHeading: 'Longer',
+                    cardDescription: 'Duration of Stay',
                 },
                 {
-                    cardNumber: '130%',
-                    supportiveTitle: 'Increase in',
-                    title: 'Booking Rate',
+                    cardId: '130%',
+                    cardHeading: 'Increase in',
+                    cardDescription: 'Booking Rate',
                 },
                 {
-                    cardNumber: '12%',
-                    supportiveTitle: 'Increase in',
-                    title: 'Engagement Rate',
+                    cardId: '12%',
+                    cardHeading: 'Increase in',
+                    cardDescription: 'Engagement Rate',
                 },
                 {
-                    cardNumber: '28%',
-                    supportiveTitle: 'Conversion of',
-                    title: 'Physical Visit',
+                    cardId: '28%',
+                    cardHeading: 'Conversion of',
+                    cardDescription: 'Physical Visit',
                 },
             ]
         }
@@ -170,9 +170,9 @@ export default class StatsSection extends Vue {
 <style lang="scss" scoped>
 
 #stats-section {
-    flex-direction: row;
-    justify-content: center;
-    display: flex;
+    // flex-direction: row;
+    // justify-content: center;
+    // display: flex;
     .stats-cards {
         .stats-cards-container {
             width: 51.25vh;
