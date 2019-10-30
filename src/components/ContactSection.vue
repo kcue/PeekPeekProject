@@ -5,8 +5,8 @@
             <p>your turn</p>
         </div>
         <div class="contact-section-main">
-            <h1>Tell me</h1>
-            <h1>your story</h1>
+            <h1><b>Tell me</b></h1>
+            <h1><b>your story</b></h1>
             <button @click="onContactButtonClicked">Contact Us</button>
         </div>
         <transition name="fade">

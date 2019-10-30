@@ -26,30 +26,19 @@
     </section>
 </template>
 
-<script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
 
-@Component
-export default class PartnersSection extends Vue {
-    
-}
-</script>
 
 <style lang="scss" scoped>
     #learn-button #branding{
         height: 80px;
         
-
-
     }
 #partners-section {
     display: flex;
     flex-direction: row;
-
     .partners-section-text, .partners-section-icons {
         display: flex;
     }
-
     .partners-section-text {
         width: 80vh;
         margin-top: 5vh;
@@ -57,19 +46,15 @@ export default class PartnersSection extends Vue {
         flex-direction: column;
         align-items: flex-start;
         justify-content: space-around;
-
         .wide-text {
             font-size: 2.8vh;
             text-align: left;
         }
-
         .wide-title {
             font-weight: normal;
             text-align: left;
         }
-
         
-
         a {
             font-size: 2vh;
             margin-top: 2vh;
@@ -78,18 +63,14 @@ export default class PartnersSection extends Vue {
             text-align: left
         }
     }
-
     .partners-section-text-padding {
         width: 50vh;
     }
-
     .partners-section-icons {
         width: 102.5vh;
         flex-wrap: wrap;
         margin-top: 9vh;
         margin-bottom: 2.5vh;
-
-
         .partners-section-icon-container {
             width: 50%;
             max-height: 32%;
@@ -97,7 +78,6 @@ export default class PartnersSection extends Vue {
             padding-bottom: 1vh;
             display: flex;
             justify-content: center;
-
             img {
                 max-height: 100%;
                 max-width: 100%;
@@ -105,7 +85,6 @@ export default class PartnersSection extends Vue {
             }
         }        
     }   
-
     .partners-section-icons-padding {
         width: 30vh;
     }

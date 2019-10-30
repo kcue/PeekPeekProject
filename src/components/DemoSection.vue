@@ -23,7 +23,6 @@
             </div>
         </div>
         <div class="demo-section-text-parallax-margin"></div>
-        <img class="placeholder" src="../assets/images/dotted-linez.png"/>
     </section>
 </template>
 
