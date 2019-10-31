@@ -2,7 +2,7 @@
   <section>
     <div class="container" id="home-section-container">
       <div class="home-pic">
-        <img src="../assets/images/main-globe.png" />
+        <img src="../assets/images/home-globe.png" />
       </div>
       <div class="home-section-headers">
         <div class="primary">
@@ -39,6 +39,7 @@ export default class HomeSection extends Vue {
 
 <style lang="scss">
 #home-section-container {
+  height: 100vh;
   display: flex;
   justify-content: center;
   flex-direction: column;

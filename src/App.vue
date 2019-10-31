@@ -63,10 +63,32 @@ button {
 
 /* Global Styles */
 body {
+  min-width: 500px;
   background-color: $main-background-color;
   font-family: $base-font-family;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  .heading {
+    font-size: 4.2em;
+    line-height: 1.1em;
+    font-weight: 700;
+    color: $heading-color;
+  }
+
+  .subheading {
+    font-size: 1.8em;
+    font-weight: 700;
+    color: $subheading-color;
+  }
+
+  .primary-description {
+    font-size: 0.9em;
+    line-height: 1.5em;
+    font-weight: 400;
+    color: $primary-description-color;
+    margin-top: 1em;
+  }
 
   button, a.button {
     display: inline-block;

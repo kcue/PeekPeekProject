@@ -70,7 +70,6 @@ if (window.innerHeight > 480 && window.innerWidth > 768) {
 
 .section {
   position: relative;
-  height: 100vh;
   width: 100vw;
   min-height: 600px;  // TODO: FIGURE OUT THRESHOLD
   min-width: 500px;   // TODO: FIGURE OUT THRESHOLD

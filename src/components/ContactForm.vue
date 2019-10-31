@@ -148,7 +148,7 @@ export default class Form extends Vue {
 
 <style lang="scss" scoped>
 #form-container {
-    background-image: url("../assets/images/possible-bg.png");
+    // background-image: url("../assets/images/possible-bg.png");
     background-position: center; /* Center the image */
     background-repeat: no-repeat; /* Do not repeat the image */
     background-size: cover;

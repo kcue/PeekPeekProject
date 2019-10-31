@@ -2,11 +2,11 @@
   <section>
     <div class="container" id="contact-section-container">
       <div class="contact-section-interlude">
-        <h2>So, your turn</h2>
+        <h2 class="subheading">So, your turn</h2>
       </div>
       <div class="contact-section-main">
-        <h2>Tell me</h2>
-        <h2>your story</h2>
+        <h2 class="heading">Tell me</h2>
+        <h2 class="heading">your story</h2>
         <button class="primary-button" @click="onContactButtonClick">Contact Us</button>
       </div>
       <transition name="fade">
@@ -43,6 +43,7 @@ export default class ContactSection extends Vue {
 
 <style lang="scss" scoped>
 #contact-section-container {
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -50,9 +51,6 @@ export default class ContactSection extends Vue {
 
   .contact-section-interlude {
     h2 {
-      font-size: 1.8em;
-      font-weight: 700;
-      color: $subheading-color;
       text-align: center;
     }
   }
@@ -61,10 +59,6 @@ export default class ContactSection extends Vue {
     h2 {
       margin-top: 0;
       margin-bottom: 0;
-      font-size: 4.2em;
-      line-height: 1.1em;
-      font-weight: 700;
-      color: $heading-color;
       text-align: center;
     }
   }

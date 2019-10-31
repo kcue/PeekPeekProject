@@ -8,9 +8,9 @@
 
     <div class="stats-captions">
       <div class="stats-titles">
-        <h2 class="stats-heading">Seeing is believing</h2>
-        <p class="stats-subtext">90% of customers make purchase decisions based on a website's visual content alone.</p>
-        <p class="stats-subtext">Impress engage and impace potential customers by adding PeePeek's 360&deg; virtual reality tour to your website. With our results, we could be the best tool in your toolbox</p>
+        <h2 class="heading">Seeing is believing</h2>
+        <p class="primary-description">90% of customers make purchase decisions based on a website's visual content alone.</p>
+        <p class="primary-description">Impress engage and impace potential customers by adding PeekPeek's 360&deg; virtual reality tour to your website. With our results, we could be the best tool in your toolbox</p>
         <h3 id="button-prompt">New challenge?</h3>
         <a id="solution-button" class="button primary-button" target="_blank" href="">New solution</a>
       </div>
@@ -60,86 +60,159 @@ export default class StatsSection extends Vue {
 </script>
 
 <style lang="scss">
-$card-base-width: 270px;
+$card-base-width: 280px;
+$card-base-height: 200px;
+$overlap-x: 50px;
+$overlap-y: 25px;
 
 #stats-section {
+  @include medium-screen-landscape {
+    width: auto;
+    margin-right: 10vw;
+  }
+
   .stats-cards {
+    margin-top: 5vh;
+
+    @include medium-screen-landscape {
+      display: inline-block;
+      vertical-align: middle;
+    }
+
     .stats-cards-container {
       width: $card-base-width * 2;
+      height: $card-base-height * 4;  // 4 cards
       min-height: 100vh;
       margin: 0 auto;
       position: relative;
+      white-space: initial;
+
+      @include medium-screen-landscape {
+        height: 100vh;
+      }
 
       .stats-card {
         width: $card-base-width;
-        height: $card-base-width;
-        display: block;
+        min-height: $card-base-height;
+        display: flex;
+        align-items: center;
         background-color: rgb(254, 255, 254);
-        border-radius: 10px;
-        box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.18);
+        border-radius: 5px;
+        box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.15);
+        position: absolute;
+
+        @include medium-screen-landscape {
+          width: 40vh;
+          min-height: 25vh;
+        }
 
         .stats-card-content {
           display: flex;
           flex-direction: column;
           justify-content: center;
           align-items: start;
+          padding: 40px;
 
-          p {
-            color: black;
+          @include medium-screen-landscape {
+            padding: 30px;
           }
 
           .card-heading {
-            font-size: 9vh;
+            font-size: 3em;
+            line-height: 1em;
             font-weight: 700;
+            color: $heading-color;
+
+            @include medium-screen-landscape {
+              font-size: 2em;
+            }
           }
 
           .card-description {
-            font-size: 2.5vh;
+            font-size: 0.8em;
+            line-height: 1.7em;
+            margin-top: 2em;
             font-weight: 400;
+            color: $secondary-description-color;
+
+            @include medium-screen-landscape {
+              font-size: .6em;
+              line-height: 1.8em;
+              margin-top: 1.2em;
+            }
           }
+        }
+
+        &.highlight .stats-card-content .card-heading {
+            color: $alt-heading-color;
         }
       }
 
       .stats-card:nth-child(1) {
         z-index: 4;
+        top: 0;
+        left: $card-base-width - $overlap-x;
       }
 
       .stats-card:nth-child(2) {
         z-index: 2;
+        top: $card-base-height - $overlap-y;
+        left: $overlap-x / 4;
+
+        @include medium-screen-landscape {
+          top: calc(25vh - #{$overlap-y});
+        }
       }
 
       .stats-card:nth-child(3) {
         z-index: 3;
+        top: ($card-base-height * 2) - ($overlap-y * 3);
+        left: $card-base-width - ($overlap-x / 4);
+
+        @include medium-screen-landscape {
+          top: calc((25vh * 2) - (#{$overlap-y} * 3));
+        }
       }
 
       .stats-card:nth-child(4) {
         z-index: 1;
+        top: ($card-base-height * 3) - ($overlap-y * 4);
+        left: $overlap-x;
+
+        @include medium-screen-landscape {
+          top: calc((25vh * 3) - (#{$overlap-y} * 4));
+        }
       }
     }
   }
 
   .stats-captions {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    display: block;
     text-align: left;
+    margin: 5vh 5vw 15vh;
 
-    .stats-captions {
-      margin-left: 40px;
+    @include medium-screen-landscape {
+      width: 50vw;
+      max-width: 450px;
+      display: inline-block;
+      vertical-align: middle;
+      white-space: initial;
+      margin-left: 5vw;
     }
 
-    #work {
-      font-size: 60px;
-      margin: 0;
-    }
-    
-    #stat-subtext {
-      color: gray;
+    .heading {
+      margin-bottom: 0.7em;
     }
 
-    #solution-button, #button-prompt{
-      color: gray;
-      display: inline;
+    #solution-button, #button-prompt {
+      display: inline-block;
+    }
+
+    #button-prompt {
+      font-size: 1.1em;
+      font-weight: 700;
+      color: $subheading-color;
+      margin-top: 3em;
     }
 
     #solution-button {
