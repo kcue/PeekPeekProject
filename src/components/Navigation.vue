@@ -1,7 +1,7 @@
 <template>
     <nav>
         <div class="nav-backdrop"></div>
-        <a href="/"><img id="logo" src="../assets/images/117-peek-teal.png"/></a>
+        <a href="/"><img id="logo" src="../assets/images/logo.png"/></a>
         <ul class="nav-buttons">
             <li>
                 <span class="nav-item"><router-link to="/who">WHO</router-link></span>
@@ -17,7 +17,7 @@
 </template>
 
 <script lang="ts">
-    import { Component, Vue } from "vue-property-decorator";
+    import { Component, Vue } from 'vue-property-decorator';
 
     export default class Navigation extends Vue {
     }
@@ -42,7 +42,7 @@
             border-radius: 50px;
 
             position: absolute;
-            height: 50px;
+            height: 45px;
             width: 100vw;
             z-index: -1;
         }
@@ -51,7 +51,7 @@
             position: fixed;
             top: 25px;
             left: 50px;
-            width: 6vh;
+            width: 45px;
 
             @include medium-screen-landscape {
                 top: 40px;
@@ -64,7 +64,7 @@
 
             li {
                 display: inline-block;
-                margin: 12px 30px;
+                margin: 10px 30px;
                 text-transform: uppercase;
 
                 span {

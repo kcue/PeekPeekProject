@@ -72,8 +72,8 @@
         position: relative;
         height: 100vh;
         width: 100vw;
-        min-height: 100vh;
-        min-width: 100vw;
+        min-height: 600px;  // TODO: FIGURE OUT THRESHOLD
+        min-width: 500px;   // TODO: FIGURE OUT THRESHOLD
         display: block;
         overflow: hidden;   // this is temporary until all components have been styled -- some components are causing unusual scrolling issues.
 
@@ -83,8 +83,8 @@
         }
 
         .container {
-            height: inherit;
-            width: inherit;
+            height: 100%;
+            width: 100%;
         }
     }
 </style>

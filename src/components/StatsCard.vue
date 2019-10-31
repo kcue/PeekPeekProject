@@ -1,5 +1,5 @@
 <template>
-    <div class="stats-card" :id="cardId">
+    <div class="stats-card">
         <div class="stats-card-content">
             <p class="card-heading">{{cardHeading}}</p>
             <p class="card-description">{{cardDescription}}</p>
@@ -8,12 +8,11 @@
 </template>
 
 <script lang="ts">
-    import { Component, Prop, Vue } from "vue-property-decorator";
+    import { Component, Prop, Vue } from 'vue-property-decorator';
 
     @Component({})
 
     export default class StatsCard extends Vue {
-        @Prop() private cardId!: string;
         @Prop() private cardHeading!: string;
         @Prop() private cardDescription!: string;
     }
@@ -21,8 +20,8 @@
 
 <style lang="scss" scoped>
     .stats-card {
-        width: 31.25vh;
-        height: 25vh;
+        width: 300px;
+        height: 300px;
         background-color: rgb(254, 255, 254);
         border-radius: 10px;
         box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.18);
@@ -41,20 +40,16 @@
                 color: black;
             }
 
-            .card-number {
+            .card-heading {
                 font-size: 9vh;
-                font-weight: bold;
+                font-weight: 700;
             }
 
-            .card-subtitle {
+            .card-description {
                 font-size: 2.5vh;
+                font-weight: 400;
             }
 
-            .card-title {
-                font-size: 2.5vh;
-                font-weight: bold;
-                color: #1c7d83;
-            }
         }   
     }
 </style>

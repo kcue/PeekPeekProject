@@ -19,7 +19,7 @@
 </template>
 
 <script lang="ts">
-    import { Component, Vue } from "vue-property-decorator";
+    import { Component, Vue } from 'vue-property-decorator';
 
     @Component({})
     export default class HomeSection extends Vue {
@@ -82,6 +82,10 @@
 
             @include large-screen-landscape {
                 flex-basis: 60%;
+            }
+
+            @include extra-large-screen-landscape {
+                flex-basis: 50%;
             }
 
             .primary {
