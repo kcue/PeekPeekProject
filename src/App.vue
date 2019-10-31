@@ -90,6 +90,10 @@ body {
     margin-top: 1em;
   }
 
+  span.line {
+    display: inline-block;
+  }
+
   button, a.button {
     display: inline-block;
     width: 170px;

@@ -124,7 +124,7 @@ export default class HomeSection extends Vue {
 
   .home-section-buttons {
     text-align: center;
-    margin-top: 10px;
+    margin-top: 1em;
 
     @include medium-screen-landscape {
       text-align: left;
