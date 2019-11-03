@@ -30,7 +30,7 @@ export default new Router({
     },
     {
       path: "/what",
-      name: "why",
+      name: "what",
       component: What,
         
     },
