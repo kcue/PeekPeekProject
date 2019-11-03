@@ -1,24 +1,24 @@
 <template>
   <section>
     <div class="container" id="video-section-container">
-      <div class="video-header">
-        <h2 class="heading">
-          <span class="line">Welcome to&nbsp;</span>
-          <span class="line">the webtour</span>
-        </h2>
-        <h2 class="subheading">
+      <h2 class="heading">
+        <span class="line">Welcome to&nbsp;</span>
+        <span class="line">the webtour</span>
+      </h2>
+      <div class="content-group">
+        <h3 class="subheading">
           <span class="line">It's the full&nbsp;</span>
           <span class="line">experience</span>
-        </h2>
+        </h3>
         <a id="learn-button" class="button primary-button" target="_blank" href="">Learn More</a>
-      </div> 
-      <div class="video-wrapper" onclick="openLink()" >
+      </div>
+      <div class="video-wrapper" onclick="openLink()">
         <iframe class="media" id="firstVideo" 
-          width="50%" height="50%" frameborder="0" allowfullscreen="" scrolling="no"
+          frameborder="0" allowfullscreen="" scrolling="no"
           src="https://www.youtube-nocookie.com/embed/s4EEhXH_pz0" 
           allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture">
         </iframe>
-        <img src="../assets/images/video-arrow.png" />   
+        <img src="../assets/images/video-arrow.png"/>   
       </div>
     </div>
   </section>
@@ -32,34 +32,91 @@ export default class VideoSection extends Vue {}
 
 <style lang="scss">
 #video-section {
+  margin-bottom: 100px;
+
+  @include medium-screen-landscape {
+    min-width: 800px;
+    width: auto;
+    height: auto;
+
+    &:before {
+      display: inline-block;
+      content: '';
+      vertical-align: middle;
+      height: 100vh;
+      min-height: $site-min-height;
+    }
+  }
+
   #video-section-container {
     white-space: initial;
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: 40px;   // balance the video arrow margin
 
-    .video-header {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      text-align: left;
+    .heading, .content-group, #learn-button {
+      margin: 2.5% 0 0;
+      text-align: center;
+    }
+
+    @include medium-screen-landscape {
+      width: auto;
 
       .heading {
-
+        text-align: left;
+        margin: 0;
+        width: 70vw;
       }
-      .subheading {
 
+      .content-group {
+        float: left;
+        text-align: left;
+        margin: 0;
+        width: calc(30% + 30px);
+
+        .subheading {
+          margin: 5% 0;
+        }
+
+        #learn-button {
+          margin: 0;
+        }
       }
     }
-    .video-wrapperr{
-      margin-top: 10vh;
-      margin-bottom: 10vh;
-      display: flex;
-      width: 80%;
-      max-width: 1200px;
+
+    .video-wrapper {
+      $video-min-width: 400px;
+      $video-max-width: 500px;
+      $video-min-height: 270px;
+      $video-max-height: 300px;
+
+      position: relative;
+      margin: 5% auto 40px auto;
+      width: $video-min-width;
+
+      @include medium-screen-landscape {
+        float: left;
+        margin: 5% 60px 40px 0;   // margins to make space for the arrow
+        min-width: $video-min-width;
+        max-width: $video-max-width;
+        width: 50vw;
+      }
+
       iframe {
-        margin: 0 auto;
-        pointer-events: none;
+        min-width: $video-min-width;
+        min-height: $video-min-height;
+        max-width: $video-max-width;
+        max-height: $video-max-height;
+        width: 50vw;
+        height: 30vw;
+        box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.15);
+      }
+
+      img {
         position: absolute;
-        bottom: 100px;
-        right: 35%;
+        width: 100px;
+        bottom: -40px;
+        right: -45px;
       }
     }
   }

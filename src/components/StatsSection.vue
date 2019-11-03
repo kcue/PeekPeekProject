@@ -5,7 +5,6 @@
         <StatsCard v-for="(card, index) in cardData" :key="index" :cardHeading="card.cardHeading" :cardDescription="card.cardDescription" :id="'stats-card-' + (index + 1)" :class="card.additionalClass" />
       </div>
     </div>
-
     <div class="stats-captions">
       <div class="stats-titles">
         <h2 class="heading">
@@ -69,29 +68,33 @@ $overlap-x: 50px;
 $overlap-y: 25px;
 
 #stats-section {
+  margin-bottom: 100px;
+
   @include medium-screen-landscape {
     width: auto;
     margin-right: 10vw;
+    margin-bottom: 0;
   }
 
   .stats-cards {
-    margin-top: 5vh;
+    margin-top: 5%;
 
     @include medium-screen-landscape {
       display: inline-block;
       vertical-align: middle;
+      height: 100%;
     }
 
     .stats-cards-container {
       width: $card-base-width * 2;
-      height: $card-base-height * 4;  // 4 cards
-      min-height: 100vh;
+      height: $card-base-height * 4 + 50px;  // 4 cards
       margin: 0 auto;
       position: relative;
       white-space: initial;
 
       @include medium-screen-landscape {
-        height: 100vh;
+        height: 100%;
+        margin-left: 20px;
       }
 
       .stats-card {
@@ -105,8 +108,9 @@ $overlap-y: 25px;
         position: absolute;
 
         @include medium-screen-landscape {
-          width: 40vh;
-          min-height: 25vh;
+          width: 50%;
+          max-width: 300px;
+          min-height: 25%;
         }
 
         .stats-card-content {
@@ -163,7 +167,7 @@ $overlap-y: 25px;
         left: $overlap-x / 4;
 
         @include medium-screen-landscape {
-          top: calc(25vh - #{$overlap-y});
+          top: calc(25% - #{$overlap-y});
         }
       }
 
@@ -173,7 +177,7 @@ $overlap-y: 25px;
         left: $card-base-width - ($overlap-x / 4);
 
         @include medium-screen-landscape {
-          top: calc((25vh * 2) - (#{$overlap-y} * 3));
+          top: calc((25% * 2) - (#{$overlap-y} * 3));
         }
       }
 
@@ -183,7 +187,7 @@ $overlap-y: 25px;
         left: $overlap-x;
 
         @include medium-screen-landscape {
-          top: calc((25vh * 3) - (#{$overlap-y} * 4));
+          top: calc((25% * 3) - (#{$overlap-y} * 4));
         }
       }
     }
@@ -192,7 +196,7 @@ $overlap-y: 25px;
   .stats-captions {
     display: block;
     text-align: left;
-    margin: 5vh 5vw 15vh;
+    margin: 5% 5vw;
 
     @include medium-screen-landscape {
       width: 50vw;

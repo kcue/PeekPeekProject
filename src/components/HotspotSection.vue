@@ -1,68 +1,102 @@
 <template>
-    <section>
-        <img class="hotspot-skyline" src="../assets/images/city-with-infopoints.png"/>
-        <div class="hotspot-titles">
-            <h4 >It's not just the place</h4>
-            <h2 ><b>Tell me about</b> <br> <b>your story</b></h2>
-            <h4 ><b>with the hotspots!</b></h4>
-        </div>
-    </section>
+  <section>
+    <div class="container" id="hotspot-section-container">
+      <img class="hotspot-skyline" src="../assets/images/city-with-infopoints.png"/>
+      <div class="hotspot-titles">
+        <h4 class="subheading">It's not just the place</h4>
+        <h2 class="heading">
+          <span class="line">Tell me about&nbsp;</span>
+          <span class="line">your history</span>
+        </h2>
+        <h4 class="subheading">with the hotspots!</h4>
+      </div>
+    </div>
+  </section>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 
-@Component
+@Component({})
 export default class HotspotSection extends Vue {
-    
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 #hotspot-section {
-    // display: flex;
-    // flex-direction: row;
-    // justify-content: baseline;
+  margin: 50px 0 100px;
 
-    .hotspot-skyline {
-        width: 95%;
-        height:50%;
-        object-fit: contain;
-        position: absolute;
-        top: 9%;
-        left: 0;
-       
+  @include medium-screen-landscape {
+    margin: 0;
+    min-width: 1200px;
+
+    &:before {
+      display: inline-block;
+      content: '';
+      vertical-align: middle;
+      height: 100vh;
+      min-height: $site-min-height;
     }
-    h4{
-        color:grey;
-    }
-    .hotspot-titles {
-        position: absolute;
-        top:40%;
-        left:55%;
-        font-size: 30px;
-        margin-top: 80px;
-        margin-right: 10%;
-        z-index: 10;
-        text-align: left;
-        
-        
+  }
 
-        h2 {
-            margin: 0;
-        }
+  #hotspot-section-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-        h4 {
-            margin-top: 5px;
-            margin-bottom: 5px;
-        }
+    @include medium-screen-landscape {
+      position: relative;
+      display: inline-block;
+      vertical-align: middle;
+      height: $site-min-height;
     }
 
-    .hotspot-titles-parallax-margin {
-        width: 25vh;
-        align-items: flex-end;
+    @include extra-large-screen-landscape {
+      height: 800px;
     }
+  }
+
+  .hotspot-skyline {
+    width: 90%;
+    object-fit: contain;
+
+    @include medium-screen-landscape {
+      width: 70%;
+      height: 55%;
+      position: absolute;
+      top: 5%;
+      left: 0;
+    }
+  }
+
+  .hotspot-titles {
+    min-width: 450px;
+    width: 60%;
+    text-align: left;
+    white-space: initial;
+    margin-top: 5%;
+
+    @include small-screen-landscape {
+      margin-left: 28%;
+    }
+
+    @include medium-screen-landscape {
+      width: 50%;
+      position: absolute;
+      bottom: 10%;
+      left: 45%;
+      z-index: 10;
+      margin: 0;
+    }
+    
+    h2 {
+      margin: 0.3em 0;
+    }
+
+    h4 {
+      margin-top: 5px;
+      margin-bottom: 5px;
+    }
+  }
 }
-
-
 </style>

@@ -21,14 +21,14 @@ export default class App extends Vue {}
 /* Reset */
 html {
   box-sizing: border-box;
-  font-size: 16px;
+  font-size: 15px;
 
   @include large-screen-landscape {
-    font-size: 18px;
+    font-size: 16px;
   }
 
   @include extra-large-screen-landscape {
-    font-size: 20px;
+    font-size: 18px;
   }
 }
 
@@ -57,13 +57,10 @@ img {
   height: auto;
 }
 
-button {
-  cursor: pointer;
-}
-
 /* Global Styles */
 body {
-  min-width: 500px;
+  min-width: $site-min-width;
+  min-height: $site-min-height;
   background-color: $main-background-color;
   font-family: $base-font-family;
   -webkit-font-smoothing: antialiased;

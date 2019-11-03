@@ -39,10 +39,11 @@ export default class HomeSection extends Vue {
 
 <style lang="scss">
 #home-section-container {
-  height: 100vh;
   display: flex;
   justify-content: center;
   flex-direction: column;
+  min-height: $site-min-height;
+  height: 100vh;
 
   @include medium-screen-landscape {
     justify-content: center;
@@ -55,7 +56,8 @@ export default class HomeSection extends Vue {
     text-align: center;
 
     img {
-      width: 50%;
+      width: 50vh;
+      min-width: $site-min-height / 2;
       max-width: 700px;
 
       @include medium-screen-landscape {

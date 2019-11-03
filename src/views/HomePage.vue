@@ -64,21 +64,23 @@ if (window.innerHeight > 480 && window.innerWidth > 768) {
     overflow-x: scroll;
     overflow-y: hidden;
     white-space: nowrap;
-    max-height: 100vh;
+    min-height: $site-min-height;
+    height: 100vh;
   }
 }
 
 .section {
   position: relative;
   width: 100vw;
-  min-height: 600px;  // TODO: FIGURE OUT THRESHOLD
-  min-width: 500px;   // TODO: FIGURE OUT THRESHOLD
+  min-height: $site-min-height;  // TODO: FIGURE OUT THRESHOLD
+  min-width: $site-min-width;   // TODO: FIGURE OUT THRESHOLD
   display: block;
   overflow: hidden;   // this is temporary until all components have been styled -- some components are causing unusual scrolling issues.
 
   @include medium-screen-landscape {
     display: inline-block;
     vertical-align: top;
+    height: 100vh;
   }
 
   .container {

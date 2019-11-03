@@ -43,6 +43,7 @@ export default class ContactSection extends Vue {
 
 <style lang="scss" scoped>
 #contact-section-container {
+  min-height: $site-min-height;
   height: 100vh;
   display: flex;
   flex-direction: column;
