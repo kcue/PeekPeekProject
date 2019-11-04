@@ -8,13 +8,12 @@
     <div class="stats-captions">
       <div class="stats-titles">
         <h2 class="heading">
-          <span class="line">Seeing is&nbsp;</span>
-          <span class="line">believing</span>
+          <span class="line">Our Process</span>
         </h2>
-        <p class="primary-description">90% of customers make purchase decisions based on a website's visual content alone.</p>
+        <!-- <p class="primary-description">90% of customers make purchase decisions based on a website's visual content alone.</p>
         <p class="primary-description">Impress engage and impace potential customers by adding PeekPeek's 360&deg; virtual reality tour to your website. With our results, we could be the best tool in your toolbox</p>
-        <h3 id="button-prompt">New challenge?</h3>
-        <a id="solution-button" class="button primary-button" target="_blank" href="">New solution</a>
+        <h3 id="button-prompt">New źhallenge?</h3>
+        <a id="solution-button" class="button primary-button" target="_blank" href="">New solution</a> -->
       </div>
     </div>
   </section>
@@ -29,7 +28,7 @@ import Card from "@/components/Card.vue";
     Card
   }
 })
-export default class StatsSection extends Vue {
+export default class WhoProcessSection extends Vue {
   mounted() {}
 
   data() {
@@ -67,23 +66,11 @@ $card-base-height: 200px;
 $overlap-x: 50px;
 $overlap-y: 25px;
 
-#stats-section {
+#who-process-section {
   margin-bottom: 100px;
 
-  @include medium-screen-landscape {
-    width: auto;
-    margin-right: 10vw;
-    margin-bottom: 0;
-  }
-
-  .stats-cards {
+  .cards {
     margin-top: 5%;
-
-    @include medium-screen-landscape {
-      display: inline-block;
-      vertical-align: middle;
-      height: 100%;
-    }
 
     .stats-cards-container {
       width: $card-base-width * 2;
@@ -91,11 +78,6 @@ $overlap-y: 25px;
       margin: 0 auto;
       position: relative;
       white-space: initial;
-
-      @include medium-screen-landscape {
-        height: 100%;
-        margin-left: 20px;
-      }
 
       .card {
         width: $card-base-width;
@@ -107,32 +89,18 @@ $overlap-y: 25px;
         box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.15);
         position: absolute;
 
-        @include medium-screen-landscape {
-          width: 50%;
-          max-width: 300px;
-          min-height: 25%;
-        }
-
-        .card-content {
+        .stats-card-content {
           display: flex;
           flex-direction: column;
           justify-content: center;
           align-items: start;
           padding: 40px;
 
-          @include medium-screen-landscape {
-            padding: 30px;
-          }
-
           .card-heading {
             font-size: 3em;
             line-height: 1em;
             font-weight: 700;
             color: $heading-color;
-
-            @include medium-screen-landscape {
-              font-size: 2em;
-            }
           }
 
           .card-description {
@@ -141,12 +109,6 @@ $overlap-y: 25px;
             margin-top: 2em;
             font-weight: 400;
             color: $secondary-description-color;
-
-            @include medium-screen-landscape {
-              font-size: .6em;
-              line-height: 1.8em;
-              margin-top: 1.2em;
-            }
           }
         }
 
@@ -166,29 +128,18 @@ $overlap-y: 25px;
         top: $card-base-height - $overlap-y;
         left: $overlap-x / 4;
 
-        @include medium-screen-landscape {
-          top: calc(25% - #{$overlap-y});
-        }
       }
 
       .card:nth-child(3) {
         z-index: 3;
         top: ($card-base-height * 2) - ($overlap-y * 3);
         left: $card-base-width - ($overlap-x / 4);
-
-        @include medium-screen-landscape {
-          top: calc((25% * 2) - (#{$overlap-y} * 3));
-        }
       }
 
       .card:nth-child(4) {
         z-index: 1;
         top: ($card-base-height * 3) - ($overlap-y * 4);
         left: $overlap-x;
-
-        @include medium-screen-landscape {
-          top: calc((25% * 3) - (#{$overlap-y} * 4));
-        }
       }
     }
   }
@@ -198,14 +149,6 @@ $overlap-y: 25px;
     text-align: left;
     margin: 5% 5vw;
 
-    @include medium-screen-landscape {
-      width: 50vw;
-      max-width: 450px;
-      display: inline-block;
-      vertical-align: middle;
-      white-space: initial;
-      margin-left: 5vw;
-    }
 
     .heading {
       margin-bottom: 0.7em;

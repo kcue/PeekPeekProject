@@ -2,12 +2,17 @@
   <section>
     <div class="container" id="contact-section-container">
       <div class="contact-section-interlude">
-        <h2 class="subheading">So, your turn</h2>
+        <!-- <h2 class="subheading">So, your turn</h2> -->
+        <h2 class="subheading">{{ interludeText }}</h2>
       </div>
       <div class="contact-section-main">
-        <h2 class="heading">Tell me</h2>
+        <!-- <h2 class="heading">Tell me</h2>
         <h2 class="heading">your story</h2>
-        <button class="primary-button" @click="onContactButtonClick">Contact Us</button>
+        <button class="primary-button" @click="onContactButtonClick">Contact Us</button> -->
+        <h2 class="heading">{{ headingTextLine1 }}</h2>
+        <h2 class="heading">{{ headingTextLine2 }}</h2>
+        <!-- put Contact Us into a template   -->
+        <button class="primary-button" @click="onContactButtonClick">{{ contactUsButtonText }}</button>
       </div>
       <transition name="fade">
         <div class="transition-container" v-if="showContactForm">
@@ -20,7 +25,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue } from "vue-property-decorator";
 import ContactForm from "@/components/ContactForm.vue";
 
 @Component({
@@ -29,6 +34,11 @@ import ContactForm from "@/components/ContactForm.vue";
   }
 })
 export default class ContactSection extends Vue {
+  @Prop() private interludeText!: string;
+  @Prop() private headingTextLine1!: string;
+  @Prop() private headingTextLine2!: string;
+  @Prop() private contactUsButtonText!: string;
+
   showContactForm: boolean = false;
 
   onContactButtonClick() {
