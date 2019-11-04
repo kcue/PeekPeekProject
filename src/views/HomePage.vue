@@ -1,12 +1,12 @@
 <template>
-  <div id="sections-container">
+  <div id="home-page-container">
     <HomeSection class="section" id="home-section" />
     <StatsSection class="section" id="stats-section" />
     <VideoSection class="section" id="video-section" />
     <HotspotSection class="section" id="hotspot-section" />
     <DemoSection class="section" id="demo-section" />
     <PartnersSection class="section" id="partners-section" />
-    <ContactSection class="section" id="contact-section" />
+    <ContactSection class="section" id="contact-section" :interludeText="interludeText" :headingTextLine1="headingTextLine1" :headingTextLine2="headingTextLine2" :contactUsButtonText="contactUsButtonText" />
   </div>
 </template>
 
@@ -33,9 +33,18 @@ import ContactSection from "@/components/ContactSection.vue";
 })
 export default class Home extends Vue {
   name: string = "home";
-
+  
   created() {
     document.title = "PeekPeek | Home";
+  }
+
+  data() {
+    return {
+      interludeText: "So, your turn",
+      headingTextLine1: "Tell me",
+      headingTextLine2: "your story",
+      contactUsButtonText: "Contact Us"
+    };
   }
 }
 
@@ -55,9 +64,9 @@ if (window.innerHeight > 480 && window.innerWidth > 768) {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 /* Home page specific styles here */
-#sections-container {
+#home-page-container {
   overflow-x: hidden;
 
   @include medium-screen-landscape {

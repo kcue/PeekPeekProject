@@ -1,6 +1,6 @@
 <template>
-  <div class="stats-card">
-    <div class="stats-card-content">
+  <div class="card">
+    <div class="card-content">
       <p class="card-heading">{{ cardHeading }}</p>
       <p class="card-description">{{ cardDescription }}</p>
     </div>
@@ -11,7 +11,7 @@
 import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component({})
-export default class StatsCard extends Vue {
+export default class Card extends Vue {
   @Prop() private additionalClass!: string;
   @Prop() private cardHeading!: string;
   @Prop() private cardDescription!: string;
