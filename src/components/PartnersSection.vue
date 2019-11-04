@@ -1,92 +1,134 @@
 <template>
-    <section>
-        <div class="partners-section-text">
-            <h2 class="wide-title" id="branding"><b>Trusted by</b> </h2>
-            <div class="main-text wide-text" id="examples">
-                <button id="learn-button"><a target="_blank" href="">Learn More</a></button>
-                
-            </div>
+  <section>
+    <div class="container" id = "partners-section-container">
+      <div class="partners-section-text">
+        <h2 class="heading" id="branding"><b>Trusted by</b> </h2>
+        <a id="learn-button" class="button primary-button" target="_blank" href="">Learn More</a>
+        
+      </div>
+      <div class="partners-section-icons">
+        <div class="partners-section-icon-container media" id="Paypal">
+          <img src="../assets/images/Paypal.png"/>
         </div>
-        <div class="partners-section-text-padding"></div>
-        <div class="partners-section-icons">
-            <div class="partners-section-icon-container media" id="Paypal">
-                <img src="../assets/images/Paypal.png"/>
-            </div>
-            <div class="partners-section-icon-container media" id="UCI">
-                <img src="../assets/images/UCI.png"/>
-            </div>
-            <div class="partners-section-icon-container media" id="Hilton">
-                <img src="../assets/images/Hilton.png"/>
-            </div>
-            <div class="partners-section-icon-container media" id="Pierce">
-                <img src="../assets/images/Pierce College.png"/>
-            </div>
+        <div class="partners-section-icon-container media" id="UCI">
+          <img src="../assets/images/UCI.png"/>
         </div>
-        <div class="partners-section-icons-padding"></div>
-    </section>
+        <div class="partners-section-icon-container media" id="Hilton">
+          <img src="../assets/images/Hilton.png"/>
+        </div>
+        <div class="partners-section-icon-container media" id="Pierce">
+          <img src="../assets/images/Pierce College.png"/>
+        </div>
+      </div>
+      <div class="partners-section-icons-padding"></div>
+    </div>
+  </section>
 </template>
 
 
 
 <style lang="scss" scoped>
-    #learn-button #branding{
-        height: 80px;
-        
-    }
-#partners-section {
-    // display: flex;
-    // flex-direction: row;
-    .partners-section-text, .partners-section-icons {
-        display: flex;
-    }
-    .partners-section-text {
-        width: 80vh;
-        margin-top: 5vh;
-        margin-left: 20px;
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: space-around;
-        .wide-text {
-            font-size: 2.8vh;
-            text-align: left;
-        }
-        .wide-title {
-            font-weight: normal;
-            text-align: left;
-        }
-        
-        a {
-            font-size: 2vh;
-            margin-top: 2vh;
-            margin-bottom: 15vh;
-            text-decoration: underline;
-            text-align: left
-        }
-    }
-    .partners-section-text-padding {
-        width: 50vh;
-    }
-    .partners-section-icons {
-        width: 102.5vh;
-        flex-wrap: wrap;
-        margin-top: 9vh;
-        margin-bottom: 2.5vh;
-        .partners-section-icon-container {
-            width: 50%;
-            max-height: 32%;
-            padding-top: 1vh;
-            padding-bottom: 1vh;
-            display: flex;
-            justify-content: center;
-            img {
-                max-height: 100%;
-                max-width: 100%;
-                object-fit: contain;
-            }
-        }        
-    }   
-    .partners-section-icons-padding {
-        width: 30vh;
-    }
+#partners-section{
+  height: auto;
+  min-height: initial;
+  margin-top: 100px;
+  margin-bottom: 100px;
 }
+#partners-section-container{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+  }
+@include medium-screen-landscape{
+  #partners-section-container{
+    display: flex;
+    flex-direction: row;
+  }
+}
+
+#partners-section {
+ @include medium-screen-landscape {
+    min-width: 800px;
+    width: auto;
+    height: auto;
+
+    &:before {
+      display: inline-block;
+      content: '';
+      vertical-align: middle;
+      height: 100vh;
+      min-height: $site-min-height;
+    }
+  }
+
+  .partners-section-text {
+    min-width: 500px;
+    width: 40vw;
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  #learn-button {
+    margin-top: 2em;
+  }
+  .partners-section-icons{
+    display:flex;
+    flex-direction: row;
+    margin: 20px 0 40px;
+    justify-content: center;
+    .partners-section-icon-container {
+        margin-top: 20px;
+        margin-left: 20px;
+        min-width:100px ;
+        min-height:100px ;
+        max-width:150px;
+        max-height:150px ;
+        width: 20vw;
+        height: 20vw;
+        background-color: rgb(254, 255, 254);
+        border-radius: 5px;
+        box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.15);
+        
+        padding: 5%;
+        img {
+          height: 100%;
+          width: 100%;
+          object-fit: contain;
+        }
+
+      }  
+  }
+  @include medium-screen-landscape{
+    .partners-section-icons {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: left;
+      flex-wrap: nowrap;
+
+      .partners-section-icon-container {
+        min-width:175px ;
+        min-height:175px ;
+        max-width:300px;
+        max-height:300px ;
+        width: 20vw;
+        height: 20vw;
+        background-color: rgb(254, 255, 254);
+        border-radius: 5px;
+        box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.15);
+        margin-top: 30px;
+        padding: 10%;
+        img {
+          height: 100%;
+          width: 100%;
+          object-fit: contain;
+        }
+
+      }       
+    }
+  }   
+}
+  
 </style>
