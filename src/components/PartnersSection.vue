@@ -28,12 +28,7 @@
 
 
 <style lang="scss" scoped>
-#partners-section{
-  height: auto;
-  min-height: initial;
-  margin-top: 100px;
-  margin-bottom: 100px;
-}
+
 #partners-section-container{
     display: flex;
     flex-direction: column;
@@ -48,19 +43,25 @@
 }
 
 #partners-section {
- @include medium-screen-landscape {
-    min-width: 800px;
-    width: auto;
-    height: auto;
+  #partners-section{
+  height: auto;
+  min-height: initial;
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+ // @include medium-screen-landscape {
+    // min-width: 800px;
+    // width: auto;
+    // height: auto;
 
-    &:before {
-      display: inline-block;
-      content: '';
-      vertical-align: middle;
-      height: 100vh;
-      min-height: $site-min-height;
-    }
-  }
+    // &:before {
+    //   display: inline-block;
+    //   content: '';
+    //   vertical-align: middle;
+    //   height: 100vh;
+    //   min-height: $site-min-height;
+    // }
+  // }
 
   .partners-section-text {
     min-width: 500px;
