@@ -49,19 +49,18 @@
   margin-top: 100px;
   margin-bottom: 100px;
 }
- // @include medium-screen-landscape {
-    // min-width: 800px;
-    // width: auto;
-    // height: auto;
+@media (max-width: 767px){
 
-    // &:before {
-    //   display: inline-block;
-    //   content: '';
-    //   vertical-align: middle;
-    //   height: 100vh;
-    //   min-height: $site-min-height;
-    // }
-  // }
+
+    &:before {
+      display: inline-block;
+      content: '';
+      vertical-align: middle;
+      height: 50vh;
+      // min-height: $site-min-height;
+    }
+}
+
 
   .partners-section-text {
     min-width: 500px;
