@@ -85,21 +85,20 @@ export default class VideoSection extends Vue {}
     }
 
     .video-wrapper {
-      $video-min-width: 400px;
+      $video-min-width: 300px;
       $video-max-width: 500px;
-      $video-min-height: 270px;
+      $video-min-height: 200px;
       $video-max-height: 300px;
 
       position: relative;
       margin: 5% auto 40px auto;
-      width: $video-min-width;
+      min-width: $video-min-width;
+      max-width: $video-max-width;
+      width: 50vw;
 
       @include medium-screen-landscape {
         float: left;
         margin: 5% 60px 40px 0;   // margins to make space for the arrow
-        min-width: $video-min-width;
-        max-width: $video-max-width;
-        width: 50vw;
       }
 
       iframe {
@@ -114,9 +113,15 @@ export default class VideoSection extends Vue {}
 
       img {
         position: absolute;
-        width: 100px;
-        bottom: -40px;
-        right: -45px;
+        width: 70px;
+        bottom: -25px;
+        right: -30px;
+
+        @include medium-screen-landscape {
+          width: 100px;
+          bottom: -40px;
+          right: -45px;
+        }
       }
     }
   }

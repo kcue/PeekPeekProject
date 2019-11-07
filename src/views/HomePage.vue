@@ -4,7 +4,7 @@
     <StatsSection class="section" id="stats-section" />
     <VideoSection class="section" id="video-section" />
     <HotspotSection class="section" id="hotspot-section" />
-    <DemoSection class="section" id="demo-section" />
+    <CaseStudiesSection class="section" id="case-studies-section" />
     <PartnersSection class="section" id="partners-section" />
     <ContactSection class="section" id="contact-section" :interludeText="interludeText" :headingTextLine1="headingTextLine1" :headingTextLine2="headingTextLine2" :contactUsButtonText="contactUsButtonText" />
   </div>
@@ -16,7 +16,7 @@ import HomeSection from "@/components/HomeSection.vue";
 import StatsSection from "@/components/StatsSection.vue";
 import VideoSection from "@/components/VideoSection.vue";
 import HotspotSection from "@/components/HotspotSection.vue";
-import DemoSection from "@/components/DemoSection.vue";
+import CaseStudiesSection from "@/components/CaseStudiesSection.vue";
 import PartnersSection from "@/components/PartnersSection.vue";
 import ContactSection from "@/components/ContactSection.vue";
 
@@ -26,7 +26,7 @@ import ContactSection from "@/components/ContactSection.vue";
     StatsSection,
     VideoSection,
     HotspotSection,
-    DemoSection,
+    CaseStudiesSection,
     PartnersSection,
     ContactSection
   }

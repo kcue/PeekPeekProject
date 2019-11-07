@@ -1,5 +1,5 @@
 <template>
-	<div  id="sections-container">   
+	<div id="sections-container">   
     
     
 		<h1 style="position:absolute; top:140px; left:120px; font-size:59px; ">Why</h1>
@@ -7,8 +7,8 @@
 		<h3 style="position:absolute; top:235px; left:120px; font-size:30px;color: #1BB4A6;"> Modern Solution </h3>
 		
 		
-		<img src="../assets/images/fish-on-tap.png" style="position:absolute; top:90px; left:500px; width:700px; height:290px; border-radius: 2%">		
-		<img src="../assets/images/white_background_image.png" style= "position:absolute;  top:350px; left:520px; width:700px; height:330px;  border-radius: 6%; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19), 0 6px 20px 0 rgba(0, 0, 0, 0.19), 0 6px 20px 0 rgba(0, 0, 0, 0.19)">  
+		<img src="../assets/images/demo-fish_on_tap.png" style="position:absolute; top:90px; left:500px; width:700px; height:290px; border-radius: 2%">		
+		<div style= "background-color: #FFF; position:absolute;  top:350px; left:520px; width:700px; height:330px;  border-radius: 6%; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19), 0 6px 20px 0 rgba(0, 0, 0, 0.19), 0 6px 20px 0 rgba(0, 0, 0, 0.19)"></div>
 		
     <h3 style="position:absolute; top:370px; left:570px; font-size:9px;color: grey;">CASE STUDY</h3>
 		<h3 style="position:absolute; top:375px; left:570px; font-size:22px;color: #1BB4A6;"> Education</h3>
@@ -31,9 +31,9 @@
       <b>New Solution</b>
     </div>
     
-    <img src="../assets/images/Paris.jpg" style="position:absolute; top:650px; left:120px; width:700px; height:290px; border-radius: 2%" >
+    <img src="../assets/images/demo-uci_arc.png" style="position:absolute; top:650px; left:120px; width:700px; height:290px; border-radius: 2%" >
 		
-		<img src="../assets/images/white_background_image.png" style= "position:absolute;  top:920px; left:140px; width:700px; height:330px;  border-radius: 6%; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19), 0 6px 20px 0 rgba(0, 0, 0, 0.19), 0 6px 20px 0 rgba(0, 0, 0, 0.19)">  
+		<div style= "background-color: #FFF; position:absolute;  top:920px; left:140px; width:700px; height:330px;  border-radius: 6%; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19), 0 6px 20px 0 rgba(0, 0, 0, 0.19), 0 6px 20px 0 rgba(0, 0, 0, 0.19)"></div>
 		  <h3 style="position:absolute; top:945px; left:195px; font-size:9px;color: grey;">CASE STUDY</h3>
 		  <h3 style="position:absolute; top:950px; left:195px; font-size:22px;color: #1BB4A6;"> Hotel</h3>
 			<div class="MIDDLE_LEFT_IMAGE_left_indent"><h3 >Problem</h3> Lorem ipsum dolor sit amet, consectetur adipiscing elit </div>
@@ -42,9 +42,9 @@
 			<div class="MIDDLE_LEFT_IMAGE_button" style= "background-color: #1BB4A6;"> <b>New Solution</b></div>
 
 	
-		<img src="../assets/images/CSULB-Pyramid.png" style="position:absolute; top:1235px; left:500px; width:700px; height:290px; border-radius: 2%" >
+		<img src="../assets/images/demo-csulb.png" style="position:absolute; top:1235px; left:500px; width:700px; height:290px; border-radius: 2%" >
 		
-		<img src="../assets/images/white_background_image.png" style= "position:absolute;  top:1505px; left:520px; width:700px; height:330px;  border-radius: 6%; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19), 0 6px 20px 0 rgba(0, 0, 0, 0.19), 0 6px 20px 0 rgba(0, 0, 0, 0.19)">  
+		<div style= "background-color: #FFF; position:absolute;  top:1505px; left:520px; width:700px; height:330px;  border-radius: 6%; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19), 0 6px 20px 0 rgba(0, 0, 0, 0.19), 0 6px 20px 0 rgba(0, 0, 0, 0.19)"></div>
 		  <h3 style="position:absolute; top:1530px; left:570px; font-size:9px;color: grey;">CASE STUDY</h3>
 		  <h3 style="position:absolute; top:1535px; left:570px; font-size:22px;color: #1BB4A6;"> Brand Solution</h3>
 			<div class="BOTTOM_RIGHT_IMAGE_left_indent"><h3>Problem</h3> Lorem ipsum dolor sit amet, consectetur adipiscing elit </div>

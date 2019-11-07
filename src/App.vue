@@ -21,7 +21,19 @@ export default class App extends Vue {}
 /* Reset */
 html {
   box-sizing: border-box;
-  font-size: 15px;
+  font-size: 12px;
+
+  @include small-screen-landscape {
+    font-size: 14px;
+  }
+
+  @include medium-screen-landscape {
+    font-size: 15px;
+  }
+
+  @include large-screen-landscape {
+    font-size: 16px;
+  }
 
   @include large-screen-landscape {
     font-size: 16px;
@@ -80,7 +92,7 @@ body {
   }
 
   .primary-description {
-    font-size: 0.9em;
+    font-size: 1em;
     line-height: 1.5em;
     font-weight: 400;
     color: $primary-description-color;

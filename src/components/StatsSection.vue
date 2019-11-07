@@ -62,17 +62,18 @@ export default class StatsSection extends Vue {
 </script>
 
 <style lang="scss">
-$card-base-width: 280px;
 $card-base-height: 200px;
-$overlap-x: 50px;
-$overlap-y: 25px;
+$overlap-x: 10%;
+$overlap-y: 4%;
 
 #stats-section {
   margin-bottom: 100px;
 
   @include medium-screen-landscape {
-    width: auto;
+    width: 100vw;
+    min-width: 1000px;
     margin-right: 10vw;
+    margin-left: 50px;
     margin-bottom: 0;
   }
 
@@ -82,30 +83,36 @@ $overlap-y: 25px;
     @include medium-screen-landscape {
       display: inline-block;
       vertical-align: middle;
+      width: 50%;
       height: 100%;
+      margin-top: 0;
     }
 
     .stats-cards-container {
-      width: $card-base-width * 2;
+      width: 80%;
+      min-width: $site-min-width;
       height: $card-base-height * 4 + 50px;  // 4 cards
       margin: 0 auto;
-      position: relative;
+      padding: 5% 0;
       white-space: initial;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
 
       @include medium-screen-landscape {
+        width: 90%;
         height: 100%;
         margin-left: 20px;
       }
 
       .card {
-        width: $card-base-width;
-        min-height: $card-base-height;
+        width: 50%;
         display: flex;
         align-items: center;
         background-color: rgb(254, 255, 254);
         border-radius: 5px;
         box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.15);
-        position: absolute;
 
         @include medium-screen-landscape {
           width: 50%;
@@ -118,11 +125,11 @@ $overlap-y: 25px;
           flex-direction: column;
           justify-content: center;
           align-items: start;
-          padding: 40px;
+          padding: 15%;
 
-          @include medium-screen-landscape {
-            padding: 30px;
-          }
+          // @include medium-screen-landscape {
+          //   padding: 2.5em;
+          // }
 
           .card-heading {
             font-size: 3em;
@@ -150,45 +157,33 @@ $overlap-y: 25px;
           }
         }
 
-        &.highlight .stats-card-content .card-heading {
+        &.highlight .card-content .card-heading {
             color: $alt-heading-color;
         }
       }
 
       .card:nth-child(1) {
         z-index: 4;
-        top: 0;
-        left: $card-base-width - $overlap-x;
+        margin-top: 0;
+        margin-left: calc(50% - (#{$overlap-x} * 2));
       }
 
       .card:nth-child(2) {
         z-index: 2;
-        top: $card-base-height - $overlap-y;
-        left: $overlap-x / 4;
-
-        @include medium-screen-landscape {
-          top: calc(25% - #{$overlap-y});
-        }
+        margin-top: -1 * $overlap-y;
+        margin-right: 50%;
       }
 
       .card:nth-child(3) {
         z-index: 3;
-        top: ($card-base-height * 2) - ($overlap-y * 3);
-        left: $card-base-width - ($overlap-x / 4);
-
-        @include medium-screen-landscape {
-          top: calc((25% * 2) - (#{$overlap-y} * 3));
-        }
+        margin-top: -4 * $overlap-y;
+        margin-left: calc(50% - #{$overlap-x} / 2);
       }
 
       .card:nth-child(4) {
         z-index: 1;
-        top: ($card-base-height * 3) - ($overlap-y * 4);
-        left: $overlap-x;
-
-        @include medium-screen-landscape {
-          top: calc((25% * 3) - (#{$overlap-y} * 4));
-        }
+        margin-top: -2 * $overlap-y;
+        margin-right: calc(50% - #{$overlap-x});
       }
     }
   }

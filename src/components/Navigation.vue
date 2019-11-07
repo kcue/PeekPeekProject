@@ -63,8 +63,12 @@ nav {
 
     li {
       display: inline-block;
-      margin: 10px 30px;
+      margin: 10px 20px;
       text-transform: uppercase;
+
+      @include small-screen-landscape {
+        margin: 10px 30px;
+      }
 
       span {
         font-size: 0.85em;

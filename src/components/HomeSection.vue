@@ -56,12 +56,13 @@ export default class HomeSection extends Vue {
     text-align: center;
 
     img {
-      width: 50vh;
+      width: 90%;
       min-width: $site-min-height / 2;
-      max-width: 700px;
+      max-width: 50vw;
 
       @include medium-screen-landscape {
         width: 80%;
+        max-width: 700px;
       }
     }
   }
@@ -126,7 +127,6 @@ export default class HomeSection extends Vue {
 
   .home-section-buttons {
     text-align: center;
-    margin-top: 1em;
 
     @include medium-screen-landscape {
       text-align: left;
@@ -134,6 +134,8 @@ export default class HomeSection extends Vue {
     }
 
     .button {
+      margin-top: 1em;
+
       @include medium-screen-landscape {
         width: 160px;
       }
