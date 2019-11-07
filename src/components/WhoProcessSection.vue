@@ -1,12 +1,12 @@
 <template>
   <section>
-    <div class="stats-cards">
-      <div class="stats-cards-container">
-        <Card v-for="(card, index) in cardData" :key="index" :cardHeading="card.cardHeading" :cardDescription="card.cardDescription" :id="'stats-card-' + (index + 1)" :class="card.additionalClass" />
+    <div class="process-cards">
+      <div class="process-cards-container">
+        <Card v-for="(card, index) in cardData" :key="index" :cardHeading="card.cardHeading" :cardDescription="card.cardDescription" :id="'process-card-' + (index + 1)" :class="card.additionalClass" />
       </div>
     </div>
-    <div class="stats-captions">
-      <div class="stats-titles">
+    <div class="process-captions">
+      <div class="process-titles">
         <h2 class="heading">
           <span class="line">Our Process</span>
         </h2>
@@ -68,11 +68,13 @@ $overlap-y: 25px;
 
 #who-process-section {
   margin-bottom: 100px;
+  overflow: auto;
+  height: auto;
 
-  .cards {
+  .process-cards {
     margin-top: 5%;
 
-    .stats-cards-container {
+    .process-cards-container {
       width: $card-base-width * 2;
       height: $card-base-height * 4 + 50px;  // 4 cards
       margin: 0 auto;
@@ -89,7 +91,7 @@ $overlap-y: 25px;
         box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.15);
         position: absolute;
 
-        .stats-card-content {
+        .card-content {
           display: flex;
           flex-direction: column;
           justify-content: center;
@@ -112,7 +114,7 @@ $overlap-y: 25px;
           }
         }
 
-        &.highlight .stats-card-content .card-heading {
+        &.highlight .card-content .card-heading {
             color: $alt-heading-color;
         }
       }
@@ -144,7 +146,7 @@ $overlap-y: 25px;
     }
   }
 
-  .stats-captions {
+  .process-captions {
     display: block;
     text-align: left;
     margin: 5% 5vw;
