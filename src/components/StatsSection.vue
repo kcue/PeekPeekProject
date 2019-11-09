@@ -124,7 +124,7 @@ $overlap-y: 4%;
           display: flex;
           flex-direction: column;
           justify-content: center;
-          align-items: start;
+          align-items: flex-start;
           padding: 15%;
 
           // @include medium-screen-landscape {

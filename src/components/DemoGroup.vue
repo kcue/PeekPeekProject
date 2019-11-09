@@ -1,24 +1,24 @@
 <template>
   <div id="demo-group">
     <div class="container" id="demo-cards">
-      <DemoCard v-for="(item, index) in cardData" :key="index" :id="'demo-card-' + index" :class="item.layoutClasses">
+      <FeatureCard v-for="(item, index) in cardData" :key="index" :id="'demo-card-' + index" :class="'demo-card ' + item.layoutClasses">
         <h6 slot="title" class="demo-title">{{item.title}}</h6>
-        <p slot="subtitle" class="demo-subtitle">{{item.subtitle}}</p>
+        <p slot="content" class="demo-subtitle">{{item.subtitle}}</p>
         <img slot="img" :src="imagePath(item.img)"/> 
-      </DemoCard>
+      </FeatureCard>
     </div>
     <!-- <img @click="closeAll" id="x-button" src="../assets/images/X.png"/> -->
-    <iframe class="demo-iframe" v-for="(item,index) in cardData" :key="index" :id="'demo-frame-' + index" :src="item.iframe"></iframe>
+    <iframe class="demo-iframe" v-for="(item, index) in cardData" :key="index" :id="'demo-frame-' + index" :src="item.iframe"></iframe>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import DemoCard from "@/components/DemoCard.vue";
+import FeatureCard from "@/components/FeatureCard.vue";
 
 @Component({
   components: {
-    DemoCard,
+    FeatureCard,
   }
 })
 export default class DemoGroup extends Vue {

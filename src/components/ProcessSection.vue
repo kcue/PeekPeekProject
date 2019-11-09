@@ -80,6 +80,7 @@ $overlap-y: 5%;
       margin-top: 5%;
       margin-right: 0%;
       margin-bottom: 5%;
+      margin-left: 5%;
       min-width: 250px;
       width: 100%;
 
@@ -89,7 +90,7 @@ $overlap-y: 5%;
       }
 
       @include large-screen-landscape {
-        margin-right: 20%;
+        margin-right: 15%;
       }
     }
   }
@@ -119,7 +120,7 @@ $overlap-y: 5%;
           display: flex;
           flex-direction: column;
           justify-content: center;
-          align-items: start;
+          align-items: flex-start;
           padding: 12%;
 
           .card-heading {

@@ -140,7 +140,7 @@ $overlap-y: 5%;
           display: flex;
           flex-direction: column;
           justify-content: center;
-          align-items: start;
+          align-items: flex-start;
           padding: 12%;
 
           .card-heading {
