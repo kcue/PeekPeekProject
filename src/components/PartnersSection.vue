@@ -1,6 +1,6 @@
 <template>
   <section>
-    <div class="container" id = "partners-section-container">
+    <div class="container" id="partners-section-container">
       <div class="partners-section-text">
         <h2 class="heading" id="branding"><b>Trusted by</b> </h2>
         <a id="learn-button" class="button primary-button" target="_blank" href="">Learn More</a>
@@ -35,21 +35,21 @@ export default class PartnersSection extends Vue {}
 </script>
 
 <style lang="scss">
-#partners-section {
+.section#partners-section {
   height: auto;
   min-height: initial;
-  margin-top: 100px;
-  margin-bottom: 100px;
+  margin: 50px 0;
 
   @include medium-screen-landscape {
     min-width: 800px;
     width: auto;
     height: 100vh;
     margin: 0;
+    padding-right: 100px;
   }
 }
 
-#partners-section-container{
+#partners-section-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -60,9 +60,9 @@ export default class PartnersSection extends Vue {}
   }
 }
 
-#partners-section {
+.section#partners-section {
   .partners-section-text {
-    min-width: 500px;
+    min-width: 400px;
     width: 40vw;
     margin-left: 20px;
     display: flex;
@@ -73,13 +73,16 @@ export default class PartnersSection extends Vue {}
   #learn-button {
     margin-top: 2em;
   }
+
   .partners-section-icons {
     display:flex;
     flex-direction: row;
-    margin: 20px 0 40px;
+    margin: 40px 0;
     justify-content: center;
+    flex-wrap: nowrap;
 
     .partners-section-icon-container {
+      flex: 0 0 auto;
       margin-top: 20px;
       margin-left: 20px;
       min-width:100px ;
@@ -104,24 +107,12 @@ export default class PartnersSection extends Vue {}
 
   @include medium-screen-landscape{
     .partners-section-icons {
-      display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: left;
-      flex-wrap: nowrap;
 
       .partners-section-icon-container {
-      min-width:175px ;
-      min-height:175px ;
-      max-width:300px;
-      max-height:300px ;
-      width: 20vw;
-      height: 20vw;
-      background-color: rgb(254, 255, 254);
-      border-radius: 5px;
-      box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.15);
-      margin-top: 30px;
-      padding: 10%;
+        margin-top: 30px;
+        padding: 10%;
 
         img {
           height: 100%;

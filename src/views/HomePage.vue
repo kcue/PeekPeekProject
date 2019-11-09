@@ -92,7 +92,7 @@ if (window.innerHeight > 480 && window.innerWidth > 768) {
     height: 100vh;
   }
 
-  .container {
+  &::v-deep .container {
     height: 100%;
     width: 100%;
   }

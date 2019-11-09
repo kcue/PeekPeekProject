@@ -1,7 +1,4 @@
 <template>
-  <!-- <div class="who">
-    <h1>WHO PAGE</h1>
-  </div> -->
   <div id="who-page-container">
   	<WhoProcessSection class="section" id="who-process-section" />
     <ContactSection class="section" id="contact-section" :interludeText="interludeText" :headingTextLine1="headingTextLine1" :headingTextLine2="headingTextLine2" :contactUsButtonText="contactUsButtonText" />
@@ -49,7 +46,7 @@ export default class Home extends Vue {
   min-width: $site-min-width;   // TODO: FIGURE OUT THRESHOLD
   display: block;
 
-  .container {
+  &::v-deep .container {
     height: 100%;
     width: 100%;
   }

@@ -67,7 +67,7 @@ $overlap-x: 10%;
 $overlap-y: 4%;
 
 #stats-section {
-  margin-bottom: 100px;
+  margin-bottom: 50px;
 
   @include medium-screen-landscape {
     width: 100vw;

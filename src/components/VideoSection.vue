@@ -32,9 +32,13 @@ export default class VideoSection extends Vue {}
 
 <style lang="scss">
 #video-section {
-  margin-bottom: 100px;
+  margin-bottom: 50px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
   @include medium-screen-landscape {
+    display: inline-block;
     min-width: 800px;
     width: auto;
     height: auto;
@@ -52,7 +56,7 @@ export default class VideoSection extends Vue {}
     white-space: initial;
     display: inline-block;
     vertical-align: middle;
-    margin-top: 40px;   // balance the video arrow margin
+    // margin-top: 40px;   // balance the video arrow margin
 
     .heading, .content-group, #learn-button {
       margin: 2.5% 0 0;
@@ -65,7 +69,7 @@ export default class VideoSection extends Vue {}
       .heading {
         text-align: left;
         margin: 0;
-        width: 70vw;
+        width: 65vw;
       }
 
       .content-group {

@@ -1,6 +1,6 @@
 <template>
   <section>
-    <div class="container" id = "case-studies-section-container">
+    <div class="container" id="case-studies-section-container">
       <DemoGroup />
       <div class="demo-section-text">
         <h2 class="heading">
@@ -36,6 +36,16 @@ export default class CaseStudiesSection extends Vue {
 </script>
 
 <style lang="scss">
+#case-studies-section {
+  padding: 50px 0;
+
+  @include medium-screen-landscape {
+    width: auto;
+    margin-right: 100px;
+    padding: 0;
+  }
+}
+
 #case-studies-section-container {
   display: flex;
   flex-direction: column;
@@ -43,6 +53,7 @@ export default class CaseStudiesSection extends Vue {
   align-items: center;
 
   @include medium-screen-landscape {
+    height: 100%;
     flex-direction: row;
   }
 
@@ -53,9 +64,10 @@ export default class CaseStudiesSection extends Vue {
     margin: 10% 0 100px;
 
     @include medium-screen-landscape {
-      flex: 1 0 450px;
+      width: 500px;
+      flex: 1 0 500px;
       white-space: initial;
-      margin: 0 50px 0 5vw;
+      margin: 0 0 0 4em;
     }
 
     .primary-description {

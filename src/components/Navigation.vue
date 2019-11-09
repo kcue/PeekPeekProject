@@ -29,7 +29,7 @@ nav {
   top: 25px;
   right: 10px;
   transition: all 1s;
-  z-index: 11;
+  z-index: 10000;
 
   @include medium-screen-landscape {
     top: 40px;

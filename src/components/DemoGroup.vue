@@ -1,5 +1,5 @@
 <template>
-  <div id="demo-card-group">
+  <div id="demo-group">
     <div class="container" id="demo-cards">
       <DemoCard v-for="(item, index) in cardData" :key="index" :id="'demo-card-' + index" :class="item.layoutClasses">
         <h6 slot="title" class="demo-title">{{item.title}}</h6>
@@ -21,10 +21,7 @@ import DemoCard from "@/components/DemoCard.vue";
     DemoCard,
   }
 })
-export default class DemoSection extends Vue {
-  mounted() {
-  }
-
+export default class DemoGroup extends Vue {
   data() {
     return {
       imagePath: function (name:string): any {
@@ -68,9 +65,137 @@ export default class DemoSection extends Vue {
 </script>
 
 <style lang="scss">
-#demo-card-group {
+$numCards: 4;
+
+#demo-group {
+  width: 100%;
+
+  #demo-cards {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+
+    .demo-card {
+      position: relative;
+      min-height: 200px;
+      height: 20vh;
+      width: 100%;
+      margin-top: 5em;
+
+      &:nth-child(odd) {
+        .text-container {
+          left: 5%;
+          right: initial;
+        }
+      }
+
+      &:nth-child(even) {
+        .text-container {
+          left: initial;
+          right: 5%;
+        }
+      }
+    }
+  }
+
+  .text-container {
+    background-color: #FFF;
+    white-space: normal;
+    box-shadow: -10px 0px 20px rgba(#000, 0.1);
+    border-radius: 5px;
+    min-width: 250px;
+    width: 50%;
+    padding: 1em;
+    position: absolute;
+    top: -2.5em;
+
+
+    .demo-title {
+      color: $heading-color;
+      font-weight: 700;
+      font-size: 1em;
+      line-height: 1.2em;
+    }
+
+    .demo-subtitle {
+      margin-top: 0.8em;
+      color: $primary-description-color;
+      font-size: 0.8em;
+      line-height: 1.2em;
+    }
+  }
+
+  img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    box-shadow: 0px 0px 20px rgba(#000, 0.1);
+  }
+
   iframe {
     display: none; // temporary
+  }
+}
+
+@include medium-screen-landscape {
+  #demo-group {
+    margin-left: 1em;  // leave room for the shadow
+    height: 100%;
+    width: auto;
+
+    #demo-cards {
+      flex-direction: row;
+
+      .demo-card {
+        min-width: 180px;
+        max-width: 300px;
+        width: calc(100vw / #{$numCards});   // 4 = number of demos
+        height: 70%;
+
+        .text-container {
+          box-shadow: -5px 10px 20px rgba(#000, 0.1);
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          min-width: initial;
+          width: 90%;
+          position: absolute;
+          z-index: 100;
+        }
+
+        img {
+          box-shadow: -5px 10px 20px rgba(#000, 0.1);
+          width: 80%;
+          position: absolute;
+          top: 0;
+          right: 0;
+        }
+
+        &:nth-child(odd) {
+          margin: 10% 0 0 0;
+
+          .text-container {
+            top: 10%;
+            bottom: initial;
+            left: 5%;
+            right: initial;
+          }
+        }
+
+        &:nth-child(even) {
+          margin: 0 0 10% 0;
+
+          .text-container {
+            top: 75%;
+            bottom: initial;
+            left: 5%;
+            right: initial;
+          }
+        }
+      }
+    }
   }
 }
 </style>
