@@ -2,7 +2,7 @@
   <div class="card">
     <div class="card-content">
       <p class="card-heading">{{ cardHeading }}</p>
-      <p class="card-description">{{ cardDescription }}</p>
+      <p class="card-description" v-html="cardDescription"></p>
     </div>
   </div>
 </template>

@@ -85,10 +85,23 @@ body {
     color: $heading-color;
   }
 
+  .alt-heading {
+    font-size: 3.5em;
+    line-height: 1.1em;
+    font-weight: 700;
+    color: $alt-heading-color;
+  }
+
   .subheading {
     font-size: 1.8em;
     font-weight: 700;
     color: $subheading-color;
+  }
+
+  .alt-subheading {
+    font-size: 1.8em;
+    font-weight: 700;
+    color: $alt-heading-color;
   }
 
   .primary-description {

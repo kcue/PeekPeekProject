@@ -1,20 +1,21 @@
 <template>
   <div id="sections-container">
-    <div class="container" id="demo-container">
-      <DemoGroup />
-    </div>
+    <ProcessSection class="section" id="process-section" />
+    <WorksSection class="section" id="works-section" :headingTitle="headingTitle" />
     <ContactSection class="section" id="contact-section" :interludeText="interludeText" :headingTextLine1="headingTextLine1" :headingTextLine2="headingTextLine2" :contactUsButtonText="contactUsButtonText" />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import DemoGroup from "@/components/DemoGroup.vue";
+import ProcessSection from "@/components/ProcessSection.vue";
+import WorksSection from "@/components/WorksSection.vue";
 import ContactSection from "@/components/ContactSection.vue";
 
 @Component({
   components: {
-    DemoGroup,
+    ProcessSection,
+    WorksSection,
     ContactSection
   }
 })
@@ -27,6 +28,7 @@ export default class What extends Vue {
 
   data() {
     return {
+      headingTitle: "Featured Work",
       interludeText: "So, your turn",
       headingTextLine1: "What about",
       headingTextLine2: "you?",
@@ -36,6 +38,9 @@ export default class What extends Vue {
 }
 </script>
 
-<style lang="scss">
-
+<style lang="scss" scoped>
+#works-section::v-deep h2 {
+  align-self: center;
+  margin: 50px 0 0 0;
+}
 </style>

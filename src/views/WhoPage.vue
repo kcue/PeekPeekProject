@@ -1,22 +1,26 @@
 <template>
   <div id="who-page-container">
-  	<WhoProcessSection class="section" id="who-process-section" />
+    <WhoSection class="section" id="who-section" />
+  	<WorksSection class="section" id="works-section" :headingTitle="headingTitle" />
     <ContactSection class="section" id="contact-section" :interludeText="interludeText" :headingTextLine1="headingTextLine1" :headingTextLine2="headingTextLine2" :contactUsButtonText="contactUsButtonText" />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import WhoSection from "@/components/WhoSection.vue";
+import WorksSection from "@/components/WorksSection.vue";
 import ContactSection from "@/components/ContactSection.vue";
-import WhoProcessSection from "@/components/WhoProcessSection.vue";
+
+
 @Component({
   components: {
-    ContactSection,
-    WhoProcessSection
+    WhoSection,
+    WorksSection,
+    ContactSection
   }
 })
-
-export default class Home extends Vue {
+export default class Who extends Vue {
   name: string = "who";
   
   created() {
@@ -25,6 +29,7 @@ export default class Home extends Vue {
 
   data() {
     return {
+      headingTitle: "Results",
       interludeText: "So, your turn",
       headingTextLine1: "So who are",
       headingTextLine2: "you?",
@@ -37,6 +42,11 @@ export default class Home extends Vue {
 <style lang="scss" scoped>
 #who-page-container {
   overflow-x: hidden;
+}
+
+#works-section::v-deep h2 {
+  align-self: flex-end;
+  margin: 50px 5% 0 0;
 }
 
 .section {
