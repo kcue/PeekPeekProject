@@ -1,58 +1,44 @@
 <template>
-	<div id="sections-container">   
+	<div id="sections-container">       
     
-    
-		<h1 style="position:absolute; top:140px; left:120px; font-size:59px; ">Why</h1>
-		<h3 style="position:absolute; top:205px; left:120px; font-size:30px;color: grey;">Modern Challenges</h3>
-		<h3 style="position:absolute; top:235px; left:120px; font-size:30px;color: #1BB4A6;"> Modern Solution </h3>
+		<h1 style="position:absolute; top:150px; left:120px; font-size:59px;color:#2f2f1e "><b>Why</b></h1>
+		<h3 style="position:absolute; top:240px; left:120px; font-size:30px;color: #e0e0d1;"><b>Modern Challenge</b></h3>
+		<h3 style="position:absolute; top:270px; left:120px; font-size:30px;color: #1BB4A6;"> <b>Modern Solution </b></h3>
+		
 		
 		<div>
 			<img src="../assets/images/demo-fish_on_tap.png" style="position:relative; top:90px; left:500px; width:50%; height:290px; border-radius: 2%">		
 			<div style= "background-color: #FFF; position:absolute;  top:350px; left:520px; width:50%; height:330px;  border-radius: 6%; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19), 0 6px 20px 0 rgba(0, 0, 0, 0.19), 0 6px 20px 0 rgba(0, 0, 0, 0.19)"></div>
 		</div>
-		<h3 style="position:absolute; top:370px; left:570px; font-size:9px;color: grey;">CASE STUDY</h3>
-		<h3 style="position:absolute; top:375px; left:570px; font-size:22px;color: #1BB4A6;"> Education</h3>
+			<h3 style="position:absolute; top:370px; left:570px; font-size:9px;color: grey;"><b>CASE STUDY</b></h3>
+			<h3 style="position:absolute; top:375px; left:570px; font-size:22px;color: #1BB4A6;"> Education</h3>	  
       
-    
-    
-		<div class="top-right-image-left-indent">
-		  <h3 >Problem</h3> Lorem ipsum dolor sit amet, consectetur adipiscing elit 
-		</div>
-			
-		<div class="top-right-image-centered-indent">    
-		  <h3 >Solution</h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit 
-		</div>
-			
-		<div class="top-right-image-right-indent">
-		  <h3 >Result</h3>Lorem ipsum dolor sit amet 
-		</div>	
-		
-		<div class="top-right-image-button" style="background-color: #1BB4A6;">
-		  <b>New Solution</b>
-		</div>
+				<div class="top-right-image-left-indent"> <h3 ><b>Problem</b></h3> Lorem ipsum dolor sit amet, consectetur adipiscing elit </div>					
+				<div class="top-right-image-centered-indent"> <h3 ><b>Solution</b></h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit </div>					
+				<div class="top-right-image-right-indent"> <h3 ><b>Result</b></h3>Lorem ipsum dolor sit amet </div>					
+				<div class="top-right-image-button" style="background-color: #1BB4A6;"> <b>New Solution</b> </div>
     
 		<div>
 			<img src="../assets/images/demo-uci_arc.png" style="position:relative; top:350px; left:120px; width:50%; height:290px; border-radius: 2%" >		
 			<div style= "background-color: #FFF; position:absolute;  top:920px; left:140px; width:50%; height:330px;  border-radius: 6%; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19), 0 6px 20px 0 rgba(0, 0, 0, 0.19), 0 6px 20px 0 rgba(0, 0, 0, 0.19)"></div>
 		</div>
-			  <h3 style="position:absolute; top:945px; left:195px; font-size:9px;color: grey;">CASE STUDY</h3>
-			  <h3 style="position:absolute; top:950px; left:195px; font-size:22px;color: #1BB4A6;"> Hotel</h3>
-				<div class="middle-left-image-left-indent"><h3 >Problem</h3> Lorem ipsum dolor sit amet, consectetur adipiscing elit </div>
-				<div class="middle-left-image-centered-indent"><h3 >Solution</h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit </div>
-				<div class="middle-left-image-right-indent"><h3 >Result</h3>Lorem ipsum dolor sit amet </div>			
+			<h3 style="position:absolute; top:945px; left:195px; font-size:9px;color: grey;"><b>CASE STUDY</b></h3>
+			<h3 style="position:absolute; top:950px; left:195px; font-size:22px;color: #1BB4A6;"> Hotel</h3>
+				<div class="middle-left-image-left-indent"><h3><b>Problem</b></h3> Lorem ipsum dolor sit amet, consectetur adipiscing elit </div>
+				<div class="middle-left-image-centered-indent"><h3 ><b>Solution</b></h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit </div>
+				<div class="middle-left-image-right-indent"><h3 ><b>Result</b></h3>Lorem ipsum dolor sit amet </div>			
 				<div class="middle-left-image-button" style= "background-color: #1BB4A6;"> <b>New Solution</b></div>
 
 		
 		<div>	
 			<img src="../assets/images/demo-csulb.png" style="position:relative; top:635px; left:500px; width:700px; height:290px; border-radius: 2%" >		
 			<div style= "background-color: #FFF; position:absolute;  top:1485px; left:520px; width:700px; height:330px;  border-radius: 6%; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19), 0 6px 20px 0 rgba(0, 0, 0, 0.19), 0 6px 20px 0 rgba(0, 0, 0, 0.19)"></div>
-		</div>	  
-			  
-			  <h3 style="position:absolute; top:1530px; left:570px; font-size:9px;color: grey;">CASE STUDY</h3>
-			  <h3 style="position:absolute; top:1535px; left:570px; font-size:22px;color: #1BB4A6;"> Brand Solution</h3>
-				<div class="bottom-right-image-left-indent"><h3>Problem</h3> Lorem ipsum dolor sit amet, consectetur adipiscing elit </div>
-				<div class="bottom-right-image-centered-indent"><h3>Solution</h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit </div>
-				<div class="bottom-right-image-right-indent"><h3 >Result</h3>Lorem ipsum dolor sit amet </div>				
+		</div>			  
+			<h3 style="position:absolute; top:1530px; left:570px; font-size:9px;color: grey;"><b>CASE STUDY</b></h3>
+			<h3 style="position:absolute; top:1535px; left:570px; font-size:22px;color: #1BB4A6;"> Brand Solution</h3>
+				<div class="bottom-right-image-left-indent"><h3><b>Problem</b></h3> Lorem ipsum dolor sit amet, consectetur adipiscing elit </div>
+				<div class="bottom-right-image-centered-indent"><h3><b>Solution</b></h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit </div>
+				<div class="bottom-right-image-right-indent"><h3 ><b>Result</b></h3>Lorem ipsum dolor sit amet </div>				
 				<div class="bottom-right-image-button" style= "background-color: #1BB4A6;"> <b>New solution	</b></div>    		 
 	</div>
 </template>
