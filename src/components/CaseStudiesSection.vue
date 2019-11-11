@@ -16,7 +16,7 @@
           <span class="line">Check out these real WebTours and&nbsp;</span>
           <span class="line">see how they're setting the standard</span>
         </p>
-        <a target="_blank" href="" id="study-button" class="button primary-button">Check out case studies</a>
+        <a href="./why" id="study-button" class="button primary-button">Check out case studies</a>
       </div>
     </div>
   </section>
