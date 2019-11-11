@@ -119,7 +119,7 @@ $overlap-y: 5%;
 
       .group {
         &:not(.why-cards) {
-          min-width: 280px;
+          min-width: 150px;
           max-width: 380px;
           width: 35%;
         }
