@@ -68,19 +68,18 @@ export default class HomeSection extends Vue {
         max-width: 700px;
       }
     }
-    #outer{
-      position:absolute;
+
+    #outer {
+      position: absolute;
+      animation: rotating 100s linear infinite;
+      transform-origin: 50% 50%;
+      z-index: -1;
     }
+
     @keyframes rotating {
-        from{
-          transform: rotate(0deg);
-        }
-        to{
-          transform: rotate(360deg);
-        }
-    }
-    #outer{
-      animation:rotating 25s linear infinite;
+      100% {
+        transform: rotate(360deg);
+      }
     }
   }
 
