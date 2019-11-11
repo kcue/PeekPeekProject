@@ -9,10 +9,11 @@
         <h2 class="heading">{{ headingTextLine2 }}</h2>
         <button class="primary-button" @click="onContactButtonClick">{{ contactUsButtonText }}</button>
       </div>
-      <transition name="fade">
+      <transition oname="fade">
         <div class="transition-container" v-if="showContactForm">
-          <div class="contact-form-overlay" @click="exitForm"></div>
-          <ContactForm class="contact-form"></ContactForm>
+            <div class="modal-backdop" @click="exitForm"></div>
+            <ContactForm class="contact-form"></ContactForm>
+          
         </div>
       </transition>
     </div>
@@ -38,6 +39,7 @@ export default class ContactSection extends Vue {
 
   onContactButtonClick() {
     console.log("clicked button");
+    this.showContactForm = true;
   }
 
   exitForm() {
@@ -73,8 +75,21 @@ export default class ContactSection extends Vue {
     display: block;
     margin: 50px auto 0;
   }
-
-  /* TODO: FIX CONTACT FORM */
+  .modal-backdop {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 19;
+  }
+  .transition-container{
+    z-index: 18;
+  }
   .contact-form {
     position: fixed;
     width: 100vw;
