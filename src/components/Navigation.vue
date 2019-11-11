@@ -60,25 +60,39 @@ nav {
   }
 
   button.primary-button {
+    display: inline-block;
     position: relative;
-    width: 30px;
-    display: block;
+    width: 32px;
 
     @include small-screen-landscape {
-      width: 100px;
-      display: inline-block;
+      width: 10vw;
+      min-width: 110px;
+      max-width: 140px; 
+    }
+
+    @include small-screen-landscape {
+      margin-left: 30px;
     }
 
     &:after {
       display: block;
+      font-family: "Font Awesome 5 Free";
+      font-weight: 400;
+      font-size: 1.4em;
       content: "\f0e0";
       position: absolute;
+      width: 100%;
       top: 0;
-      padding: 10px;
+      left: 0;
+      padding: 9px;
 
       @include small-screen-landscape {
         padding: 10px;
-        content: "Contact Us"
+        font-family: "Open Sans";
+        font-size: 1em;
+        font-weight: 700;
+        content: "Contact Us";
+        padding: 10px;
       }
     }
   }
@@ -88,9 +102,8 @@ nav {
 
     li {
       display: inline-block;
-      margin: 10px 20px;
+      margin: 10px 15px;
       text-transform: uppercase;
-
 
       @include small-screen-landscape {
         margin: 10px 30px;

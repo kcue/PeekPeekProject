@@ -183,8 +183,8 @@ $overlap-y: 5%;
             border-radius: 5px;
             box-shadow: 0px 0px 20px rgba(#000, 0.1);
             width: 95%;
-            min-height: 220px;
-            max-height: 300px;
+            min-height: 250px;
+            max-height: 320px;
             height: 40vh;
           }
 
@@ -248,11 +248,7 @@ $overlap-y: 5%;
                   
                   @include medium-screen-landscape {
                     font-size: 0.8em;
-                  }
-                  
-                  @include large-screen-landscape {
-                    font-size: 0.7em;
-                    line-height: 1.7em;
+                    line-height: 1.6em;
                   }
                 }
                 

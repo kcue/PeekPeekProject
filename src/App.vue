@@ -18,6 +18,8 @@ export default class App extends Vue {}
 </script>
 
 <style lang="scss">
+@import "@/assets/css/regular.scss";
+
 /* Reset */
 html {
   box-sizing: border-box;

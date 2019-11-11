@@ -16,8 +16,8 @@ module.exports = {
         data: `
           @import "@/assets/css/_variables.scss";
           @import "@/assets/css/_mixins.scss";
-        `
-      }
+        `,
+      },
     }
   }
 };
