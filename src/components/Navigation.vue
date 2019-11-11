@@ -12,7 +12,9 @@
       <li>
         <span class="nav-item"><router-link to="/why">WHY</router-link></span>
       </li>
-      <button class="primary-button">&nbsp;</button>
+      <li>
+        <button class="primary-button" @click="scrollToContact">&nbsp;</button>
+      </li>
     </ul>
   </nav>
 </template>
@@ -21,6 +23,24 @@
 import { Component, Vue } from "vue-property-decorator";
 
 export default class Navigation extends Vue {
+  scrollToContact() {
+    const contactSection: HTMLElement = document.getElementById('contact-section')!;
+    window.scrollTo({
+      "top": (contactSection.offsetTop) ? contactSection.offsetTop : contactSection.offsetLeft,
+      "left": contactSection.offsetLeft,
+      "behavior": "smooth"
+    })
+    console.log(contactSection.offsetTop + '  ' + contactSection.offsetLeft);
+    
+    // const contactSectionComponent: any = this.$parent.$children[this.$parent.$children.length - 1];
+    // if (window.scrollX === contactSection.offsetLeft) {
+    //   contactSectionComponent.onContactButtonClicked();
+    // } else {
+    //   setTimeout(() => {
+    //     contactSectionComponent.onContactButtonClicked();
+    //   }, 1750)
+    // }
+  }
 }
 </script>
 
@@ -63,15 +83,12 @@ nav {
     display: inline-block;
     position: relative;
     width: 32px;
+    margin: 0;
 
     @include small-screen-landscape {
       width: 10vw;
       min-width: 110px;
       max-width: 140px; 
-    }
-
-    @include small-screen-landscape {
-      margin-left: 30px;
     }
 
     &:after {
@@ -92,7 +109,7 @@ nav {
         font-size: 1em;
         font-weight: 700;
         content: "Contact Us";
-        padding: 10px;
+        padding: 8px;
       }
     }
   }
@@ -102,11 +119,11 @@ nav {
 
     li {
       display: inline-block;
-      margin: 10px 15px;
+      margin: 5px 15px;
       text-transform: uppercase;
 
       @include small-screen-landscape {
-        margin: 10px 30px;
+        margin: 5px 30px;
       }
 
       span {

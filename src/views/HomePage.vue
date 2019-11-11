@@ -48,30 +48,31 @@ export default class Home extends Vue {
   }
 }
 
-if (window.innerHeight > 480 && window.innerWidth > 768) {
+if (window.innerWidth > 768) {
   // Scrolling vertically will move the page horizontally
   // Only activated when the website is stacked horizontally
-  // window.onwheel = event => {
-  //   if (navigator.userAgent.includes('Safari') && !navigator.userAgent.includes('Chrome')) {
-  //     // Need to prevent default behavior for Safari for touchpad scrolling gesture to work
-  //     event.preventDefault();
-  //     window.scrollTo(window.scrollX + event.deltaX + event.deltaY, window.scrollY); // Added deltaX to ensure native horizontal scrolling
-  //   } else {
-  //     // For all other browsers
-  //     window.scrollTo(window.scrollX + event.deltaY, window.scrollY);
-  //   }
-  // }
+  window.onwheel = (event: any) => {
+    console.log(window.scrollX + " delta " + event.deltaX);
+    if (navigator.userAgent.includes('Safari') && !navigator.userAgent.includes('Chrome')) {
+      // Need to prevent default behavior for Safari for touchpad scrolling gesture to work
+      event.preventDefault();
+      window.scrollTo(window.scrollX + event.deltaX + event.deltaY, window.scrollY); // Added deltaX to ensure native horizontal scrolling
+    } else {
+      // For all other browsers
+      window.scrollTo(window.scrollX + event.deltaY, window.scrollY);
+    }
+  }
 }
 </script>
 
 <style lang="scss" scoped>
 /* Home page specific styles here */
 #home-page-container {
-  overflow-x: hidden;
+  // overflow-x: hidden;
 
   @include medium-screen-landscape {
-    overflow-x: scroll;
-    overflow-y: hidden;
+    // overflow-x: scroll;
+    // overflow-y: hidden;
     white-space: nowrap;
     min-height: $site-min-height;
     height: 100vh;
