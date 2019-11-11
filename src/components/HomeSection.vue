@@ -2,7 +2,8 @@
   <section>
     <div class="container" id="home-section-container">
       <div class="home-pic">
-        <img src="../assets/images/home-globe.png" />
+        <img id="inner" src="../assets/images/home-globe-inner.png" />
+        <img id="outer" src="../assets/images/home-globe-outer.png"/>
       </div>
       <div class="home-section-headers">
         <div class="primary">
@@ -50,10 +51,12 @@ export default class HomeSection extends Vue {
     flex-direction: row;
     align-items: center;
   }
-
+  
   .home-pic {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     position: relative;
-    text-align: center;
 
     img {
       width: 90%;
@@ -64,6 +67,20 @@ export default class HomeSection extends Vue {
         width: 80%;
         max-width: 700px;
       }
+    }
+    #outer{
+      position:absolute;
+    }
+    @keyframes rotating {
+        from{
+          transform: rotate(0deg);
+        }
+        to{
+          transform: rotate(360deg);
+        }
+    }
+    #outer{
+      animation:rotating 25s linear infinite;
     }
   }
 
