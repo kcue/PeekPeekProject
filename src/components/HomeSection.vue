@@ -9,8 +9,8 @@
         	<h2 id="minimize-text">Pictures are worth 1,000 words -</h2>
           <h2 id="highlight-text"><span id="degree">360&deg;</span> Virtual Tours: <span id="millions">Millions</span></h2>
           <div class="home-section-buttons">
-            <a class="button primary-button" target="_blank" href="https://www.youtube.com/watch?v=s4EEhXH_pz0">Watch a video</a>
-            <a class="button secondary-button" target="_blank" href="https://www.peekpeek.com/industries">Take a peek</a>
+            <a class="button primary-button" href="#video-section-container">Watch a video</a>
+            <a class="button secondary-button" href="./why">Take a peek</a>
           </div>
         </div>
       </div>
