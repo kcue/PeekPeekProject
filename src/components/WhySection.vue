@@ -114,7 +114,8 @@ $overlap-y: 5%;
       margin-bottom: 3em;
     }
 
-    @include small-screen-landscape {
+    @include medium-screen-landscape {
+      width: 92%;
       margin-top: 10%;
 
       .group {
@@ -125,13 +126,21 @@ $overlap-y: 5%;
         }
         
         &.why-cards {
-          margin-top: -20em;
+          margin-top: -18em;
         }
       }
     }
 
+    @include large-screen-landscape {
+      width: 88%;
+
+      .group.why-cards {
+        margin-top: -20em;
+      }
+    }
+
     h1 {
-      padding-top: 2.5em;
+      padding-top: 2em;
       margin-bottom: 0.4em;
 
       @include medium-screen-landscape {
@@ -183,9 +192,9 @@ $overlap-y: 5%;
             border-radius: 5px;
             box-shadow: 0px 0px 20px rgba(#000, 0.1);
             width: 95%;
-            min-height: 250px;
-            max-height: 320px;
-            height: 40vh;
+            min-height: 220px;
+            max-height: 350px;
+            height: 30vw;
           }
 
           .text-container {
@@ -228,12 +237,17 @@ $overlap-y: 5%;
                 
                 .column-title {
                   font-weight: 700;
-                  font-size: 1.2em;
-                  line-height: 1.2em;
+                  font-size: 1.4em;
+                  line-height: 1.4em;
                   margin-bottom: 0.5em;
+
+                  @include small-screen-landscape {
+                    font-size: 1.2em;
+                    line-height: 1.2em;
+                  }
                   
                   @include medium-screen-landscape {
-                    font-size: 1em;
+                    font-size: 1.1em;
                   }
                   
                   @include large-screen-landscape {
@@ -243,12 +257,19 @@ $overlap-y: 5%;
                 
                 .column-body {
                   font-weight: 400;
-                  font-size: 1em;
-                  line-height: 1.5em;
+                  font-size: 1.1em;
+                  line-height: 1.6em;
+
+                  @include small-screen-landscape {
+                    font-size: 1em;
+                  }
                   
                   @include medium-screen-landscape {
+                    font-size: 0.9em;
+                  }
+
+                  @include large-screen-landscape {
                     font-size: 0.8em;
-                    line-height: 1.6em;
                   }
                 }
                 
