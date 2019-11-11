@@ -12,6 +12,7 @@
       <li>
         <span class="nav-item"><router-link to="/why">WHY</router-link></span>
       </li>
+      <button class="primary-button">&nbsp;</button>
     </ul>
   </nav>
 </template>
@@ -58,6 +59,30 @@ nav {
     }
   }
 
+  button.primary-button {
+    position: relative;
+    width: 30px;
+    display: block;
+
+    @include small-screen-landscape {
+      width: 100px;
+      display: inline-block;
+    }
+
+    &:after {
+      display: block;
+      content: "\f0e0";
+      position: absolute;
+      top: 0;
+      padding: 10px;
+
+      @include small-screen-landscape {
+        padding: 10px;
+        content: "Contact Us"
+      }
+    }
+  }
+
   .nav-buttons {
     margin-left: 20px;
 
@@ -65,6 +90,7 @@ nav {
       display: inline-block;
       margin: 10px 20px;
       text-transform: uppercase;
+
 
       @include small-screen-landscape {
         margin: 10px 30px;

@@ -12,7 +12,7 @@
             <h6 slot="title" class="alt-subheading">{{ item.title }}</h6>
             <div slot="content" class="feature-content">
               <div class="text" v-html="item.content"></div>
-              <a class="button primary-button" href="">{{ item.btnText }}</a>
+              <a class="button primary-button" href="#works-section">{{ item.btnText }}</a>
             </div>
             <img slot="img" :src="imagePath( item.img )"/>  
           </FeatureCard>
