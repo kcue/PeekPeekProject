@@ -12,7 +12,7 @@
       <li>
         <span class="nav-item"><router-link to="/why">WHY</router-link></span>
       </li>
-      <button class="primary-button">Contact Us</button>
+      <button class="primary-button">&nbsp;</button>
     </ul>
   </nav>
 </template>
@@ -60,7 +60,27 @@ nav {
   }
 
   button.primary-button {
-    width: 100px;
+    position: relative;
+    width: 30px;
+    display: block;
+
+    @include small-screen-landscape {
+      width: 100px;
+      display: inline-block;
+    }
+
+    &:after {
+      display: block;
+      content: "\f0e0";
+      position: absolute;
+      top: 0;
+      padding: 10px;
+
+      @include small-screen-landscape {
+        padding: 10px;
+        content: "Contact Us"
+      }
+    }
   }
 
   .nav-buttons {
