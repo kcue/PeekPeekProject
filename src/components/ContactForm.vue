@@ -3,19 +3,21 @@
    
 
     <div class="form-page" id="third-page">
-      <h2 class="heading">Awesome!</h2>
-      <p>We will be working hard to create a customized estimation for you very soon. 
-      <br/>
-        For now, we just need a little bit of information
-        in order to reach out to you.
-      </p>
+      <div class="contact-heading">
+        <h2 class="heading">Awesome!</h2>
+        <p id="working">We will be working hard to create a customized estimation for you very soon. 
+        <br/>
+          For now, we just need a little bit of information
+          in order to reach out to you.
+        </p>
+      </div>
       <div class="form-content-container">
         <div class="name form-element">
           <input placeholder="Name" type="text" v-model="formData.contact.name"/>
         </div>
         <div class="radio-container">
+          <p class="form-element">Industry</p>
           <div class="industry-form-element">
-            <p>Industry</p>
             <input type="radio" id="industry-hospitality" value="hospitality" v-model="formData.contact.industry">
             <label for="industry-hospitality">Hospitality</label>
             <input type="radio" id="industry-restaurant" value="restaurant" v-model="formData.contact.industry">
@@ -26,8 +28,8 @@
             <label for="industry-other">Other</label>
            <!-- <span>{{industry}}</span>  -->
           </div>
+          <p class="form-element">Area</p>
           <div class="location-form-element">
-            <p>Area</p>
             <input type="radio" id="location-los-angeles" value="Los Angeles" v-model="formData.contact.location">
             <label for="location-los-angeles">Los Angeles</label>
             <input type="radio" id="location-orange-county" value="Orange County" v-model="formData.contact.location">
@@ -49,9 +51,9 @@
         <div class="inquiry form-element">
           <textarea placeholder="Inquiry" type="text" v-model="formData.contact.inquiry"/>
         </div>
+        <button class = "primary-button" id="submit-button" @click="printForm">Submit</button>
+        <div class = "bottom-buffer"></div>
       </div>
-
-      <button id="submit-button" @click="printForm">Submit</button>
     </div>
   </div>
 </template>
@@ -140,39 +142,38 @@ export default class Form extends Vue {
 
 <style lang="scss" scoped>
 #form-container {
-  // background-image: url("../assets/images/possible-bg.png");
-  background-position: center; /* Center the image */
-  background-repeat: no-repeat; /* Do not repeat the image */
   background-color: #FFF;
-
-  #submit-button {
-    background: #FBF6F0;
-    color: #16a4a9;
-    border: 3px solid white;
-  }
   
   .form-page {
     width: 100%;
-    height: calc(100% - 4vh);
     position: absolute;
-    top: 2vh;
-
-    transition: left 1s ease;
-
     display: flex;
     flex-direction: column;
-
+  }
+  .contact-heading,.bottom-buffer {
+    background-color: $primary-button-background-color;
   }
 
   #third-page {
     width: 50vw;
     margin-left: 25vw;
     margin-right: 25vw;
-
-    p {
-      color: black;
-      margin-top: 1vh;
+    height:100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    #working{
+      color: white;
       margin-bottom: 1vh;
+    }
+    
+    
+
+    .industry-form-element,.location-form-element{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      flex-wrap: wrap;
     }
 
     button {
@@ -186,15 +187,28 @@ export default class Form extends Vue {
     .form-content-container {
       display: flex;
       flex-direction: column;
-      flex: 1;
-      .form-element
-      .radio-container{
-      }
+      // justify-content: center;
       .form-element{
+     
         margin-top: 1vh;
         margin-bottom: 1vh;
+        input,textarea{
+          width: 100%;
+        }
+        textarea{
+          height:10vh;
+          font:Arial;
+          &::placeholder{
+            font-family: Arial;
+          }
+        }
+        
       }
   
+    }
+
+    .bottom-buffer{
+      height:7vh;
     }
   }
   
