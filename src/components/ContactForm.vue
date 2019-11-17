@@ -1,61 +1,80 @@
 <template>
 		<div id="form-container">
 				<div class="form-page" id="first-page">
-						<h2> 
-							<span class="industry" @click="scrollToIndustry($event)">Industry</span>
-							<span class="location" @click="scrollToLocation($event)">Location</span>
-							<span class="awesome" @click="scrollToCustomerInformation($event)">Awesome!</span>
-						</h2>
 						<div class="form-buttons-container">
-								<div class="form-button" v-for="item in buttonData.industryPage" @click="scrollToLocation($event)" :key="item.id">
-										<span>{{item}}</span>
+								<div class = "oval"></div> 
+								<div class="nav-bar">
+									<h2> 
+									<span class="industry" @click="scrollToIndustry($event)">Industry</span>
+									<span class="location" @click="scrollToLocation($event)">Location</span>
+									<span class="awesome" @click="scrollToCustomerInformation($event)">Awesome!</span>
+									</h2>
 								</div>
+                <div class="button-container">
+  								<div class="form-button" v-for="item in buttonData.industryPage" @click="scrollToLocation($event)" :key="item.id">
+  										<span>{{item}}</span>
+  								</div>
+                </div>
 						</div>
 				</div>
 
 				<div class="form-page" id="second-page">
-						<h2> 
-							<span class="industry" @click="scrollToIndustry($event)">Industry</span>
-							<span class="location"> Location</span>
-							<span class="awesome" @click="scrollToCustomerInformation($event)">Awesome!</span>
-						</h2>
 						<div class="form-buttons-container">
-								<div class="form-button" v-for="item in buttonData.locationPage" @click="scrollToCustomerInformation($event)" :key="item.id">
-										<span>{{item}}</span>
-								</div>
+							<div class="oval"></div>
+							<div class="nav-bar">
+								<h2> 
+									<span class="industry" @click="scrollToIndustry($event)">Industry</span>
+									<span class="location"> Location</span>
+									<span class="awesome" @click="scrollToCustomerInformation($event)">Awesome!</span>
+								</h2>
+							</div>
+              <div class="button-container">
+  							<div class="form-button" v-for="item in buttonData.locationPage" @click="scrollToCustomerInformation($event)" :key="item.id">
+  									<span>{{item}}</span>
+  							</div>
+              </div>
 						</div>
 				</div>
 
 				<div class="form-page" id="third-page">
-						<h2> 
-							<span class="industry" @click="scrollToIndustry($event)">Industry</span>
-						 <span class="location" @click="scrollToLocation($event)">Location</span>
-						 <span class="awesome" @click="scrollToCustomerInformation($event)">Awesome!</span>
-						</h2>
-						<p>We will be working hard to create a customized estimation for you very soon. 
-						<br/>
-								For now, we just need a little bit of information
-								in order to reach out to you.
-						</p>
-						<div class="form-content-container">
-								<div class="name form-element">
-										<input placeholder="Name" type="text" v-model="formData.contact.name"/>
-								</div>
+            <div class="form-content-container">
+              <div class="oval"></div>
+              <div class = "nav-bar">
+    						<h2> 
+    							<span class="industry" @click="scrollToIndustry($event)">Industry</span>
+    						 <span class="location" @click="scrollToLocation($event)">Location</span>
+    						 <span class="awesome" @click="scrollToCustomerInformation($event)">Awesome!</span>
+    						</h2>
+              </div>
+  						<p>We will be working hard to create a customized estimation for you very soon. 
+  						<br/>
+  								For now, we just need a little bit of information
+  								in order to reach out to you.
+  						</p>
+              <div class = "fill-ins">
+    					  <div class="personal-info"> 
+    							<div class="name form-element">
+    									<input placeholder="Name" type="text" v-model="formData.contact.name"/>
+    							</div>
 
-								<div class="email form-element">
-										<input placeholder="Email" type="text" v-model="formData.contact.email"/>
-								</div>
+    							<div class="email form-element">
+    									<input placeholder="Email" type="text" v-model="formData.contact.email"/>
+    							</div>
 
-								<div class="phone form-element">
-										<input placeholder="Phone" type="text" v-model="formData.contact.phone"/>
-								</div>
-
-								<div class="inquiry form-element">
-										<textarea placeholder="Inquiry" type="text" v-model="formData.contact.inquiry"/>
-								</div>
+    							<div class="phone form-element">
+    									<input placeholder="Phone" type="text" v-model="formData.contact.phone"/>
+    							</div>
+                </div>
+                <div class="inquiry">
+    							<div class="inquiry form-element">
+    									<textarea placeholder="Inquiry" type="text" v-model="formData.contact.inquiry"/>
+    							</div>
+                </div>
+              </div>
+              <button class = "primary-button"id="submit-button" @click="printForm">Submit</button>
 						</div>
 
-						<button id="submit-button" @click="printForm">Submit</button>
+						
 				</div>
 		</div>
 </template>
@@ -63,11 +82,11 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 // import $ from 'jquery';
-function 	clearNavDecoration (l1:var,l2:var,len:var) : void {
+function  clearNavDecoration (l1:var,l2:var,len:var) : void {
 	var i;
 	for(i=0;i<len;i++){
-		l1[i].style['text-decoration'] = 'none'; l1[i].style.color = 'white';
-		l2[i].style['text-decoration'] = 'none'; l2[i].style.color = 'white';
+		l1[i].style['text-decoration'] = 'none'; l1[i].style.color = '#00b7c9';
+		l2[i].style['text-decoration'] = 'none'; l2[i].style.color = '#00b7c9';
 	}
 }
 
@@ -148,8 +167,6 @@ export default class Form extends Vue {
 				this.$parent.$data.showContactForm = false;
 		}
 	
-
-	
 		scrollToIndustry(event:MouseEvent){
 			let target: HTMLElement = <HTMLElement> event.srcElement!;
 			let targetHTML = target.tagName === 'SPAN' ? target.innerHTML : target.children[0].innerHTML;
@@ -201,130 +218,148 @@ export default class Form extends Vue {
 
 <style lang="scss" scoped>
 #form-container {
+
 		background-color: white;
-		background-position: center; /* Center the image */
-		background-repeat: no-repeat; /* Do not repeat the image */
-		background-size: cover;
-		#submit-button {
-				background: #FBF6F0;
-				color: #16a4a9;
-				border: 3px solid white;
+		.oval{
+			position: absolute;
+			z-index: 1;
+			width: 75vw;
+			height: 75vh;
+			background: $secondary-description-color;
+			opacity: 25%;
+			border-radius: 50%;
 		}
-		
+   
 		.form-page {
-				width: 100%;
-				height: calc(100% - 4vh);
-				position: absolute;
-				top: 2vh;
-				transition: left 1s ease;
+			width: 100%;
+			position: absolute;
+      height: calc(100% - 4vh);
+			top: 2vh;
+			transition: left 1s ease;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			h2 {
+				color: $alt-heading-color;
+				display: flex;
+				flex-direction: row;
+				justify-content: center;
+				margin-top: 3vh;
+				margin-bottom: 0;
+				font-weight: bold;
+				cursor: pointer;
+				span{
+					padding-right: 2vw;
+				}        
+			}
+
+      .nav-bar{
+        width: 100%;
+        z-index: 2;
+      }
+			.form-buttons-container {
+        height: 100%;
 				display: flex;
 				flex-direction: column;
-				h2 {
-					display: flex;
-					flex-direction: row;
-					justify-content: center;
-					font-size: 6vh;
-					margin-top: 3vh;
-					margin-bottom: 0;
-					text-shadow: 1px 3px 0 rgba(1, 38, 39, 0.5), 1px 13px 5px rgba(1, 38, 39, 0.5);
-					cursor: pointer;
-					span{
-						padding-right: 2vw;
-					}        
-				.clicked-h2{
-					text-decoration: underline;
-				}
-				}
-				.form-buttons-container {
-						flex: 1;
-						display: flex;
-						flex-direction: row;
-						justify-content: space-around;
-						align-items: center;
-						.form-button {
-								color: black;
-								background-color: white;
-								background-position: center; /* Center the image */
-								background-repeat: no-repeat; /* Do not repeat the image */
-								background-size: contain;
-								height: 20vh;
-								width: 20vh;
-								display: flex;
-								flex-direction: column;
-								justify-content: center;
-								cursor: pointer;
-								@for $i from 1 through 8 {
-										&.form-button:nth-child(#{$i}) {
-												transform:  rotate((random(40) - 20) + deg);
-										}
-								}
-								span {
-										font-size: 3vh;
-								}
-						}
-				}
-		}
-		.form-page:nth-child(1) {
-				left: 0%;
-		}
-		.form-page:nth-child(2) {
-				left: 100%;
-		}
-		.form-page:nth-child(3) {
-				left: 200%;
-		}
-		.form-button, h2, p {
-				color: white;
-		}
-		#third-page {
-				width: 50vw;
-				margin-left: 25vw;
-				margin-right: 25vw;
-				p {
-						margin-top: 2vh;
-						margin-bottom: 2vh;
-						font-size: 2vh;
-						line-height: 3vh;
-				}
-				button {
-						margin-bottom: 5vh;
-						width: 30%;
-						align-self: center;
-						cursor: pointer;
-				}
-				.form-content-container {
+				justify-content: center;
+        align-items: center;
+				flex-wrap: wrap;
+        * {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: center;
+        }
+
+				.button-container {
+          display: flex;
+          flex-wrap: wrap;
+          .form-button{
+						z-index: 2;
+						color: $secondary-button-text-color;
+						font-weight: bold;
+						height: 20vh;
+						width: 20vh;
 						display: flex;
 						flex-direction: column;
-						flex: 1;
-						.form-element {
-								display: flex;
-								flex-direction: row;
-								margin-bottom: 2%;
-								display: flex;
-								justify-content: center;
-								input, textarea {
-										width: 70%;
-										border-radius: 2vh;
-										border: none;
-										font-size: 105%;
-										padding-left: 1vw;
-								}
-						}
-						.form-element:first-child {
-								margin-top: 2%;
-						}
-						.form-element:not(:last-child) {
-								height: 10%;
-						}
-						.form-element:last-child {
-								height: 24%;
-								textarea {
-										padding-top: 1vh;
-										resize: none;
-								}
-						}
-				}
-		}
-		
+						justify-content: center;
+						cursor: pointer;
+					}
+          .form-button:nth-child(1){
+            margin-left: 20vw;
+          }
+          .form-button:nth-child(2){
+            margin-right: 40vw;
+          }
+          .form-button:nth-child(3){
+            margin-left: 5vw;
+          }
+        }
+			}
+      .form-content-container {
+        display: flex;
+        height: 100%;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        #submit-button{
+          z-index: 2;
+        }
+        p{
+          color: $secondary-description-color;
+          margin-top: 5vh;
+          margin-bottom: 3vh;
+          font-weight: lighter;
+        }
+        .fill-ins {
+          display: flex;
+          flex-direction: row;
+          margin-bottom: 5vh;
+          .personal-info{
+            margin-right: 2vw;
+          }
+          .inquiry.form-element{
+            height: 100%;
+          }
+        }
+        .form-element {
+          display: flex;
+          flex-direction: row;
+
+          margin-bottom: 1vh;
+          display: flex;
+          width: 25vw;
+          justify-content: center;
+        
+            input, textarea {
+              z-index: 2;
+              width: 100%;
+              border-radius: 2vh;
+              border: none;
+              font-size: 105%;
+              padding-left: 1vw;
+              font-family: Arial;
+            }
+        }
+    	}
+    }
+  	.form-page:nth-child(1) {
+  			left: 0%;
+  	}
+  	.form-page:nth-child(2) {
+  			left: 100%;
+  	}
+  	.form-page:nth-child(3) {
+  			left: 200%;
+  	}
+  	#first-page{
+  		.industry{
+  			color:$heading-color;
+  			text-decoration: underline;
+  		}
+  	}
+
+    
+
 }
 </style>
