@@ -7,21 +7,28 @@
       </div>
       <div class="partners-section-icons">
         <!-- TODO: TURN THIS INTO A LOOP FOR CAROUSEL -->
-        <div class="partners-section-icon-container media" id="Paypal">
-          <img src="../assets/images/partners-paypal.png"/>
-        </div>
-        <div class="partners-section-icon-container media" id="UCI">
-          <img src="../assets/images/partners-uci.png"/>
-        </div>
-        <div class="partners-section-icon-container media" id="Hilton">
-          <img src="../assets/images/partners-hilton.png"/>
-        </div>
-        <div class="partners-section-icon-container media" id="Pierce">
-          <img src="../assets/images/partners-pierce.png"/>
-        </div>
-        <div class="partners-section-icon-container media" id="CSW">
-          <img src="../assets/images/partners-csw.png"/>
-        </div>
+
+          <div class="swiper-container">
+            <div class="swiper-wrapper partners-section-icons">
+              <div class="swiper-slide partners-section-icon-container" id="Paypal">
+                <img src="../assets/images/partners-paypal.png"/>
+              </div>
+              <div class="swiper-slide" id="UCI">
+                <img src="../assets/images/partners-uci.png"/>
+              </div>
+              <div class="swiper-slide" id="Hilton">
+                <img src="../assets/images/partners-hilton.png"/>
+              </div>          
+              <div class="swiper-slide" id="Pierce">
+                <img src="../assets/images/partners-pierce.png"/>
+              </div>          
+              <div class="swiper-slide" id="CSW">
+                <img src="../assets/images/partners-csw.png"/>
+              </div>
+              
+             <div class="swiper-pagination"> </div>              
+            </div>
+          </div>
       </div>
     </div>
   </section>
@@ -31,10 +38,59 @@
 import { Component, Vue } from "vue-property-decorator";
 
 @Component({})
-export default class PartnersSection extends Vue {}
+export default class PartnersSection extends Vue {
+  mounted() {
+    var mySwiper = new Swiper ('.swiper-container', {
+      // Optional parameters
+      direction: 'vertical',
+      loop: true,
+      sliderPerView: "auto",
+      spaceBetween: 10,
+      autoplay: {
+        delay: 1,
+        disableOnInteraction: false,
+      },
+      speed: 10000,
+      freeMode: true,
+      
+    })
+  }
+}
 </script>
 
 <style lang="scss">
+@import "@/assets/css/swiper.min.scss";
+
+.swiper-container {
+  width: 50%;
+  height: 80vh; 
+}
+.swiper-wrapper {
+  -webkit-transition-timing-function: linear !important;
+  -o-transition-timing-function: linear !important;
+  transition-timing-function: linear !important;
+ }
+
+.swiper-slide{
+  width: 100%;
+    
+    /* Center slide text vertically */  
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      -webkit-align-items: center;
+      align-items: center;
+}
+
+
+
 .section#partners-section {
   height: auto;
   min-height: initial;
@@ -76,6 +132,7 @@ export default class PartnersSection extends Vue {}
 
   .partners-section-icons {
     display:flex;
+    transform: rotate (90deg);
     flex-direction: row;
     margin: 40px 0;
     justify-content: center;
@@ -100,6 +157,15 @@ export default class PartnersSection extends Vue {}
         height: 100%;
         width: 100%;
         object-fit: contain;
+      
+      .media  
+      { 
+        -webkit-animation-name: fade-image; 
+        -webkit-animation-duration: 1.5s; 
+        animation-name: fade-image; 
+        animation-duration: 1.5s; 
+      }               
+      
       }
 
     }  

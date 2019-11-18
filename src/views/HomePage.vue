@@ -52,7 +52,6 @@ if (window.innerWidth > 768) {
   // Scrolling vertically will move the page horizontally
   // Only activated when the website is stacked horizontally
   window.onwheel = (event: any) => {
-    console.log(window.scrollX + " delta " + event.deltaX);
     if (navigator.userAgent.includes('Safari') && !navigator.userAgent.includes('Chrome')) {
       // Need to prevent default behavior for Safari for touchpad scrolling gesture to work
       event.preventDefault();
