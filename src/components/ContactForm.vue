@@ -1,18 +1,24 @@
 <template>
 		<div id="form-container">
+        <img 
+          class = "oval"
+          src = "../assets/images/contactform-bg.svg"
+          /> 
 				<div class="form-page" id="first-page">
 						<div class="form-buttons-container">
-								<div class = "oval"></div> 
 								<div class="nav-bar">
 									<h2> 
-									<span class="industry" @click="scrollToIndustry($event)">Industry</span>
-									<span class="location" @click="scrollToLocation($event)">Location</span>
-									<span class="awesome" @click="scrollToCustomerInformation($event)">Awesome!</span>
+  									<span class="industry" @click="scrollToIndustry($event)">Industry</span>
+  									<span class="location" @click="scrollToLocation($event)">Location</span>
+  									<span class="awesome" @click="scrollToCustomerInformation($event)">Awesome!</span>
 									</h2>
 								</div>
                 <div class="button-container">
-  								<div class="form-button" v-for="item in buttonData.industryPage" @click="scrollToLocation($event)" :key="item.id">
-  										<span>{{item}}</span>
+  								<div class="form-button" v-for="item in buttonData.industryPage"
+                    
+                    @click="scrollToLocation($event)" :key="item.id" 
+                  >
+  										<span >{{item[0]}} </span>
   								</div>
                 </div>
 						</div>
@@ -20,7 +26,6 @@
 
 				<div class="form-page" id="second-page">
 						<div class="form-buttons-container">
-							<div class="oval"></div>
 							<div class="nav-bar">
 								<h2> 
 									<span class="industry" @click="scrollToIndustry($event)">Industry</span>
@@ -29,8 +34,9 @@
 								</h2>
 							</div>
               <div class="button-container">
-  							<div class="form-button" v-for="item in buttonData.locationPage" @click="scrollToCustomerInformation($event)" :key="item.id">
-  									<span>{{item}}</span>
+  							<div class="form-button" v-for="item in buttonData.locationPage"
+                 @click="scrollToCustomerInformation($event)" :key="item.id">
+  									<span>{{item[0]}}</span>
   							</div>
               </div>
 						</div>
@@ -38,7 +44,6 @@
 
 				<div class="form-page" id="third-page">
             <div class="form-content-container">
-              <div class="oval"></div>
               <div class = "nav-bar">
     						<h2> 
     							<span class="industry" @click="scrollToIndustry($event)">Industry</span>
@@ -98,12 +103,20 @@ function addNavDecoration (l1:var): void {
 }
 @Component
 export default class Form extends Vue {
-	
+
 		data() {
 				return {
 						buttonData: {
-								industryPage: ['Hospitality', 'Restaurant', 'Campus', 'Other'],
-								locationPage: ['Los Angeles', 'Orange County', 'Riverside', 'Other']
+								industryPage: [
+                  ['Hospitality','blob-1.svg'], 
+                  ['Restaurant','blob-2.svg'], 
+                  ['Campus','blob-3.svg'],
+                  ['Other','blob-4.svg']],
+								locationPage: [
+                  ['Los Angeles','blob-1.svg' ], 
+                  ['Orange County','blob-2.svg'],
+                  ['Riverside','blob-3.svg'], 
+                  ['Other','blob-4.svg']]
 						},
 						formData: {
 								industry: '',
@@ -117,6 +130,9 @@ export default class Form extends Vue {
 						}
 				}
 		}
+    getIMGURL(blob:var){
+      return require('../assets/images/'+blob)
+    }
 		printForm() {
 				let formData = {
 						'industry': this.$data.formData.industry,
@@ -185,6 +201,19 @@ export default class Form extends Vue {
 		}
 		scrollToLocation(event: MouseEvent) {
 			let target: HTMLElement = <HTMLElement> event.srcElement!;
+      console.log(target.parentElement.classList)
+      if (target.parentElement.classList.contains("form-button")) {
+        var sel_locs_button = document.getElementById("first-page").getElementsByClassName("selected"); 
+        console.log(sel_locs_button);
+        if(sel_locs_button.length>0){
+          sel_locs_button[0].classList.remove("selected")
+        }
+      
+       
+        target.parentElement.classList.add("selected");
+      } else {
+        target.classList.add("selected");
+      }
 			let targetHTML = target.tagName === 'SPAN' ? target.innerHTML : target.children[0].innerHTML;
 			this.$data.formData.industry = targetHTML;
 			var locs = document.getElementsByClassName("location"), 
@@ -218,16 +247,16 @@ export default class Form extends Vue {
 
 <style lang="scss" scoped>
 #form-container {
-
-		background-color: white;
+    display: flex; 
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 		.oval{
+      overflow: hidden;
 			position: absolute;
 			z-index: 1;
 			width: 75vw;
 			height: 75vh;
-			background: $secondary-description-color;
-			opacity: 25%;
-			border-radius: 50%;
 		}
    
 		.form-page {
@@ -279,21 +308,25 @@ export default class Form extends Vue {
 						color: $secondary-button-text-color;
 						font-weight: bold;
 						height: 20vh;
-						width: 20vh;
+						width: 23vw;
 						display: flex;
 						flex-direction: column;
 						justify-content: center;
 						cursor: pointer;
+            background-size: contain;
+
+            @for $i from 1 through 4 {
+              &:nth-child(#{$i}) {
+                background: url('../assets/images/blob-#{$i}.svg') no-repeat center;
+
+                &:hover, &.selected {
+                  background: url('../assets/images/blob-#{$i}-selected.svg') no-repeat center; 
+                  color:$contact-choice-selected-color;
+                }
+              }
+            }
 					}
-          .form-button:nth-child(1){
-            margin-left: 20vw;
-          }
-          .form-button:nth-child(2){
-            margin-right: 40vw;
-          }
-          .form-button:nth-child(3){
-            margin-left: 5vw;
-          }
+         
         }
 			}
       .form-content-container {
@@ -302,36 +335,49 @@ export default class Form extends Vue {
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        #submit-button{
+        *{
           z-index: 2;
         }
+       
         p{
-          color: $secondary-description-color;
+          color: darkgrey;
           margin-top: 5vh;
           margin-bottom: 3vh;
           font-weight: lighter;
         }
         .fill-ins {
+          width: 70%;
+          @include medium-screen-landscape{
+            max-width: 60vw;
+          }
+          @include large-screen-landscape{
+            max-width: 40vw;
+          }
           display: flex;
           flex-direction: row;
+          justify-content: center;
           margin-bottom: 5vh;
+
           .personal-info{
-            margin-right: 2vw;
+            width:40%;
+            margin-right: 1vw;
+          }
+          .inquiry{
+            width: 40%
           }
           .inquiry.form-element{
+            width: 100%;
             height: 100%;
           }
         }
         .form-element {
           display: flex;
           flex-direction: row;
-
           margin-bottom: 1vh;
           display: flex;
-          width: 25vw;
           justify-content: center;
-        
             input, textarea {
+              display: flex;
               z-index: 2;
               width: 100%;
               border-radius: 2vh;
