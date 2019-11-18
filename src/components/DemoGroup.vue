@@ -77,7 +77,7 @@ export default class DemoGroup extends Vue {
   }
 
   openCard(elem: HTMLElement, cards: HTMLCollection) {
-    console.log(elem);
+    // console.log(elem);
     
     let foundIndex: number = -1;
     for (let i = 0; i < cards.length; ++i) {
@@ -118,7 +118,7 @@ export default class DemoGroup extends Vue {
   }
 
   closeAll() {
-    console.log("close-button-clicked");
+    // console.log("close-button-clicked");
     // let demo-iframe = document.getElementsByClassName("demo-iframe")!;
     
     // demo-iframe.style.visibility = "hidden";
@@ -178,6 +178,7 @@ $numCards: 4;
     align-items: center;
     justify-content: center;
     height: 100%;
+    
 
     .demo-card {
       position: relative;
@@ -186,12 +187,17 @@ $numCards: 4;
       width: 100%;
       margin-top: 5em;
       transition: margin 1s;
+     
 
       &:nth-child(odd) {
         .text-container {
           left: 5%;
           right: initial;
+          
         }
+        &.hidden {
+            margin: 0 200% 0 0;
+          }
       }
 
       &:nth-child(even) {
@@ -199,9 +205,31 @@ $numCards: 4;
           left: initial;
           right: 5%;
         }
+        &.hidden{
+          margin: 0 0 0 200%;
+          }
+        }
       }
     }
-  }
+
+  iframe {
+    // display: none;
+    height: 60vh;
+    width: 0;
+    top: 20vh;
+    left: 10vw;
+    transition: all 1s ease 0.2s;
+    position: absolute;
+    border-width: 0px;
+    opacity: 0;
+    visibility: hidden;
+    z-index: -1;
+    
+
+    
+    }
+    
+  
 
   .text-container {
     background-color: #FFF;
@@ -214,20 +242,33 @@ $numCards: 4;
     position: absolute;
     top: -2.5em;
 
+
+
+ 
+
+  
+
+    
+
     .demo-title {
       color: $heading-color;
       font-weight: 700;
       font-size: 1em;
-      line-height: 1.2em;
-    }
+      line-height: 1.2em;}
+
+    
+    
 
     .demo-subtitle {
       margin-top: 0.8em;
       color: $primary-description-color;
       font-size: 0.8em;
-      line-height: 1.2em;
-    }
-  }
+      line-height: 1.2em;}
+    
+}
+
+
+
 
   img {
     height: 100%;
@@ -273,12 +314,7 @@ $numCards: 4;
     opacity: 0;
     visibility: hidden;
     z-index: -1;
-    //text-align: center; 
-    // padding:auto;
-    // display: block;
-    // margin-left: 200px;
-    // margin-right: auto;
-    margin:auto;
+    
 
     
     &.active-frame {
@@ -286,16 +322,7 @@ $numCards: 4;
       visibility: visible;
       opacity: 1;
       z-index: 1000;
-      // text-align: center; 
-      // padding:auto;
-      margin:auto;
-    
-      // margin-left: 200px;
-      // margin-right: auto;
 
-      // width: 60vw !important;
-      // height: 60vw !important;
-      // border-radius: 0 !important;
     }
   }
 }
