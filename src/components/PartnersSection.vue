@@ -9,8 +9,8 @@
         <!-- TODO: TURN THIS INTO A LOOP FOR CAROUSEL -->
 
           <div class="swiper-container">
-            <div class="swiper-wrapper">
-              <div class="swiper-slide" id="Paypal">
+            <div class="swiper-wrapper partners-section-icons">
+              <div class="swiper-slide partners-section-icon-container" id="Paypal">
                 <img src="../assets/images/partners-paypal.png"/>
               </div>
               <div class="swiper-slide" id="UCI">
@@ -46,8 +46,12 @@ export default class PartnersSection extends Vue {
       loop: true,
       sliderPerView: "auto",
       spaceBetween: 10,
-      autoplay: true,
-      autoplaySpeed: 200,
+      autoplay: {
+        delay: 1,
+        disableOnInteraction: false,
+      },
+      speed: 10000,
+      freeMode: true,
       
     })
   }
@@ -57,10 +61,15 @@ export default class PartnersSection extends Vue {
 <style lang="scss">
 @import "@/assets/css/swiper.min.scss";
 
-.swiper-container{
+.swiper-container {
   width: 50%;
   height: 80vh; 
 }
+.swiper-wrapper {
+  -webkit-transition-timing-function: linear !important;
+  -o-transition-timing-function: linear !important;
+  transition-timing-function: linear !important;
+ }
 
 .swiper-slide{
   width: 100%;
