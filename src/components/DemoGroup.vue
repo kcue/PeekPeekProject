@@ -7,8 +7,10 @@
         <img slot="img" :src="imagePath(item.img)"/> 
       </FeatureCard>
     </div>
-    <!-- <img @click="closeAll" id="x-button" src="../assets/images/X.png"/> -->
-    <iframe class="demo-iframe" v-for="(item, index) in cardData" :key="index" :id="'demo-frame-' + index" :src="item.iframe"></iframe>
+    <i @click="closeAll" class="far fa-times-circle closed" id="close-button"></i>
+    <div id="iframe">
+     <iframe class="demo-iframe" v-for="(item, index) in cardData" :key="index" :id="'demo-frame-' + index" :src="item.iframe"></iframe>
+    </div>
   </div>
 </template>
 
@@ -22,6 +24,18 @@ import FeatureCard from "@/components/FeatureCard.vue";
   }
 })
 export default class DemoGroup extends Vue {
+  mounted() {
+    let cards = document.getElementById("demo-cards")!.children;
+    for (let i = 0; i < cards.length; ++i) {
+      cards[i].classList.add(i % 2 === 0 ? "even": "odd");
+      cards[i].addEventListener("click", event => {
+          let targetElement: HTMLElement = <HTMLElement> event.srcElement;
+          targetElement = targetElement.className.toString().includes("demo-section-frame") ? targetElement : <HTMLElement> targetElement.parentElement;
+          this.openCard(targetElement!, cards);
+      });
+    }
+  }
+
   data() {
     return {
       imagePath: function (name:string): any {
@@ -61,6 +75,94 @@ export default class DemoGroup extends Vue {
       ]
     }
   }
+
+  openCard(elem: HTMLElement, cards: HTMLCollection) {
+    console.log(elem);
+    
+    let foundIndex: number = -1;
+    for (let i = 0; i < cards.length; ++i) {
+      cards[i].classList.add("hidden");
+      if (cards[i].id != elem.id) {
+        // cards that were not clicked
+        //console.log(cards[i].id + " is not the one you clicked");
+        // cards[i].classList.add("flat");
+      }
+      else{
+          foundIndex = i; // index of card that was clicked
+      }
+    }
+
+    // let fakeCard = document.getElementById("fake-card")!;
+    // fakeCard.style.width = `${elem.clientWidth}px`;
+    // fakeCard.style.height = `${elem.clientHeight}px`;
+    // fakeCard.style.left = `${elem.offsetLeft}px`;
+    // if (foundIndex % 2 === 0) {
+    //     fakeCard.style.top = `${window.innerHeight - elem.clientHeight}px`;
+    //     fakeCard.style.borderRadius = '10px 10px 0px 0px';
+    // } else {
+    //     fakeCard.style.top = `0px`;
+    //     fakeCard.style.borderRadius = '0px 0px 10px 10px';
+    // }
+    // setTimeout(() => {
+    //     fakeCard.style.transition = 'all 1s';
+    //     fakeCard.style.top = '20vh';
+    //     fakeCard.style.left = '10vw';
+    // }, 1000)
+    // elem.classList.add("opened");
+    // fakeCard.classList.add("clicked");
+    // document.getElementById("x-button")!.style.opacity = "1";
+    let closeBtn = document.getElementById("close-button")!;
+    closeBtn!.classList.remove("closed");
+    let currentFrame = document.getElementById(`demo-frame-${foundIndex}`);
+    currentFrame!.classList.add("active-frame");          
+  }
+
+  closeAll() {
+    console.log("close-button-clicked");
+    // let demo-iframe = document.getElementsByClassName("demo-iframe")!;
+    
+    // demo-iframe.style.visibility = "hidden";
+    // iframe.display = none;
+    setTimeout(() => {
+      let cards = document.getElementById("demo-cards")!.children;
+      for (let i = 0; i < cards.length; ++i) {
+        cards[i].classList.remove("hidden");
+      }
+    }, 800);
+
+    let closeBtn = document.getElementById("close-button")!;
+    closeBtn!.classList.add("closed");
+
+    let currentFrame = document.querySelector(".active-frame");
+    currentFrame!.classList.remove("active-frame");
+
+    // let cards = document.getElementsByClassName("demo-section-frames")[0].children;
+
+    // for (let i = 0; i < cards.length; ++i) {
+    //   log.console("1");
+    //     // cards[i].classList.remove("flat");
+    // }
+    // let fakeCard = document.getElementById("fake-card")!;
+    // fakeCard.style.width = '';
+    // fakeCard.style.height = '';
+    // fakeCard.style.left = '';
+    // fakeCard.style.top = '';
+    // fakeCard.style.borderRadius = '';        
+    
+    // fakeCard.classList.remove("clicked");
+    // document.getElementsByClassName("opened")[0].classList.remove("opened");
+    // document.getElementsByClassName("active-frame")[0].classList.remove("active-frame");
+    // let x_button = document.getElementById("x-button")!;     
+    // x_button.style.transition = "transition: opacity .5s ease-in-out 0s";
+    // x_button.style.opacity = "0";
+    // x_button.style.transition = "transition: opacity .5s ease-in-out 1.5s";
+    
+    // setTimeout(() => {
+    //     fakeCard.style.transition = 'all 1s';
+    //     fakeCard.style.top = '20vh';
+    //     fakeCard.style.left = '10vw';
+    // }, 1000)       
+  }
 }
 </script>
 
@@ -83,6 +185,7 @@ $numCards: 4;
       height: 20vh;
       width: 100%;
       margin-top: 5em;
+      transition: margin 1s;
 
       &:nth-child(odd) {
         .text-container {
@@ -111,7 +214,6 @@ $numCards: 4;
     position: absolute;
     top: -2.5em;
 
-
     .demo-title {
       color: $heading-color;
       font-weight: 700;
@@ -134,10 +236,72 @@ $numCards: 4;
     box-shadow: 0px 0px 20px rgba(#000, 0.1);
   }
 
+  #close-button {
+    text-align: left;
+    position: absolute;
+    width: 2em;
+    height: 2em;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 1s ease 0.2s;
+    left: 10vw;
+    top: calc(20vh - 40px);
+    cursor: pointer;
+    z-index: 100;
+
+    &:before {
+      content: "\f057";
+      font-size: 2em;
+      font-style: normal;
+    }
+
+    &.closed {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+
   iframe {
-    display: none; // temporary
+    // display: none;
+    height: 60vh;
+    width: 0;
+    top: 20vh;
+    left: 10vw;
+    transition: all 1s ease 0.2s;
+    position: absolute;
+    border-width: 0px;
+    opacity: 0;
+    visibility: hidden;
+    z-index: -1;
+    //text-align: center; 
+    // padding:auto;
+    // display: block;
+    // margin-left: 200px;
+    // margin-right: auto;
+    margin:auto;
+
+    
+    &.active-frame {
+      width: 60vw;
+      visibility: visible;
+      opacity: 1;
+      z-index: 1000;
+      // text-align: center; 
+      // padding:auto;
+      margin:auto;
+    
+      // margin-left: 200px;
+      // margin-right: auto;
+
+      // width: 60vw !important;
+      // height: 60vw !important;
+      // border-radius: 0 !important;
+    }
   }
 }
+
+
+
 
 @include medium-screen-landscape {
   #demo-group {
@@ -162,7 +326,7 @@ $numCards: 4;
           min-width: initial;
           width: 90%;
           position: absolute;
-          z-index: 100;
+          z-index: 0;
         }
 
         img {
@@ -182,6 +346,10 @@ $numCards: 4;
             left: 5%;
             right: initial;
           }
+
+          &.hidden {
+            margin: 200% 0 0 0;
+          }
         }
 
         &:nth-child(even) {
@@ -192,6 +360,10 @@ $numCards: 4;
             bottom: initial;
             left: 5%;
             right: initial;
+          }
+
+          &.hidden {
+            margin: 0 0 200% 0;
           }
         }
       }
