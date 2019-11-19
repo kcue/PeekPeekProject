@@ -13,16 +13,16 @@
               <div class="swiper-slide partners-section-icon-container" id="Paypal">
                 <img src="../assets/images/partners-paypal.png"/>
               </div>
-              <div class="swiper-slide" id="UCI">
+              <div class="swiper-slide partners-section-icon-container" id="UCI">
                 <img src="../assets/images/partners-uci.png"/>
               </div>
-              <div class="swiper-slide" id="Hilton">
+              <div class="swiper-slide partners-section-icon-container" id="Hilton">
                 <img src="../assets/images/partners-hilton.png"/>
               </div>          
-              <div class="swiper-slide" id="Pierce">
+              <div class="swiper-slide partners-section-icon-container" id="Pierce">
                 <img src="../assets/images/partners-pierce.png"/>
               </div>          
-              <div class="swiper-slide" id="CSW">
+              <div class="swiper-slide partners-section-icon-container" id="CSW">
                 <img src="../assets/images/partners-csw.png"/>
               </div>
               
@@ -46,6 +46,7 @@ export default class PartnersSection extends Vue {
       loop: true,
       sliderPerView: "auto",
       spaceBetween: 10,
+      autoplay: 5000,
       autoplay: {
         delay: 1,
         disableOnInteraction: false,
@@ -62,8 +63,8 @@ export default class PartnersSection extends Vue {
 @import "@/assets/css/swiper.min.scss";
 
 .swiper-container {
-  width: 50%;
-  height: 80vh; 
+  width: 110%;
+  height: 300vh; 
 }
 .swiper-wrapper {
   -webkit-transition-timing-function: linear !important;
@@ -72,6 +73,7 @@ export default class PartnersSection extends Vue {
  }
 
 .swiper-slide{
+  width: 100%;
   width: 100%;
     
     /* Center slide text vertically */  
@@ -150,8 +152,8 @@ export default class PartnersSection extends Vue {
       height: 20vw;
       background-color: rgb(254, 255, 254);
       border-radius: 5px;
-      box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.15);
-      padding: 5%;
+      box-shadow: 0px 20px 20px rgba(0, 0, 0, 0.15);
+      padding: 1%;
 
       img {
         height: 100%;
