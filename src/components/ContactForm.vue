@@ -15,10 +15,9 @@
 								</div>
                 <div class="button-container">
   								<div class="form-button" v-for="item in buttonData.industryPage"
-                    
                     @click="scrollToLocation($event)" :key="item.id" 
                   >
-  										<span >{{item[0]}} </span>
+  										<span >{{item}} </span>
   								</div>
                 </div>
 						</div>
@@ -36,7 +35,7 @@
               <div class="button-container">
   							<div class="form-button" v-for="item in buttonData.locationPage"
                  @click="scrollToCustomerInformation($event)" :key="item.id">
-  									<span>{{item[0]}}</span>
+  									<span>{{item}}</span>
   							</div>
               </div>
 						</div>
@@ -104,19 +103,20 @@ function addNavDecoration (l1:var): void {
 @Component
 export default class Form extends Vue {
 
+
 		data() {
 				return {
 						buttonData: {
 								industryPage: [
-                  ['Hospitality','blob-1.svg'], 
-                  ['Restaurant','blob-2.svg'], 
-                  ['Campus','blob-3.svg'],
-                  ['Other','blob-4.svg']],
+                  'Hospitality',
+                  'Restaurant',
+                  'Campus',
+                  'Other'],
 								locationPage: [
-                  ['Los Angeles','blob-1.svg' ], 
-                  ['Orange County','blob-2.svg'],
-                  ['Riverside','blob-3.svg'], 
-                  ['Other','blob-4.svg']]
+                  'Los Angeles',
+                  'Orange County',
+                  'Riverside', 
+                  'Other']
 						},
 						formData: {
 								industry: '',
@@ -201,21 +201,20 @@ export default class Form extends Vue {
 		}
 		scrollToLocation(event: MouseEvent) {
 			let target: HTMLElement = <HTMLElement> event.srcElement!;
-      console.log(target.parentElement.classList)
-      if (target.parentElement.classList.contains("form-button")) {
+      let targetHTML = target.tagName === 'SPAN' ? target.innerHTML : target.children[0].innerHTML;    
+       if(target.classList.contains("form-button")||target.parentElement.classList.contains("form-button")) {
         var sel_locs_button = document.getElementById("first-page").getElementsByClassName("selected"); 
-        console.log(sel_locs_button);
         if(sel_locs_button.length>0){
           sel_locs_button[0].classList.remove("selected")
         }
-      
-       
-        target.parentElement.classList.add("selected");
-      } else {
-        target.classList.add("selected");
+       this.$data.formData.industry = targetHTML;
+
       }
-			let targetHTML = target.tagName === 'SPAN' ? target.innerHTML : target.children[0].innerHTML;
-			this.$data.formData.industry = targetHTML;
+      if (target.classList.contains("form-button")) {
+        target.classList.add("selected");
+      }else if(target.parentElement.classList.contains("form-button")){
+        target.parentElement.classList.add("selected");
+      }
 			var locs = document.getElementsByClassName("location"), 
 					indus = document.getElementsByClassName("industry"), 
 					awes = document.getElementsByClassName("awesome"),
@@ -223,21 +222,38 @@ export default class Form extends Vue {
 			clearNavDecoration(indus,awes,indus.length);
 			addNavDecoration(locs);
 
+
 			document.getElementById('first-page')!.style.left = '-100%';
 			document.getElementById('second-page')!.style.left = '0';
 			document.getElementById('third-page')!.style.left = '100%';
 		}
 		scrollToCustomerInformation(event: MouseEvent) {
+
 			let target: HTMLElement = <HTMLElement> event.srcElement!;
-			let targetHTML = target.tagName === 'SPAN' ? target.innerHTML : target.children[0].innerHTML;
+      let targetHTML = target.tagName === 'SPAN' ? target.innerHTML : target.children[0].innerHTML;
+      if(target.classList.contains("form-button")||target.parentElement.classList.contains("form-button")) {
+        var sel_locs_button = document.getElementById("second-page").getElementsByClassName("selected"); 
+        if(sel_locs_button.length>0){
+          sel_locs_button[0].classList.remove("selected")
+        }
+        this.$data.formData.location = targetHTML;
+      }
+      if (target.classList.contains("form-button")) {
+        target.classList.add("selected");
+      }else if(target.parentElement.classList.contains("form-button")){
+        target.parentElement.classList.add("selected");
+      }
+
+    
+			
 			var locs = document.getElementsByClassName("location"), 
 					indus = document.getElementsByClassName("industry"), 
 					awes = document.getElementsByClassName("awesome"),
 					i;
 			clearNavDecoration(indus,locs,indus.length);
 			addNavDecoration(awes);
-
-			this.$data.formData.location = targetHTML;
+      
+			
 			document.getElementById('first-page')!.style.left = '-200%';
 			document.getElementById('second-page')!.style.left = '-100%';
 			document.getElementById('third-page')!.style.left = '0';
@@ -251,12 +267,12 @@ export default class Form extends Vue {
     flex-direction: row;
     align-items: center;
     justify-content: center;
+   
 		.oval{
-      overflow: hidden;
 			position: absolute;
 			z-index: 1;
 			width: 75vw;
-			height: 75vh;
+		  height: 65vh;
 		}
    
 		.form-page {
@@ -274,7 +290,6 @@ export default class Form extends Vue {
 				flex-direction: row;
 				justify-content: center;
 				margin-top: 3vh;
-				margin-bottom: 0;
 				font-weight: bold;
 				cursor: pointer;
 				span{
@@ -283,6 +298,11 @@ export default class Form extends Vue {
 			}
 
       .nav-bar{
+        font-size: 2vw;
+        @include medium-screen-landscape{
+          margin-top: 5vh;
+          font-size: 1.3vw;
+        }
         width: 100%;
         z-index: 2;
       }
@@ -290,39 +310,64 @@ export default class Form extends Vue {
         height: 100%;
 				display: flex;
 				flex-direction: column;
-				justify-content: center;
+        justify-content: center;
         align-items: center;
 				flex-wrap: wrap;
-        * {
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          justify-content: center;
-        }
+    
 
 				.button-container {
           display: flex;
           flex-wrap: wrap;
+          max-width: 75vw;
+          @include medium-screen-landscape{
+            max-width: 60vw;
+            height:50vh;
+          }
+          height: 15vh;
           .form-button{
 						z-index: 2;
 						color: $secondary-button-text-color;
+            font-size:2vw;
 						font-weight: bold;
-						height: 20vh;
-						width: 23vw;
+						height: 10vh;
+						width: 14vw;
 						display: flex;
-						flex-direction: column;
+						flex-direction: row;
 						justify-content: center;
+            text-align: center;
 						cursor: pointer;
-            background-size: contain;
-
+            @include medium-screen-landscape{
+              font-size: inherit;
+              width:12vw;
+              height: 13vh;
+            }
             @for $i from 1 through 4 {
               &:nth-child(#{$i}) {
+                
                 background: url('../assets/images/blob-#{$i}.svg') no-repeat center;
-
+                background-size: contain;
+               
                 &:hover, &.selected {
-                  background: url('../assets/images/blob-#{$i}-selected.svg') no-repeat center; 
+                  background: url('../assets/images/blob-#{$i}-selected.svg') no-repeat center;
+                  background-size: contain;
                   color:$contact-choice-selected-color;
                 }
+              }
+            }
+            &:nth-child(odd){
+              display: flex;
+              flex-direction: column;
+              align-self:flex-start; 
+              @include medium-screen-landscape{
+                margin-top: 10vh;
+              }
+            }
+            &:nth-child(even){
+              display: flex;
+              flex-direction: column;
+              align-self:flex-end; 
+              @include medium-screen-landscape{
+               margin-bottom: 15vh;
               }
             }
 					}
@@ -341,7 +386,7 @@ export default class Form extends Vue {
        
         p{
           color: darkgrey;
-          margin-top: 5vh;
+          margin-top: 3vh;
           margin-bottom: 3vh;
           font-weight: lighter;
         }
@@ -389,13 +434,13 @@ export default class Form extends Vue {
         }
     	}
     }
-  	.form-page:nth-child(1) {
+  	#first-page{
   			left: 0%;
   	}
-  	.form-page:nth-child(2) {
+  	#second-page {
   			left: 100%;
   	}
-  	.form-page:nth-child(3) {
+    #third-page{
   			left: 200%;
   	}
   	#first-page{
