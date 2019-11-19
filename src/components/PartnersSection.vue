@@ -120,36 +120,6 @@
               <div class="swiper-slide partners-section-icon-container" id="CSW">
                 <img src="../assets/images/partners-csw.png"/>
               </div>
-               <div class="swiper-slide partners-section-icon-container" id="Paypal">
-                <img src="../assets/images/partners-paypal.png"/>
-              </div>
-              <div class="swiper-slide partners-section-icon-container" id="UCI">
-                <img src="../assets/images/partners-uci.png"/>
-                 <div class="swiper-slide partners-section-icon-container" id="Paypal">
-                <img src="../assets/images/partners-paypal.png"/>
-              </div>
-              <div class="swiper-slide partners-section-icon-container" id="UCI">
-                <img src="../assets/images/partners-uci.png"/>
-              </div>
-              <div class="swiper-slide partners-section-icon-container" id="Hilton">
-                <img src="../assets/images/partners-hilton.png"/>
-              </div>          
-              <div class="swiper-slide partners-section-icon-container" id="Pierce">
-                <img src="../assets/images/partners-pierce.png"/>
-              </div>          
-              <div class="swiper-slide partners-section-icon-container" id="CSW">
-                <img src="../assets/images/partners-csw.png"/>
-              </div>
-              </div>
-              <div class="swiper-slide partners-section-icon-container" id="Hilton">
-                <img src="../assets/images/partners-hilton.png"/>
-              </div>          
-              <div class="swiper-slide partners-section-icon-container" id="Pierce">
-                <img src="../assets/images/partners-pierce.png"/>
-              </div>          
-              <div class="swiper-slide partners-section-icon-container" id="CSW">
-                <img src="../assets/images/partners-csw.png"/>
-              </div>
               
              <div class="swiper-pagination"> </div>              
             </div>
