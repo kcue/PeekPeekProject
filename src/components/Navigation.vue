@@ -1,6 +1,5 @@
 <template>
   <nav>
-    <div class="nav-backdrop"></div>
     <a href="/"><img id="logo" src="../assets/images/logo.png"/></a>
     <ul class="nav-buttons">
       <li>
@@ -46,36 +45,27 @@ export default class Navigation extends Vue {
 
 <style lang="scss">
 nav {
+  background-color: rgba(#FFF, 0.85);
+  transition: all 1s;
   position: fixed;
   top: 25px;
-  right: 10px;
-  transition: all 1s;
   z-index: 10000;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100vw;
+  min-width: $site-min-width;
 
-  @include medium-screen-landscape {
-    top: 40px;
-    right: 20px;
-  }
-
-  .nav-backdrop {
-    background-color: rgba(#FFF, 0.8);
-    border-radius: 50px;
-
-    position: absolute;
-    height: 45px;
-    width: 100vw;
-    z-index: -1;
-  }
 
   #logo {
-    position: fixed;
-    top: 25px;
-    left: 50px;
-    width: 45px;
+    display: inherit;
+    margin: 10px 0 10px 2em;
+    width: 35px;
 
-    @include medium-screen-landscape {
-      top: 40px;
-      left: 70px;
+    @include small-screen-landscape {
+      margin-left: 2.5em;
+      width: 45px;
     }
   }
 

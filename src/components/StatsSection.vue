@@ -38,22 +38,22 @@ export default class StatsSection extends Vue {
         {
           additionalClass: "",
           cardHeading: "82%",
-          cardDescription: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since",
+          cardDescription: "Lorem Ipsum is simply dummy text.",
         },
         {
           additionalClass: "",
           cardHeading: "90%",
-          cardDescription: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since",
+          cardDescription: "Lorem Ipsum is simply dummy text.",
         },
         {
           additionalClass: "highlight",
           cardHeading: "1%",
-          cardDescription: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since",
+          cardDescription: "Lorem Ipsum is simply dummy text.",
         },
         {
           additionalClass: "",
           cardHeading: "Top5",
-          cardDescription: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since",
+          cardDescription: "Lorem Ipsum is simply dummy text.",
         }
       ]
     };
@@ -111,7 +111,7 @@ $overlap-y: 4%;
         display: flex;
         align-items: center;
         background-color: rgb(254, 255, 254);
-        border-radius: 5px;
+        border-radius: 10px;
         box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.15);
 
         @include medium-screen-landscape {
@@ -143,15 +143,15 @@ $overlap-y: 4%;
           }
 
           .card-description {
-            font-size: 0.8em;
+            font-size: 1.2em;
             line-height: 1.7em;
-            margin-top: 2em;
+            margin-top: 1em;
             font-weight: 400;
             color: $secondary-description-color;
 
             @include medium-screen-landscape {
-              font-size: .6em;
-              line-height: 1.8em;
+              font-size: 1em;
+              line-height: 1.7em;
               margin-top: 1.2em;
             }
           }

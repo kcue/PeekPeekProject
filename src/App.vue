@@ -79,6 +79,7 @@ body {
   font-family: $base-font-family;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overscroll-behavior: none;
 
   .heading {
     font-size: 4.2em;
@@ -155,7 +156,7 @@ body {
     }
 
     &:hover {
-      opacity: 0.8;
+      opacity: 0.75;
     }
   }
 }

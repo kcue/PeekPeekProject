@@ -38,6 +38,10 @@ export default class Home extends Vue {
     document.title = "PeekPeek | Home";
   }
 
+  mounted() {
+    AOS.init();
+  }
+
   data() {
     return {
       interludeText: "So, your turn",
