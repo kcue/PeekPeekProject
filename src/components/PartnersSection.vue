@@ -26,6 +26,131 @@
                 <img src="../assets/images/partners-csw.png"/>
               </div>
               
+              
+               <div class="swiper-slide partners-section-icon-container" id="Paypal">
+                <img src="../assets/images/partners-paypal.png"/>
+              </div>
+              <div class="swiper-slide partners-section-icon-container" id="UCI">
+                <img src="../assets/images/partners-uci.png"/>
+              </div>
+              <div class="swiper-slide partners-section-icon-container" id="Hilton">
+                <img src="../assets/images/partners-hilton.png"/>
+              </div>          
+              <div class="swiper-slide partners-section-icon-container" id="Pierce">
+                <img src="../assets/images/partners-pierce.png"/>
+              </div>          
+              <div class="swiper-slide partners-section-icon-container" id="CSW">
+                <img src="../assets/images/partners-csw.png"/>
+              </div>
+              
+               <div class="swiper-slide partners-section-icon-container" id="Paypal">
+                <img src="../assets/images/partners-paypal.png"/>
+              </div>
+              <div class="swiper-slide partners-section-icon-container" id="UCI">
+                <img src="../assets/images/partners-uci.png"/>
+              </div>
+              <div class="swiper-slide partners-section-icon-container" id="Hilton">
+                <img src="../assets/images/partners-hilton.png"/>
+              </div>          
+              <div class="swiper-slide partners-section-icon-container" id="Pierce">
+                <img src="../assets/images/partners-pierce.png"/>
+              </div>          
+              <div class="swiper-slide partners-section-icon-container" id="CSW">
+                <img src="../assets/images/partners-csw.png"/>
+              </div>
+              
+               <div class="swiper-slide partners-section-icon-container" id="Paypal">
+                <img src="../assets/images/partners-paypal.png"/>
+              </div>
+              <div class="swiper-slide partners-section-icon-container" id="UCI">
+                <img src="../assets/images/partners-uci.png"/>
+              </div>
+              <div class="swiper-slide partners-section-icon-container" id="Hilton">
+                <img src="../assets/images/partners-hilton.png"/>
+              </div>          
+              <div class="swiper-slide partners-section-icon-container" id="Pierce">
+                <img src="../assets/images/partners-pierce.png"/>
+              </div>          
+              <div class="swiper-slide partners-section-icon-container" id="CSW">
+                <img src="../assets/images/partners-csw.png"/>
+              </div>
+              
+               <div class="swiper-slide partners-section-icon-container" id="Paypal">
+                <img src="../assets/images/partners-paypal.png"/>
+              </div>
+              <div class="swiper-slide partners-section-icon-container" id="UCI">
+                <img src="../assets/images/partners-uci.png"/>
+              </div>
+              <div class="swiper-slide partners-section-icon-container" id="Hilton">
+                <img src="../assets/images/partners-hilton.png"/>
+              </div>          
+              <div class="swiper-slide partners-section-icon-container" id="Pierce">
+                <img src="../assets/images/partners-pierce.png"/>
+              </div>          
+              <div class="swiper-slide partners-section-icon-container" id="CSW">
+                <img src="../assets/images/partners-csw.png"/>
+              </div>
+               <div class="swiper-slide partners-section-icon-container" id="Paypal">
+                <img src="../assets/images/partners-paypal.png"/>
+              </div>
+              <div class="swiper-slide partners-section-icon-container" id="UCI">
+                <img src="../assets/images/partners-uci.png"/>
+              </div>
+              <div class="swiper-slide partners-section-icon-container" id="Hilton">
+                <img src="../assets/images/partners-hilton.png"/>
+              </div>          
+              <div class="swiper-slide partners-section-icon-container" id="Pierce">
+                <img src="../assets/images/partners-pierce.png"/>
+              </div>          
+              <div class="swiper-slide partners-section-icon-container" id="CSW">
+                <img src="../assets/images/partners-csw.png"/>
+              </div>
+               <div class="swiper-slide partners-section-icon-container" id="Paypal">
+                <img src="../assets/images/partners-paypal.png"/>
+              </div>
+              <div class="swiper-slide partners-section-icon-container" id="UCI">
+                <img src="../assets/images/partners-uci.png"/>
+              </div>
+              <div class="swiper-slide partners-section-icon-container" id="Hilton">
+                <img src="../assets/images/partners-hilton.png"/>
+              </div>          
+              <div class="swiper-slide partners-section-icon-container" id="Pierce">
+                <img src="../assets/images/partners-pierce.png"/>
+              </div>          
+              <div class="swiper-slide partners-section-icon-container" id="CSW">
+                <img src="../assets/images/partners-csw.png"/>
+              </div>
+               <div class="swiper-slide partners-section-icon-container" id="Paypal">
+                <img src="../assets/images/partners-paypal.png"/>
+              </div>
+              <div class="swiper-slide partners-section-icon-container" id="UCI">
+                <img src="../assets/images/partners-uci.png"/>
+                 <div class="swiper-slide partners-section-icon-container" id="Paypal">
+                <img src="../assets/images/partners-paypal.png"/>
+              </div>
+              <div class="swiper-slide partners-section-icon-container" id="UCI">
+                <img src="../assets/images/partners-uci.png"/>
+              </div>
+              <div class="swiper-slide partners-section-icon-container" id="Hilton">
+                <img src="../assets/images/partners-hilton.png"/>
+              </div>          
+              <div class="swiper-slide partners-section-icon-container" id="Pierce">
+                <img src="../assets/images/partners-pierce.png"/>
+              </div>          
+              <div class="swiper-slide partners-section-icon-container" id="CSW">
+                <img src="../assets/images/partners-csw.png"/>
+              </div>
+              </div>
+              <div class="swiper-slide partners-section-icon-container" id="Hilton">
+                <img src="../assets/images/partners-hilton.png"/>
+              </div>          
+              <div class="swiper-slide partners-section-icon-container" id="Pierce">
+                <img src="../assets/images/partners-pierce.png"/>
+              </div>          
+              <div class="swiper-slide partners-section-icon-container" id="CSW">
+                <img src="../assets/images/partners-csw.png"/>
+              </div>
+              
              <div class="swiper-pagination"> </div>              
             </div>
           </div>
@@ -44,9 +169,8 @@ export default class PartnersSection extends Vue {
       // Optional parameters
       direction: 'vertical',
       loop: true,
-      sliderPerView: "auto",
-      spaceBetween: 10,
-      autoplay: 5000,
+      sliderPerView: 4,
+      spaceBetween: 2,
       autoplay: {
         delay: 1,
         disableOnInteraction: false,
@@ -74,7 +198,7 @@ export default class PartnersSection extends Vue {
 
 .swiper-slide{
   width: 100%;
-  width: 100%;
+  height: 50%;
     
     /* Center slide text vertically */  
       display: -webkit-box;
@@ -94,9 +218,8 @@ export default class PartnersSection extends Vue {
 
 
 .section#partners-section {
-  height: auto;
-  min-height: initial;
-  margin: 50px 0;
+  height: 50%;
+  margin: 1px 0;
 
   @include medium-screen-landscape {
     min-width: 800px;
