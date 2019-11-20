@@ -45,7 +45,7 @@ export default class ContactSection extends Vue {
       "left": contactSection.offsetLeft,
       "behavior": "smooth"
     })
-    document.body.width = '100%';
+    document.body.style.width = '100%';
     document.documentElement.style.overflow = 'hidden';
   }
 

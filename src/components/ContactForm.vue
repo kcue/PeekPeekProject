@@ -86,7 +86,7 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 // import $ from 'jquery';
-function  clearNavDecoration (l1:var,l2:var,len:var) : void {
+function  clearNavDecoration (l1, l2, len) : void {
 	var i;
 	for(i=0;i<len;i++){
 		l1[i].style['text-decoration'] = 'none'; l1[i].style.color = '#00b7c9';
@@ -94,7 +94,7 @@ function  clearNavDecoration (l1:var,l2:var,len:var) : void {
 	}
 }
 
-function addNavDecoration (l1:var): void {
+function addNavDecoration (l1): void {
 	var i;
 	for(i=0;i<l1.length;i++){
 		l1[i].style['text-decoration'] = 'underline'; l1[i].style.color= '#002c30';
@@ -130,7 +130,7 @@ export default class Form extends Vue {
 						}
 				}
 		}
-    getIMGURL(blob:var){
+    getIMGURL(blob){
       return require('../assets/images/'+blob)
     }
 		printForm() {
