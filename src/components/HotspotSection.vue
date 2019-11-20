@@ -9,6 +9,10 @@
           <span class="line">your history</span>
         </h2>
         <h4 class="subheading">with the hotspots!</h4>
+        <p class="primary-description">
+          <span class="line">Take a peek at how we bring the&nbsp;</span>
+          <span class="line">following industries to life</span>
+        </p>
       </div>
     </div>
   </section>

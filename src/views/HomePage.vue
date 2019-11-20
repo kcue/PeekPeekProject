@@ -38,9 +38,22 @@ export default class Home extends Vue {
     document.title = "PeekPeek | Home";
   }
 
-  mounted() {
-    
+  beforeRouteEnter(to, from, next) {
+    next(vm => { 
+      globalThis.homeResize = vm.$_.debounce(vm.handleResize, 2000)
+      window.addEventListener('resize', globalThis.homeResize);
+    });
   }
+
+  beforeRouteLeave(to, from, next) {
+    window.removeEventListener('resize', globalThis.homeResize);
+    globalThis.homeResize = undefined;  // workaround
+    next();
+  }
+
+  handleResize(): void {
+    console.log("WEEEEEE");
+  } 
 
   data() {
     return {
