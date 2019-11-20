@@ -45,12 +45,12 @@ export default class ContactSection extends Vue {
       "left": contactSection.offsetLeft,
       "behavior": "smooth"
     })
-    document.documentElement.style.overflow = 'hidden';
+    document.body.style.overflow = 'hidden';
   }
 
   exitForm() {
     this.showContactForm = false;
-    document.documentElement.style.overflow = 'auto';
+    document.body.style.overflow = 'auto';
   }
 }
 </script>

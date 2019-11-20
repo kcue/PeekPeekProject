@@ -39,7 +39,7 @@ export default class Home extends Vue {
   }
 
   mounted() {
-    AOS.init();
+    
   }
 
   data() {

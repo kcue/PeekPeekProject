@@ -376,7 +376,7 @@ export default class Form extends Vue {
 			}
       .form-content-container {
         display: flex;
-        height: 100%;
+        height: 50vh;
         flex-direction: column;
         align-items: center;
         justify-content: center;
