@@ -1,6 +1,6 @@
 <template>
   <nav>
-    <a href="/"><img id="logo" src="../assets/images/logo.png"/></a>
+    <router-link to="/"><img id="logo" src="../assets/images/logo.png"/></router-link>
     <ul class="nav-buttons">
       <li>
         <span class="nav-item"><router-link to="/who">WHO</router-link></span>
@@ -21,15 +21,14 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 
+@Component({
+})
 export default class Navigation extends Vue {
   scrollToContact() {
     const contactSection: HTMLElement = document.getElementById('contact-section')!;
-    window.scrollTo({
-      "top": (contactSection.offsetTop) ? contactSection.offsetTop : contactSection.offsetLeft,
-      "left": contactSection.offsetLeft,
-      "behavior": "smooth"
-    })
-    console.log(contactSection.offsetTop + '  ' + contactSection.offsetLeft);
+    console.log(this);
+    this.appScrollTo("#contact-section");
+    // this.testFunc();
     
     // const contactSectionComponent: any = this.$parent.$children[this.$parent.$children.length - 1];
     // if (window.scrollX === contactSection.offsetLeft) {
@@ -39,6 +38,10 @@ export default class Navigation extends Vue {
     //     contactSectionComponent.onContactButtonClicked();
     //   }, 1750)
     // }
+  }
+
+  mounted() {
+
   }
 }
 </script>

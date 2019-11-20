@@ -14,7 +14,12 @@ import Navigation from "@/components/Navigation.vue";
     Navigation
   }
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+  created() {
+    console.log("created triggered: App");
+
+  }
+}
 </script>
 
 <style lang="scss">
