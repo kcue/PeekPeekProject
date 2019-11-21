@@ -106,7 +106,7 @@ export default class PartnersSection extends Vue {
     max-width: 250px;
     // max-height:150px ;
     width: 20%;
-    height: 100vh;
+    height: 35vh;
     overflow: visible;
 
     .swiper-wrapper {
@@ -117,7 +117,7 @@ export default class PartnersSection extends Vue {
 
     .swiper-slide{
       width: 100%;
-      height: 50%;
+      height: 8%;
       // min-width:100px ;
       // min-height:100px ;
       // max-width:150px;
@@ -156,7 +156,7 @@ export default class PartnersSection extends Vue {
         img {
           // height: 100%;
           // width: 100%;
-          height: 20vw;
+          height: 10vw;
           width: auto;
           object-fit: contain;
         
