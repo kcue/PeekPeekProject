@@ -14,7 +14,7 @@
         <p class="primary-description">90% of customers make purchase decisions based on a website's visual content alone.</p>
         <p class="primary-description">Impress engage and impace potential customers by adding PeekPeek's 360&deg; virtual reality tour to your website. With our results, we could be the best tool in your toolbox</p>
         <h3 id="button-prompt">New challenge?</h3>
-        <a id="solution-button" class="button primary-button" href="./who">New solution</a>
+        <a id="solution-button" class="button primary-button" href="/who">New solution</a>
       </div>
     </div>
   </section>

@@ -21,27 +21,15 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 
-@Component({
-})
+@Component({})
 export default class Navigation extends Vue {
   scrollToContact() {
-    const contactSection: HTMLElement = document.getElementById('contact-section')!;
-    console.log(this);
-    this.appScrollTo("#contact-section");
-    // this.testFunc();
+    Vue.prototype.common.appScrollTo("#contact-section");
     
-    // const contactSectionComponent: any = this.$parent.$children[this.$parent.$children.length - 1];
-    // if (window.scrollX === contactSection.offsetLeft) {
-    //   contactSectionComponent.onContactButtonClicked();
-    // } else {
-    //   setTimeout(() => {
-    //     contactSectionComponent.onContactButtonClicked();
-    //   }, 1750)
-    // }
-  }
-
-  mounted() {
-
+    let contactBtn: HTMLElement = document.querySelector(".contact-section-main button") as HTMLElement;
+    setTimeout(() => {
+      contactBtn.click();
+    }, 500);
   }
 }
 </script>

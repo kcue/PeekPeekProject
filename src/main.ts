@@ -2,12 +2,18 @@ import Vue from "vue";
 import Component from "vue-class-component";
 import App from "./App.vue";
 import router from "./router";
-import Common from "@/mixins/common"
+
 import VueScrollmagic from "vue-scrollmagic";
+
 import _ from 'lodash';
+import common from "@/shared/common"
+
 
 // make lodash globally available as $_
 Object.defineProperty(Vue.prototype, '$_', { value: _ });
+
+// set common methods as globally available
+Object.defineProperty(Vue.prototype, "common", { value: common });
 
 Vue.config.productionTip = false;
 
@@ -19,10 +25,7 @@ Vue.use(VueScrollmagic, {
   refreshInterval: 100
 });
 
-// global mixin
-// for component-specific mixins, set in its corresponding component
-Vue.mixin(Common);
-
+// vue-router hooks
 Component.registerHooks([
     "beforeRouteEnter",
     "beforeRouteLeave",

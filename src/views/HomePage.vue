@@ -39,6 +39,19 @@ export default class Home extends Vue {
   }
 
   beforeRouteEnter(to, from, next) {
+    // Scrolling vertically will move the page horizontally
+    // Only activated when the website is stacked horizontally
+    window.onwheel = (event: any) => {
+      if (navigator.userAgent.includes('Safari') && !navigator.userAgent.includes('Chrome')) {
+        // Need to prevent default behavior for Safari for touchpad scrolling gesture to work
+        event.preventDefault();
+        window.scrollTo(window.scrollX + event.deltaX + event.deltaY, window.scrollY); // Added deltaX to ensure native horizontal scrolling
+      } else {
+        // For all other browsers
+        window.scrollTo(window.scrollX + event.deltaY, window.scrollY);
+      }
+    }
+
     next(vm => { 
       globalThis.homeResize = vm.$_.debounce(vm.handleResize, 2000)
       window.addEventListener('resize', globalThis.homeResize);
@@ -46,6 +59,7 @@ export default class Home extends Vue {
   }
 
   beforeRouteLeave(to, from, next) {
+    window.onwheel = null;
     window.removeEventListener('resize', globalThis.homeResize);
     globalThis.homeResize = undefined;  // workaround
     next();
@@ -65,20 +79,7 @@ export default class Home extends Vue {
   }
 }
 
-if (window.innerWidth > 768) {
-  // Scrolling vertically will move the page horizontally
-  // Only activated when the website is stacked horizontally
-  window.onwheel = (event: any) => {
-    if (navigator.userAgent.includes('Safari') && !navigator.userAgent.includes('Chrome')) {
-      // Need to prevent default behavior for Safari for touchpad scrolling gesture to work
-      event.preventDefault();
-      window.scrollTo(window.scrollX + event.deltaX + event.deltaY, window.scrollY); // Added deltaX to ensure native horizontal scrolling
-    } else {
-      // For all other browsers
-      window.scrollTo(window.scrollX + event.deltaY, window.scrollY);
-    }
-  }
-}
+
 </script>
 
 <style lang="scss" scoped>

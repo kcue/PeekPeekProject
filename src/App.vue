@@ -16,8 +16,7 @@ import Navigation from "@/components/Navigation.vue";
 })
 export default class App extends Vue {
   created() {
-    console.log("created triggered: App");
-
+    Vue.prototype.common.initScrollTo();
   }
 }
 </script>

@@ -10,7 +10,7 @@
           <span class="line">It's the full&nbsp;</span>
           <span class="line">experience</span>
         </h3>
-        <a id="learn-button" class="button primary-button" href="./what">Learn More</a>
+        <a id="learn-button" class="button primary-button" href="/what">Learn More</a>
       </div>
       <div class="video-wrapper" onclick="openLink()">
         <iframe class="media" id="firstVideo" 

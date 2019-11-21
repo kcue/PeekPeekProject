@@ -39,12 +39,7 @@ export default class ContactSection extends Vue {
   onContactButtonClick() {
     console.log("clicked button");
     this.showContactForm = true;
-    const contactSection: HTMLElement = document.getElementById('contact-section')!;
-    window.scrollTo({
-      "top": (contactSection.offsetTop) ? contactSection.offsetTop : contactSection.offsetLeft,
-      "left": contactSection.offsetLeft,
-      "behavior": "smooth"
-    })
+    Vue.prototype.common.appScrollTo("#contact-section");
     document.body.style.overflow = 'hidden';
   }
 

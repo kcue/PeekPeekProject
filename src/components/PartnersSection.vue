@@ -3,7 +3,7 @@
     <div class="container" id="partners-section-container">
       <div class="partners-section-text">
         <h2 class="heading" id="branding"><b>Trusted by</b> </h2>
-        <a id="learn-button" class="button primary-button" href="./what">Learn More</a>
+        <a id="learn-button" class="button primary-button" href="/what">Learn More</a>
       </div>
       <div class="partners-section-icons">
         <!-- TODO: TURN THIS INTO A LOOP FOR CAROUSEL -->
