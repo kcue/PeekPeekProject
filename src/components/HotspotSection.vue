@@ -53,14 +53,6 @@ export default class HotspotSection extends Vue {
     display: inline-block;
     margin: 0;
     min-width: 1200px;
-
-    // &:before {
-    //   display: inline-block;
-    //   content: '';
-    //   vertical-align: middle;
-    //   height: 100vh;
-    //   min-height: $site-min-height;
-    // }
   }
 
   #hotspot-section-container {
@@ -73,7 +65,6 @@ export default class HotspotSection extends Vue {
       display: flex;
       flex-direction: row;
       justify-content: center;
-      // vertical-align: middle;
       height: $site-min-height;
     }
 
@@ -85,17 +76,15 @@ export default class HotspotSection extends Vue {
   // wrapper defines the size of the whole animation container
   #city-wrapper {
     width: 90%;
-    height: auto;
-
+    height: 40vh;
+    min-height: 300px;
+    
     @include medium-screen-landscape {
       width: 70%;
       height: 70%;
       margin-top: 5%;
       margin-left: 5%;
       align-self: flex-start;
-      // position: absolute;
-      // top: 5%;
-      // left: 5%;
     }
   }
 
@@ -103,7 +92,6 @@ export default class HotspotSection extends Vue {
     background-color:rgba(255, 255, 255, 0.00);
     
     #city-canvas {
-      // position: absolute;
       display: block;
       background-color: rgba(255, 255, 255, 0.00);
     }
