@@ -16,6 +16,8 @@ import Navigation from "@/components/Navigation.vue";
   }
 })
 export default class App extends Vue {
+  transitionDelay: number = 300 /* ms */;
+
   created() {
     // initialize scroll to element
     Vue.prototype.common.initScrollTo();
@@ -25,14 +27,14 @@ export default class App extends Vue {
       document.getElementById("stage-curtain")!.classList.remove("open");
       setTimeout(() => {
         next();
-      }, 250);
+      }, this.transitionDelay);
     });
 
     // add delay 
     this.$router.afterEach((to, from) => {
       setTimeout(() => {
         document.getElementById("stage-curtain")!.classList.add("open");
-      }, 500);
+      }, this.transitionDelay);
     });
   }
 
@@ -40,7 +42,7 @@ export default class App extends Vue {
     // initial transition on first visit
     setTimeout(() => {
       document.getElementById("stage-curtain")!.classList.add("open");
-    }, 500);
+    }, this.transitionDelay);
   }
 }
 </script>
@@ -117,7 +119,7 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    transition: opacity 0.5s;
+    transition: opacity 0.3s;
     opacity: 1;
     z-index: 500;
 
