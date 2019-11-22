@@ -13,9 +13,8 @@ const common = {
   },
 
   initScrollTo: () => {
-    var viewport: any = common.getViewportSize();
-
     Vue.prototype.$scrollmagic.handleScrollTo = function (target) {
+      var viewport: any = common.getViewportSize();
       var offsetX: any = (viewport.width - target.offsetWidth) / 2;
       var offsetY: any = (viewport.height - target.offsetHeight) / 2;
       console.log(offsetX);
