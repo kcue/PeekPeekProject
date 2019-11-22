@@ -33,31 +33,44 @@ import { Component, Vue } from "vue-property-decorator";
 
 @Component({})
 export default class PartnersSection extends Vue {
-  mounted() {
-    var mySwiper = new Swiper (".swiper-container", {
-      // Optional parameters
-      direction: "horizontal",
-      updateOnWindowResize: true,
-      loop: true,
-      loopedSlides: 4,
-      loopAdditionalSlides: 8,
-      sliderPerView: "auto",
-      spaceBetween: 30,
-      autoplay: {
-        delay: 1,
-        disableOnInteraction: false,
-      },
-      speed: 10000,
-      freeMode: true,
-      freeModeMomentumBounce: false,
-      // freeModeMomentumRatio: .1,
-      // freeModeSticky: true,
-      breakpoints: {
-        768: {
-          direction: "vertical",
-        }
+  numLogos: number = 5;
+  mySwiper: any = {};
+  swiperResizeHandler: any = Vue.prototype.$_.debounce(this.swiperUpdate, 2000);
+  swiperOptions: object = {
+    direction: "horizontal",
+    loop: true,
+    loopedSlides: this.numLogos,
+    loopAdditionalSlides: this.numLogos * 2,
+    sliderPerView: "auto",
+    spaceBetween: 20,
+    autoplay: {
+      delay: 1,
+      disableOnInteraction: false,
+    },
+    speed: 10000,
+    freeMode: true,
+    freeModeMomentumBounce: false,
+    breakpoints: {
+      768: {
+        direction: "vertical",
       }
-    })
+    },
+  }
+
+  swiperUpdate() {
+    this.mySwiper.destroy(false, true);
+    this.mySwiper = new Swiper (".swiper-container", this.swiperOptions);
+  }
+
+  mounted() {
+    console.log("PARTNERS SECTION MOUNTED")
+    this.mySwiper = new Swiper (".swiper-container", this.swiperOptions);
+    window.addEventListener('resize', this.swiperResizeHandler);
+  }
+
+  beforeDestroy() {
+    window.removeEventListener('resize', this.swiperResizeHandler);
+    this.mySwiper.destroy(true, true);
   }
 }
 </script>
@@ -66,8 +79,6 @@ export default class PartnersSection extends Vue {
 @import "@/assets/css/swiper.min.scss";
 
 .section#partners-section {
-  height: 50%;
-
   @include medium-screen-landscape {
     min-width: 800px;
     width: auto;
@@ -81,7 +92,7 @@ export default class PartnersSection extends Vue {
     flex-direction: column;
     justify-content: center;
 
-    @include medium-screen-landscape{
+    @include medium-screen-landscape {
       display: flex;
       flex-direction: row;
     }
@@ -91,9 +102,14 @@ export default class PartnersSection extends Vue {
     min-width: 450px;
     width: 30vw;
     margin-left: 20px;
+    margin-bottom: 3em;
     display: flex;
     flex-direction: column;
     justify-content: center;
+
+    @include medium-screen-landscape {
+      margin-bottom: 0;
+    }
   }
 
   #learn-button {
@@ -101,94 +117,47 @@ export default class PartnersSection extends Vue {
   }
 
   #logo-slider {
-    min-width: 200px ;
-    // min-height: 200px ;
-    max-width: 250px;
-    // max-height:150px ;
-    width: 20%;
-    height: 35vh;
+    width: 20vh;
+    min-width: 150px;
+    max-width: 200px;
+    height: 20vh;
+    min-height: 150px;
+    max-height: 200px;
     overflow: visible;
 
-    .swiper-wrapper {
-      -webkit-transition-timing-function: linear !important;
-      -o-transition-timing-function: linear !important;
-      transition-timing-function: linear !important;
+    @include medium-screen-landscape {
+      min-width: 170px;
+      max-width: 200px;
+      min-height: 170px;
+      max-height: 200px;
     }
 
     .swiper-slide{
-      width: 100%;
-      height: 8%;
-      // min-width:100px ;
-      // min-height:100px ;
-      // max-width:150px;
-      // max-height:150px ;
-      // width: 20vw;
-      // height: 20vw;
-
-      /* Center slide text vertically */  
+      /* Center slide contents */  
       display: flex;
       justify-content: center;
       align-items: center;
     }
 
     .swiper-wrapper {
-      // display:flex;
-      // transform: rotate (90deg);
-      // flex-direction: row;
+      -webkit-transition-timing-function: linear !important;
+      -o-transition-timing-function: linear !important;
+      transition-timing-function: linear !important;
       margin: 0;
-      // justify-content: center;
-      // flex-wrap: nowrap;
 
       .logo {
-        // margin-top: 20px;
-        // margin-left: 20px;
-        // min-width:100px ;
-        // min-height:100px ;
-        // max-width:150px;
-        // max-height:150px ;
-        // width: 20vw;
-        // height: 20vw;
         background-color: rgb(254, 255, 254);
         border-radius: 5px;
-        box-shadow: 0px 20px 20px rgba(0, 0, 0, 0.15);
-        // padding: 1%;
+        box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
 
         img {
-          // height: 100%;
-          // width: 100%;
-          height: 10vw;
-          width: auto;
-          object-fit: contain;
-        
-        // .media  
-        // { 
-        //   -webkit-animation-name: fade-image; 
-        //   -webkit-animation-duration: 1.5s; 
-        //   animation-name: fade-image; 
-        //   animation-duration: 1.5s; 
-        // }               
+          height: 60%;
+          width: 60%;
+          object-fit: contain;              
         }
       }
     }  
-  }
-
-  @include medium-screen-landscape{
-    .swiper-wrapper {
-      // flex-direction: column;
-      // align-items: left;
-
-      .logo {
-        // margin-top: 30px;
-        // padding: 10%;
-
-        img {
-          // height: 100%;
-          // width: 100%;
-          object-fit: contain;
-        }
-      }       
-    }
-  }   
+  } 
 }
   
 </style>
