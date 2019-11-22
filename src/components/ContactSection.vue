@@ -58,6 +58,10 @@ export default class ContactSection extends Vue {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-image: url("../assets/images/contact-ring-1.svg"), url("../assets/images/contact-ring-2.svg"), url("../assets/images/contact-ring-3.svg"), url("../assets/images/contact-ring-4.svg");
+  background-repeat: no-repeat, no-repeat;
+  background-size: 75% 75%;
+  background-position: center;
 
   .contact-section-interlude {
     h2 {
