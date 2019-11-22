@@ -63,7 +63,6 @@ export default class PartnersSection extends Vue {
   }
 
   mounted() {
-    console.log("PARTNERS SECTION MOUNTED")
     this.mySwiper = new Swiper (".swiper-container", this.swiperOptions);
     window.addEventListener('resize', this.swiperResizeHandler);
   }
