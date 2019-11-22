@@ -38,7 +38,7 @@ export default class Home extends Vue {
     document.title = "PeekPeek | Home";
   }
 
-  beforeRouteEnter(to, from, next) {
+  mounted() {    
     // Scrolling vertically will move the page horizontally
     // Only activated when the website is stacked horizontally
     window.onwheel = (event: any) => {
@@ -51,7 +51,9 @@ export default class Home extends Vue {
         window.scrollTo(window.scrollX + event.deltaY, window.scrollY);
       }
     }
+  }
 
+  beforeRouteEnter(to, from, next) {
     next(vm => { 
       globalThis.homeResize = vm.$_.debounce(vm.handleResize, 2000)
       window.addEventListener("resize", globalThis.homeResize);
@@ -66,7 +68,8 @@ export default class Home extends Vue {
   }
 
   handleResize(): void {
-    console.log("WEEEEEE");
+    // this is the resize handler
+    console.log("called handleResize");
   } 
 
   data() {
