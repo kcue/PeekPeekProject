@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <Navigation id="floating-nav" />
+    <div id="stage-curtain"></div>
     <router-view></router-view>
   </div>
 </template>
@@ -16,7 +17,30 @@ import Navigation from "@/components/Navigation.vue";
 })
 export default class App extends Vue {
   created() {
+    // initialize scroll to element
     Vue.prototype.common.initScrollTo();
+
+    // add delay before transitioning to a different router page
+    this.$router.beforeEach((to, from, next) => {
+      document.getElementById("stage-curtain")!.classList.remove("open");
+      setTimeout(() => {
+        next();
+      }, 250);
+    });
+
+    // add delay 
+    this.$router.afterEach((to, from) => {
+      setTimeout(() => {
+        document.getElementById("stage-curtain")!.classList.add("open");
+      }, 500);
+    });
+  }
+
+  mounted() {
+    // initial transition on first visit
+    setTimeout(() => {
+      document.getElementById("stage-curtain")!.classList.add("open");
+    }, 500);
   }
 }
 </script>
@@ -84,6 +108,23 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overscroll-behavior: none;
+
+  #stage-curtain {
+    background-color: $main-background-color;
+    pointer-events: none;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transition: opacity 0.5s;
+    opacity: 1;
+    z-index: 500;
+
+    &.open {
+      opacity: 0;
+    }
+  }
 
   .heading {
     font-size: 4.2em;

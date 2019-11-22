@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
 
-// import Home from "./views/HomePage.vue";
+import Home from "./views/HomePage.vue";
 import Who from "./views/WhoPage.vue";
 import What from "./views/WhatPage.vue";
 import Why from "./views/WhyPage.vue";
@@ -16,9 +16,7 @@ export default new Router({
     {
       path: "/",
       name: "home",
-      component: () =>
-        /* webpackChunkName: "home" */
-        import("./views/HomePage.vue")
+      component: Home,
     },
     {
       path: "/who",
