@@ -30,7 +30,9 @@ const common = {
 
   appScrollTo: (selector) => {
     var elem: any = document.querySelector(selector);
-    Vue.prototype.$scrollmagic.scrollTo(elem);
+    if (elem != undefined) {
+      Vue.prototype.$scrollmagic.scrollTo(elem);
+    }
   }
 }
 

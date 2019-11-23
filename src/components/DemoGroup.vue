@@ -29,6 +29,7 @@ export default class DemoGroup extends Vue {
     for (let i = 0; i < cards.length; ++i) {
       cards[i].classList.add(i % 2 === 0 ? "even": "odd");
       cards[i].addEventListener("click", event => {
+          console.log("clicked card");
           let targetElement: HTMLElement = <HTMLElement> event.srcElement;
           targetElement = targetElement.className.toString().includes("demo-section-frame") ? targetElement : <HTMLElement> targetElement.parentElement;
           this.openCard(targetElement!, cards);
