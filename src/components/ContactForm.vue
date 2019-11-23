@@ -1,15 +1,19 @@
 <template>
-		<div id="form-container">
-        <img class="oval" :src="formSVG" /> 
+
+		<div id="form-container" >
+        <div class = "oval"></div>
+        
+        <div class="nav-bar">
+          <h2> 
+            <span class="industry" @click="scrollToIndustry($event)">Industry</span>
+            <span class="location" @click="scrollToLocation($event)">Location</span>
+            <span class="awesome" @click="scrollToCustomerInformation($event)">Awesome!</span>
+          </h2>
+        </div>
+
 				<div class="form-page" id="first-page">
 						<div class="form-buttons-container">
-								<div class="nav-bar">
-									<h2> 
-  									<span class="industry" @click="scrollToIndustry($event)">Industry</span>
-  									<span class="location" @click="scrollToLocation($event)">Location</span>
-  									<span class="awesome" @click="scrollToCustomerInformation($event)">Awesome!</span>
-									</h2>
-								</div>
+								
                 <div class="button-container">
   								<div class="form-button" v-for="item in buttonData.industryPage"
                     @click="scrollToLocation($event)" :key="item.id" 
@@ -22,13 +26,7 @@
 
 				<div class="form-page" id="second-page">
 						<div class="form-buttons-container">
-							<div class="nav-bar">
-								<h2> 
-									<span class="industry" @click="scrollToIndustry($event)">Industry</span>
-									<span class="location"> Location</span>
-									<span class="awesome" @click="scrollToCustomerInformation($event)">Awesome!</span>
-								</h2>
-							</div>
+							
               <div class="button-container">
   							<div class="form-button" v-for="item in buttonData.locationPage"
                  @click="scrollToCustomerInformation($event)" :key="item.id">
@@ -40,13 +38,7 @@
 
 				<div class="form-page" id="third-page">
             <div class="form-content-container">
-              <div class = "nav-bar">
-    						<h2> 
-    							<span class="industry" @click="scrollToIndustry($event)">Industry</span>
-    						 <span class="location" @click="scrollToLocation($event)">Location</span>
-    						 <span class="awesome" @click="scrollToCustomerInformation($event)">Awesome!</span>
-    						</h2>
-              </div>
+             
   						<p>We will be working hard to create a customized estimation for you very soon. 
   						<br/>
   								For now, we just need a little bit of information
@@ -181,8 +173,9 @@ export default class Form extends Vue {
 												// alert('Oops... ' + JSON.stringify(error));
 												// });
 												//console.log('printForm started');
-				this.$parent.$data.showContactForm = false;
-		}
+				// this.$parent.$data.showContactForm = false;
+		    this.$emit('exitForm');
+    }
 	
 		scrollToIndustry(event:MouseEvent){
 			let target: HTMLElement = <HTMLElement> event.srcElement!;
@@ -264,18 +257,51 @@ export default class Form extends Vue {
 
 <style lang="scss" scoped>
 #form-container {
+  
     display: flex; 
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
    
 		.oval{
 			position: absolute;
 			z-index: 1;
 			width: 75vw;
-		  height: 65vh;
+		  height: 70vh;
+      background: url("../assets/images/contactform-bg.svg") no-repeat center;
+      background-size: contain;
 		}
-   
+    .nav-bar{
+        display: flex;
+        flex-direction: column;
+        font-size: 2vw;
+        margin-top: 20vh;
+
+        @include medium-screen-landscape{
+          margin-top: 10vh;
+          font-size: 1.3vw;
+        }
+        width: 100%;
+        z-index: 2;
+        h2 {
+        color: $alt-heading-color;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin-top: 3vh;
+        font-weight: bold;
+        cursor: pointer;
+
+        span{
+          padding-right: 2vw;
+          &:hover{
+            color: $heading-color;
+            text-decoration: underline;
+          }
+
+        }        
+      }
+    }
 		.form-page {
 			width: 100%;
 			position: absolute;
@@ -285,28 +311,9 @@ export default class Form extends Vue {
 			display: flex;
 			flex-direction: column;
 			justify-content: center;
-			h2 {
-				color: $alt-heading-color;
-				display: flex;
-				flex-direction: row;
-				justify-content: center;
-				margin-top: 3vh;
-				font-weight: bold;
-				cursor: pointer;
-				span{
-					padding-right: 2vw;
-				}        
-			}
+			
 
-      .nav-bar{
-        font-size: 2vw;
-        @include medium-screen-landscape{
-          margin-top: 5vh;
-          font-size: 1.3vw;
-        }
-        width: 100%;
-        z-index: 2;
-      }
+     
 			.form-buttons-container {
         height: 100%;
 				display: flex;
@@ -372,7 +379,6 @@ export default class Form extends Vue {
               }
             }
 					}
-         
         }
 			}
       .form-content-container {
@@ -392,17 +398,18 @@ export default class Form extends Vue {
           font-weight: lighter;
         }
         .fill-ins {
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          margin-bottom: 1vh;
           width: 70%;
           @include medium-screen-landscape{
+            margin-bottom: 5vh;
             max-width: 60vw;
           }
           @include large-screen-landscape{
             max-width: 40vw;
           }
-          display: flex;
-          flex-direction: row;
-          justify-content: center;
-          margin-bottom: 5vh;
 
           .personal-info{
             width:40%;

@@ -13,7 +13,7 @@
       <transition oname="fade">
         <div class="transition-container" v-if="showContactForm">
             <div class="modal-backdop" @click="exitForm"></div>
-            <ContactForm class="contact-form"></ContactForm>
+            <ContactForm @exitForm = "exitForm()" class="contact-form"></ContactForm>
           
         </div>
       </transition>
@@ -45,11 +45,25 @@ export default class ContactSection extends Vue {
     this.showContactForm = true;
     Vue.prototype.common.appScrollTo("#contact-section");
     document.body.style.overflow = 'hidden';
+    window.onwheel = (event: any) => {
+      ;
+    }
   }
 
   exitForm() {
     this.showContactForm = false;
     document.body.style.overflow = "auto";
+    document.body.style.overflow = 'auto';
+    window.onwheel = (event: any) => {
+      if (navigator.userAgent.includes('Safari') && !navigator.userAgent.includes('Chrome')) {
+        // Need to prevent default behavior for Safari for touchpad scrolling gesture to work
+        event.preventDefault();
+        window.scrollTo(window.scrollX + event.deltaX + event.deltaY, window.scrollY); // Added deltaX to ensure native horizontal scrolling
+      } else {
+        // For all other browsers
+        window.scrollTo(window.scrollX + event.deltaY, window.scrollY);
+      }
+    }
   }
 
   mounted() {
@@ -155,7 +169,7 @@ export default class ContactSection extends Vue {
     width: 100vw;
     height: 80vh;
     left: 0;
-    top: 10vh;
+    top: 15vh;
     border-radius: 2vh;
     z-index: 20;
   }
