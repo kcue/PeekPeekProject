@@ -83,6 +83,7 @@ nav {
       top: 0;
       left: 0;
       padding: 9px;
+      pointer-events: none;
 
       @include small-screen-landscape {
         padding: 10px;
