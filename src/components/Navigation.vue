@@ -1,6 +1,6 @@
 <template>
   <nav>
-    <router-link to="/"><img id="logo" src="../assets/images/logo.png"/></router-link>
+    <router-link to="/"><img id="logo" src="../assets/images/logo.png" @click="common.appScrollTo('#home-section')" /></router-link>
     <ul class="nav-buttons">
       <li>
         <span class="nav-item"><router-link to="/who">WHO</router-link></span>
