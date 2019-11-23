@@ -215,7 +215,7 @@ $numCards: 4;
         }
 
         &.hidden {
-          transform: translateX(100vw);
+          transform: translateX(120vw);
         }
       }
 
@@ -226,7 +226,7 @@ $numCards: 4;
         }
 
         &.hidden{
-          transform: translateX(-100vw);
+          transform: translateX(-120vw);
         }
       }
     }
@@ -403,7 +403,7 @@ $numCards: 4;
           }
 
           &.hidden {
-            transform: translateY(100vh);
+            transform: translateY(120vh);
           }
         }
 
@@ -418,7 +418,7 @@ $numCards: 4;
           }
 
           &.hidden {
-            transform: translateY(-100vh);
+            transform: translateY(-120vh);
           }
         }
       }

@@ -1,6 +1,8 @@
 import { Vue } from "vue-property-decorator";
 import { TweenMax, ScrollToPlugin } from "gsap/all";
 
+const plugin = [ ScrollToPlugin ];
+
 const common = {  
   getViewportSize: () => {
     var e: any = window;
