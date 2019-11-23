@@ -1,9 +1,6 @@
 <template>
 		<div id="form-container">
-        <img 
-          class = "oval"
-          src = "../assets/images/contactform-bg.svg"
-          /> 
+        <img class="oval" :src="formSVG" /> 
 				<div class="form-page" id="first-page">
 						<div class="form-buttons-container">
 								<div class="nav-bar">
@@ -85,6 +82,8 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import FormSVG from "@/assets/images/contactform-bg.svg"
+
 // import $ from 'jquery';
 function  clearNavDecoration (l1, l2, len) : void {
 	var i;
@@ -102,7 +101,9 @@ function addNavDecoration (l1): void {
 }
 @Component
 export default class Form extends Vue {
-
+  get formSVG() {
+    return FormSVG;
+  }
 
 		data() {
 				return {

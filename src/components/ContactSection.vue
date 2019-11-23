@@ -1,6 +1,7 @@
 <template>
   <section>
     <div class="container" id="contact-section-container">
+      <contactSectionSVG id="contactSectionSVG" style="" />
       <div class="contact-section-interlude">
         <h2 class="subheading">{{ interludeText }}</h2>
       </div>
@@ -24,9 +25,12 @@
 import { Component, Prop, Vue } from "vue-property-decorator";
 import ContactForm from "@/components/ContactForm.vue";
 
+import contactSectionSVG from "@/assets/images/contact-rings.svg?inline";
+
 @Component({
   components: {
-    ContactForm
+    ContactForm,
+    contactSectionSVG,
   }
 })
 export default class ContactSection extends Vue {
@@ -45,12 +49,54 @@ export default class ContactSection extends Vue {
 
   exitForm() {
     this.showContactForm = false;
-    document.body.style.overflow = 'auto';
+    document.body.style.overflow = "auto";
+  }
+
+  mounted() {
+    // Animate Background Rings 
+    // NOTE: something is wrong with path points for ring_1.
+    // consider reworking SVG files, but not animating works visually more
+    // thus, we are not animating ring_1
+    const duration: number = 10000;
+    Vue.prototype.$anime({
+      targets: '#ring_2',
+      d: [
+        { value: document.getElementById('ring_3').getAttribute('d') },
+        { value: document.getElementById('ring_2').getAttribute('d') },
+      ],
+      // direction: 'alternate',
+      easing: 'linear',
+      duration: duration,
+      loop: true
+    });
+    Vue.prototype.$anime({
+      targets: '#ring_3',
+      d: [
+        { value: document.getElementById('ring_4').getAttribute('d') },
+        { value: document.getElementById('ring_3').getAttribute('d') },
+      ],
+      // direction: 'alternate',
+      easing: 'linear',
+      duration: duration,
+      loop: true
+    });
+    Vue.prototype.$anime({
+      targets: '#ring_4',
+      d: [
+        { value: document.getElementById('ring_2').getAttribute('d') },
+        { value: document.getElementById('ring_4').getAttribute('d') },
+      ],
+      // direction: 'alternate',
+      easing: 'linear',
+      duration: duration,
+      loop: true
+    });
   }
 }
 </script>
 
 <style lang="scss" scoped>
+
 #contact-section-container {
   min-height: $site-min-height;
   height: 100vh;
@@ -58,10 +104,17 @@ export default class ContactSection extends Vue {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-image: url("../assets/images/contact-ring-1.svg"), url("../assets/images/contact-ring-2.svg"), url("../assets/images/contact-ring-3.svg"), url("../assets/images/contact-ring-4.svg");
-  background-repeat: no-repeat, no-repeat;
-  background-size: 75% 75%;
-  background-position: center;
+
+  #contactSectionSVG {
+    transform: scale(1);
+    height: 100%;
+    width: 100%;
+    padding: 5vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
 
   .contact-section-interlude {
     h2 {
