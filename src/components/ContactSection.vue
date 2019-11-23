@@ -104,6 +104,7 @@ export default class ContactSection extends Vue {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
 
   #contactSectionSVG {
     transform: scale(1);
@@ -132,7 +133,7 @@ export default class ContactSection extends Vue {
 
   button {
     display: block;
-    margin: 50px auto 0;
+    margin: 3em auto 0;
   }
   .modal-backdop {
     position: fixed;

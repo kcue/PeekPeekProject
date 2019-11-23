@@ -101,6 +101,11 @@ img {
   height: auto;
 }
 
+// use this class when you need to disable scrollbars
+.noscroll {
+  overflow: hidden;
+}
+
 /* Global Styles */
 body {
   min-width: $site-min-width;
