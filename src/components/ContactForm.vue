@@ -1,8 +1,7 @@
 <template>
 
 		<div id="form-container" >
-        <div class = "oval"></div>
-        
+        <img class="oval" :src="formSVG" /> 
         <div class="nav-bar">
           <h2> 
             <span class="industry" @click="scrollToIndustry($event)">Industry</span>
@@ -10,7 +9,6 @@
             <span class="awesome" @click="scrollToCustomerInformation($event)">Awesome!</span>
           </h2>
         </div>
-
 				<div class="form-page" id="first-page">
 						<div class="form-buttons-container">
 								
@@ -80,15 +78,15 @@ import FormSVG from "@/assets/images/contactform-bg.svg"
 function  clearNavDecoration (l1, l2, len) : void {
 	var i;
 	for(i=0;i<len;i++){
-		l1[i].style['text-decoration'] = 'none'; l1[i].style.color = '#00b7c9';
-		l2[i].style['text-decoration'] = 'none'; l2[i].style.color = '#00b7c9';
+		l1[i].style['border-bottom'] = 'none'; l1[i].style.color = '#00b7c9';
+		l2[i].style['border-bottom'] = 'none'; l2[i].style.color = '#00b7c9';
 	}
 }
 
 function addNavDecoration (l1): void {
 	var i;
 	for(i=0;i<l1.length;i++){
-		l1[i].style['text-decoration'] = 'underline'; l1[i].style.color= '#002c30';
+		l1[i].style['border-bottom'] = '.15em solid #002c30'; l1[i].style.color= '#002c30';
 	}
 }
 @Component
@@ -216,7 +214,6 @@ export default class Form extends Vue {
 			clearNavDecoration(indus,awes,indus.length);
 			addNavDecoration(locs);
 
-
 			document.getElementById('first-page')!.style.left = '-100%';
 			document.getElementById('second-page')!.style.left = '0';
 			document.getElementById('third-page')!.style.left = '100%';
@@ -237,8 +234,6 @@ export default class Form extends Vue {
       }else if(target.parentElement.classList.contains("form-button")){
         target.parentElement.classList.add("selected");
       }
-
-    
 			
 			var locs = document.getElementsByClassName("location"), 
 					indus = document.getElementsByClassName("industry"), 
@@ -246,7 +241,6 @@ export default class Form extends Vue {
 					i;
 			clearNavDecoration(indus,locs,indus.length);
 			addNavDecoration(awes);
-      
 			
 			document.getElementById('first-page')!.style.left = '-200%';
 			document.getElementById('second-page')!.style.left = '-100%';
@@ -266,16 +260,14 @@ export default class Form extends Vue {
 		.oval{
 			position: absolute;
 			z-index: 1;
-			width: 75vw;
-		  height: 70vh;
-      background: url("../assets/images/contactform-bg.svg") no-repeat center;
-      background-size: contain;
+      width: 85%;
+      height:85%;
 		}
     .nav-bar{
         display: flex;
         flex-direction: column;
         font-size: 2vw;
-        margin-top: 20vh;
+        margin-top: 23vh;
 
         @include medium-screen-landscape{
           margin-top: 10vh;
@@ -293,12 +285,8 @@ export default class Form extends Vue {
         cursor: pointer;
 
         span{
-          padding-right: 2vw;
-          &:hover{
-            color: $heading-color;
-            text-decoration: underline;
-          }
-
+          margin-right: 2vw;
+          padding-bottom: 1vh;
         }        
       }
     }
@@ -312,8 +300,6 @@ export default class Form extends Vue {
 			flex-direction: column;
 			justify-content: center;
 			
-
-     
 			.form-buttons-container {
         height: 100%;
 				display: flex;
@@ -390,12 +376,25 @@ export default class Form extends Vue {
         *{
           z-index: 2;
         }
-       
+        #submit-button{
+          width: 17vw;
+          padding: 4px 10px;
+          font-size: 8px;
+          @include medium-screen-landscape{
+            width: 12vw;
+            padding: 10px 10px;
+            font-size: 15px;
+          }
+        }
         p{
           color: darkgrey;
-          margin-top: 3vh;
-          margin-bottom: 3vh;
+          margin-bottom: 2vh;
           font-weight: lighter;
+          font-size: 8px;
+          @include medium-screen-landscape{
+            font-size: inherit;
+            margin-bottom: 3vh;
+          }
         }
         .fill-ins {
           display: flex;
@@ -435,9 +434,12 @@ export default class Form extends Vue {
               width: 100%;
               border-radius: 2vh;
               border: none;
-              font-size: 105%;
+              font-size: 70%;
               padding-left: 1vw;
               font-family: Arial;
+              @include medium-screen-landscape{
+                font-size: 100%;
+              }
             }
         }
     	}

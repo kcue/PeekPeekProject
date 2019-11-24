@@ -41,7 +41,6 @@ export default class ContactSection extends Vue {
 
   showContactForm: boolean = false;
   onContactButtonClick() {
-    console.log("clicked button");
     this.showContactForm = true;
     Vue.prototype.common.appScrollTo("#contact-section");
     document.body.style.overflow = 'hidden';
