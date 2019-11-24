@@ -21,6 +21,7 @@ module.exports = {
     }
   },
   chainWebpack: config => {
+    config.module.rules.delete('eslint');    // @TODO configure esLint properly -- disabling for now
     const svgRule = config.module.rule('svg')
 
     // clear all existing loaders.
