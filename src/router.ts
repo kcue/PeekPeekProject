@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
 
-// import Home from "./views/HomePage.vue";
+import Home from "./views/HomePage.vue";
 import Who from "./views/WhoPage.vue";
 import What from "./views/WhatPage.vue";
 import Why from "./views/WhyPage.vue";
@@ -16,9 +16,7 @@ export default new Router({
     {
       path: "/",
       name: "home",
-      component: () =>
-        /* webpackChunkName: "home" */
-        import("./views/HomePage.vue")
+      component: Home,
     },
     {
       path: "/who",
@@ -39,5 +37,14 @@ export default new Router({
       name: "why",
       component: Why,
     }
-  ]
+  ],
+  scrollBehavior (to, from, savedPosition) {
+    if (to.hash) {
+      return { selector: to.hash }
+    } else if (savedPosition) {
+      return savedPosition;
+    } else { 
+      return { x: 0, y: 0 }
+    }
+  }
 });

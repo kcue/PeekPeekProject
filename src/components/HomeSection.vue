@@ -10,8 +10,8 @@
         	<h2 id="minimize-text">Pictures are worth 1,000 words -</h2>
           <h2 id="highlight-text"><span id="degree">360&deg;</span> Virtual Tours: <span id="millions">Millions</span></h2>
           <div class="home-section-buttons">
-            <a class="button primary-button" href="#video-section">Watch a video</a>
-            <a class="button secondary-button" href="./why">Take a peek</a>
+            <a class="button primary-button" v-on:click.prevent="common.appScrollTo('#video-section')" href="#">Watch a video</a>
+            <a class="button secondary-button" href="/why">Take a peek</a>
           </div>
         </div>
       </div>
@@ -59,12 +59,12 @@ export default class HomeSection extends Vue {
     position: relative;
 
     img {
-      width: 90%;
+      width: 85%;
       min-width: $site-min-height / 2;
-      max-width: 50vw;
+      max-width: 470px;
 
       @include medium-screen-landscape {
-        width: 80%;
+        width: 90%;
         max-width: 700px;
       }
     }

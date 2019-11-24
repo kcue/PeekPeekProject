@@ -1,7 +1,6 @@
 <template>
   <nav>
-    <div class="nav-backdrop"></div>
-    <a href="/"><img id="logo" src="../assets/images/logo.png"/></a>
+    <router-link to="/"><img id="logo" src="../assets/images/logo.png" @click="common.appScrollTo('#home-section')" /></router-link>
     <ul class="nav-buttons">
       <li>
         <span class="nav-item"><router-link to="/who">WHO</router-link></span>
@@ -22,60 +21,42 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 
+@Component({})
 export default class Navigation extends Vue {
   scrollToContact() {
-    const contactSection: HTMLElement = document.getElementById('contact-section')!;
-    window.scrollTo({
-      "top": (contactSection.offsetTop) ? contactSection.offsetTop : contactSection.offsetLeft,
-      "left": contactSection.offsetLeft,
-      "behavior": "smooth"
-    })
-    console.log(contactSection.offsetTop + '  ' + contactSection.offsetLeft);
+    Vue.prototype.common.appScrollTo("#contact-section");
     
-    // const contactSectionComponent: any = this.$parent.$children[this.$parent.$children.length - 1];
-    // if (window.scrollX === contactSection.offsetLeft) {
-    //   contactSectionComponent.onContactButtonClicked();
-    // } else {
-    //   setTimeout(() => {
-    //     contactSectionComponent.onContactButtonClicked();
-    //   }, 1750)
-    // }
+    let contactBtn: HTMLElement = document.querySelector(".contact-section-main button") as HTMLElement;
+    setTimeout(() => {
+      contactBtn.click();
+    }, 500);
   }
 }
 </script>
 
 <style lang="scss">
 nav {
+  background-color: rgba(#FFF, 0.85);
+  transition: all 1s;
   position: fixed;
   top: 25px;
-  right: 10px;
-  transition: all 1s;
   z-index: 10000;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100vw;
+  min-width: $site-min-width;
 
-  @include medium-screen-landscape {
-    top: 40px;
-    right: 20px;
-  }
-
-  .nav-backdrop {
-    background-color: rgba(#FFF, 0.8);
-    border-radius: 50px;
-
-    position: absolute;
-    height: 45px;
-    width: 100vw;
-    z-index: -1;
-  }
 
   #logo {
-    position: fixed;
-    top: 25px;
-    left: 50px;
-    width: 45px;
+    display: inherit;
+    margin: 10px 0 10px 2em;
+    width: 35px;
 
-    @include medium-screen-landscape {
-      top: 40px;
-      left: 70px;
+    @include small-screen-landscape {
+      margin-left: 2.5em;
+      width: 45px;
     }
   }
 
@@ -102,6 +83,7 @@ nav {
       top: 0;
       left: 0;
       padding: 9px;
+      pointer-events: none;
 
       @include small-screen-landscape {
         padding: 10px;

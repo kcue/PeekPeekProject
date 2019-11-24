@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <Navigation id="floating-nav" />
+    <div id="stage-curtain"></div>
     <router-view></router-view>
   </div>
 </template>
@@ -14,7 +15,36 @@ import Navigation from "@/components/Navigation.vue";
     Navigation
   }
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+  transitionDelay: number = 300 /* ms */;
+
+  created() {
+    // initialize scroll to element
+    Vue.prototype.common.initScrollTo();
+
+    // add delay before transitioning to a different router page
+    this.$router.beforeEach((to, from, next) => {
+      document.getElementById("stage-curtain")!.classList.remove("open");
+      setTimeout(() => {
+        next();
+      }, this.transitionDelay);
+    });
+
+    // add delay 
+    this.$router.afterEach((to, from) => {
+      setTimeout(() => {
+        document.getElementById("stage-curtain")!.classList.add("open");
+      }, this.transitionDelay);
+    });
+  }
+
+  mounted() {
+    // initial transition on first visit
+    setTimeout(() => {
+      document.getElementById("stage-curtain")!.classList.add("open");
+    }, this.transitionDelay);
+  }
+}
 </script>
 
 <style lang="scss">
@@ -71,6 +101,11 @@ img {
   height: auto;
 }
 
+// use this class when you need to disable scrollbars
+.noscroll {
+  overflow: hidden;
+}
+
 /* Global Styles */
 body {
   min-width: $site-min-width;
@@ -79,6 +114,24 @@ body {
   font-family: $base-font-family;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overscroll-behavior: none;
+
+  #stage-curtain {
+    background-color: $main-background-color;
+    pointer-events: none;
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transition: opacity 0.3s;
+    opacity: 1;
+    z-index: 500;
+
+    &.open {
+      opacity: 0;
+    }
+  }
 
   .heading {
     font-size: 4.2em;
@@ -155,7 +208,7 @@ body {
     }
 
     &:hover {
-      opacity: 0.8;
+      opacity: 0.75;
     }
   }
 }

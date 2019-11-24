@@ -14,7 +14,7 @@
         <p class="primary-description">90% of customers make purchase decisions based on a website's visual content alone.</p>
         <p class="primary-description">Impress engage and impace potential customers by adding PeekPeek's 360&deg; virtual reality tour to your website. With our results, we could be the best tool in your toolbox</p>
         <h3 id="button-prompt">New challenge?</h3>
-        <a id="solution-button" class="button primary-button" href="./who">New solution</a>
+        <a id="solution-button" class="button primary-button" href="/who">New solution</a>
       </div>
     </div>
   </section>
@@ -60,22 +60,22 @@ export default class StatsSection extends Vue {
         {
           additionalClass: "",
           cardHeading: "82%",
-          cardDescription: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since",
+          cardDescription: "Lorem Ipsum is simply dummy text.",
         },
         {
           additionalClass: "",
           cardHeading: "90%",
-          cardDescription: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since",
+          cardDescription: "Lorem Ipsum is simply dummy text.",
         },
         {
           additionalClass: "highlight",
           cardHeading: "1%",
-          cardDescription: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since",
+          cardDescription: "Lorem Ipsum is simply dummy text.",
         },
         {
           additionalClass: "",
           cardHeading: "Top5",
-          cardDescription: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since",
+          cardDescription: "Lorem Ipsum is simply dummy text.",
         }
       ]
     }
@@ -173,8 +173,8 @@ export default class StatsSection extends Vue {
 </script>
 
 <style lang="scss">
-$card-base-height: 200px;
-$overlap-x: 10%;
+// $card-base-height: 200px;
+$overlap-x: 5%;
 $overlap-y: 4%;
 
 #stats-section {
@@ -202,7 +202,7 @@ $overlap-y: 4%;
     .stats-cards-container {
       width: 80%;
       min-width: $site-min-width;
-      height: $card-base-height * 4 + 50px;  // 4 cards
+      max-width: 600px;
       margin: 0 auto;
       padding: 5% 0;
       white-space: initial;
@@ -218,16 +218,15 @@ $overlap-y: 4%;
       }
 
       .card {
-        width: 50%;
+        width: 52%;
         display: flex;
         align-items: center;
         background-color: rgb(254, 255, 254);
-        border-radius: 5px;
+        border-radius: 10px;
         box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.15);
 
         @include medium-screen-landscape {
-          width: 50%;
-          max-width: 300px;
+          width: 52%;
           min-height: 25%;
         }
 
@@ -237,10 +236,6 @@ $overlap-y: 4%;
           justify-content: center;
           align-items: flex-start;
           padding: 15%;
-
-          // @include medium-screen-landscape {
-          //   padding: 2.5em;
-          // }
 
           .card-heading {
             font-size: 3em;
@@ -254,15 +249,15 @@ $overlap-y: 4%;
           }
 
           .card-description {
-            font-size: 0.8em;
+            font-size: 1.2em;
             line-height: 1.7em;
-            margin-top: 2em;
+            margin-top: 1em;
             font-weight: 400;
             color: $secondary-description-color;
 
             @include medium-screen-landscape {
-              font-size: .6em;
-              line-height: 1.8em;
+              font-size: 1em;
+              line-height: 1.7em;
               margin-top: 1.2em;
             }
           }
@@ -276,25 +271,29 @@ $overlap-y: 4%;
       .card:nth-child(1) {
         z-index: 4;
         margin-top: 0;
-        margin-left: calc(50% - (#{$overlap-x} * 2));
+        margin-right: $overlap-x;
+        align-self: flex-end;
       }
 
       .card:nth-child(2) {
         z-index: 2;
         margin-top: -1 * $overlap-y;
-        margin-right: 50%;
+        margin-left: 0;
+        align-self: flex-start;
       }
 
       .card:nth-child(3) {
         z-index: 3;
         margin-top: -4 * $overlap-y;
-        margin-left: calc(50% - #{$overlap-x} / 2);
+        margin-right: 0;
+        align-self: flex-end;
       }
 
       .card:nth-child(4) {
         z-index: 1;
         margin-top: -2 * $overlap-y;
-        margin-right: calc(50% - #{$overlap-x});
+        margin-left: $overlap-x;
+        align-self: flex-start;
       }
     }
   }

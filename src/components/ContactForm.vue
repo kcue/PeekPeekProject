@@ -1,18 +1,22 @@
 <template>
-		<div id="form-container">
+
+		<div id="form-container" >
+        <img class="oval" :src="formSVG" /> 
+        <div class="nav-bar">
+          <h2> 
+            <span class="industry" @click="scrollToIndustry($event)">Industry</span>
+            <span class="location" @click="scrollToLocation($event)">Location</span>
+            <span class="awesome" @click="scrollToCustomerInformation($event)">Awesome!</span>
+          </h2>
+        </div>
 				<div class="form-page" id="first-page">
 						<div class="form-buttons-container">
-								<div class = "oval"></div> 
-								<div class="nav-bar">
-									<h2> 
-									<span class="industry" @click="scrollToIndustry($event)">Industry</span>
-									<span class="location" @click="scrollToLocation($event)">Location</span>
-									<span class="awesome" @click="scrollToCustomerInformation($event)">Awesome!</span>
-									</h2>
-								</div>
+								
                 <div class="button-container">
-  								<div class="form-button" v-for="item in buttonData.industryPage" @click="scrollToLocation($event)" :key="item.id">
-  										<span>{{item}}</span>
+  								<div class="form-button" v-for="item in buttonData.industryPage"
+                    @click="scrollToLocation($event)" :key="item.id" 
+                  >
+  										<span >{{item}} </span>
   								</div>
                 </div>
 						</div>
@@ -20,16 +24,10 @@
 
 				<div class="form-page" id="second-page">
 						<div class="form-buttons-container">
-							<div class="oval"></div>
-							<div class="nav-bar">
-								<h2> 
-									<span class="industry" @click="scrollToIndustry($event)">Industry</span>
-									<span class="location"> Location</span>
-									<span class="awesome" @click="scrollToCustomerInformation($event)">Awesome!</span>
-								</h2>
-							</div>
+							
               <div class="button-container">
-  							<div class="form-button" v-for="item in buttonData.locationPage" @click="scrollToCustomerInformation($event)" :key="item.id">
+  							<div class="form-button" v-for="item in buttonData.locationPage"
+                 @click="scrollToCustomerInformation($event)" :key="item.id">
   									<span>{{item}}</span>
   							</div>
               </div>
@@ -38,14 +36,7 @@
 
 				<div class="form-page" id="third-page">
             <div class="form-content-container">
-              <div class="oval"></div>
-              <div class = "nav-bar">
-    						<h2> 
-    							<span class="industry" @click="scrollToIndustry($event)">Industry</span>
-    						 <span class="location" @click="scrollToLocation($event)">Location</span>
-    						 <span class="awesome" @click="scrollToCustomerInformation($event)">Awesome!</span>
-    						</h2>
-              </div>
+             
   						<p>We will be working hard to create a customized estimation for you very soon. 
   						<br/>
   								For now, we just need a little bit of information
@@ -81,29 +72,42 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import FormSVG from "@/assets/images/contactform-bg.svg"
+
 // import $ from 'jquery';
-function  clearNavDecoration (l1:var,l2:var,len:var) : void {
+function  clearNavDecoration (l1, l2, len) : void {
 	var i;
 	for(i=0;i<len;i++){
-		l1[i].style['text-decoration'] = 'none'; l1[i].style.color = '#00b7c9';
-		l2[i].style['text-decoration'] = 'none'; l2[i].style.color = '#00b7c9';
+		l1[i].style['border-bottom'] = 'none'; l1[i].style.color = '#00b7c9';
+		l2[i].style['border-bottom'] = 'none'; l2[i].style.color = '#00b7c9';
 	}
 }
 
-function addNavDecoration (l1:var): void {
+function addNavDecoration (l1): void {
 	var i;
 	for(i=0;i<l1.length;i++){
-		l1[i].style['text-decoration'] = 'underline'; l1[i].style.color= '#002c30';
+		l1[i].style['border-bottom'] = '.15em solid #002c30'; l1[i].style.color= '#002c30';
 	}
 }
 @Component
 export default class Form extends Vue {
-	
+  get formSVG() {
+    return FormSVG;
+  }
+
 		data() {
 				return {
 						buttonData: {
-								industryPage: ['Hospitality', 'Restaurant', 'Campus', 'Other'],
-								locationPage: ['Los Angeles', 'Orange County', 'Riverside', 'Other']
+								industryPage: [
+                  'Hospitality',
+                  'Restaurant',
+                  'Campus',
+                  'Other'],
+								locationPage: [
+                  'Los Angeles',
+                  'Orange County',
+                  'Riverside', 
+                  'Other']
 						},
 						formData: {
 								industry: '',
@@ -117,6 +121,9 @@ export default class Form extends Vue {
 						}
 				}
 		}
+    getIMGURL(blob){
+      return require('../assets/images/'+blob)
+    }
 		printForm() {
 				let formData = {
 						'industry': this.$data.formData.industry,
@@ -164,8 +171,9 @@ export default class Form extends Vue {
 												// alert('Oops... ' + JSON.stringify(error));
 												// });
 												//console.log('printForm started');
-				this.$parent.$data.showContactForm = false;
-		}
+				// this.$parent.$data.showContactForm = false;
+		    this.$emit('exitForm');
+    }
 	
 		scrollToIndustry(event:MouseEvent){
 			let target: HTMLElement = <HTMLElement> event.srcElement!;
@@ -185,8 +193,20 @@ export default class Form extends Vue {
 		}
 		scrollToLocation(event: MouseEvent) {
 			let target: HTMLElement = <HTMLElement> event.srcElement!;
-			let targetHTML = target.tagName === 'SPAN' ? target.innerHTML : target.children[0].innerHTML;
-			this.$data.formData.industry = targetHTML;
+      let targetHTML = target.tagName === 'SPAN' ? target.innerHTML : target.children[0].innerHTML;    
+       if(target.classList.contains("form-button")||target.parentElement.classList.contains("form-button")) {
+        var sel_locs_button = document.getElementById("first-page").getElementsByClassName("selected"); 
+        if(sel_locs_button.length>0){
+          sel_locs_button[0].classList.remove("selected")
+        }
+       this.$data.formData.industry = targetHTML;
+
+      }
+      if (target.classList.contains("form-button")) {
+        target.classList.add("selected");
+      }else if(target.parentElement.classList.contains("form-button")){
+        target.parentElement.classList.add("selected");
+      }
 			var locs = document.getElementsByClassName("location"), 
 					indus = document.getElementsByClassName("industry"), 
 					awes = document.getElementsByClassName("awesome"),
@@ -199,16 +219,29 @@ export default class Form extends Vue {
 			document.getElementById('third-page')!.style.left = '100%';
 		}
 		scrollToCustomerInformation(event: MouseEvent) {
+
 			let target: HTMLElement = <HTMLElement> event.srcElement!;
-			let targetHTML = target.tagName === 'SPAN' ? target.innerHTML : target.children[0].innerHTML;
+      let targetHTML = target.tagName === 'SPAN' ? target.innerHTML : target.children[0].innerHTML;
+      if(target.classList.contains("form-button")||target.parentElement.classList.contains("form-button")) {
+        var sel_locs_button = document.getElementById("second-page").getElementsByClassName("selected"); 
+        if(sel_locs_button.length>0){
+          sel_locs_button[0].classList.remove("selected")
+        }
+        this.$data.formData.location = targetHTML;
+      }
+      if (target.classList.contains("form-button")) {
+        target.classList.add("selected");
+      }else if(target.parentElement.classList.contains("form-button")){
+        target.parentElement.classList.add("selected");
+      }
+			
 			var locs = document.getElementsByClassName("location"), 
 					indus = document.getElementsByClassName("industry"), 
 					awes = document.getElementsByClassName("awesome"),
 					i;
 			clearNavDecoration(indus,locs,indus.length);
 			addNavDecoration(awes);
-
-			this.$data.formData.location = targetHTML;
+			
 			document.getElementById('first-page')!.style.left = '-200%';
 			document.getElementById('second-page')!.style.left = '-100%';
 			document.getElementById('third-page')!.style.left = '0';
@@ -218,18 +251,45 @@ export default class Form extends Vue {
 
 <style lang="scss" scoped>
 #form-container {
-
-		background-color: white;
+  
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+   
 		.oval{
 			position: absolute;
 			z-index: 1;
-			width: 75vw;
-			height: 75vh;
-			background: $secondary-description-color;
-			opacity: 25%;
-			border-radius: 50%;
+      width: 85%;
+      height:85%;
 		}
-   
+    .nav-bar{
+        display: flex;
+        flex-direction: column;
+        font-size: 2vw;
+        margin-top: 23vh;
+
+        @include medium-screen-landscape{
+          margin-top: 10vh;
+          font-size: 1.3vw;
+        }
+        width: 100%;
+        z-index: 2;
+        h2 {
+        color: $alt-heading-color;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin-top: 3vh;
+        font-weight: bold;
+        cursor: pointer;
+
+        span{
+          margin-right: 2vw;
+          padding-bottom: 1vh;
+        }        
+      }
+    }
 		.form-page {
 			width: 100%;
 			position: absolute;
@@ -239,117 +299,158 @@ export default class Form extends Vue {
 			display: flex;
 			flex-direction: column;
 			justify-content: center;
-			h2 {
-				color: $alt-heading-color;
-				display: flex;
-				flex-direction: row;
-				justify-content: center;
-				margin-top: 3vh;
-				margin-bottom: 0;
-				font-weight: bold;
-				cursor: pointer;
-				span{
-					padding-right: 2vw;
-				}        
-			}
-
-      .nav-bar{
-        width: 100%;
-        z-index: 2;
-      }
+			
 			.form-buttons-container {
         height: 100%;
 				display: flex;
 				flex-direction: column;
-				justify-content: center;
+        justify-content: center;
         align-items: center;
 				flex-wrap: wrap;
-        * {
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          justify-content: center;
-        }
+    
 
 				.button-container {
           display: flex;
           flex-wrap: wrap;
+          max-width: 75vw;
+          @include medium-screen-landscape{
+            max-width: 60vw;
+            height:50vh;
+          }
+          height: 15vh;
           .form-button{
 						z-index: 2;
 						color: $secondary-button-text-color;
+            font-size:2vw;
 						font-weight: bold;
-						height: 20vh;
-						width: 20vh;
+						height: 10vh;
+						width: 14vw;
 						display: flex;
-						flex-direction: column;
+						flex-direction: row;
 						justify-content: center;
+            text-align: center;
 						cursor: pointer;
+            @include medium-screen-landscape{
+              font-size: inherit;
+              width:12vw;
+              height: 13vh;
+            }
+            @for $i from 1 through 4 {
+              &:nth-child(#{$i}) {
+                
+                background: url('../assets/images/blob-#{$i}.svg') no-repeat center;
+                background-size: contain;
+               
+                &:hover, &.selected {
+                  background: url('../assets/images/blob-#{$i}-selected.svg') no-repeat center;
+                  background-size: contain;
+                  color:$contact-choice-selected-color;
+                }
+              }
+            }
+            &:nth-child(odd){
+              display: flex;
+              flex-direction: column;
+              align-self:flex-start; 
+              @include medium-screen-landscape{
+                margin-top: 10vh;
+              }
+            }
+            &:nth-child(even){
+              display: flex;
+              flex-direction: column;
+              align-self:flex-end; 
+              @include medium-screen-landscape{
+               margin-bottom: 15vh;
+              }
+            }
 					}
-          .form-button:nth-child(1){
-            margin-left: 20vw;
-          }
-          .form-button:nth-child(2){
-            margin-right: 40vw;
-          }
-          .form-button:nth-child(3){
-            margin-left: 5vw;
-          }
         }
 			}
       .form-content-container {
         display: flex;
-        height: 100%;
+        height: 50vh;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        #submit-button{
+        *{
           z-index: 2;
         }
+        #submit-button{
+          width: 17vw;
+          padding: 4px 10px;
+          font-size: 8px;
+          @include medium-screen-landscape{
+            width: 12vw;
+            padding: 10px 10px;
+            font-size: 15px;
+          }
+        }
         p{
-          color: $secondary-description-color;
-          margin-top: 5vh;
-          margin-bottom: 3vh;
+          color: darkgrey;
+          margin-bottom: 2vh;
           font-weight: lighter;
+          font-size: 8px;
+          @include medium-screen-landscape{
+            font-size: inherit;
+            margin-bottom: 3vh;
+          }
         }
         .fill-ins {
           display: flex;
           flex-direction: row;
-          margin-bottom: 5vh;
+          justify-content: center;
+          margin-bottom: 1vh;
+          width: 70%;
+          @include medium-screen-landscape{
+            margin-bottom: 5vh;
+            max-width: 60vw;
+          }
+          @include large-screen-landscape{
+            max-width: 40vw;
+          }
+
           .personal-info{
-            margin-right: 2vw;
+            width:40%;
+            margin-right: 1vw;
+          }
+          .inquiry{
+            width: 40%
           }
           .inquiry.form-element{
+            width: 100%;
             height: 100%;
           }
         }
         .form-element {
           display: flex;
           flex-direction: row;
-
           margin-bottom: 1vh;
           display: flex;
-          width: 25vw;
           justify-content: center;
-        
             input, textarea {
+              display: flex;
               z-index: 2;
               width: 100%;
               border-radius: 2vh;
               border: none;
-              font-size: 105%;
+              font-size: 70%;
               padding-left: 1vw;
               font-family: Arial;
+              @include medium-screen-landscape{
+                font-size: 100%;
+              }
             }
         }
     	}
     }
-  	.form-page:nth-child(1) {
+  	#first-page{
   			left: 0%;
   	}
-  	.form-page:nth-child(2) {
+  	#second-page {
   			left: 100%;
   	}
-  	.form-page:nth-child(3) {
+    #third-page{
   			left: 200%;
   	}
   	#first-page{

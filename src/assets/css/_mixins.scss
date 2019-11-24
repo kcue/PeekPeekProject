@@ -7,7 +7,7 @@
 }
 
 @mixin large-screen-landscape {
-	@media (min-width: 992px) { @content; }
+	@media (min-width: 992px) and (min-height: 540px) { @content; }
 }
 
 @mixin extra-large-screen-landscape {

@@ -1,7 +1,12 @@
 <template>
   <section>
     <div class="container" id="hotspot-section-container">
-      <img class="hotspot-skyline" src="../assets/images/city-with-infopoints.png"/>
+      <div id="city-wrapper">
+        <div id="city-canvas-container">
+          <canvas id="city-canvas"></canvas>
+          <div id="dom-overlay-container"></div>
+        </div>
+      </div>
       <div class="hotspot-titles">
         <h4 class="subheading">It's not just the place</h4>
         <h2 class="heading">
@@ -9,6 +14,10 @@
           <span class="line">your history</span>
         </h2>
         <h4 class="subheading">with the hotspots!</h4>
+        <p class="primary-description">
+          <span class="line">Take a peek at how we bring the&nbsp;</span>
+          <span class="line">following industries to life</span>
+        </p>
       </div>
     </div>
   </section>
@@ -16,9 +25,20 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import cityAtlasSrc from "@/assets/images/city-animated_atlas_.png"
 
 @Component({})
 export default class HotspotSection extends Vue {
+  created() {
+    (<any> window).cityAtlasSrc = cityAtlasSrc;
+  }
+
+  mounted() {
+    // city animation was generated with Adobe Animate
+    // the main JS files are located in public/index.html
+    // dependencies are imported from there
+    (<any> window).initCity();
+  }
 }
 </script>
 
@@ -33,14 +53,6 @@ export default class HotspotSection extends Vue {
     display: inline-block;
     margin: 0;
     min-width: 1200px;
-
-    &:before {
-      display: inline-block;
-      content: '';
-      vertical-align: middle;
-      height: 100vh;
-      min-height: $site-min-height;
-    }
   }
 
   #hotspot-section-container {
@@ -50,9 +62,10 @@ export default class HotspotSection extends Vue {
 
     @include medium-screen-landscape {
       position: relative;
-      display: inline-block;
-      vertical-align: middle;
-      height: $site-min-height;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      min-height: $site-min-height;
     }
 
     @include extra-large-screen-landscape {
@@ -60,16 +73,40 @@ export default class HotspotSection extends Vue {
     }
   }
 
-  .hotspot-skyline {
+  // wrapper defines the size of the whole animation container
+  #city-wrapper {
     width: 90%;
-    object-fit: contain;
-
+    height: 40vh;
+    min-height: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
     @include medium-screen-landscape {
       width: 70%;
-      height: 55%;
+      height: 65%;
+      margin-top: 2.5%;
+      margin-left: 5%;
+      justify-content: flex-start;
+      align-self: flex-start;
+    }
+  }
+
+  #city-canvas-container {
+    background-color:rgba(255, 255, 255, 0.00);
+    
+    #city-canvas {
+      display: block;
+      background-color: rgba(255, 255, 255, 0.00);
+    }
+
+    #dom-overlay-container {
+      pointer-events: none;
+      overflow: hidden;
       position: absolute;
-      top: 5%;
-      left: 0;
+      left: 0px;
+      top: 0px;
+      display: block;
     }
   }
 
@@ -78,7 +115,7 @@ export default class HotspotSection extends Vue {
     width: 60%;
     text-align: left;
     white-space: initial;
-    margin-top: 5%;
+    margin-top: 2.5%;
 
     @include small-screen-landscape {
       min-width: 450px;
@@ -87,11 +124,8 @@ export default class HotspotSection extends Vue {
 
     @include medium-screen-landscape {
       width: 50%;
-      position: absolute;
-      bottom: 10%;
-      left: 45%;
-      z-index: 10;
-      margin: 0;
+      align-self: flex-end;
+      margin: 0 0 2.5% -30%;
     }
     
     h2 {

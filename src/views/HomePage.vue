@@ -38,6 +38,40 @@ export default class Home extends Vue {
     document.title = "PeekPeek | Home";
   }
 
+  mounted() {    
+    // Scrolling vertically will move the page horizontally
+    // Only activated when the website is stacked horizontally
+    window.onwheel = (event: any) => {
+      if (navigator.userAgent.includes("Safari") && !navigator.userAgent.includes("Chrome")) {
+        // Need to prevent default behavior for Safari for touchpad scrolling gesture to work
+        event.preventDefault();
+        window.scrollTo(window.scrollX + event.deltaX + event.deltaY, window.scrollY); // Added deltaX to ensure native horizontal scrolling
+      } else {
+        // For all other browsers
+        window.scrollTo(window.scrollX + event.deltaY, window.scrollY);
+      }
+    }
+  }
+
+  beforeRouteEnter(to, from, next) {
+    next(vm => { 
+      (<any> window).homeResize = vm.$_.debounce(vm.handleResize, 2000)
+      window.addEventListener("resize", (<any> window).homeResize);
+    });
+  }
+
+  beforeRouteLeave(to, from, next) {
+    window.onwheel = null;
+    window.removeEventListener("resize", (<any> window).homeResize);
+    (<any> window).homeResize = undefined;  // workaround
+    next();
+  }
+
+  handleResize(): void {
+    // this is the resize handler
+    console.log("called handleResize");
+  } 
+
   data() {
     return {
       interludeText: "So, your turn",
@@ -48,20 +82,7 @@ export default class Home extends Vue {
   }
 }
 
-if (window.innerWidth > 768) {
-  // Scrolling vertically will move the page horizontally
-  // Only activated when the website is stacked horizontally
-  window.onwheel = (event: any) => {
-    if (navigator.userAgent.includes('Safari') && !navigator.userAgent.includes('Chrome')) {
-      // Need to prevent default behavior for Safari for touchpad scrolling gesture to work
-      event.preventDefault();
-      window.scrollTo(window.scrollX + event.deltaX + event.deltaY, window.scrollY); // Added deltaX to ensure native horizontal scrolling
-    } else {
-      // For all other browsers
-      window.scrollTo(window.scrollX + event.deltaY, window.scrollY);
-    }
-  }
-}
+
 </script>
 
 <style lang="scss" scoped>
@@ -95,6 +116,7 @@ if (window.innerWidth > 768) {
   &::v-deep .container {
     height: 100%;
     width: 100%;
+    position: relative;
   }
 }
 </style>

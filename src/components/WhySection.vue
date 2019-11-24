@@ -25,7 +25,7 @@
               <div class="column">
                 <h6 class="column-title">{{ item.columnTitle3 }}</h6>
                 <p class="column-body">{{ item.columnBody3 }}</p>
-                <a class="button primary-button" href="">{{ item.btnText }}</a>
+                <a class="button primary-button" target="_blank" :href="item.btnLink">{{ item.btnText }}</a>
               </div>
             </div>
             <img slot="img" :src="imagePath( item.img )"/>  
@@ -62,6 +62,7 @@ export default class WhySection extends Vue {
           columnBody2: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam commodo mi et sapien hendrerit posuere. Nunc at nisi nisi. Donec at pulvinar magna. Aliquam mollis sapien eget sapien tempor fermentum. Etiam tincidunt sapien nunc.",
           columnTitle3: "Results",
           columnBody3: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam commodo mi et sapien hendrerit posuere. Nunc at nisi nisi. Donec at pulvinar magna.",
+          btnLink: "http://vr.peekpeek.com/UCI_ARC/",
           btnText: "New Solution",
           img: "feature-shop.jpg",
         },
@@ -75,6 +76,7 @@ export default class WhySection extends Vue {
           columnBody2: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam commodo mi et sapien hendrerit posuere. Nunc at nisi nisi. Donec at pulvinar magna. Aliquam mollis sapien eget sapien tempor fermentum. Etiam tincidunt sapien nunc.",
           columnTitle3: "Results",
           columnBody3: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam commodo mi et sapien hendrerit posuere. Nunc at nisi nisi. Donec at pulvinar magna.",
+          btnLink: "http://vr.peekpeek.com/UCI_ARC/",
           btnText: "New Solution",
           img: "feature-hotel.jpg",
         },
@@ -88,6 +90,7 @@ export default class WhySection extends Vue {
           columnBody2: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam commodo mi et sapien hendrerit posuere. Nunc at nisi nisi. Donec at pulvinar magna. Aliquam mollis sapien eget sapien tempor fermentum. Etiam tincidunt sapien nunc.",
           columnTitle3: "Results",
           columnBody3: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam commodo mi et sapien hendrerit posuere. Nunc at nisi nisi. Donec at pulvinar magna.",
+          btnLink: "http://vr.peekpeek.com/UCI_ARC/",
           btnText: "New Solution",
           img: "feature-can.jpg",
         }
