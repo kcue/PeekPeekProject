@@ -30,14 +30,14 @@ import cityAtlasSrc from "@/assets/images/city-animated_atlas_.png"
 @Component({})
 export default class HotspotSection extends Vue {
   created() {
-    globalThis.cityAtlasSrc = cityAtlasSrc;
+    (<any> window).cityAtlasSrc = cityAtlasSrc;
   }
 
   mounted() {
     // city animation was generated with Adobe Animate
     // the main JS files are located in public/index.html
     // dependencies are imported from there
-    globalThis.initCity();
+    (<any> window).initCity();
   }
 }
 </script>

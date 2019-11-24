@@ -55,15 +55,15 @@ export default class Home extends Vue {
 
   beforeRouteEnter(to, from, next) {
     next(vm => { 
-      globalThis.homeResize = vm.$_.debounce(vm.handleResize, 2000)
-      window.addEventListener("resize", globalThis.homeResize);
+      (<any> window).homeResize = vm.$_.debounce(vm.handleResize, 2000)
+      window.addEventListener("resize", (<any> window).homeResize);
     });
   }
 
   beforeRouteLeave(to, from, next) {
     window.onwheel = null;
-    window.removeEventListener("resize", globalThis.homeResize);
-    globalThis.homeResize = undefined;  // workaround
+    window.removeEventListener("resize", (<any> window).homeResize);
+    (<any> window).homeResize = undefined;  // workaround
     next();
   }
 

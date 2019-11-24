@@ -5,6 +5,9 @@
         <h6 slot="title" class="demo-title">{{item.title}}</h6>
         <p slot="content" class="demo-subtitle">{{item.subtitle}}</p>
         <img slot="img" :src="imagePath(item.img)"/> 
+        <!-- <div slot="img" class="demo-img-parent">
+          <div :style="{ backgroundImage: `url(${imagePath(item.img)})` }"></div>
+        </div> -->
       </FeatureCard>
     </div>
     <div id="iframes-wrapper" @click="closeAll">
@@ -40,8 +43,8 @@ export default class DemoGroup extends Vue {
     // resize handler
     var oldWidth = window.innerWidth;
     var demoGroupResize = () => {
-      var newWidth = window.innerWidth;
-      var th = 768;   // threshold width (mobile format vs landscape format)
+      var th: number = 768;   // threshold width (mobile format vs landscape format)
+      var newWidth: number = window.innerWidth;
       // only close the iframe if it passes the threshold width
       if ((oldWidth > th && newWidth < th) || (oldWidth < th && newWidth > th)) {
         var closeBtn = document.getElementById("close-button");
@@ -62,19 +65,19 @@ export default class DemoGroup extends Vue {
       }
       oldWidth = newWidth;
     };
-    globalThis.demoGroupResize = Vue.prototype.$_.debounce(demoGroupResize, 1000);
-    window.addEventListener("resize", globalThis.demoGroupResize);
+    (<any> window).demoGroupResize = Vue.prototype.$_.debounce(demoGroupResize, 1000);
+    window.addEventListener("resize", (<any> window).demoGroupResize);
   }
 
   beforeDestroy() {
-    window.removeEventListener("resize", globalThis.demoGroupResize);
-    globalThis.demoGroupResize = undefined;
+    window.removeEventListener("resize", (<any> window).demoGroupResize);
+    (<any> window).demoGroupResize = undefined;
   }
 
   data() {
     return {
       imagePath: function (name:string): any {
-        return require("../assets/images/" + name + ".png")
+        return require("../assets/images/" + name)
       }, 
       // To rearrange the content of the cards, do not change the structure of the data here.
       // Go to the Style section of this page and change the flex-order. 
@@ -84,28 +87,28 @@ export default class DemoGroup extends Vue {
           iframe: "http://vr.peekpeek.com/UCI_ARC/",
           title: "University of California, Irvine",
           subtitle: "Anteater Recreational Center Tour",
-          img: "demo-uci_arc",
+          img: "demo-uci_arc.png",
         },
         {
           layoutClasses: "",
           iframe: "http://panosensing.com/temp/peekpeek/LB_Rec_Center/v3.html",
           title: "Cal State Long Beach",
           subtitle: "Wellness Center Tour",
-          img: "demo-csulb",
+          img: "demo-csulb.png",
         },
         {
           layoutClasses: "",
           iframe: "http://panosensing.com/temp/peekpeek/LB_Rec_Center/v3.html",
           title: "Fish on Tap",
           subtitle: "Restaurant Tour",
-          img: "demo-fish_on_tap",
+          img: "demo-fish_on_tap.png",
         },
         {
           layoutClasses: "",
           iframe: "http://panosensing.com/temp/peekpeek/LB_Rec_Center/v3.html",
           title: "West Covina Estates",
           subtitle: "Home Tour",
-          img: "demo-west_covina",
+          img: "demo-west_covina.png",
         }
       ]
     }
