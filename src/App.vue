@@ -106,6 +106,11 @@ img {
   overflow: hidden;
 }
 
+// don't make scrollmagic triggers visible
+.trigger {
+  min-height: 0;
+}
+
 /* Global Styles */
 body {
   min-width: $site-min-width;
