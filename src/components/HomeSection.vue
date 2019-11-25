@@ -8,7 +8,7 @@
       </div>
       <div class="home-section-headers">
        <div class="primary">
-        	<h2 id="splash-text">Pictures are worth 1,000 words -</h2>
+        	<h2 id="splash-text">Pictures are worth 1,000 words</h2>
           <h2 id="highlight-text"><span id="degree">360&deg;&nbsp;</span><span id="vt-text">Virtual Tours:</span>&nbsp;<span id="millions">Millions</span></h2>
           <div class="home-section-buttons">
             <a class="button primary-button" v-on:click.prevent="common.appScrollTo('#video-section')" href="#">Watch a video</a>
@@ -36,14 +36,21 @@ export default class HomeSection extends Vue {
         setTimeout(function() { 
           startSplashScreen();
         }, 1000);
-      })
-			//.setClassToggle("#home-section-container", "animate") // add class toggle
-			//.addIndicators(); // add indicators (use for debugging)
+      });
 		Vue.prototype.$scrollmagic.addScene(splashScene);
   }
   
   splashScreen() {
     document.getElementById("home-section-container")!.classList.add("animate");
+
+    // after 5 seconds (animation delay limit), add animated class to override any transition effects
+    setTimeout(function() { 
+      document.getElementById("home-section-container")!.classList.add("animated");
+    }, 5000);
+  }
+
+  beforeDestroy() {
+    Vue.prototype.$scrollmagic.destroy(true);
   }
 }
 </script>
@@ -69,12 +76,12 @@ export default class HomeSection extends Vue {
     position: relative;
 
     img {
-      width: 90%;
+      width: 85%;
       min-width: $site-min-height / 2;
-      max-width: 50vw;
+      max-width: 470px;
 
       @include medium-screen-landscape {
-        width: 80%;
+        width: 90%;
         max-width: 700px;
       }
     }
@@ -116,6 +123,7 @@ export default class HomeSection extends Vue {
         margin: 20px 0 10px;
 
         @include medium-screen-landscape {
+          padding-right: 25%;
           margin: 0;
         }
       }
@@ -171,6 +179,10 @@ export default class HomeSection extends Vue {
   // styles below this point control the animations
   * {
     transition: opacity 1s ease, width 1s ease, height 1s ease, flex-basis 1s ease, transform 1s ease, font-size 1s ease;
+  }
+
+  &.animated * {
+    transition: none !important;
   }
   
   .home-section-headers {

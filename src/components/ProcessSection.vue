@@ -131,11 +131,19 @@ $overlap-y: 5%;
           }
 
           .card-description {
-            font-size: 0.8em;
+            font-size: 1em;
             line-height: 1.6em;
             margin-top: 2em;
             font-weight: 400;
             color: $primary-description-color;
+
+            @include small-screen-landscape {
+              font-size: 0.9em;
+            }
+
+            @include medium-screen-landscape {
+              font-size: 0.8em;
+            }
           }
         }
       }

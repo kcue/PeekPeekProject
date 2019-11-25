@@ -3,9 +3,11 @@
     <div class="container" id="who-section-container">
       <img class="top-image" src="../assets/images/who-laptop.png">
       <img class="bottom-image" src="../assets/images/who-main_image.png">
-      <h1 class="heading">Who</h1>
-      <h2 class="subheading">Marketing Tech</h2>
-      <h2 class="alt-subheading">Modern Approach</h2>
+      <div class="heading-group">
+        <h1 class="heading">Who</h1>
+        <h2 class="subheading">Marketing Tech</h2>
+        <h2 class="alt-subheading">Modern Approach</h2>
+      </div>
       <div class="who-cards">
         <div class="who-cards-container">
           <Card v-for="(card, index) in cardData" :key="index" :cardHeading="card.cardHeading" :cardDescription="card.cardDescription" :id="'card-' + (index + 1)" :class="card.additionalClass" />

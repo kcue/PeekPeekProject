@@ -209,7 +209,8 @@ $numCards: 4;
       height: 20vh;
       width: 100%;
       margin-top: 5em;
-      transition: transform 0.8s;
+      transition: transform 0.8s ease-out, opacity 0.8s ease-out;
+      opacity: 1;
      
       &:nth-child(odd) {
         .text-container {
@@ -218,6 +219,7 @@ $numCards: 4;
         }
 
         &.hidden {
+          opacity: 0;
           transform: translateX(120vw);
         }
       }
@@ -229,6 +231,7 @@ $numCards: 4;
         }
 
         &.hidden{
+          opacity: 0;
           transform: translateX(-120vw);
         }
       }

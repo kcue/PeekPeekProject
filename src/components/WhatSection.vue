@@ -8,7 +8,7 @@
       </div>
       <div class="what-cards group">
         <div class="what-cards-container">
-          <FeatureCard v-for="(item, index) in cardData" :key="index" :id="'feature-card-' + index" :class="'feature-card ' + item.layoutClasses">
+          <FeatureCard v-for="(item, index) in cardData" :key="index" :id="'feature-card-' + index" :class="item.layoutClasses">
             <h6 slot="title" class="alt-subheading">{{ item.title }}</h6>
             <div slot="content" class="feature-content">
               <div class="text" v-html="item.content"></div>
