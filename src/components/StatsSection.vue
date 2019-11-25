@@ -1,8 +1,8 @@
 <template>
-  <section id="testing">
+  <section id="stats-section">
     <div class="stats-cards">
       <div class="stats-cards-container">
-        <Card v-for="(card, index) in cardData" :key="index" :cardHeading="card.cardHeading" :cardDescription="card.cardDescription" :id="'stats-card-' + (index + 1)" class =" num" :class="card.additionalClass" />
+        <Card v-for="(card, index) in cardData" :key="index" :cardHeading="card.cardHeading" :cardDescription="card.cardDescription" :id="'stats-card-' + (index + 1)" :class="card.additionalClass" />
       </div>
     </div>
     <div class="stats-captions">
@@ -23,7 +23,7 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import Card from "@/components/Card.vue";
-import { TweenMax, TimelineMax, Power1 } from 'gsap';
+import { TweenMax, TimelineMax, Power1 } from "gsap";
 
 let scenes: any;
 
@@ -32,24 +32,7 @@ let scenes: any;
     Card,
   }
 })
-
-
 export default class StatsSection extends Vue {
-  mounted() {
-     window.addEventListener('resize', ()=> {
-            for (let i = 0; i < scenes.length; ++i)
-            {
-                scenes[i].destroy(true);
-            }
-            scenes = [];
-            this.cardAnimation();
-        })
-        scenes = []; 
-        this.cardAnimation();
-    }
-
-  
-
   data() {
     return {
       cardData: [
@@ -77,94 +60,114 @@ export default class StatsSection extends Vue {
     }
   }
 
-
-
-  animateValue(obj:Element, start = 0, end:any = null, duration = 1500) {
-    if (obj) {
-        // save starting text for later (and as a fallback text if JS not running and/or google)
-        var textStarting = obj.innerHTML;
-        // remove non-numeric from starting text if not specified
-        end = end || parseInt(textStarting.replace(/\D/g, ""));
-        var range = end - start;
-        // no timer shorter than 50ms (not really visible any way)
-        var minTimer = 50;
-        // calc step time to show all interediate values
-        var stepTime = Math.abs(Math.floor(duration / range));
-        // never go below minTimer
-        stepTime = Math.max(stepTime, minTimer);
-        // get current time and calculate desired end time
-        var startTime = new Date().getTime();
-        var endTime = startTime + duration;
-        var timer:number;
-        function run() {
-            var now = new Date().getTime();
-            var remaining = Math.max((endTime - now) / duration, 0);
-            var value = Math.round(end - (remaining * range));
-            var text:string = value + "";
-            // replace numeric digits only in the original string
-            obj.innerHTML = textStarting.replace(/([0-9]+)/g, text);
-            if (value == end) {
-                clearInterval(timer);
-            }
-        }
-        timer = setInterval(run, stepTime);
-        run();
+  mounted() {
+    // @TODO FIX -- THIS WILL DUPLICATE
+    scenes = []; 
+    this.cardAnimation();
+    window.addEventListener("resize", () => {
+      // restart the animations on resize
+      for (let i = 0; i < scenes.length; ++i) {
+        scenes[i].destroy(true);
       }
-    }
-
-
-
-
+      scenes = [];
+      this.cardAnimation();
+    });
+  }
 
   cardAnimation(){
+    let cards = document.getElementsByClassName("card");
+    let cardContainer = document.getElementsByClassName("stats-cards-container")[0];
+    let cardheight = cards[0]!.clientHeight;
+    let cardWidth = cards[0]!.clientWidth;
+    let containerHeight = cardContainer!.offsetHeight;
+    let containerWidth = cardContainer!.offsetWidth;
+    for (let i = 0; i < cards.length; ++i) {
+      let cardPosX = cards[i]!.offsetLeft;
+      let cardPosY = cards[i]!.offsetTop;
+      var flightPath = {
+        tree: {
+          curviness: 1.25,
 
-    let cards = document.getElementsByClassName("num");
-    let cardheight = document.getElementById(cards[0].id)!.clientHeight;
-    let cardWidth = document.getElementById(cards[0].id)!.clientWidth;
-    for(let i = 0; i < cards.length; ++i)
+          values: [
+            // { x: 0, y:  (-cardheight * 0.6 * i) - (cardheight / 2)},
+            // { x: cardPosX, y: cardPosY}
 
-      {
+            
 
-        var flightPath = {
-
-          tree : {
-            curviness: 1.25,
-
-            values: [
-                { x: 0 , y: 0 },
-                { x: 0, y: -cardheight*.6*i - cardheight/2},
-                { x: i % 2 === 0 ? -cardWidth*.42 : cardWidth*.42, y: -cardheight*.8*i - cardheight/2}
-              ]
-            }
-          }
-
-        var treeTween = TweenMax.to(cards[i], 1, {css:{bezier:flightPath.tree } , ease:Power1.easeInOut} )
-        
-        document.getElementById(cards[i].id)!.style.alignItems = i % 2 === 0 ? 'baseline' : 'flex-end';
-        let firstElement: HTMLElement= <HTMLElement>(document.getElementById(cards[i].id)!.firstElementChild!)
-        firstElement.style.margin = i % 2 === 0 ? 'auto 0 auto 2.5vh' : 'auto 2.5vh auto 0';
-        firstElement.style.alignItems = i % 2 === 0 ? 'baseline' : 'flex-end';
-        //Getting the width of the element
-        let elementWidth = document.getElementById(cards[0].id)!.clientWidth;
-        let scene = new Vue.prototype.$scrollmagic.scene({
+            { x: 0 , y: 0 },
+            { x: 0, y: -cardheight*.6*i - cardheight/2},
+            { x: i % 2 === 0 ? containerWidth*0.25 : -containerWidth*0.25, y: -containerHeight*0.8}
+          ]
+        }
+      };
+      var treeTween = TweenMax.to(cards[i], 1, { 
+        css:{
+          bezier: flightPath.tree
+        }, 
+        ease: Power1.easeInOut
+      });
+      
+      // cards[i]!.style.alignItems = (i % 2 === 0) ? "flex-end" : "flex-start";
+      
+      // Getting the width of the element
+      let elementWidth = document.getElementById(cards[0].id)!.clientWidth;
+      
+      // this adds the scenes for the cards moving
+      let scene = new Vue.prototype.$scrollmagic.scene({
         duration: window.innerWidth * 0.65,
         offset: window.innerWidth / 3,
         triggerHook: 'onEnter',
-        triggerElement: '#testing'
-        })
-        scenes.push(scene);
-        Vue.prototype.$scrollmagic.addScene(
-          scene.setTween(treeTween)
-        )
-        let numberScene = new Vue.prototype.$scrollmagic.scene({
-          duration: 2000,
-          reverse: false,
-          triggerHook: 'onEnter',
-          triggerElement: `#${cards[i].id}`})
-          .on("enter", () => this.animateValue(cards[i].getElementsByClassName("card-heading")[0]));
-        Vue.prototype.$scrollmagic.addScene(numberScene)
-        }
+        triggerElement: '#stats-section'
+      });
+      scenes.push(scene);
+      Vue.prototype.$scrollmagic.addScene(
+        scene.setTween(treeTween)
+      )
+
+      // this adds the scenes for the numbers changing
+      let numberScene = new Vue.prototype.$scrollmagic.scene({
+        duration: 2000,
+        reverse: false,
+        triggerHook: 'onEnter',
+        triggerElement: `#${cards[i].id}`})
+        .on("enter", () => this.animateValue(cards[i].getElementsByClassName("card-heading")[0]));
+      Vue.prototype.$scrollmagic.addScene(numberScene)
     }
+  }
+
+  // this method is for the percentages changing
+  animateValue(obj:Element, start = 0, end:any = null, duration = 1500) {
+    if (obj) {
+      // save starting text for later (and as a fallback text if JS not running and/or google)
+      var textStarting = obj.innerHTML;
+      // remove non-numeric from starting text if not specified
+      end = end || parseInt(textStarting.replace(/\D/g, ""));
+      var range = end - start;
+      // no timer shorter than 50ms (not really visible any way)
+      var minTimer = 50;
+      // calc step time to show all interediate values
+      var stepTime = Math.abs(Math.floor(duration / range));
+      // never go below minTimer
+      stepTime = Math.max(stepTime, minTimer);
+      // get current time and calculate desired end time
+      var startTime = new Date().getTime();
+      var endTime = startTime + duration;
+      var timer:number;
+      function run() {
+        var now = new Date().getTime();
+        var remaining = Math.max((endTime - now) / duration, 0);
+        var value = Math.round(end - (remaining * range));
+        var text:string = value + "";
+        // replace numeric digits only in the original string
+        obj.innerHTML = textStarting.replace(/([0-9]+)/g, text);
+        if (value == end) {
+            clearInterval(timer);
+        }
+      }
+      timer = setInterval(run, stepTime);
+      run();
+    }
+  }
 }
 </script>
 
@@ -200,20 +203,20 @@ $overlap-y: 4%;
     }
 
     .stats-cards-container {
-      width: 51.25vh;
-      height: 51.25vh;
+      // width: 51.25vh;
+      // height: 51.25vh;
       position: relative;
       top: 80vh;
-      // width: 80%;
-      // min-width: $site-min-width;
-      // max-width: 600px;
-       margin: 0 auto;
-       padding: 5% 0;
-       white-space: initial;
-      //display: flex; 
-      // flex-direction: column;
-      // align-items: center;
-      //justify-content: center;
+      width: 80%;
+      min-width: $site-min-width;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 5% 0;
+      white-space: initial;
+      display: flex; 
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
 
       @include medium-screen-landscape {
         width: 90%;
@@ -222,11 +225,9 @@ $overlap-y: 4%;
       }
 
       .card {
-        //position: absolute;
         display: flex;
         flex-direction: column;
         width: 52%;
-        // display: flex;
         align-items: center;
         background-color: rgb(254, 255, 254);
         border-radius: 10px;
@@ -277,7 +278,7 @@ $overlap-y: 4%;
 
       .card:nth-child(1) {
         z-index: 4;
-        top:0 px;
+        // top:0 px;
         // margin-top: 0;
         // margin-right: $overlap-x;
         // align-self: flex-end;
@@ -285,7 +286,7 @@ $overlap-y: 4%;
 
       .card:nth-child(2) {
         z-index: 2;
-        top:10 px;
+        // top:10 px;
         // margin-top: -1 * $overlap-y;
         // margin-left: 0;
         // align-self: flex-start;
@@ -293,7 +294,7 @@ $overlap-y: 4%;
 
       .card:nth-child(3) {
         z-index: 3;
-        top:20 px;
+        // top:20 px;
         // margin-top: -4 * $overlap-y;
         // margin-right: 0;
         // align-self: flex-end;
@@ -301,7 +302,7 @@ $overlap-y: 4%;
 
       .card:nth-child(4) {
         z-index: 1;
-        top:30 px;
+        // top:30 px;
         // margin-top: -2 * $overlap-y;
         // margin-left: $overlap-x;
         // align-self: flex-start;
