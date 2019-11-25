@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section id="testing">
     <div class="stats-cards">
       <div class="stats-cards-container">
         <Card v-for="(card, index) in cardData" :key="index" :cardHeading="card.cardHeading" :cardDescription="card.cardDescription" :id="'stats-card-' + (index + 1)" :class="card.additionalClass" />
@@ -122,7 +122,7 @@ export default class StatsSection extends Vue {
 
   cardAnimation(){
 
-    let cards = document.getElementsByClassName("stats-card");
+    let cards = document.getElementsByClassName("card.additionalClass");
     let cardheight = document.getElementById(cards[0].id)!.clientHeight;
     let cardWidth = document.getElementById(cards[0].id)!.clientWidth;
     for(let i = 0; i < cards.length; ++i)
@@ -154,7 +154,7 @@ export default class StatsSection extends Vue {
         duration: window.innerWidth * 0.65,
         offset: window.innerWidth / 3,
         triggerHook: 'onEnter',
-        triggerElement: '#stats-section',
+        triggerElement: '#testing'
         })
         scenes.push(scene);
         Vue.prototype.$scrollmagic.addScene(
@@ -165,7 +165,7 @@ export default class StatsSection extends Vue {
           reverse: false,
           triggerHook: 'onEnter',
           triggerElement: `#${cards[i].id}`})
-          .on("enter", () => this.animateValue(cards[i].getElementsByClassName("card-number")[0]));
+          .on("enter", () => this.animateValue(cards[i].getElementsByClassName("card-heading")[0]));
         Vue.prototype.$scrollmagic.addScene(numberScene)
         }
     }
@@ -179,6 +179,8 @@ $overlap-y: 4%;
 
 #stats-section {
   margin-bottom: 50px;
+  
+
 
   @include medium-screen-landscape {
     width: 100vw;
@@ -200,16 +202,20 @@ $overlap-y: 4%;
     }
 
     .stats-cards-container {
-      width: 80%;
-      min-width: $site-min-width;
-      max-width: 600px;
-      margin: 0 auto;
-      padding: 5% 0;
-      white-space: initial;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      width: 51.25vh;
+      height: 51.25vh;
+      position: relative;
+      top: 80vh;
+      // width: 80%;
+      // min-width: $site-min-width;
+      // max-width: 600px;
+       margin: 0 auto;
+       padding: 5% 0;
+       white-space: initial;
+      // display: flex;
+      // flex-direction: column;
+      // align-items: center;
+      // justify-content: center;
 
       @include medium-screen-landscape {
         width: 90%;
@@ -218,8 +224,11 @@ $overlap-y: 4%;
       }
 
       .card {
-        width: 52%;
+        //position: absolute;
         display: flex;
+        flex-direction: column;
+        width: 52%;
+        // display: flex;
         align-items: center;
         background-color: rgb(254, 255, 254);
         border-radius: 10px;
@@ -270,30 +279,34 @@ $overlap-y: 4%;
 
       .card:nth-child(1) {
         z-index: 4;
-        margin-top: 0;
-        margin-right: $overlap-x;
-        align-self: flex-end;
+        top:0 px;
+        // margin-top: 0;
+        // margin-right: $overlap-x;
+        // align-self: flex-end;
       }
 
       .card:nth-child(2) {
         z-index: 2;
-        margin-top: -1 * $overlap-y;
-        margin-left: 0;
-        align-self: flex-start;
+        top:10 px;
+        // margin-top: -1 * $overlap-y;
+        // margin-left: 0;
+        // align-self: flex-start;
       }
 
       .card:nth-child(3) {
         z-index: 3;
-        margin-top: -4 * $overlap-y;
-        margin-right: 0;
-        align-self: flex-end;
+        top:20 px;
+        // margin-top: -4 * $overlap-y;
+        // margin-right: 0;
+        // align-self: flex-end;
       }
 
       .card:nth-child(4) {
         z-index: 1;
-        margin-top: -2 * $overlap-y;
-        margin-left: $overlap-x;
-        align-self: flex-start;
+        top:30 px;
+        // margin-top: -2 * $overlap-y;
+        // margin-left: $overlap-x;
+        // align-self: flex-start;
       }
     }
   }
