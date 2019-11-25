@@ -168,7 +168,7 @@ export default class ContactSection extends Vue {
     width: 100vw;
     height: 80vh;
     left: 0;
-    top: 15vh;
+    top: 10vh;
     border-radius: 2vh;
     z-index: 20;
   }
