@@ -2,7 +2,7 @@
   <section id="testing">
     <div class="stats-cards">
       <div class="stats-cards-container">
-        <Card v-for="(card, index) in cardData" :key="index" :cardHeading="card.cardHeading" :cardDescription="card.cardDescription" :id="'stats-card-' + (index + 1)" :class="card.additionalClass" />
+        <Card v-for="(card, index) in cardData" :key="index" :cardHeading="card.cardHeading" :cardDescription="card.cardDescription" :id="'stats-card-' + (index + 1)" class =" num" :class="card.additionalClass" />
       </div>
     </div>
     <div class="stats-captions">
@@ -25,15 +25,11 @@ import { Component, Vue } from "vue-property-decorator";
 import Card from "@/components/Card.vue";
 import { TweenMax, TimelineMax, Power1 } from 'gsap';
 
-
-
 let scenes: any;
-
-
 
 @Component({
   components: {
-    Card
+    Card,
   }
 })
 
@@ -84,36 +80,36 @@ export default class StatsSection extends Vue {
 
 
   animateValue(obj:Element, start = 0, end:any = null, duration = 1500) {
-        if (obj) {
-            // save starting text for later (and as a fallback text if JS not running and/or google)
-            var textStarting = obj.innerHTML;
-            // remove non-numeric from starting text if not specified
-            end = end || parseInt(textStarting.replace(/\D/g, ""));
-            var range = end - start;
-            // no timer shorter than 50ms (not really visible any way)
-            var minTimer = 50;
-            // calc step time to show all interediate values
-            var stepTime = Math.abs(Math.floor(duration / range));
-            // never go below minTimer
-            stepTime = Math.max(stepTime, minTimer);
-            // get current time and calculate desired end time
-            var startTime = new Date().getTime();
-            var endTime = startTime + duration;
-            var timer:number;
-            function run() {
-                var now = new Date().getTime();
-                var remaining = Math.max((endTime - now) / duration, 0);
-                var value = Math.round(end - (remaining * range));
-                var text:string = value + "";
-                // replace numeric digits only in the original string
-                obj.innerHTML = textStarting.replace(/([0-9]+)/g, text);
-                if (value == end) {
-                    clearInterval(timer);
-                }
+    if (obj) {
+        // save starting text for later (and as a fallback text if JS not running and/or google)
+        var textStarting = obj.innerHTML;
+        // remove non-numeric from starting text if not specified
+        end = end || parseInt(textStarting.replace(/\D/g, ""));
+        var range = end - start;
+        // no timer shorter than 50ms (not really visible any way)
+        var minTimer = 50;
+        // calc step time to show all interediate values
+        var stepTime = Math.abs(Math.floor(duration / range));
+        // never go below minTimer
+        stepTime = Math.max(stepTime, minTimer);
+        // get current time and calculate desired end time
+        var startTime = new Date().getTime();
+        var endTime = startTime + duration;
+        var timer:number;
+        function run() {
+            var now = new Date().getTime();
+            var remaining = Math.max((endTime - now) / duration, 0);
+            var value = Math.round(end - (remaining * range));
+            var text:string = value + "";
+            // replace numeric digits only in the original string
+            obj.innerHTML = textStarting.replace(/([0-9]+)/g, text);
+            if (value == end) {
+                clearInterval(timer);
             }
-            timer = setInterval(run, stepTime);
-            run();
         }
+        timer = setInterval(run, stepTime);
+        run();
+      }
     }
 
 
@@ -122,7 +118,7 @@ export default class StatsSection extends Vue {
 
   cardAnimation(){
 
-    let cards = document.getElementsByClassName("card.additionalClass");
+    let cards = document.getElementsByClassName("num");
     let cardheight = document.getElementById(cards[0].id)!.clientHeight;
     let cardWidth = document.getElementById(cards[0].id)!.clientWidth;
     for(let i = 0; i < cards.length; ++i)
@@ -179,7 +175,9 @@ $overlap-y: 4%;
 
 #stats-section {
   margin-bottom: 50px;
-  
+  flex-direction: row;
+  position: relative;
+  //display: flex;
 
 
   @include medium-screen-landscape {
@@ -212,10 +210,10 @@ $overlap-y: 4%;
        margin: 0 auto;
        padding: 5% 0;
        white-space: initial;
-      // display: flex;
+      //display: flex; 
       // flex-direction: column;
       // align-items: center;
-      // justify-content: center;
+      //justify-content: center;
 
       @include medium-screen-landscape {
         width: 90%;
