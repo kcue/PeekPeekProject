@@ -157,41 +157,7 @@ export default class Form extends Vue {
   		}
   		console.log(formData);
       this.sendMessage();
-		  //email the completed form to peekpeekTest@gmail.com
-		  // var data = {
-			// service_id: 'gmail',
-			// template_id: 'customer_info',
-			// user_id: 'user_fff9Opb1hmekqqBL26773',
-			// 	template_params: {
-			// 	'name' : `${formData.contact.name}`,
-			// 	'email' : `${formData.contact.email}`,
-			// 	'phone' : `${formData.contact.phone}`,
-			// 	'industry' : `${formData.industry}`,
-			// 	'location' : `${formData.location}`,
-			// 	'inquiry' : `${formData.contact.inquiry}`
-			// 	}
-			// };
-			// let request = new XMLHttpRequest();
-			// request.open('POST', 'https://api.emailjs.com/api/v1.0/email/send');
-			// request.setRequestHeader('Content-Type', 'application/json');
-			// request.onreadystatechange = function() {
-			// 		if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-			// 				console.log('All good');
-			// 		} else {
-			// 				console.log('Status: ' + this.status)
-			// 				console.log(this.response);
-			// 		}
-			// }
-			// request.send(JSON.stringify(data));
-		 
-			// $.ajax('https://api.emailjs.com/api/v1.0/email/send', {
-			// type: 'POST',
-			// data: JSON.stringify(data),
-			// contentType: 'application/json'
-			// }).fail(function(error: any) {
-			// alert('Oops... ' + JSON.stringify(error));
-			// });
-			//console.log('printForm started');
+		  
       this.$emit('exitForm');
     }
 	
