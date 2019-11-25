@@ -1,7 +1,7 @@
 <template>
 
 		<div id="form-container" >
-        <img class="oval" :src="formSVG" /> 
+        <!-- <img class="oval" :src="formSVG" />  -->
         <div class="nav-bar">
           <h2> 
             <span class="industry" @click="scrollToIndustry($event)">Industry</span>
@@ -9,6 +9,7 @@
             <span class="awesome" @click="scrollToCustomerInformation($event)">Awesome!</span>
           </h2>
         </div>
+        <i class="far fa-times-circle closed" id="close-button" @click="exitForm"></i>
 				<div class="form-page" id="first-page">
 						<div class="form-buttons-container">
 								
@@ -49,7 +50,7 @@
     							</div>
 
     							<div class="email form-element">
-    									<input placeholder="Email" type="text" v-model="formData.contact.email"/>
+    									<input placeholder="Email" type="email" v-model="formData.contact.email"/>
     							</div>
 
     							<div class="phone form-element">
@@ -72,8 +73,9 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import FormSVG from "@/assets/images/contactform-bg.svg"
-
+import axios from 'axios';
+import VueAxios from 'vue-axios';
+Vue.use(VueAxios, axios);
 // import $ from 'jquery';
 function  clearNavDecoration (l1, l2, len) : void {
 	var i;
@@ -91,9 +93,11 @@ function addNavDecoration (l1): void {
 }
 @Component
 export default class Form extends Vue {
-  get formSVG() {
-    return FormSVG;
+  
+  exitForm() {
+    this.$emit('exitForm');
   }
+ 
 
 		data() {
 				return {
@@ -124,55 +128,37 @@ export default class Form extends Vue {
     getIMGURL(blob){
       return require('../assets/images/'+blob)
     }
+    sendMessage(){
+      let form_data = {
+        Industry: this.$data.formData.industry,
+        Location: this.$data.formData.location,
+        Name: this.$data.formData.contact.name,
+        Email: this.$data.formData.contact.email,
+        Phone: this.$data.formData.contact.phone,
+        Inquiry: this.$data.formData.contact.inquiry
+      }
+      let save = {
+        data: [
+          form_data
+        ]
+      }
+      axios.post('https://sheetdb.io/api/v1/o508ssejo24qk', save);
+    }
 		printForm() {
-				let formData = {
-						'industry': this.$data.formData.industry,
-						'location': this.$data.formData.location,
-						'contact': {
-								name: this.$data.formData.contact.name,
-								email: this.$data.formData.contact.email,
-								phone: this.$data.formData.contact.phone,
-								inquiry: this.$data.formData.contact.inquiry,
-						}
-				}
-				console.log(formData);
-					 //email the completed form to peekpeekTest@gmail.com
-					 var data = {
-						service_id: 'gmail',
-								template_id: 'customer_info',
-										user_id: 'user_fff9Opb1hmekqqBL26773',
-												template_params: {
-												'name' : `${formData.contact.name}`,
-												'email' : `${formData.contact.email}`,
-												'phone' : `${formData.contact.phone}`,
-												'industry' : `${formData.industry}`,
-												'location' : `${formData.location}`,
-												'inquery' : `${formData.contact.inquiry}`
-												}
-												};
-												let request = new XMLHttpRequest();
-												request.open('POST', 'https://api.emailjs.com/api/v1.0/email/send');
-												request.setRequestHeader('Content-Type', 'application/json');
-												request.onreadystatechange = function() {
-														if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-																console.log('All good');
-														} else {
-																console.log('Status: ' + this.status)
-																console.log(this.response);
-														}
-												}
-												request.send(JSON.stringify(data));
-											 
-												// $.ajax('https://api.emailjs.com/api/v1.0/email/send', {
-												// type: 'POST',
-												// data: JSON.stringify(data),
-												// contentType: 'application/json'
-												// }).fail(function(error: any) {
-												// alert('Oops... ' + JSON.stringify(error));
-												// });
-												//console.log('printForm started');
-				// this.$parent.$data.showContactForm = false;
-		    this.$emit('exitForm');
+  		let formData = {
+  				'industry': this.$data.formData.industry,
+  				'location': this.$data.formData.location,
+  				'contact': {
+  						name: this.$data.formData.contact.name,
+  						email: this.$data.formData.contact.email,
+  						phone: this.$data.formData.contact.phone,
+  						inquiry: this.$data.formData.contact.inquiry,
+  				}
+  		}
+  		console.log(formData);
+      this.sendMessage();
+		  
+      this.$emit('exitForm');
     }
 	
 		scrollToIndustry(event:MouseEvent){
@@ -251,27 +237,45 @@ export default class Form extends Vue {
 
 <style lang="scss" scoped>
 #form-container {
-  
     display: flex; 
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-   
-		.oval{
-			position: absolute;
-			z-index: 1;
-      width: 85%;
-      height:85%;
-		}
+    background: url("../assets/images/contactform-bg.svg") center no-repeat;
+    background-size: 80% 80%;
+		#close-button {
+      display: flex;
+      flex-direction: row;
+      justify-content: left;
+      margin-left: 8vw;
+      @include medium-screen-landscape{
+        margin-left:25vw;
+      }
+      width: 100vw;
+      height: 2em;
+      cursor: pointer;
+      z-index: 100;
+      &:before {
+        content: "\f057";
+        font-size: 2em;
+        font-style: normal;
+      }
+    }
     .nav-bar{
         display: flex;
         flex-direction: column;
         font-size: 2vw;
         margin-top: 23vh;
-
+        .industry{
+          color: $heading-color;
+          border-bottom: .15em solid $heading-color;
+        }
         @include medium-screen-landscape{
-          margin-top: 10vh;
+          margin-top: 20vh;
           font-size: 1.3vw;
+        }
+        @include large-screen-landscape{
+          margin-top: 12vh;
         }
         width: 100%;
         z-index: 2;
@@ -282,9 +286,9 @@ export default class Form extends Vue {
         justify-content: center;
         margin-top: 3vh;
         font-weight: bold;
-        cursor: pointer;
 
         span{
+          cursor: pointer;
           margin-right: 2vw;
           padding-bottom: 1vh;
         }        
@@ -313,6 +317,7 @@ export default class Form extends Vue {
           display: flex;
           flex-wrap: wrap;
           max-width: 75vw;
+          margin-top: 4vh;
           @include medium-screen-landscape{
             max-width: 60vw;
             height:50vh;
@@ -332,8 +337,8 @@ export default class Form extends Vue {
 						cursor: pointer;
             @include medium-screen-landscape{
               font-size: inherit;
-              width:12vw;
-              height: 13vh;
+              width:10vw;
+              height: 14vh;
             }
             @for $i from 1 through 4 {
               &:nth-child(#{$i}) {
@@ -453,12 +458,7 @@ export default class Form extends Vue {
     #third-page{
   			left: 200%;
   	}
-  	#first-page{
-  		.industry{
-  			color:$heading-color;
-  			text-decoration: underline;
-  		}
-  	}
+  
 
     
 
