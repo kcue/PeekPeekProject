@@ -92,7 +92,6 @@ export default class HomeSection extends Vue {
       }
     }
   }
-
   
   .home-section-headers {
     display: flex;
@@ -104,15 +103,6 @@ export default class HomeSection extends Vue {
     @include medium-screen-landscape {
       white-space: normal;
       text-align: left;
-      flex-basis: 80%;
-    }
-
-    @include large-screen-landscape {
-      flex-basis: 60%;
-    }
-
-    @include extra-large-screen-landscape {
-      flex-basis: 50%;
     }
 
     .primary {
