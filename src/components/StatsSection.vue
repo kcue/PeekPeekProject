@@ -76,14 +76,14 @@ export default class StatsSection extends Vue {
 
   cardAnimation(){
     let cards = document.getElementsByClassName("card");
-    let cardContainer = document.getElementsByClassName("stats-cards-container")[0];
-    let cardheight = cards[0]!.clientHeight;
-    let cardWidth = cards[0]!.clientWidth;
+    let cardContainer= <HTMLElement> document.getElementsByClassName("stats-cards-container")[0];
+    let cardheight = (<HTMLElement> cards[0])!.clientHeight;
+    let cardWidth = (<HTMLElement> cards[0])!.clientWidth;
     let containerHeight = cardContainer!.offsetHeight;
     let containerWidth = cardContainer!.offsetWidth;
     for (let i = 0; i < cards.length; ++i) {
-      let cardPosX = cards[i]!.offsetLeft;
-      let cardPosY = cards[i]!.offsetTop;
+      let cardPosX = (<HTMLElement> cards[i])!.offsetLeft;
+      let cardPosY = (<HTMLElement> cards[i])!.offsetTop;
       var flightPath = {
         tree: {
           curviness: 1.25,
