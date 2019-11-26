@@ -163,17 +163,7 @@ export default class Form extends Vue {
 	printForm() {
     // validate before sending
     if (this.validate()) {
-      let formData = {
-        'industry': this.$data.formData.industry,
-        'location': this.$data.formData.location,
-        'contact': {
-          name: this.$data.formData.contact.name,
-          email: this.$data.formData.contact.email,
-          phone: this.$data.formData.contact.phone,
-          inquiry: this.$data.formData.contact.inquiry,
-        }
-      }
-      console.log(formData);
+      // console.log(formData);
       this.sendMessage();
       this.$emit('exitForm');
     } else {
