@@ -192,9 +192,10 @@ export default class HomeSection extends Vue {
     flex-basis: 0;
     
     #splash-text {
-      transition: font-size 1s ease 2s;
+      transition: font-size 1s ease 2s, transform 1s ease 0.2s;
       font-size: 3em;
       opacity: 1;
+      transform: translateX(200%);
     }
     
     #highlight-text {
@@ -246,6 +247,7 @@ export default class HomeSection extends Vue {
       #splash-text {
         font-size: 1.2em;
         opacity: 1;
+        transform: translateX(0);
       }
       
       #highlight-text {
