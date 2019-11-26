@@ -48,21 +48,21 @@
           <div class = "fill-ins">
             <div class="personal-info"> 
               <div class="name form-element" v-bind:class="{error: showNameErr}">
-                <input placeholder="Name" type="text" v-on:keyup="validName" v-model="formData.contact.name"/>
+                <input maxlength="200" placeholder="Name" type="text" v-on:change="validName" v-model="formData.contact.name"/>
                 <p v-if="showNameErr">Please enter a name.</p>
               </div>
               <div class="email form-element" v-bind:class="{error: showEmailErr}">
-                <input placeholder="Email" type="email" v-on:keyup="validEmail" v-model="formData.contact.email"/>
+                <input maxlength="200" placeholder="Email" type="email" v-on:change="validEmail" v-model="formData.contact.email"/>
                 <p v-if="showEmailErr">Please enter a valid email.</p>
               </div>
               <div class="phone form-element" v-bind:class="{error: showPhoneErr}">
-                <input placeholder="Phone" type="text" v-on:keyup="validPhone" v-model="formData.contact.phone"/>
+                <input maxlength="50" placeholder="Phone" type="text" v-on:change="validPhone" v-model="formData.contact.phone"/>
                 <p v-if="showPhoneErr">Please enter a valid phone no.</p>
               </div>
             </div>
             <div class="inquiry-container">
               <div class="inquiry form-element" v-bind:class="{error: showInquiryErr}">
-                <textarea placeholder="Inquiry" type="text" v-on:keyup="countDown" v-model="formData.contact.inquiry"/>
+                <textarea maxlength="2000" placeholder="Inquiry" type="text" v-on:keyup="countDown" v-model="formData.contact.inquiry"/>
                 <p v-if="showInquiryErr">Please enter an inquiry.</p>
                 <p id="remaining-characters" v-else>Chararcters remaining: {{remChars}}</p>
               </div>
@@ -184,7 +184,7 @@ export default class Form extends Vue {
 
   validName() {
     let re = /^[\p{L}'][ \p{L}'-]*[\p{L}]$/u;
-    this.showNameErr = (!re.test(this.$data.formData.contact.name.toLowerCase())) || (this.$data.formData.contact.name.length === 0) || (this.$data.formData.contact.name.length > 100);
+    this.showNameErr = (!re.test(this.$data.formData.contact.name.toLowerCase())) || (this.$data.formData.contact.name.length === 0) || (this.$data.formData.contact.name.length > 200);
   }
 
   validEmail() {
