@@ -48,21 +48,21 @@
           <div class = "fill-ins">
             <div class="personal-info"> 
               <div class="name form-element" v-bind:class="{error: showNameErr}">
-                <input placeholder="Name" type="text" v-on:keyup="validName" v-model="formData.contact.name"/>
+                <input maxlength="100" placeholder="Name" type="text" v-on:change="validName" v-model="formData.contact.name"/>
                 <p v-if="showNameErr">Please enter a name.</p>
               </div>
               <div class="email form-element" v-bind:class="{error: showEmailErr}">
-                <input placeholder="Email" type="email" v-on:keyup="validEmail" v-model="formData.contact.email"/>
+                <input placeholder="Email" type="email" v-on:change="validEmail" v-model="formData.contact.email"/>
                 <p v-if="showEmailErr">Please enter a valid email.</p>
               </div>
               <div class="phone form-element" v-bind:class="{error: showPhoneErr}">
-                <input placeholder="Phone" type="text" v-on:keyup="validPhone" v-model="formData.contact.phone"/>
+                <input maxlength="50" placeholder="Phone" type="text" v-on:change="validPhone" v-model="formData.contact.phone"/>
                 <p v-if="showPhoneErr">Please enter a valid phone no.</p>
               </div>
             </div>
             <div class="inquiry-container">
               <div class="inquiry form-element" v-bind:class="{error: showInquiryErr}">
-                <textarea placeholder="Inquiry" type="text" v-on:keyup="countDown" v-model="formData.contact.inquiry"/>
+                <textarea maxlength="2000" placeholder="Inquiry" type="text" v-on:keyup="countDown" v-model="formData.contact.inquiry"/>
                 <p v-if="showInquiryErr">Please enter an inquiry.</p>
                 <p id="remaining-characters" v-else>Chararcters remaining: {{remChars}}</p>
               </div>
@@ -124,16 +124,7 @@ export default class Form extends Vue {
     }
   }
 
-  validations: {
-    formData: {
-      contact: {
-        name: {required},
-        email: {required,email},
-        phone: {required}
-        // inquiry: { maxLength: maxLength(1000) }
-      }
-    }
-  }
+  
 
   countDown(){
     this.remChars = this.maxChars - this.$data.formData.contact.inquiry.length;
@@ -274,26 +265,7 @@ export default class Form extends Vue {
   align-items: center;
   justify-content: center;
   
-  #close-button {
-    display: flex;
-    flex-direction: row;
-    justify-content: left;
-    margin-left: 8vw;
-    width: 100vw;
-    height: 2em;
-    cursor: pointer;
-    z-index: 100;
-
-    @include medium-screen-landscape{
-      margin-left: 25vw;
-    }
-    
-    &:before {
-      content: "\f057";
-      font-size: 2em;
-      font-style: normal;
-    }
-  }
+  
 
   .nav-bar {
     width: 100%;
@@ -446,6 +418,7 @@ export default class Form extends Vue {
             @include medium-screen-landscape{
               font-size: 0.8em;
             }
+
           }
 
           &.error {
