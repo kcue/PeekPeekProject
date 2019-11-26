@@ -2,20 +2,26 @@
   <div id="form-container" >
     <div class="nav-bar">
       <h2> 
-        <span class="industry" id="nav-industry" @click="scrollToIndustry($event)">Industry</span>
-        <span class="location" id="nav-location" @click="scrollToLocation($event)">Location</span>
-        <span class="awesome"  id="nav-awesome"  @click="scrollToCustomerInformation($event)">Awesome!</span>
+        <span class="nav" id="industry" data-target="first-page" 
+          @click="pageScrollTo('industry')"
+          >Industry</span>
+        <span class="nav" id="location" data-target="second-page" 
+          @click="pageScrollTo('location')"
+          >Location</span>
+        <span class="nav" id="awesome" data-target="third-page"
+          @click="pageScrollTo('awesome')"
+          >Awesome!</span>
       </h2>
     </div>
     <!-- <i class="far fa-times-circle closed" id="close-button" @click="exitForm"></i> -->
     
-    <div class="container" id="form-viewport">
+    <div id="form-viewport">
       <!-- INDUSTRY -->
       <div class="form-page" id="first-page">
           <div class="form-buttons-container">
               <div class="button-container">
                 <div class="form-button" v-for="item in buttonData.industryPage"
-                  @click="scrollToLocation($event)" :key="item.id">
+                  @click="buttonClickHandler($event)" :key="item.id">
                     <span >{{item}} </span>
                 </div>
               </div>
@@ -27,7 +33,7 @@
           <div class="form-buttons-container">
             <div class="button-container">
               <div class="form-button" v-for="item in buttonData.locationPage"
-               @click="scrollToCustomerInformation($event)" :key="item.id">
+               @click="buttonClickHandler($event)" :key="item.id">
                   <span>{{item}}</span>
               </div>
             </div>
@@ -41,21 +47,21 @@
           <p>For now, we just need a little bit of information in order to reach out to you.</p>
           <div class = "fill-ins">
             <div class="personal-info"> 
-              <div class="name form-element">
+              <div class="name form-element" v-bind:class="{error: showNameErr}">
                 <input placeholder="Name" type="text" v-on:keyup="validName" v-model="formData.contact.name"/>
                 <p v-if="showNameErr">Please enter a name.</p>
               </div>
-              <div class="email form-element">
+              <div class="email form-element" v-bind:class="{error: showEmailErr}">
                 <input placeholder="Email" type="email" v-on:keyup="validEmail" v-model="formData.contact.email"/>
                 <p v-if="showEmailErr">Please enter a valid email.</p>
               </div>
-              <div class="phone form-element">
+              <div class="phone form-element" v-bind:class="{error: showPhoneErr}">
                 <input placeholder="Phone" type="text" v-on:keyup="validPhone" v-model="formData.contact.phone"/>
                 <p v-if="showPhoneErr">Please enter a valid phone no.</p>
               </div>
             </div>
             <div class="inquiry-container">
-              <div class="inquiry form-element">
+              <div class="inquiry form-element" v-bind:class="{error: showInquiryErr}">
                 <textarea placeholder="Inquiry" type="text" v-on:keyup="countDown" v-model="formData.contact.inquiry"/>
                 <p v-if="showInquiryErr">Please enter an inquiry.</p>
                 <p id="remaining-characters" v-else>Chararcters remaining: {{remChars}}</p>
@@ -72,21 +78,6 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 
-function  clearNavDecoration (l1, l2, len) : void {
-  var i;
-  for(i=0;i<len;i++){
-    l1[i].style['border-bottom'] = 'none'; l1[i].style.color = '#00b7c9';
-    l2[i].style['border-bottom'] = 'none'; l2[i].style.color = '#00b7c9';
-  }
-}
-
-function addNavDecoration (l1): void {
-  var i;
-  for(i=0;i<l1.length;i++){
-    l1[i].style['border-bottom'] = '.15em solid #002c30'; l1[i].style.color= '#002c30';
-  }
-}
-
 @Component({})
 export default class Form extends Vue {
   showNameErr: boolean = false;
@@ -98,6 +89,10 @@ export default class Form extends Vue {
 
   exitForm() {
     this.$emit('exitForm');
+  }
+
+  mounted() {
+    document.getElementById("industry").click();
   }
  
   data() {
@@ -166,21 +161,25 @@ export default class Form extends Vue {
   }
 
 	printForm() {
-    let formData = {
-      'industry': this.$data.formData.industry,
-      'location': this.$data.formData.location,
-      'contact': {
-        name: this.$data.formData.contact.name,
-        email: this.$data.formData.contact.email,
-        phone: this.$data.formData.contact.phone,
-        inquiry: this.$data.formData.contact.inquiry,
+    // validate before sending
+    if (this.validate()) {
+      let formData = {
+        'industry': this.$data.formData.industry,
+        'location': this.$data.formData.location,
+        'contact': {
+          name: this.$data.formData.contact.name,
+          email: this.$data.formData.contact.email,
+          phone: this.$data.formData.contact.phone,
+          inquiry: this.$data.formData.contact.inquiry,
+        }
       }
+      console.log(formData);
+      this.sendMessage();
+      this.$emit('exitForm');
+    } else {
+      alert("Please fill up the required items.");
     }
-    console.log(formData);
-    this.sendMessage();
-    this.$emit('exitForm');
   }
-     
 
   // Validation Methods
   validate() {
@@ -195,135 +194,83 @@ export default class Form extends Vue {
 
   validName() {
     let re = /^[\p{L}'][ \p{L}'-]*[\p{L}]$/u;
-    if (this.$data.formData.contact.name.length == 0 || this.$data.formData.contact.name.length > 100) {
-      return false;
-      this.showNameErr = true;
-    }
-    if (!re.test(this.$data.formData.contact.name.toLowerCase())) {
-      this.showNameErr = true;
-    } else {
-      this.showNameErr = false;
-    }
+    this.showNameErr = (!re.test(this.$data.formData.contact.name.toLowerCase())) || (this.$data.formData.contact.name.length === 0) || (this.$data.formData.contact.name.length > 100);
   }
 
   validEmail() {
     let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    if (!re.test(this.$data.formData.contact.email.toLowerCase())) {
-      this.showEmailErr = true;
-    } else {
-      this.showEmailErr = false;
-    }
+    this.showEmailErr = !re.test(this.$data.formData.contact.email.toLowerCase());
   }
 
   validPhone() {
-    if (this.$data.formData.contact.phone.length == 0 || this.$data.formData.contact.phone.length > 50) {
-      this.showPhoneErr = true;
-    } else {
-      this.showPhoneErr = false;
-    }
+    this.showPhoneErr = (this.$data.formData.contact.phone.length == 0) || (this.$data.formData.contact.phone.length > 50);
   }
 
   validInquiry() {
-    if( this.$data.formData.contact.inquiry.length == 0 || this.$data.formData.contact.inquiry.length > 2000) {
-      this.showInquiryErr = true;
-    } else {
-      this.showInquiryErr = false;
-    }
+    this.showInquiryErr = (this.$data.formData.contact.inquiry.length == 0) || (this.$data.formData.contact.inquiry.length > 2000);
   }
   
-  scrollToIndustry(event:MouseEvent) {
-    let target: HTMLElement = <HTMLElement> event.srcElement!;
-    let targetHTML = target.tagName === 'SPAN' ? target.innerHTML : target.children[0].innerHTML;
-    this.$data.formData.industry = targetHTML;
-    // Change Heading style
-    var locs = document.getElementsByClassName("location"), 
-      indus = document.getElementsByClassName("industry"), 
-      awes = document.getElementsByClassName("awesome"),
-      i;
-    clearNavDecoration(locs,awes,locs.length);
-    addNavDecoration(indus);
+  pageScrollTo(elemId) {
+    // validate current page before scrolling
+    let currentPage = document.querySelector(".form-page.active");
+    if (elemId !== "industry") {  // do not validate when initializing the form
+      if (currentPage.id === "first-page") {
+        if (this.$data.formData.industry.length === 0) {
+          alert("Please select an industry.");
+          return;
+        }
+      } else if (currentPage.id === "second-page") {
+        if (this.$data.formData.location.length == 0) {
+          alert("Please select a location.");
+          return;
+        }
+      }
+    }
 
-    document.getElementById('first-page')!.style.left = '0%';
-    document.getElementById('second-page')!.style.left = '100%';
-    document.getElementById('third-page')!.style.left = '200%';
+    let target: HTMLElement = document.getElementById(elemId);
+
+    document.querySelectorAll(".nav-bar span").forEach(navBarText => {
+      navBarText!.classList.remove("active");
+    });
+    target.classList.add("active");
+
+    document.querySelectorAll(".form-page").forEach(formPage => {
+      let translateValue: string = "0%";
+      if (elemId === "location") {
+        translateValue = "-100%"
+      } else if (elemId === "awesome") {
+        translateValue = "-200%"
+      }
+      (<HTMLElement> formPage)!.style.transform = "translateX(" + translateValue + ")";
+      (<HTMLElement> formPage)!.classList.remove("active");
+    });
+    document.getElementById(target.dataset.target).classList.add("active");
   }
 
-  scrollToLocation(event: MouseEvent) {
+  buttonClickHandler(event:MouseEvent) {
     let target: HTMLElement = <HTMLElement> event.srcElement!;
-    let  targetHTML = target.tagName === 'SPAN' ? target.innerHTML : target.children[0].innerHTML;    
-    if (target.classList.contains("form-button") || target.parentElement.classList.contains("form-button")) {
-      var sel_locs_button = document.getElementById("first-page").getElementsByClassName("selected"); 
-      if (sel_locs_button.length > 0) {
-        sel_locs_button[0].classList.remove("selected")
-      }
-      this.$data.formData.industry = targetHTML;
+    let targetText = target.innerText;    
+    
+    // determine which button was selected then add the selected classname
+    var selButtons = document.querySelectorAll(".form-page.active .selected");
+    if (selButtons.length > 0) {
+      (<HTMLElement> selButtons[0]).classList.remove("selected");
     }
     if (target.classList.contains("form-button")) {
       target.classList.add("selected");
     } else if (target.parentElement.classList.contains("form-button")) {
       target.parentElement.classList.add("selected");
     }
-    var locs = document.getElementsByClassName("location"), 
-        indus = document.getElementsByClassName("industry"), 
-        awes = document.getElementsByClassName("awesome"),
-        i;
-    clearNavDecoration(indus,awes,indus.length);
-    addNavDecoration(locs);
 
-    document.getElementById('first-page')!.style.left = '-100%';
-    document.getElementById('second-page')!.style.left = '0';
-    document.getElementById('third-page')!.style.left = '100%';
-  }
-
-  scrollToCustomerInformation(event: MouseEvent) {
     let toAlert = false;
-    let alert_string = "Please choose a";
-
-    let target: HTMLElement = <HTMLElement> event.srcElement!;
-    let targetHTML = target.tagName === 'SPAN' ? target.innerHTML : target.children[0].innerHTML;
-    
-    if (target.classList.contains("form-button") || target.parentElement.classList.contains("form-button")) {
-      var sel_locs_button = document.getElementById("second-page").getElementsByClassName("selected"); 
-      if (sel_locs_button.length > 0) {
-        sel_locs_button[0].classList.remove("selected");
-      }
-      this.$data.formData.location = targetHTML;
+    var formPage = document.querySelector(".form-page.active");
+    if (formPage.id === "first-page") {
+      this.$data.formData.industry = targetText;  // update formData object with the value selected
+      this.pageScrollTo("location");                   // scroll to the next page
+    } else if (formPage.id == "second-page") {
+      this.$data.formData.location = targetText;
+      this.pageScrollTo("awesome");
     }
-
-    if (this.$data.formData.industry.length == 0) {
-      alert_string += "n industry";
-      toAlert = true;
-    }
-
-    if (this.$data.formData.location.length == 0) {
-      if (toAlert) {
-        alert_string += " and";
-      }
-      alert_string += " location";
-      toAlert = true;
-    }
-
-    if (toAlert) {
-      alert(alert_string);
-      return;
-    }
-
-    if (target.classList.contains("form-button")) {
-      target.classList.add("selected");
-    } else if (target.parentElement.classList.contains("form-button")) {
-      target.parentElement.classList.add("selected");
-    }
-    
-    var locs = document.getElementsByClassName("location"), 
-        indus = document.getElementsByClassName("industry"), 
-        awes = document.getElementsByClassName("awesome"),
-        i;
-    clearNavDecoration(indus,locs,indus.length);
-    addNavDecoration(awes);
-    
-    document.getElementById('first-page')!.style.transform = '-200%';
-    document.getElementById('second-page')!.style.transform = '-100%';
-    document.getElementById('third-page')!.style.transform = '0';
   }
 }
 </script>
@@ -375,13 +322,19 @@ export default class Form extends Vue {
       }
 
       span {
+        transition: all 0.3s ease;
         cursor: pointer;
         margin: 0 0.5em;
         line-height: 1.7em;
+        border-bottom: 0.15em solid transparent;
 
         &.active {
           color: $heading-color;
-          border-bottom: 0.15em solid $heading-color;
+          border-color: $heading-color;
+        }
+
+        &:hover {
+          color: $heading-color;
         }
       }        
     }
@@ -405,6 +358,12 @@ export default class Form extends Vue {
     justify-content: center;
     align-items: center;
     flex: 1 0 auto;
+    transition: transform 0.5s ease-out, opacity 0.25s ease-out;
+    opacity: 0;
+
+    &.active {
+      opacity: 1;
+    }
     
     .form-buttons-container {
       width: 100%;
@@ -482,6 +441,38 @@ export default class Form extends Vue {
         margin: 2em 0;
         width: 95%;
 
+        .form-element {
+          input, textarea {
+            width: 100%;
+            border-radius: 1em;
+            border: 1px solid $form-border-color;
+            outline: none;
+            padding: 2% 5%;
+            font-size: 0.9em;
+            line-height: 1.2em;
+            color: $secondary-description-color;
+            font-weight: 400;
+
+            @include medium-screen-landscape{
+              font-size: 0.8em;
+            }
+          }
+
+          &.error {
+            input, textarea {
+              border-color: $form-error-color;
+              background-color: rgba($form-error-color, 0.2);
+            }
+
+            p {
+              color: $form-error-color;
+              text-align: right;
+              font-size: 0.8em;
+              line-height: 1.6em;
+            }
+          }
+        }
+
         .personal-info {
           width: 49%;
           margin-right: 2%;
@@ -502,26 +493,9 @@ export default class Form extends Vue {
               height: 100%;
             }
 
-            #remaining-characters{
+            #remaining-characters {
               color: $subheading-color;
-            } 
-          }
-        }
-
-        .form-element {
-          input, textarea {
-            width: 100%;
-            border-radius: 1em;
-            border: 1px solid $form-border-color;
-            outline: none;
-            padding: 2% 5%;
-            font-size: 0.9em;
-            line-height: 1.2em;
-            color: $secondary-description-color;
-            font-weight: 400;
-
-            @include medium-screen-landscape{
-              font-size: 0.8em;
+              text-align: right;
             }
           }
         }

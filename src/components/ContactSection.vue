@@ -161,21 +161,16 @@ export default class ContactSection extends Vue {
       height: 50vw;
       
       @include medium-screen-landscape {
-        width: 85vw;
+        width: 80vw;
       }
 
       @include large-screen-landscape {
-        width: 70vw;
-        height: 40vw;
+        min-width: 800px;
+        min-height: 500px;
+        width: 60vw;
+        height: 35vw;
       }
     }
   }
-}
-
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
-}
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  opacity: 0;
 }
 </style>
