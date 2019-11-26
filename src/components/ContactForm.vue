@@ -188,7 +188,7 @@ export default class Form extends Vue {
     }
     validate() {
       let result = true;
-      if(this.$data.formData.contact.name.length==0){
+      if(!this.validName()){
         this.showNameErr = true;
         result = false;
       }else{
@@ -202,14 +202,14 @@ export default class Form extends Vue {
         this.showEmailErr = false;
       }
 
-      if(this.$data.formData.contact.phone.length==0){
+      if(this.$data.formData.contact.phone.length==0||this.$data.formData.contact.phone.length>50){
         this.showPhoneErr = true;
         result = false;
       }else{
         this.showPhoneErr = false;
       }
 
-      if(this.$data.formData.contact.inquiry.length==0){
+      if(this.$data.formData.contact.inquiry.length==0||this.$data.formData.contact.inquiry.length>2000){
         this.showInquiryErr = true;
         result = false;
       }else{
@@ -218,6 +218,13 @@ export default class Form extends Vue {
 
 
       return result;
+    }
+    validName(){
+      let re = /^[\p{L}'][ \p{L}'-]*[\p{L}]$/u;
+      if(this.$data.formData.contact.name.length==0||this.$data.formData.contact.name.length>100){
+        return false;
+      }
+      return re.test(this.$data.formData.contact.name.toLowerCase());
     }
     validEmail(){
       let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
