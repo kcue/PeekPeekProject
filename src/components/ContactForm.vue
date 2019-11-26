@@ -48,15 +48,15 @@
           <div class = "fill-ins">
             <div class="personal-info"> 
               <div class="name form-element" v-bind:class="{error: showNameErr}">
-                <input maxlength="200" placeholder="Name" type="text" v-on:change="validName" v-model="formData.contact.name"/>
+                <input maxlength="200" placeholder="Name" type="text" v-on:input="validName" v-model="formData.contact.name"/>
                 <p v-if="showNameErr">Please enter a name.</p>
               </div>
               <div class="email form-element" v-bind:class="{error: showEmailErr}">
-                <input maxlength="200" placeholder="Email" type="email" v-on:change="validEmail" v-model="formData.contact.email"/>
+                <input maxlength="200" placeholder="Email" type="email" v-on:input="validEmail" v-model="formData.contact.email"/>
                 <p v-if="showEmailErr">Please enter a valid email.</p>
               </div>
               <div class="phone form-element" v-bind:class="{error: showPhoneErr}">
-                <input maxlength="50" placeholder="Phone" type="text" v-on:change="validPhone" v-model="formData.contact.phone"/>
+                <input maxlength="50" placeholder="Phone" type="text" v-on:input="validPhone" v-model="formData.contact.phone"/>
                 <p v-if="showPhoneErr">Please enter a valid phone no.</p>
               </div>
             </div>
@@ -418,10 +418,11 @@ export default class Form extends Vue {
       flex-direction: column;
       align-items: center;
 
-      p {
+      & > p {
         color: $secondary-description-color;    // @TODO CHANGE THIS
         font-weight: 400;
         font-size: 0.9em;
+        text-align: center;
       }
 
       .fill-ins {
@@ -458,6 +459,7 @@ export default class Form extends Vue {
               color: $form-error-color;
               text-align: right;
               font-size: 0.8em;
+              font-weight: 400;
               line-height: 1.6em;
             }
           }
