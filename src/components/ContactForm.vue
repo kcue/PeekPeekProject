@@ -2,9 +2,9 @@
   <div id="form-container" >
     <div class="nav-bar">
       <h2> 
-        <span class="industry" @click="scrollToIndustry($event)">Industry</span>
-        <span class="location" @click="scrollToLocation($event)">Location</span>
-        <span class="awesome" @click="scrollToCustomerInformation($event)">Awesome!</span>
+        <span class="industry" id="nav-industry" @click="scrollToIndustry($event)">Industry</span>
+        <span class="location" id="nav-location" @click="scrollToLocation($event)">Location</span>
+        <span class="awesome"  id="nav-awesome"  @click="scrollToCustomerInformation($event)">Awesome!</span>
       </h2>
     </div>
     <!-- <i class="far fa-times-circle closed" id="close-button" @click="exitForm"></i> -->
@@ -13,7 +13,6 @@
       <!-- INDUSTRY -->
       <div class="form-page" id="first-page">
           <div class="form-buttons-container">
-              
               <div class="button-container">
                 <div class="form-button" v-for="item in buttonData.industryPage"
                   @click="scrollToLocation($event)" :key="item.id">
@@ -43,18 +42,23 @@
           <div class = "fill-ins">
             <div class="personal-info"> 
               <div class="name form-element">
-                <input placeholder="Name" type="text" v-model="formData.contact.name"/>
+                <input placeholder="Name" type="text" v-on:keyup="validName" v-model="formData.contact.name"/>
+                <p v-if="showNameErr">Please enter a name.</p>
               </div>
               <div class="email form-element">
-                <input placeholder="Email" type="email" v-model="formData.contact.email"/>
+                <input placeholder="Email" type="email" v-on:keyup="validEmail" v-model="formData.contact.email"/>
+                <p v-if="showEmailErr">Please enter a valid email.</p>
               </div>
               <div class="phone form-element">
-                  <input placeholder="Phone" type="text" v-model="formData.contact.phone"/>
+                <input placeholder="Phone" type="text" v-on:keyup="validPhone" v-model="formData.contact.phone"/>
+                <p v-if="showPhoneErr">Please enter a valid phone no.</p>
               </div>
             </div>
             <div class="inquiry-container">
               <div class="inquiry form-element">
-                <textarea placeholder="Inquiry" type="text" v-model="formData.contact.inquiry"/>
+                <textarea placeholder="Inquiry" type="text" v-on:keyup="countDown" v-model="formData.contact.inquiry"/>
+                <p v-if="showInquiryErr">Please enter an inquiry.</p>
+                <p id="remaining-characters" v-else>Chararcters remaining: {{remChars}}</p>
               </div>
             </div>
           </div>
@@ -85,6 +89,13 @@ function addNavDecoration (l1): void {
 
 @Component({})
 export default class Form extends Vue {
+  showNameErr: boolean = false;
+  showEmailErr: boolean = false;
+  showPhoneErr: boolean = false;
+  showInquiryErr: boolean = false;
+  maxChars = 2000; 
+  remChars = 2000;
+
   exitForm() {
     this.$emit('exitForm');
   }
@@ -118,6 +129,21 @@ export default class Form extends Vue {
     }
   }
 
+  validations: {
+    formData: {
+      contact: {
+        name: {required},
+        email: {required,email},
+        phone: {required}
+        // inquiry: { maxLength: maxLength(1000) }
+      }
+    }
+  }
+
+  countDown(){
+    this.remChars = this.maxChars - this.$data.formData.contact.inquiry.length;
+  }
+
   getIMGURL(blob){
     return require('../assets/images/'+blob)
   }
@@ -139,7 +165,7 @@ export default class Form extends Vue {
     Vue.axios.post('https://sheetdb.io/api/v1/o508ssejo24qk', save);
   }
 
-  printForm() {
+	printForm() {
     let formData = {
       'industry': this.$data.formData.industry,
       'location': this.$data.formData.location,
@@ -153,6 +179,56 @@ export default class Form extends Vue {
     console.log(formData);
     this.sendMessage();
     this.$emit('exitForm');
+  }
+     
+
+  // Validation Methods
+  validate() {
+    this.validName(); 
+    this.validEmail();
+    this.validPhone();
+    this.validInquiry();
+    let result = !(this.showNameErr || this.showEmailErr || this.showPhoneErr || this.showInquiryErr);
+
+    return result;
+  }
+
+  validName() {
+    let re = /^[\p{L}'][ \p{L}'-]*[\p{L}]$/u;
+    if (this.$data.formData.contact.name.length == 0 || this.$data.formData.contact.name.length > 100) {
+      return false;
+      this.showNameErr = true;
+    }
+    if (!re.test(this.$data.formData.contact.name.toLowerCase())) {
+      this.showNameErr = true;
+    } else {
+      this.showNameErr = false;
+    }
+  }
+
+  validEmail() {
+    let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (!re.test(this.$data.formData.contact.email.toLowerCase())) {
+      this.showEmailErr = true;
+    } else {
+      this.showEmailErr = false;
+    }
+  }
+
+  validPhone() {
+    if (this.$data.formData.contact.phone.length == 0 || this.$data.formData.contact.phone.length > 50) {
+      this.showPhoneErr = true;
+    } else {
+      this.showPhoneErr = false;
+    }
+  }
+
+  validInquiry() {
+    if( this.$data.formData.contact.inquiry.length == 0 || this.$data.formData.contact.inquiry.length > 2000) {
+      this.showInquiryErr = true;
+    } else {
+      this.showInquiryErr = false;
+    }
   }
   
   scrollToIndustry(event:MouseEvent) {
@@ -200,16 +276,38 @@ export default class Form extends Vue {
   }
 
   scrollToCustomerInformation(event: MouseEvent) {
+    let toAlert = false;
+    let alert_string = "Please choose a";
 
     let target: HTMLElement = <HTMLElement> event.srcElement!;
     let targetHTML = target.tagName === 'SPAN' ? target.innerHTML : target.children[0].innerHTML;
+    
     if (target.classList.contains("form-button") || target.parentElement.classList.contains("form-button")) {
       var sel_locs_button = document.getElementById("second-page").getElementsByClassName("selected"); 
       if (sel_locs_button.length > 0) {
-        sel_locs_button[0].classList.remove("selected")
+        sel_locs_button[0].classList.remove("selected");
       }
       this.$data.formData.location = targetHTML;
     }
+
+    if (this.$data.formData.industry.length == 0) {
+      alert_string += "n industry";
+      toAlert = true;
+    }
+
+    if (this.$data.formData.location.length == 0) {
+      if (toAlert) {
+        alert_string += " and";
+      }
+      alert_string += " location";
+      toAlert = true;
+    }
+
+    if (toAlert) {
+      alert(alert_string);
+      return;
+    }
+
     if (target.classList.contains("form-button")) {
       target.classList.add("selected");
     } else if (target.parentElement.classList.contains("form-button")) {
@@ -223,9 +321,9 @@ export default class Form extends Vue {
     clearNavDecoration(indus,locs,indus.length);
     addNavDecoration(awes);
     
-    document.getElementById('first-page')!.style.left = '-200%';
-    document.getElementById('second-page')!.style.left = '-100%';
-    document.getElementById('third-page')!.style.left = '0';
+    document.getElementById('first-page')!.style.transform = '-200%';
+    document.getElementById('second-page')!.style.transform = '-100%';
+    document.getElementById('third-page')!.style.transform = '0';
   }
 }
 </script>
@@ -403,6 +501,10 @@ export default class Form extends Vue {
             textarea {
               height: 100%;
             }
+
+            #remaining-characters{
+              color: $subheading-color;
+            } 
           }
         }
 
