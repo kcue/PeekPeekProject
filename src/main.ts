@@ -3,12 +3,16 @@ import Component from "vue-class-component";
 import App from "./App.vue";
 import router from "./router";
 
+import axios from 'axios';
+import VueAxios from 'vue-axios';
 import VueScrollmagic from "vue-scrollmagic";
 import anime from 'animejs';
 
 import _ from 'lodash';
 import common from "@/shared/common"
 
+// axios is for API interaction
+Vue.use(VueAxios, axios);
 
 // make lodash available as $_
 Object.defineProperty(Vue.prototype, '$_', { value: _ });

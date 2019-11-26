@@ -81,7 +81,9 @@
 // these are the styles for animating the contact section on a vertical layout
 @mixin contact-section-vertical-transition-styles {
   #contact-section::v-deep {
-    .subheading, .heading, button {
+    .contact-section-interlude .subheading, 
+    .contact-section-main .heading, 
+    .contact-section-main button {
       transition: all 0.5s ease-out 0.2s;
       opacity: 0;
       transform: translateY(0.5em);

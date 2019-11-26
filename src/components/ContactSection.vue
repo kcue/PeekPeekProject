@@ -10,11 +10,9 @@
         <h2 class="heading">{{ headingTextLine2 }}</h2>
         <button class="primary-button" @click="onContactButtonClick">{{ contactUsButtonText }}</button>
       </div>
-      <transition oname="fade">
-        <div class="transition-container" v-if="showContactForm">
-            <div class="modal-backdop" @click="exitForm"></div>
-            <ContactForm @exitForm = "exitForm()" class="contact-form"></ContactForm>
-          
+      <transition name="fade">
+        <div class="modal-backdrop" v-on:click.self="exitForm" v-if="showContactForm">
+          <ContactForm @exitForm="exitForm" class="contact-form" ></ContactForm>
         </div>
       </transition>
     </div>
@@ -43,18 +41,17 @@ export default class ContactSection extends Vue {
   onContactButtonClick() {
     this.showContactForm = true;
     Vue.prototype.common.appScrollTo("#contact-section");
-    document.body.style.overflow = 'hidden';
-    window.onwheel = (event: any) => {
-      ;
+    document.body.style.overflow = "hidden";
+    window.onwheel = (event: any) => { 
+      // do nothing
     }
   }
 
   exitForm() {
     this.showContactForm = false;
     document.body.style.overflow = "auto";
-    document.body.style.overflow = 'auto';
     window.onwheel = (event: any) => {
-      if (navigator.userAgent.includes('Safari') && !navigator.userAgent.includes('Chrome')) {
+      if (navigator.userAgent.includes("Safari") && !navigator.userAgent.includes("Chrome")) {
         // Need to prevent default behavior for Safari for touchpad scrolling gesture to work
         event.preventDefault();
         window.scrollTo(window.scrollX + event.deltaX + event.deltaY, window.scrollY); // Added deltaX to ensure native horizontal scrolling
@@ -72,35 +69,35 @@ export default class ContactSection extends Vue {
     // thus, we are not animating ring_1
     const duration: number = 10000;
     Vue.prototype.$anime({
-      targets: '#ring_2',
+      targets: "#ring_2",
       d: [
-        { value: document.getElementById('ring_3').getAttribute('d') },
-        { value: document.getElementById('ring_2').getAttribute('d') },
+        { value: document.getElementById("ring_3").getAttribute("d") },
+        { value: document.getElementById("ring_2").getAttribute("d") },
       ],
       // direction: 'alternate',
-      easing: 'linear',
+      easing: "linear",
       duration: duration,
       loop: true
     });
     Vue.prototype.$anime({
-      targets: '#ring_3',
+      targets: "#ring_3",
       d: [
-        { value: document.getElementById('ring_4').getAttribute('d') },
-        { value: document.getElementById('ring_3').getAttribute('d') },
+        { value: document.getElementById("ring_4").getAttribute("d") },
+        { value: document.getElementById("ring_3").getAttribute("d") },
       ],
       // direction: 'alternate',
-      easing: 'linear',
+      easing: "linear",
       duration: duration,
       loop: true
     });
     Vue.prototype.$anime({
-      targets: '#ring_4',
+      targets: "#ring_4",
       d: [
-        { value: document.getElementById('ring_2').getAttribute('d') },
-        { value: document.getElementById('ring_4').getAttribute('d') },
+        { value: document.getElementById("ring_2").getAttribute("d") },
+        { value: document.getElementById("ring_4").getAttribute("d") },
       ],
       // direction: 'alternate',
-      easing: 'linear',
+      easing: "linear",
       duration: duration,
       loop: true
     });
@@ -109,7 +106,6 @@ export default class ContactSection extends Vue {
 </script>
 
 <style lang="scss" scoped>
-
 #contact-section-container {
   min-height: $site-min-height;
   height: 100vh;
@@ -148,29 +144,38 @@ export default class ContactSection extends Vue {
     display: block;
     margin: 3em auto 0;
   }
-  .modal-backdop {
-    position: fixed;
+
+  .modal-backdrop {
+    position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
-    // background-color: rgba(0, 0, 0, 0.3);
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 19;
-  }
-  .transition-container{
-    z-index: 18;
-  }
-  .contact-form {
-    position: fixed;
-    width: 100vw;
-    height: 80vh;
-    left: 0;
-    top: 10vh;
-    border-radius: 2vh;
     z-index: 20;
+
+    .contact-form {
+      width: 90vw;
+      height: 50vw;
+      
+      @include medium-screen-landscape {
+        width: 85vw;
+      }
+
+      @include large-screen-landscape {
+        width: 70vw;
+        height: 40vw;
+      }
+    }
   }
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
 }
 </style>

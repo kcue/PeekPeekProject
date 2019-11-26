@@ -111,6 +111,15 @@ img {
   min-height: 0;
 }
 
+// Vue transition wrapper fade effects
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.5s;
+}
+
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+
 /* Global Styles */
 body {
   min-width: $site-min-width;
