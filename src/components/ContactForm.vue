@@ -4,9 +4,9 @@
         <!-- <img class="oval" :src="formSVG" />  -->
         <div class="nav-bar">
           <h2> 
-            <span class="industry" @click="scrollToIndustry($event)">Industry</span>
-            <span class="location" @click="scrollToLocation($event)">Location</span>
-            <span class="awesome" @click="scrollToCustomerInformation($event)">Awesome!</span>
+            <span class="industry" id ="nav-industry" @click="scrollToIndustry($event)">Industry</span>
+            <span class="location" id ="nav-location" @click="scrollToLocation($event)">Location</span>
+            <span class="awesome"  id = "nav-awesome" @click="scrollToCustomerInformation($event)">Awesome!</span>
           </h2>
         </div>
         <i class="far fa-times-circle closed" id="close-button" @click="exitForm"></i>
@@ -47,23 +47,28 @@
     					  <div class="personal-info"> 
     							<div class="name form-element">
     									<input placeholder="Name" type="text" v-model="formData.contact.name"/>
+                      <p v-if="showNameErr">Please enter a name</p>
     							</div>
 
     							<div class="email form-element">
     									<input placeholder="Email" type="email" v-model="formData.contact.email"/>
+                      <p v-if="showEmailErr">Please enter a valid email</p>
     							</div>
 
     							<div class="phone form-element">
     									<input placeholder="Phone" type="text" v-model="formData.contact.phone"/>
+                      <p v-if="showPhoneErr">Please enter a valid phone no.</p>
     							</div>
                 </div>
                 <div class="inquiry">
     							<div class="inquiry form-element">
-    									<textarea placeholder="Inquiry" type="text" v-model="formData.contact.inquiry"/>
+    									<textarea placeholder="Inquiry" type="text" v-on:keyup="countDown" v-model="formData.contact.inquiry"/>
+                      <p v-if="showInquiryErr">Please enter an inquiry</p>
+                      <p id = "remaining-characters" v-else>Chararcters remaining: {{remChars}} </p>
     							</div>
                 </div>
               </div>
-              <button class = "primary-button"id="submit-button" @click="printForm">Submit</button>
+              <button class = "primary-button" id="submit-button" @click="printForm">Submit</button>
 						</div>
 
 						
@@ -93,38 +98,56 @@ function addNavDecoration (l1): void {
 }
 @Component
 export default class Form extends Vue {
-  
-  exitForm() {
-    this.$emit('exitForm');
-  }
+  showNameErr: boolean = false;
+  showEmailErr: boolean = false;
+  showPhoneErr: boolean = false;
+  showInquiryErr: boolean = false;
+  maxChars = 2000; 
+  remChars = 2000;
  
-
-		data() {
-				return {
-						buttonData: {
-								industryPage: [
-                  'Hospitality',
-                  'Restaurant',
-                  'Campus',
-                  'Other'],
-								locationPage: [
-                  'Los Angeles',
-                  'Orange County',
-                  'Riverside', 
-                  'Other']
-						},
-						formData: {
-								industry: '',
-								location: '',
-								contact: {
-										name: '',
-										email: '',
-										phone: '',
-										inquiry: '',
-								}
+ 
+	data() {
+		return {
+				buttonData: {
+						industryPage: [
+              'Hospitality',
+              'Restaurant',
+              'Campus',
+              'Other'],
+						locationPage: [
+              'Los Angeles',
+              'Orange County',
+              'Riverside', 
+              'Other']
+				},
+				formData: {
+						industry: '',
+						location: '',
+						contact: {
+								name: '',
+								email: '',
+								phone: '',
+								inquiry: '',
 						}
 				}
+		  }
 		}
+    validations: {
+      formData: {
+        contact: {
+          name: {required},
+          email: {required,email},
+          phone: {required}
+          // inquiry: { maxLength: maxLength(1000) }
+        }
+      }
+    }
+    countDown(){
+      this.remChars= this.maxChars-this.$data.formData.contact.inquiry.length;
+    }
+    exitForm() {
+      this.$emit('exitForm');
+    }
     getIMGURL(blob){
       return require('../assets/images/'+blob)
     }
@@ -156,11 +179,50 @@ export default class Form extends Vue {
   				}
   		}
   		console.log(formData);
-      this.sendMessage();
-		  
-      this.$emit('exitForm');
+      if(this.validate()){
+       this.sendMessage();
+       this.$emit('exitForm');
+      }
+     
+      
     }
-	
+    validate() {
+      let result = true;
+      if(this.$data.formData.contact.name.length==0){
+        this.showNameErr = true;
+        result = false;
+      }else{
+        this.showNameErr = false;
+      }
+
+      if(!this.validEmail()){
+        this.showEmailErr = true;
+        result = false;
+      }else{
+        this.showEmailErr = false;
+      }
+
+      if(this.$data.formData.contact.phone.length==0){
+        this.showPhoneErr = true;
+        result = false;
+      }else{
+        this.showPhoneErr = false;
+      }
+
+      if(this.$data.formData.contact.inquiry.length==0){
+        this.showInquiryErr = true;
+        result = false;
+      }else{
+        this.showInquiryErr = false;
+      }
+
+
+      return result;
+    }
+    validEmail(){
+      let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(this.$data.formData.contact.email.toLowerCase());
+    }
 		scrollToIndustry(event:MouseEvent){
 			let target: HTMLElement = <HTMLElement> event.srcElement!;
 			let targetHTML = target.tagName === 'SPAN' ? target.innerHTML : target.children[0].innerHTML;
@@ -178,6 +240,8 @@ export default class Form extends Vue {
 			document.getElementById('third-page')!.style.left = '200%';
 		}
 		scrollToLocation(event: MouseEvent) {
+      console.log(this.$data.formData.industry);
+      
 			let target: HTMLElement = <HTMLElement> event.srcElement!;
       let targetHTML = target.tagName === 'SPAN' ? target.innerHTML : target.children[0].innerHTML;    
        if(target.classList.contains("form-button")||target.parentElement.classList.contains("form-button")) {
@@ -187,6 +251,10 @@ export default class Form extends Vue {
         }
        this.$data.formData.industry = targetHTML;
 
+      }
+      if(this.$data.formData.industry.length==0){
+        alert("Please choose an industry");
+        return;
       }
       if (target.classList.contains("form-button")) {
         target.classList.add("selected");
@@ -205,6 +273,9 @@ export default class Form extends Vue {
 			document.getElementById('third-page')!.style.left = '100%';
 		}
 		scrollToCustomerInformation(event: MouseEvent) {
+      let toAlert = false;
+      let alert_string = 'Please choose a';
+     
 
 			let target: HTMLElement = <HTMLElement> event.srcElement!;
       let targetHTML = target.tagName === 'SPAN' ? target.innerHTML : target.children[0].innerHTML;
@@ -214,6 +285,22 @@ export default class Form extends Vue {
           sel_locs_button[0].classList.remove("selected")
         }
         this.$data.formData.location = targetHTML;
+      }
+      if(this.$data.formData.industry.length==0){
+        alert_string+= 'n industry';
+        toAlert=true;
+      }
+      if(this.$data.formData.location.length==0){
+        if(toAlert){
+          alert_string+=' and';
+        }
+        alert_string+= ' location';
+        toAlert=true;
+      }
+      
+      if(toAlert){
+        alert(alert_string);
+        return;
       }
       if (target.classList.contains("form-button")) {
         target.classList.add("selected");
@@ -265,13 +352,13 @@ export default class Form extends Vue {
         display: flex;
         flex-direction: column;
         font-size: 2vw;
-        margin-top: 23vh;
+        margin-top: 27vh;
         .industry{
           color: $heading-color;
           border-bottom: .15em solid $heading-color;
         }
         @include medium-screen-landscape{
-          margin-top: 20vh;
+          margin-top: 17vh;
           font-size: 1.3vw;
         }
         @include large-screen-landscape{
@@ -393,11 +480,13 @@ export default class Form extends Vue {
         }
         p{
           color: darkgrey;
+          margin-top:8vh;
           margin-bottom: 2vh;
           font-weight: lighter;
           font-size: 8px;
           @include medium-screen-landscape{
             font-size: inherit;
+            margin-top:0vh;
             margin-bottom: 3vh;
           }
         }
@@ -414,7 +503,11 @@ export default class Form extends Vue {
           @include large-screen-landscape{
             max-width: 40vw;
           }
-
+          p{
+            margin-top: 0vh;
+            color:red;
+            font-size: .75em;
+          }
           .personal-info{
             width:40%;
             margin-right: 1vw;
@@ -423,29 +516,38 @@ export default class Form extends Vue {
             width: 40%
           }
           .inquiry.form-element{
+            justify-content: flex-start;
             width: 100%;
             height: 100%;
+            textarea{
+              height: 100%;
+            }
+            #remaining-characters{
+              color: darkgrey;
+            }            
           }
         }
         .form-element {
           display: flex;
-          flex-direction: row;
+          flex-direction: column;
           margin-bottom: 1vh;
           display: flex;
           justify-content: center;
-            input, textarea {
-              display: flex;
-              z-index: 2;
-              width: 100%;
-              border-radius: 2vh;
-              border: none;
-              font-size: 70%;
-              padding-left: 1vw;
-              font-family: Arial;
-              @include medium-screen-landscape{
-                font-size: 100%;
-              }
+          input, textarea {
+            display: flex;
+            z-index: 2;
+            width: 100%;
+            border-radius: 2vh;
+            border: none;
+            font-size: 70%;
+            font-family: Arial;
+            @include medium-screen-landscape{
+              font-size: 100%;
             }
+          }
+          p{
+            margin-bottom: .2vh;
+          }
         }
     	}
     }
