@@ -46,17 +46,17 @@
               <div class = "fill-ins">
     					  <div class="personal-info"> 
     							<div class="name form-element">
-    									<input placeholder="Name" type="text" v-model="formData.contact.name"/>
+    									<input placeholder="Name" type="text" v-on:keyup="validName" v-model="formData.contact.name"/>
                       <p v-if="showNameErr">Please enter a name</p>
     							</div>
 
     							<div class="email form-element">
-    									<input placeholder="Email" type="email" v-model="formData.contact.email"/>
+    									<input placeholder="Email" type="email" v-on:keyup="validEmail" v-model="formData.contact.email"/>
                       <p v-if="showEmailErr">Please enter a valid email</p>
     							</div>
 
     							<div class="phone form-element">
-    									<input placeholder="Phone" type="text" v-model="formData.contact.phone"/>
+    									<input placeholder="Phone" type="text" v-on:keyup="validPhone" v-model="formData.contact.phone"/>
                       <p v-if="showPhoneErr">Please enter a valid phone no.</p>
     							</div>
                 </div>
@@ -187,35 +187,11 @@ export default class Form extends Vue {
       
     }
     validate() {
-      let result = true;
-      if(!this.validName()){
-        this.showNameErr = true;
-        result = false;
-      }else{
-        this.showNameErr = false;
-      }
-
-      if(!this.validEmail()){
-        this.showEmailErr = true;
-        result = false;
-      }else{
-        this.showEmailErr = false;
-      }
-
-      if(this.$data.formData.contact.phone.length==0||this.$data.formData.contact.phone.length>50){
-        this.showPhoneErr = true;
-        result = false;
-      }else{
-        this.showPhoneErr = false;
-      }
-
-      if(this.$data.formData.contact.inquiry.length==0||this.$data.formData.contact.inquiry.length>2000){
-        this.showInquiryErr = true;
-        result = false;
-      }else{
-        this.showInquiryErr = false;
-      }
-
+      this.validName(); 
+      this.validEmail();
+      this.validPhone();
+      this.validInquiry();
+      let result = !(this.showNameErr || this.showEmailErr || this.showPhoneErr || this.showInquiryErr);
 
       return result;
     }
@@ -223,12 +199,36 @@ export default class Form extends Vue {
       let re = /^[\p{L}'][ \p{L}'-]*[\p{L}]$/u;
       if(this.$data.formData.contact.name.length==0||this.$data.formData.contact.name.length>100){
         return false;
+        this.showNameErr = true;
       }
-      return re.test(this.$data.formData.contact.name.toLowerCase());
+      if(!re.test(this.$data.formData.contact.name.toLowerCase())){
+        this.showNameErr = true;
+      }else{
+        this.showNameErr = false;
+      }
     }
     validEmail(){
+      
       let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-      return re.test(this.$data.formData.contact.email.toLowerCase());
+      if(!re.test(this.$data.formData.contact.email.toLowerCase())){
+        this.showEmailErr = true;
+      }else{
+        this.showEmailErr = false;
+      }
+    }
+    validPhone(){
+      if(this.$data.formData.contact.phone.length==0||this.$data.formData.contact.phone.length>50){
+        this.showPhoneErr = true;
+      }else{
+        this.showPhoneErr = false;
+      }
+    }
+    validInquiry(){
+      if(this.$data.formData.contact.inquiry.length==0||this.$data.formData.contact.inquiry.length>2000){
+        this.showInquiryErr = true;
+      }else{
+        this.showInquiryErr = false;
+      }
     }
 		scrollToIndustry(event:MouseEvent){
 			let target: HTMLElement = <HTMLElement> event.srcElement!;
