@@ -51,7 +51,7 @@
               </div>
               <div class="phone form-element">
                 <input placeholder="Phone" type="text" v-on:keyup="validPhone" v-model="formData.contact.phone"/>
-                <p v-if="showPhoneErr">Please enter a valid phone no.</p>
+                <p v-if="showPhoneErr">Please enter a phone number.</p>
               </div>
             </div>
             <div class="inquiry-container">
@@ -129,16 +129,7 @@ export default class Form extends Vue {
     }
   }
 
-  validations: {
-    formData: {
-      contact: {
-        name: {required},
-        email: {required,email},
-        phone: {required}
-        // inquiry: { maxLength: maxLength(1000) }
-      }
-    }
-  }
+
 
   countDown(){
     this.remChars = this.maxChars - this.$data.formData.contact.inquiry.length;
@@ -177,8 +168,11 @@ export default class Form extends Vue {
       }
     }
     console.log(formData);
-    this.sendMessage();
-    this.$emit('exitForm');
+    if(this.validate()){
+      this.sendMessage();
+      this.$emit('exitForm');
+    }
+    
   }
      
 
@@ -258,6 +252,10 @@ export default class Form extends Vue {
       }
       this.$data.formData.industry = targetHTML;
     }
+    if (this.$data.formData.industry.length == 0) {
+      alert("Please choose an industry");
+      return;
+    }
     if (target.classList.contains("form-button")) {
       target.classList.add("selected");
     } else if (target.parentElement.classList.contains("form-button")) {
@@ -271,7 +269,7 @@ export default class Form extends Vue {
     addNavDecoration(locs);
 
     document.getElementById('first-page')!.style.left = '-100%';
-    document.getElementById('second-page')!.style.left = '0';
+    document.getElementById('second-page')!.style.left = '0%';
     document.getElementById('third-page')!.style.left = '100%';
   }
 
@@ -289,7 +287,6 @@ export default class Form extends Vue {
       }
       this.$data.formData.location = targetHTML;
     }
-
     if (this.$data.formData.industry.length == 0) {
       alert_string += "n industry";
       toAlert = true;
@@ -321,9 +318,9 @@ export default class Form extends Vue {
     clearNavDecoration(indus,locs,indus.length);
     addNavDecoration(awes);
     
-    document.getElementById('first-page')!.style.transform = '-200%';
-    document.getElementById('second-page')!.style.transform = '-100%';
-    document.getElementById('third-page')!.style.transform = '0';
+    document.getElementById('first-page')!.style.left = '-200%';
+    document.getElementById('second-page')!.style.left = '-100%';
+    document.getElementById('third-page')!.style.left = '0%';
   }
 }
 </script>
@@ -336,27 +333,8 @@ export default class Form extends Vue {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  
-  #close-button {
-    display: flex;
-    flex-direction: row;
-    justify-content: left;
-    margin-left: 8vw;
-    width: 100vw;
-    height: 2em;
-    cursor: pointer;
-    z-index: 100;
-
-    @include medium-screen-landscape{
-      margin-left: 25vw;
-    }
-    
-    &:before {
-      content: "\f057";
-      font-size: 2em;
-      font-style: normal;
-    }
-  }
+ 
+ 
 
   .nav-bar {
     width: 100%;
@@ -396,16 +374,25 @@ export default class Form extends Vue {
     overflow: hidden;
     width: 85%;
   }
-
+  #first-page {
+    left:0%;
+  }
+  #second-page {
+    left: 100%;
+  }
+  #third-page{
+    left: 200%;
+  }
   .form-page {
     width: 100%;
     height: 100%;
+    position: absolute;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     flex: 1 0 auto;
-    
+
     .form-buttons-container {
       width: 100%;
       height: 70%;
@@ -523,6 +510,10 @@ export default class Form extends Vue {
             @include medium-screen-landscape{
               font-size: 0.8em;
             }
+
+          }
+          p{
+              font-size: .75em;
           }
         }
       }
