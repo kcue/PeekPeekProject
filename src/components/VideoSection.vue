@@ -39,7 +39,7 @@ export default class VideoSection extends Vue {}
 
   @include medium-screen-landscape {
     display: inline-block;
-    min-width: 800px;
+    min-width: 900px;
     width: auto;
     height: auto;
 
@@ -69,14 +69,14 @@ export default class VideoSection extends Vue {}
       .heading {
         text-align: left;
         margin: 0;
-        width: 65vw;
+        width: 100%;
       }
 
       .content-group {
         float: left;
         text-align: left;
         margin: 0;
-        width: calc(30% + 30px);
+        width: calc(25% + 20px);
 
         .subheading {
           margin: 5% 0;
@@ -90,17 +90,18 @@ export default class VideoSection extends Vue {}
 
     .video-wrapper {
       $video-min-width: 300px;
-      $video-max-width: 500px;
+      $video-max-width: 600px;
       $video-min-height: 200px;
-      $video-max-height: 300px;
+      $video-max-height: 350px;
 
       position: relative;
       margin: 5% auto 40px auto;
       min-width: $video-min-width;
       max-width: $video-max-width;
-      width: 50vw;
+      width: 80vw;
 
       @include medium-screen-landscape {
+        width: 70vw;
         float: left;
         margin: 5% 60px 40px 0;   // margins to make space for the arrow
       }
@@ -110,9 +111,20 @@ export default class VideoSection extends Vue {}
         min-height: $video-min-height;
         max-width: $video-max-width;
         max-height: $video-max-height;
-        width: 50vw;
-        height: 30vw;
+        width: 80vw;
+        height: 50vw;
         box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.15);
+
+        @include medium-screen-landscape {
+          width: 70vw;
+          height: 45vw;
+        }
+      }
+
+      @keyframes arrow-bounce {
+        0%   { transform: translate(0, 0); }
+        50%  { transform: translate(0, -5%); }
+        100% { transform: translate(0, 0); }
       }
 
       img {
@@ -120,6 +132,10 @@ export default class VideoSection extends Vue {}
         width: 70px;
         bottom: -25px;
         right: -30px;
+        animation-name: arrow-bounce;
+        animation-timing-function: linear;
+        animation-duration: 2s;
+        animation-iteration-count: infinite;
 
         @include medium-screen-landscape {
           width: 100px;

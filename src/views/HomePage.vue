@@ -19,6 +19,7 @@ import HotspotSection from "@/components/HotspotSection.vue";
 import CaseStudiesSection from "@/components/CaseStudiesSection.vue";
 import PartnersSection from "@/components/PartnersSection.vue";
 import ContactSection from "@/components/ContactSection.vue";
+import ScrollMagic from 'scrollmagic';  // not using vue-scrollmagic for transitions because it switches between horizontal & vertical layout
 
 @Component({
   components: {
@@ -33,12 +34,13 @@ import ContactSection from "@/components/ContactSection.vue";
 })
 export default class Home extends Vue {
   name: string = "home";
+  controller: any = null;
   
   created() {
     document.title = "PeekPeek | Home";
   }
 
-  mounted() {    
+  mounted() {   
     // Scrolling vertically will move the page horizontally
     // Only activated when the website is stacked horizontally
     window.onwheel = (event: any) => {
@@ -51,6 +53,129 @@ export default class Home extends Vue {
         window.scrollTo(window.scrollX + event.deltaY, window.scrollY);
       }
     }
+  
+    // SCROLL TRANSITION ANIMATIONS
+    // hide the demo cards first
+    var demoCards = document.querySelectorAll("#demo-cards .demo-card");
+    for (var i = 0; i < demoCards.length; i++) {
+      demoCards[i]!.classList.add("hidden");
+    }
+
+    // initialize scrollmagic controller
+    // check if horizontal or vertical
+    var viewportWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+    var isVerticalLayout = true;  // mobile
+    if (viewportWidth >= 768) {
+      isVerticalLayout = false;
+    }
+    this.controller = new ScrollMagic.Controller({
+      vertical: isVerticalLayout
+    });
+
+    // Stats Section Scenes
+    var statsSecElements = document.getElementById("stats-section").querySelectorAll(".heading, .primary-description, #button-prompt, #solution-button");
+    var statsSecScenes = [];
+    for (var i = 0; i < statsSecElements.length; i++) {
+      statsSecScenes[i] = new ScrollMagic.Scene({
+          triggerElement: ".stats-captions",
+          offset: 0,
+          triggerHook: 0.6,
+          reverse: false
+        })
+        .setClassToggle(statsSecElements[i], "reveal")
+        .addTo(this.controller);
+    }
+
+    // Video Section Scenes
+    var vidSecElements = document.getElementById("video-section").querySelectorAll(".heading, .subheading, .button, .video-wrapper, .video-wrapper");
+    var vidSecScenes = [];
+    for (var i = 0; i < vidSecElements.length; i++) {
+      vidSecScenes[i] = new ScrollMagic.Scene({
+          triggerElement: "#video-section-container",
+          offset: 0,
+          triggerHook: 0.6,
+          reverse: false
+        })
+        .setClassToggle(vidSecElements[i], "reveal")
+        .addTo(this.controller);
+    }
+
+    // Hotspot Section Scenes
+    var hsSecElements = document.getElementById("hotspot-section").querySelectorAll("#city-wrapper, .hotspot-titles");
+    var hsSecScenes = [];
+    for (var i = 0; i < hsSecElements.length; i++) {
+      hsSecScenes[i] = new ScrollMagic.Scene({
+          triggerElement: hsSecElements[i],
+          offset: 0,
+          triggerHook: 0.8,
+          reverse: false
+        })
+        .setClassToggle(hsSecElements[i], "reveal")
+        .addTo(this.controller);
+    }
+
+    // Case Studies Section Scenes
+    var worksSecCards = document.getElementById("demo-cards");
+    var worksSecCardsScene = new ScrollMagic.Scene({
+        triggerElement: worksSecCards,
+        offset: 0,
+        triggerHook: 0.5,
+        reverse: false
+      })
+      .on("enter", function() {
+        worksSecCards!.classList.add("reveal");
+        var worksSecCard = worksSecCards.children;
+        for (var i = 0; i < worksSecCard.length; i++) {
+          worksSecCard[i]!.classList.remove("hidden");
+        }
+      })
+      .addTo(this.controller);
+
+    var csSecElements = document.getElementById("case-studies-section").querySelectorAll(".heading, .primary-description, .button");
+    var csSecScenes = [];
+    for (var i = 0; i < csSecElements.length; i++) {
+      csSecScenes[i] = new ScrollMagic.Scene({
+          triggerElement: ".demo-section-text",
+          offset: 0,
+          triggerHook: 0.7,
+          reverse: false
+        })
+        .setClassToggle(csSecElements[i], "reveal")
+        .addTo(this.controller);
+    }
+
+    // Partners Section Scenes
+    var partnersSecElements = document.getElementById("partners-section").querySelectorAll("#branding, #learn-button, #logo-slider");
+    var partnersSecScenes = [];
+    for (var i = 0; i < partnersSecElements.length; i++) {
+      partnersSecScenes[i] = new ScrollMagic.Scene({
+          triggerElement: "#partners-section-container",
+          offset: 0,
+          triggerHook: 0.8,
+          reverse: false
+        })
+        .setClassToggle(partnersSecElements[i], "reveal")
+        .addTo(this.controller);
+    }
+
+    // Contact Section Scenes
+    var contactElements = document.querySelectorAll("#contact-section h2, #contact-section button");
+    var contactScenes = [];
+    for (var i = 0; i < contactElements.length; i++) {
+      contactScenes[i] = new ScrollMagic.Scene({
+          triggerElement: contactElements[i],
+          offset: 0,
+          triggerHook: 0.8,
+          reverse: false
+        })
+        .setClassToggle(contactElements[i], "reveal")
+        .addTo(this.controller);
+    }
+  }
+
+  beforeDestroy() {
+    this.controller.destroy(true);
+    this.controller = null;
   }
 
   beforeRouteEnter(to, from, next) {
@@ -117,6 +242,163 @@ export default class Home extends Vue {
     height: 100%;
     width: 100%;
     position: relative;
+  }
+}
+
+// transition animations on all sections for this page are found here
+#stats-section::v-deep {
+  .heading, .primary-description, #button-prompt, #solution-button {
+    transition: all 0.5s ease-out;
+    opacity: 0;
+    transform: translateY(0.5em);
+
+    &.reveal {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .primary-description              { transition-delay: 0.2s; }
+  #button-prompt, #solution-button  { transition-delay: 0.4s; }
+
+  @include medium-screen-landscape {
+    .heading, .primary-description, #button-prompt, #solution-button {
+      transform: translateX(10vw);
+
+      &.reveal {
+        transform: translateX(0);
+      }
+    }
+
+    .primary-description              { transition-delay: 0.4s; }
+    #button-prompt, #solution-button  { transition-delay: 0.2s; }
+  }
+}
+
+#video-section::v-deep {
+  .heading, .subheading, .button, .video-wrapper {
+    transition: all 0.5s ease-out;
+    opacity: 0;
+    transform: translateY(0.5em);
+
+    &.reveal {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .subheading     { transition-delay: 0.2s; }
+  .button         { transition-delay: 0.4s; }  
+  .video-wrapper  { transition-delay: 0.6s; }
+
+  @include medium-screen-landscape {
+    .heading, .subheading, .button, .video-wrapper {
+      transform: translateX(10vw);
+
+      &.reveal {
+        transform: translateX(0);
+      }
+    }
+  }
+}
+
+#hotspot-section::v-deep {
+  #city-wrapper {
+    transition: all 0.5s ease-out;
+    opacity: 0;
+    transform: translateY(20%);
+
+    @include medium-screen-landscape {
+      transform: translateX(10vw);
+    }
+
+    &.reveal {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
+  }
+
+  .hotspot-titles {
+    .heading, .subheading, .primary-description {
+      transition: all 0.5s ease-out;
+      opacity: 0;
+      transform: translateY(0.8em);
+
+      @include medium-screen-landscape {
+        transform: translateX(10vw);
+      }
+    }
+
+    .heading              { transition-delay: 0.3s; }
+    .primary-description  { transition-delay: 0.6s; }
+
+    &.reveal {
+      .heading, .subheading, .primary-description {
+        opacity: 1;
+        transform: translate(0, 0);
+      }
+    }
+  }
+}
+
+#case-studies-section::v-deep {
+  .heading, .primary-description, .button {
+    transition: all 0.5s ease-out;
+    opacity: 0;
+    transform: translateY(0.8em);
+
+    @include medium-screen-landscape {
+      transform: translateX(10vw);
+    }
+
+    &.reveal {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
+  }
+
+  .primary-description  { transition-delay: 0.3s; }
+  .button               { transition-delay: 0.6s; }
+}
+
+#partners-section::v-deep {
+  #branding, #learn-button, #logo-slider {
+    transition: all 0.5s ease-out;
+    opacity: 0;
+    transform: translateY(0.8em);
+
+    @include medium-screen-landscape {
+      transform: translateX(10vw);
+    }
+
+    &.reveal {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
+  }
+
+  #learn-button  { transition-delay: 0.3s; }
+  #logo-slider   { transition-delay: 0.6s; }
+}
+
+@include contact-section-vertical-transition-styles;
+@include medium-screen-landscape {
+  #contact-section::v-deep {
+    .contact-section-interlude .subheading, 
+    .contact-section-main .heading, 
+    .contact-section-main button {
+      opacity: 0;
+      transform: translateX(10vw);
+
+      &.reveal {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .contact-section-interlude .subheading, .contact-section-main button {
+      transition-delay: 0.4s;
+    }
   }
 }
 </style>

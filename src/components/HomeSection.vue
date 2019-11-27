@@ -195,7 +195,11 @@ export default class HomeSection extends Vue {
       transition: font-size 1s ease 2s, transform 1s ease 0.2s;
       font-size: 3em;
       opacity: 1;
-      transform: translateX(200%);
+      transform: translateX(0);
+
+      @include medium-screen-landscape {
+        transform: translateX(200%);
+      }
     }
     
     #highlight-text {

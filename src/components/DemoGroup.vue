@@ -56,7 +56,7 @@ export default class DemoGroup extends Vue {
         var padding: number = 10;
         var closeBtn: HTMLElement = document.getElementById("close-button");
         var currentFrame: HTMLElement = document.querySelector(".active-frame");
-        if (window.getComputedStyle(currentFrame).opacity != "0") {
+        if (currentFrame && window.getComputedStyle(currentFrame).opacity != "0") {
           var closeBtnX = currentFrame!.offsetLeft - padding - closeBtn.offsetWidth;
           var closeBtnY = currentFrame!.offsetTop;
           closeBtn.style.left = closeBtnX + "px";
