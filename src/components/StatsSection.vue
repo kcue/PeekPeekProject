@@ -89,14 +89,9 @@ export default class StatsSection extends Vue {
           curviness: 1.25,
 
           values: [
-            // { x: 0, y:  (-cardheight * 0.6 * i) - (cardheight / 2)},
-            // { x: cardPosX, y: cardPosY}
-
-            
-
-            { x: 0 , y: 0 },
-            { x: 0, y: -cardheight*.6*i - cardheight/2},
-            { x: i % 2 === 0 ? containerWidth*0.25 : -containerWidth*0.25, y: -containerHeight*0.8}
+            { x: 0, y: 0 },
+            { x: 0, y: (-cardheight * 0.6 * i) - (cardheight / 2) },
+            { x: (i % 2 === 0) ? (containerWidth * 0.25) : (-containerWidth * 0.25), y: -containerHeight* 0.8 }
           ]
         }
       };
@@ -127,9 +122,10 @@ export default class StatsSection extends Vue {
       // this adds the scenes for the numbers changing
       let numberScene = new Vue.prototype.$scrollmagic.scene({
         duration: 2000,
-        reverse: false,
+        reverse: true,
         triggerHook: 'onEnter',
-        triggerElement: `#${cards[i].id}`})
+        triggerElement: `#${cards[i].id}`
+      })
         .on("enter", () => this.animateValue(cards[i].getElementsByClassName("card-heading")[0]));
       Vue.prototype.$scrollmagic.addScene(numberScene)
     }
@@ -173,16 +169,14 @@ export default class StatsSection extends Vue {
 
 <style lang="scss">
 // $card-base-height: 200px;
-$overlap-x: 5%;
+$overlap-x: 7.5%;
 $overlap-y: 4%;
 
 #stats-section {
   margin-bottom: 50px;
   flex-direction: row;
   position: relative;
-  //display: flex;
-
-
+ 
   @include medium-screen-landscape {
     width: 100vw;
     min-width: 1000px;
@@ -203,8 +197,6 @@ $overlap-y: 4%;
     }
 
     .stats-cards-container {
-      // width: 51.25vh;
-      // height: 51.25vh;
       position: relative;
       top: 80vh;
       width: 80%;
@@ -221,7 +213,6 @@ $overlap-y: 4%;
       @include medium-screen-landscape {
         width: 90%;
         height: 100%;
-        margin-left: 20px;
       }
 
       .card {
@@ -278,33 +269,29 @@ $overlap-y: 4%;
 
       .card:nth-child(1) {
         z-index: 4;
-        // top:0 px;
-        // margin-top: 0;
-        // margin-right: $overlap-x;
+        margin-top: 0;
+        margin-right: $overlap-x;
         // align-self: flex-end;
       }
 
       .card:nth-child(2) {
         z-index: 2;
-        // top:10 px;
-        // margin-top: -1 * $overlap-y;
-        // margin-left: 0;
+        margin-top: -1 * $overlap-y;
+        margin-left: 0;
         // align-self: flex-start;
       }
 
       .card:nth-child(3) {
         z-index: 3;
-        // top:20 px;
-        // margin-top: -4 * $overlap-y;
-        // margin-right: 0;
+        margin-top: -4 * $overlap-y;
+        margin-right: 0;
         // align-self: flex-end;
       }
 
       .card:nth-child(4) {
         z-index: 1;
-        // top:30 px;
-        // margin-top: -2 * $overlap-y;
-        // margin-left: $overlap-x;
+        margin-top: -2 * $overlap-y;
+        margin-left: $overlap-x;
         // align-self: flex-start;
       }
     }
