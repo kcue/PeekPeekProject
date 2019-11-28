@@ -1,5 +1,25 @@
 # PeekPeek
 
+## Contents
+<!-- MarkdownTOC autolink="true" -->
+
+- [Getting Started](#getting-started)
+    - [Requirements & Dependencies](#requirements--dependencies)
+    - [Development Setup](#development-setup)
+    - [Development Notes](#development-notes)
+- [Deployment](#deployment)
+    - [S3 Initialization](#s3-initialization)
+    - [Pushing Project to S3 Bucket](#pushing-project-to-s3-bucket)
+- [Section Breakdown](#section-breakdown)
+- [Recommendations for Future Updates](#recommendations-for-future-updates)
+- [Other Notes](#other-notes)
+- [Copyright and Licensing Information](#copyright-and-licensing-information)
+- [Developer Contact Information](#developer-contact-information)
+- [Useful References](#useful-references)
+
+<!-- /MarkdownTOC -->
+
+
 ## Getting Started
 
 ### Requirements & Dependencies
