@@ -124,16 +124,7 @@ export default class Form extends Vue {
     }
   }
 
-  validations: {
-    formData: {
-      contact: {
-        name: {required},
-        email: {required,email},
-        phone: {required}
-        // inquiry: { maxLength: maxLength(1000) }
-      }
-    }
-  }
+
 
   countDown(){
     this.remChars = this.maxChars - this.$data.formData.contact.inquiry.length;
@@ -268,33 +259,16 @@ export default class Form extends Vue {
 <style lang="scss">
 #form-container {
   background: url("../assets/images/contactform-bg.svg") center no-repeat;
-  background-size: contain;
+  background-size: auto 75vw;
   display: flex; 
   flex-direction: column;
   align-items: center;
   justify-content: center;
   
-  #close-button {
-    display: flex;
-    flex-direction: row;
-    justify-content: left;
-    margin-left: 8vw;
-    width: 100vw;
-    height: 2em;
-    cursor: pointer;
-    z-index: 100;
-
-    @include medium-screen-landscape{
-      margin-left: 25vw;
-    }
-    
-    &:before {
-      content: "\f057";
-      font-size: 2em;
-      font-style: normal;
-    }
+  @include medium-screen-landscape{
+    background-size:contain;
   }
-
+  
   .nav-bar {
     width: 100%;
     margin-top: 2em;
