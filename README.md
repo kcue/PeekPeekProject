@@ -23,20 +23,21 @@
 4. Start the local development server: `npm run serve`
 5. You can view the site through the browser on `localhost:8080`
 
-##### Development Notes
+### Development Notes
 - You can use your preferred IDE to modify code.
 - To lint the project and fix errors in formatting, run the command `npm run lint`.
 - Once the local development server has started, any changes on the local project will update localhost immediately through hot-reloading.
 
-### Deployment
-#### S3 Initialization
+## Deployment
+
+### S3 Initialization
 _More details can be found in AWS documentations (link below)_
 1. Create an S3 Bucket
 2. Set the S3 Bucket as public and enable ***Static Website Hosting***
 3. If setting up the bucket for production, make sure to point the domain (with Route53 & CloudFront) to the appropriate S3 bucket.
 4. If pushing code directly from one's local machine, make sure machine has `aws-cli` installed with permissions configured. 
 
-#### For further updates
+### Pushing Project to S3 Bucket
 1. Build the project
     ```
         $ npm run build
@@ -282,7 +283,7 @@ _More details can be found in AWS documentations (link below)_
 ## Recommendations for Future Updates
 - 
 
-## Notes
+## Other Notes
 - To keep the project organized, it is recommended you put any images you want on the website inside the folder under `./src/assets/images/`. If this is done, then changing a specific picture will only require changing the filename and not the entire path.
 
 - On Animation Tweens:
