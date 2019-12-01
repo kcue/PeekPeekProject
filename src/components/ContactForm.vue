@@ -329,22 +329,23 @@ export default class Form extends Vue {
     
     .form-buttons-container {
       width: 100%;
-      height: 70%;
-      max-height: 200px;
-
+      height: 100%;
+      margin-top: 2vh;
       .button-container {
-        height: 100%;
+        height: 65%;
         display: flex;
         flex-direction: row;
         justify-content: center;
-
+        @include medium-screen-landscape{
+          height:100%;
+        }
         .form-button {
           transition: all 0.5s ease;
           color: $secondary-button-text-color;
           font-size: 1em;
           font-weight: 700;
-          height: 10vh;
-          width: 14vw;
+          height: 15vw;
+          width: 24vw;
           display: flex;
           flex-direction: column;
           justify-content: center;
@@ -372,12 +373,10 @@ export default class Form extends Vue {
 
           &:nth-child(odd) {
             align-self: flex-start;
-            margin-bottom: 14vh;
           }
 
           &:nth-child(even) {
             align-self: flex-end;
-            margin-top: 14vh;
           }
         }
       }
