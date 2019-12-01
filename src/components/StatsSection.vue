@@ -74,14 +74,9 @@ export default class StatsSection extends Vue {
   beforeDestroy() {
     this.controller.destroy(true);
     this.controller = null;
-  }
 
-  beforeRouteLeave(to, from, next) {
     window.removeEventListener("resize", (<any> window).statsCardsResize);
     (<any> window).statsCardsResize = undefined;
-    setTimeout(function() {
-      next();
-    }, 100); // mini delay before moving to next page -- safari fix
   }
 
   statsCardsResize(): void {

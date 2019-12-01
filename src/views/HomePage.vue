@@ -179,15 +179,10 @@ export default class Home extends Vue {
   beforeDestroy() {
     this.controller.destroy(true);
     this.controller = null;
-  }
 
-  beforeRouteLeave(to, from, next) {
     window.onwheel = null;
     window.removeEventListener("resize", (<any> window).homeResize);
     (<any> window).homeResize = undefined;  // workaround
-    setTimeout(function() {
-      next();
-    }, 100); // mini delay before moving to next page -- safari fix
   }
 
   handleResize(): void {
