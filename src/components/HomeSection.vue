@@ -22,35 +22,42 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import ScrollMagic from 'scrollmagic'; 
 
 @Component({})
 export default class HomeSection extends Vue {
+  controller: any = null;
+
   mounted() {
-    var startSplashScreen = this.splashScreen;
-    const splashScene = Vue.prototype.$scrollmagic.scene({
+    this.controller = new ScrollMagic.Controller({
+      vertical: false
+    });
+    const splashScene = new ScrollMagic.Scene({
         triggerElement: "#home-section-trigger",
         triggerHook: 0.5,
         reverse: false // only do once
       })
-      .on('start', function() {
-        setTimeout(function() { 
-          startSplashScreen();
-        }, 1000);
-      });
-		Vue.prototype.$scrollmagic.addScene(splashScene);
+      .on("enter", this.splashScreen)
+      .addTo(this.controller);
   }
   
   splashScreen() {
-    document.getElementById("home-section-container")!.classList.add("animate");
+    setTimeout(function() {
+      var elem = document.getElementById("home-section-container");
+      if (elem) {
+        (<HTMLElement> elem)!.classList.add("animate");
 
-    // after 5 seconds (animation delay limit), add animated class to override any transition effects
-    setTimeout(function() { 
-      document.getElementById("home-section-container")!.classList.add("animated");
-    }, 5000);
+        // after 5 seconds (animation delay limit), add animated class to override any transition effects
+        setTimeout(function() { 
+          (<HTMLElement> elem)!.classList.add("animated");
+        }, 5000);
+      }
+    }, 1000);
   }
 
   beforeDestroy() {
-    Vue.prototype.$scrollmagic.destroy(true);
+    this.controller.destroy(true);
+    this.controller = null;
   }
 }
 </script>

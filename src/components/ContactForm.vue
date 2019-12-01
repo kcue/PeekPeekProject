@@ -124,8 +124,6 @@ export default class Form extends Vue {
     }
   }
 
-
-
   countDown(){
     this.remChars = this.maxChars - this.$data.formData.contact.inquiry.length;
   }
