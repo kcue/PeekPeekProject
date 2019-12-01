@@ -49,7 +49,7 @@ export default class Navigation extends Vue {
 
 <style lang="scss">
 nav {
-  background-color: rgba(#FFF, 0.85);
+  background-color: rgba(#FFF, 0.7);
   transition: all 1s;
   position: fixed;
   top: 25px;
@@ -60,7 +60,6 @@ nav {
   align-items: center;
   width: 100vw;
   min-width: $site-min-width;
-
 
   #logo {
     display: inherit;
