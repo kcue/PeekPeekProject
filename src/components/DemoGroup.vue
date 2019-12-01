@@ -218,6 +218,7 @@ export default class DemoGroup extends Vue {
     });
 
     if (viewportWidth >= 768 && this.isHomepage) {  // horizontal mode
+      // initialize parallax for the background position of the images
       elems = document.querySelectorAll(".demo-img");
       for (var j = 0; j < elems.length; j++) {
         tween = new TimelineMax()
@@ -236,6 +237,7 @@ export default class DemoGroup extends Vue {
           .addTo(this.parallaxController);
         }
     } else {  // vertical mode
+      // initialize parallax for the background position of the images
       elems = document.querySelectorAll(".demo-img");
       for (var j = 0; j < elems.length; j++) {
         tween = new TimelineMax()
@@ -254,22 +256,7 @@ export default class DemoGroup extends Vue {
           .addTo(this.parallaxController);
       }
 
-      elems = document.getElementById("demo-group");
-      tween = new TimelineMax()
-        .add([
-          TweenMax.fromTo(elems, 1, 
-            { top: -10 }, 
-            { top: 50, ease: Linear.easeNone}),
-        ]);
-      scene = new ScrollMagic.Scene({
-          triggerElement: elems,
-          offset: 0,
-          triggerHook: 0.6,
-          duration: viewportHeight
-        })
-        .setTween(tween)
-        .addTo(this.parallaxController);
-
+      // initialize parallax for the textbox
       elems = document.querySelectorAll("#demo-cards .text-container");
       for (var j = 0; j < elems.length; j++) {
         tween = new TimelineMax()

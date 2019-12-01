@@ -28,7 +28,7 @@
                 <a class="button primary-button" target="_blank" :href="item.btnLink">{{ item.btnText }}</a>
               </div>
             </div>
-            <img slot="img" :src="imagePath( item.img )"/>  
+            <div slot="img" class="feature-img" :style="{ backgroundImage: `url(${imagePath(item.img)})` }"></div>
           </FeatureCard>
         </div>
       </div>
@@ -180,6 +180,7 @@ $overlap-y: 5%;
           display: flex;
           flex-direction: column;
           justify-content: center;
+          z-index: 0;
           
           &:not(:first-child) {
             margin-top: -1.5em;
@@ -189,9 +190,10 @@ $overlap-y: 5%;
             align-self: flex-start;
           }
 
-          img {
+          .feature-img {
             align-self: flex-start;
-            object-fit: cover;
+            background-position: 50% 50%;
+            background-size: cover;
             border-radius: 5px;
             box-shadow: 0px 0px 20px rgba(#000, 0.1);
             width: 95%;

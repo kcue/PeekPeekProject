@@ -121,26 +121,26 @@ export default class Why extends Vue {
         fromTopVal: 0, toTopVal: -200,
         fromLeftVal: 0, toLeftVal: 0,
         triggerElement: "#sections-container",
-        offset: -100,
+        offset: 0,
         triggerHook: 0,
         duration: viewportHeight
       },
-      {
-        elems: document.querySelectorAll(".why-cards img"),
-        fromTopVal: 70, toTopVal: -20, 
-        fromLeftVal: 0, toLeftVal: 0,
-        triggerElement: "self",
-        offset: -100, 
-        triggerHook: 0.8,
-        duration: viewportHeight / 2
-      },
+      // {
+      //   elems: document.querySelectorAll(".why-cards .feature-img"),
+      //   fromTopVal: 20, toTopVal: -20, 
+      //   fromLeftVal: 0, toLeftVal: 0,
+      //   triggerElement: "self",
+      //   offset: 0, 
+      //   triggerHook: 0.8,
+      //   duration: viewportHeight / 2
+      // },
       {
         elems: document.querySelectorAll(".why-cards .text-container"),
         fromTopVal: 30, toTopVal: -20, 
         fromLeftVal: 0, toLeftVal: 0,
         triggerElement: "self",
-        offset: -100, 
-        triggerHook: 0.8,
+        offset: 0, 
+        triggerHook: 0.9,
         duration: viewportHeight / 2
       },
     ];
@@ -165,6 +165,26 @@ export default class Why extends Vue {
           .addTo(this.parallaxController);
       }
     }
+
+    // initialize parallax for the images
+    var elems = document.querySelectorAll(".feature-img");
+    for (var j = 0; j < elems.length; j++) {
+      var tween = new TimelineMax()
+        .add([
+          TweenMax.fromTo(elems[j], 1, 
+            { top: 20, backgroundPosition: "50% 0%", backgroundSize: "cover", position: "relative" }, 
+            { top: -20, backgroundPosition: "50% 100%", ease: Linear.easeNone}),
+        ]);
+      var scene = new ScrollMagic.Scene({
+          triggerElement: elems[j],
+          offset: 0,
+          triggerHook: 0.8,
+          duration: viewportHeight
+        })
+        .setTween(tween)
+        .addTo(this.parallaxController);
+    }
+
   }
 }
 </script>

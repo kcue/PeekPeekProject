@@ -226,6 +226,15 @@ export default class What extends Vue {
         triggerHook: 0.5,
         duration: viewportHeight
       },
+      {
+        elems: document.querySelectorAll("#demo-group"),
+        fromTopVal: -10, toTopVal: 50, 
+        fromLeftVal: 0, toLeftVal: 0,
+        triggerElement: "self",
+        offset: 0, 
+        triggerHook: 0.6,
+        duration: viewportHeight
+      },
     ];
 
     for (var i = 0; i < parallaxObjects.length; i++) {

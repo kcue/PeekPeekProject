@@ -125,7 +125,6 @@ export default class Who extends Vue {
     this.parallaxController.destroy(true);
     this.parallaxController = null;
 
-    window.onwheel = null;
     window.removeEventListener("resize", (<any> window).homeResize);
     (<any> window).homeResize = undefined;  // workaround
   }
@@ -164,7 +163,16 @@ export default class Who extends Vue {
         offset: 0, 
         triggerHook: 0.3,
         duration: viewportHeight
-      }
+      },
+      {
+        elems: document.querySelectorAll("#demo-group"),
+        fromTopVal: -10, toTopVal: 50, 
+        fromLeftVal: 0, toLeftVal: 0,
+        triggerElement: "self",
+        offset: 0, 
+        triggerHook: 0.6,
+        duration: viewportHeight
+      },
     ];
 
     for (var i = 0; i < parallaxObjects.length; i++) {
@@ -174,7 +182,7 @@ export default class Who extends Vue {
         var tween = new TimelineMax()
           .add([
             TweenMax.fromTo(elems[j], 1, 
-              { top: obj.fromTopVal, left: obj.fromLeftVal }, 
+              { top: obj.fromTopVal, left: obj.fromLeftVal, position: "relative" }, 
               { top: obj.toTopVal, left: obj.toLeftVal, ease: Linear.easeNone}),
           ]);
         var scene = new ScrollMagic.Scene({
