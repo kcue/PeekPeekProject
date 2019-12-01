@@ -4,10 +4,7 @@
       <FeatureCard v-for="(item, index) in cardData" :key="index" :id="'demo-card-' + index" :class="'demo-card ' + item.layoutClasses">
         <h6 slot="title" class="demo-title">{{item.title}}</h6>
         <p slot="content" class="demo-subtitle">{{item.subtitle}}</p>
-        <img slot="img" :src="imagePath(item.img)"/> 
-        <!-- <div slot="img" class="demo-img-parent">
-          <div :style="{ backgroundImage: `url(${imagePath(item.img)})` }"></div>
-        </div> -->
+        <div slot="img" class="demo-img" :style="{ backgroundImage: `url(${imagePath(item.img)})` }"></div>
       </FeatureCard>
     </div>
     <div id="iframes-wrapper" @click="closeAll">
@@ -18,8 +15,12 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue } from "vue-property-decorator";
 import FeatureCard from "@/components/FeatureCard.vue";
+
+import ScrollMagic from 'scrollmagic';
+import { TweenMax, TimelineMax, Linear } from "gsap/all";
+import "imports-loader?define=>false!scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap";
 
 @Component({
   components: {
@@ -27,6 +28,10 @@ import FeatureCard from "@/components/FeatureCard.vue";
   }
 })
 export default class DemoGroup extends Vue {
+  @Prop({ default: false }) private isHomepage!: boolean;
+
+  parallaxController:any = null;
+
   mounted() {
     let cards = document.getElementById("demo-cards")!.children;
     for (let i = 0; i < cards.length; ++i) {
@@ -64,14 +69,25 @@ export default class DemoGroup extends Vue {
         }
       }
       oldWidth = newWidth;
+
+      // reinitialize parallax
+      this.parallaxController.destroy(true);
+      this.parallaxController = null;
+      this.initParallax();
     };
     (<any> window).demoGroupResize = Vue.prototype.$_.debounce(demoGroupResize, 1000);
     window.addEventListener("resize", (<any> window).demoGroupResize);
+
+    // initialize parallax effects
+    this.initParallax();
   }
 
   beforeDestroy() {
     window.removeEventListener("resize", (<any> window).demoGroupResize);
     (<any> window).demoGroupResize = undefined;
+
+    this.parallaxController.destroy(true);
+    this.parallaxController = null;
   }
 
   data() {
@@ -184,6 +200,95 @@ export default class DemoGroup extends Vue {
       currentFrame!.classList.remove("centered");
     }, 1000);
   }
+
+  initParallax() {
+    // @TODO create factory class for animations
+    var viewportHeight = Vue.prototype.common.getViewportSize().height;
+    var viewportWidth = Vue.prototype.common.getViewportSize().width;
+    var elems: any, scene: any, tween: any;
+
+    var isVertical = true;
+    if (viewportWidth >= 768 && this.isHomepage) {
+      isVertical = false;
+    }
+
+    this.parallaxController = new ScrollMagic.Controller({
+      vertical: isVertical,
+      refreshInterval: 200
+    });
+
+    if (viewportWidth >= 768 && this.isHomepage) {  // horizontal mode
+      elems = document.querySelectorAll(".demo-img");
+      for (var j = 0; j < elems.length; j++) {
+        tween = new TimelineMax()
+          .add([
+            TweenMax.fromTo(elems[j], 1, 
+              { backgroundPosition: "50% 0", backgroundSize: "auto" }, 
+              { backgroundPosition: "50% 100%", ease: Linear.easeNone}),
+          ]);
+        scene = new ScrollMagic.Scene({
+            triggerElement: elems[j],
+            offset: 0,
+            triggerHook: 0.8,
+            duration: viewportWidth
+          })
+          .setTween(tween)
+          .addTo(this.parallaxController);
+        }
+    } else {  // vertical mode
+      elems = document.querySelectorAll(".demo-img");
+      for (var j = 0; j < elems.length; j++) {
+        tween = new TimelineMax()
+          .add([
+            TweenMax.fromTo(elems[j], 1, 
+              { backgroundPosition: "50% 0", backgroundSize: "auto" }, 
+              { backgroundPosition: "50% 100%", ease: Linear.easeNone}),
+          ]);
+        scene = new ScrollMagic.Scene({
+            triggerElement: elems[j],
+            offset: 0,
+            triggerHook: 0.8,
+            duration: viewportHeight
+          })
+          .setTween(tween)
+          .addTo(this.parallaxController);
+      }
+
+      elems = document.getElementById("demo-group");
+      tween = new TimelineMax()
+        .add([
+          TweenMax.fromTo(elems, 1, 
+            { top: -10 }, 
+            { top: 50, ease: Linear.easeNone}),
+        ]);
+      scene = new ScrollMagic.Scene({
+          triggerElement: elems,
+          offset: 0,
+          triggerHook: 0.6,
+          duration: viewportHeight
+        })
+        .setTween(tween)
+        .addTo(this.parallaxController);
+
+      elems = document.querySelectorAll("#demo-cards .text-container");
+      for (var j = 0; j < elems.length; j++) {
+        tween = new TimelineMax()
+          .add([
+            TweenMax.fromTo(elems[j], 1, 
+              { y: 15 }, 
+              { y: -15, ease: Linear.easeNone}),
+          ]);
+        scene = new ScrollMagic.Scene({
+            triggerElement: "#works-container",
+            offset: 0,
+            triggerHook: 0.6,
+            duration: viewportHeight
+          })
+          .setTween(tween)
+          .addTo(this.parallaxController);
+      }
+    }
+  }
 }
 </script>
 
@@ -264,10 +369,11 @@ $numCards: 4;
     } 
   }
 
-  img {
+  .demo-img {
     height: 100%;
     width: 100%;
-    object-fit: cover;
+    background-position: 50% 50%;
+    background-size: cover;
     box-shadow: 0px 0px 20px rgba(#000, 0.1);
   }
 
@@ -377,6 +483,7 @@ $numCards: 4;
         min-width: 180px;
         max-width: 300px;
         width: calc(100vw / #{$numCards});   // 4 = number of demos
+        min-height: 380px;
         height: 70%;
 
         .text-container {
@@ -390,7 +497,7 @@ $numCards: 4;
           z-index: 0;
         }
 
-        img {
+        .demo-img {
           box-shadow: -5px 10px 20px rgba(#000, 0.1);
           width: 80%;
           position: absolute;

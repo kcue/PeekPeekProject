@@ -171,6 +171,9 @@ export default class Home extends Vue {
         .setClassToggle(contactElements[i], "reveal")
         .addTo(this.controller);
     }
+
+    (<any> window).homeResize = Vue.prototype.$_.debounce(this.handleResize, 2000)
+    window.addEventListener("resize", (<any> window).homeResize);
   }
 
   beforeDestroy() {
@@ -178,24 +181,23 @@ export default class Home extends Vue {
     this.controller = null;
   }
 
-  beforeRouteEnter(to, from, next) {
-    next(vm => { 
-      (<any> window).homeResize = vm.$_.debounce(vm.handleResize, 2000)
-      window.addEventListener("resize", (<any> window).homeResize);
-    });
-  }
-
   beforeRouteLeave(to, from, next) {
     window.onwheel = null;
     window.removeEventListener("resize", (<any> window).homeResize);
     (<any> window).homeResize = undefined;  // workaround
-    next();
+    setTimeout(function() {
+      next();
+    }, 100); // mini delay before moving to next page -- safari fix
   }
 
   handleResize(): void {
     // this is the resize handler
     console.log("called handleResize");
-  } 
+  }
+
+  initParallax(): void {
+
+  }
 
   data() {
     return {

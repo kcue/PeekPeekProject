@@ -1,7 +1,7 @@
 <template>
   <section>
     <div class="container" id="case-studies-section-container">
-      <DemoGroup />
+      <DemoGroup v-bind:is-homepage="true" />
       <div class="demo-section-text">
         <h2 class="heading">
           <span class="line">Every single&nbsp;</span>

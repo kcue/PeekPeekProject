@@ -15,6 +15,9 @@ import WorksSection from "@/components/WorksSection.vue";
 import ContactSection from "@/components/ContactSection.vue";
 import ScrollMagic from 'scrollmagic';  // not using global $scrollmagic, since this page is vertical
 
+import { TweenMax, TimelineMax, Linear } from "gsap/all";
+import "imports-loader?define=>false!scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap";
+
 @Component({
   components: {
     WhatSection,
@@ -26,6 +29,7 @@ import ScrollMagic from 'scrollmagic';  // not using global $scrollmagic, since 
 export default class What extends Vue {
   name: string = "what";
   controller: any = null;
+  parallaxController:any = null;
   
   created() {
     document.title = "PeekPeek | What";
@@ -139,11 +143,111 @@ export default class What extends Vue {
         .setClassToggle(contactElements[i], "reveal")
         .addTo(this.controller);
     }
+
+    // initialize resize handler
+    (<any> window).homeResize = Vue.prototype.$_.debounce(this.handleResize, 1000);
+    window.addEventListener("resize", (<any> window).homeResize);
+
+    // initialize parallax effects
+    this.initParallax();
   }
 
   beforeDestroy() {
     this.controller.destroy(true);
     this.controller = null;
+
+    this.parallaxController.destroy(true);
+    this.parallaxController = null;
+
+    window.removeEventListener("resize", (<any> window).homeResize);
+    (<any> window).homeResize = undefined;  // workaround
+  }
+
+  handleResize(): void {
+    // this is the resize handler
+    this.parallaxController.destroy(true);
+    this.parallaxController = null;
+    this.initParallax();
+  }
+
+  initParallax() {
+    // @TODO create factory class for animations
+    var viewportHeight = Vue.prototype.common.getViewportSize().height;
+    var viewportWidth = Vue.prototype.common.getViewportSize().width;
+
+    this.parallaxController = new ScrollMagic.Controller({
+      vertical: true,
+      refreshInterval: 200
+    });
+
+    var parallaxObjects = [
+      {
+        elems: document.querySelectorAll("#what-section-container .group:not(.what-cards)"),
+        fromTopVal: 0, toTopVal: -200,
+        fromLeftVal: 0, toLeftVal: 0,
+        triggerElement: "#sections-container",
+        offset: -100,
+        triggerHook: 0,
+        duration: viewportHeight
+      },
+      {
+        elems: document.querySelectorAll(".what-cards .text-container"),
+        fromTopVal: 20, toTopVal: -50, 
+        fromLeftVal: 0, toLeftVal: 0,
+        triggerElement: "#sections-container",
+        offset: -100, 
+        triggerHook: 0,
+        duration: viewportHeight
+      },
+      {
+        elems: document.querySelectorAll("#process-section-container h2"),
+        fromTopVal: 0, toTopVal: (viewportWidth >= 768) ? 150 : -80, 
+        fromLeftVal: 0, toLeftVal: 0,
+        triggerElement: "self",
+        offset: 0, 
+        triggerHook: 0.8,
+        duration: viewportHeight
+      },
+      {
+        elems: document.querySelectorAll(".process-cards-container .card"),
+        fromTopVal: 100, toTopVal: -200, 
+        fromLeftVal: 0, toLeftVal: 0,
+        triggerElement: ".process-cards-container",
+        offset: 0, 
+        triggerHook: 0.3,
+        duration: viewportHeight * 0.75
+      },
+      {
+        elems: document.querySelectorAll("#works-section"),
+        fromTopVal: 0, toTopVal: -300, 
+        fromLeftVal: 0, toLeftVal: 0,
+        triggerElement: "#works-section",
+        offset: 0, 
+        triggerHook: 0.5,
+        duration: viewportHeight
+      },
+    ];
+
+    for (var i = 0; i < parallaxObjects.length; i++) {
+      var obj = parallaxObjects[i]
+      var elems = obj.elems;
+      for (var j = 0; j < elems.length; j++) {
+        var tween = new TimelineMax()
+          .add([
+            TweenMax.fromTo(elems[j], 1, 
+              { top: obj.fromTopVal, left: obj.fromLeftVal, position: "relative" }, 
+              { top: obj.toTopVal, left: obj.toLeftVal, ease: Linear.easeNone}),
+          ]);
+        var scene = new ScrollMagic.Scene({
+            triggerElement: (obj.triggerElement === "self") ? elems[j] : obj.triggerElement,
+            offset: obj.offset,
+            triggerHook: obj.triggerHook,
+            duration: obj.duration
+          })
+          .setTween(tween)
+          .addTo(this.parallaxController);
+      }
+    }
   }
 }
 </script>
@@ -154,7 +258,7 @@ export default class What extends Vue {
   margin: 50px 0 0 0;
 
   @include medium-screen-landscape {
-    margin-bottom: 25px;
+    margin: 0 0 25px 0;
   }
 }
 
@@ -169,7 +273,7 @@ export default class What extends Vue {
 
 #process-section::v-deep {
   h2 {
-    transition: all 0.5s ease-out 0.2s;
+    transition: opacity 0.5s ease-out 0.2s, transform 0.5s ease-out 0.2s;
     opacity: 0;
     transform: translateY(0.5em);
     
@@ -180,7 +284,7 @@ export default class What extends Vue {
   }
 
   .card {
-    transition: all 0.5s ease-out 0.2s;
+    transition: opacity 0.5s ease-out 0.2s, transform 0.5s ease-out 0.2s;
     opacity: 0;
 
     &:nth-child(odd) {
