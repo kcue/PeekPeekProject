@@ -3,13 +3,19 @@ import Component from "vue-class-component";
 import App from "./App.vue";
 import router from "./router";
 
-import axios from 'axios';
-import VueAxios from 'vue-axios';
+import axios from "axios";
+import VueAxios from "vue-axios";
 import VueScrollmagic from "vue-scrollmagic";
-import anime from 'animejs';
+import anime from "animejs";
 
-import _ from 'lodash';
+import _ from "lodash";
 import common from "@/shared/common"
+
+import VueAnalytics from "vue-analytics";
+
+Vue.use(VueAnalytics, {
+  id: 'UA-153598577-1',
+});
 
 // axios is for API interaction
 Vue.use(VueAxios, axios);

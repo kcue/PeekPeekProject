@@ -19,7 +19,7 @@ import HotspotSection from "@/components/HotspotSection.vue";
 import CaseStudiesSection from "@/components/CaseStudiesSection.vue";
 import PartnersSection from "@/components/PartnersSection.vue";
 import ContactSection from "@/components/ContactSection.vue";
-import ScrollMagic from 'scrollmagic';  // not using vue-scrollmagic for transitions because it switches between horizontal & vertical layout
+import ScrollMagic from "scrollmagic";  // not using vue-scrollmagic for transitions because it switches between horizontal & vertical layout
 
 @Component({
   components: {
@@ -32,15 +32,22 @@ import ScrollMagic from 'scrollmagic';  // not using vue-scrollmagic for transit
     ContactSection
   }
 })
+
 export default class Home extends Vue {
   name: string = "home";
   controller: any = null;
-  
+
   created() {
     document.title = "PeekPeek | Home";
   }
 
-  mounted() {   
+  mounted() {
+    Vue.prototype.$ga.page({
+      page: "/",
+      title: "Home",
+      location: window.location.href
+    });  // google analytics
+
     // Scrolling vertically will move the page horizontally
     // Only activated when the website is stacked horizontally
     window.onwheel = (event: any) => {
