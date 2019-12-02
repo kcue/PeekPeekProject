@@ -257,13 +257,13 @@ export default class Form extends Vue {
 <style lang="scss">
 #form-container {
   background: url("../assets/images/contactform-bg.svg") center no-repeat;
-  background-size: auto 75vw;
+  background-size: auto 140vw;
   display: flex; 
   flex-direction: column;
   align-items: center;
   justify-content: center;
   
-  @include medium-screen-landscape{
+  @include small-screen-landscape{
     background-size:contain;
   }
   
@@ -310,6 +310,13 @@ export default class Form extends Vue {
     flex-wrap: nowrap;
     overflow: hidden;
     width: 85%;
+    height:60%;
+    @include medium-screen-landscape{
+      height:40%;
+    }
+    @include large-screen-landscape{
+      height:60%;
+    }
   }
 
   .form-page {
@@ -329,22 +336,23 @@ export default class Form extends Vue {
     
     .form-buttons-container {
       width: 100%;
-      height: 70%;
-      max-height: 200px;
-
+      margin-top: 2vh;
       .button-container {
-        height: 100%;
+        height: 25vh;
+        max-height: 150px;
         display: flex;
         flex-direction: row;
         justify-content: center;
-
+        @include medium-screen-landscape{
+          max-height: 500px;
+        }
         .form-button {
           transition: all 0.5s ease;
           color: $secondary-button-text-color;
           font-size: 1em;
           font-weight: 700;
-          height: 10vh;
-          width: 14vw;
+          height: 16vw;
+          width: 24vw;
           display: flex;
           flex-direction: column;
           justify-content: center;
@@ -353,8 +361,8 @@ export default class Form extends Vue {
 
           @include medium-screen-landscape{
             font-size: inherit;
-            width: 10vw;
-            height: 14vh;
+            width: 12vw;
+            height: 12vh;
           }
 
           @for $i from 1 through 4 {
@@ -372,12 +380,10 @@ export default class Form extends Vue {
 
           &:nth-child(odd) {
             align-self: flex-start;
-            margin-bottom: 14vh;
           }
 
           &:nth-child(even) {
             align-self: flex-end;
-            margin-top: 14vh;
           }
         }
       }
@@ -390,6 +396,7 @@ export default class Form extends Vue {
       flex-direction: column;
       align-items: center;
 
+
       & > p {
         color: $secondary-description-color;    // @TODO CHANGE THIS
         font-weight: 400;
@@ -399,11 +406,13 @@ export default class Form extends Vue {
 
       .fill-ins {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         justify-content: center;
         margin: 2em 0;
         width: 95%;
-
+        @include medium-screen-landscape{
+          flex-direction: row;
+        }
         .form-element {
           input, textarea {
             width: 100%;
@@ -436,18 +445,25 @@ export default class Form extends Vue {
             }
           }
         }
-
+        .personal-info, .inquiry-container{
+          @include medium-screen-landscape{
+            width: 49%;
+          }
+        }
         .personal-info {
-          width: 49%;
+          width: 100%;
           margin-right: 2%;
-
+          padding-bottom: 2%;
           & .form-element:nth-child(even) {
             margin: 0.5em 0;
+          }
+          @include medium-screen-landscape{
+            padding-bottom: 0%;
           }
         }
 
         .inquiry-container {
-          width: 49%;
+          width: 100%;
 
           .form-element {
             width: 100%;

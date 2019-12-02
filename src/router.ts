@@ -38,6 +38,7 @@ export default new Router({
       component: Why,
     }
   ],
+
   scrollBehavior (to, from, savedPosition) {
     if (to.hash) {
       return { selector: to.hash }
