@@ -157,9 +157,12 @@ export default class ContactSection extends Vue {
     z-index: 20;
 
     .contact-form {
-      width: 90vw;
-      height: 75vw;
-      
+      width: 100vw;
+      height: 140vw;
+      @include small-screen-landscape {
+        height: 90vw;
+      }
+
       @include medium-screen-landscape {
         width: 80vw;
       }
@@ -168,7 +171,7 @@ export default class ContactSection extends Vue {
         min-width: 800px;
         min-height: 500px;
         width: 60vw;
-        height: 35vw;
+        height: 33vw;
       }
     }
   }
