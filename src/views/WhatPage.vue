@@ -17,6 +17,9 @@ import ScrollMagic from 'scrollmagic';  // not using global $scrollmagic, since 
 
 import { TweenMax, TimelineMax, Linear } from "gsap/all";
 import "imports-loader?define=>false!scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap";
+import VueAnalytics from 'vue-analytics'; //  GT
+
+
 
 @Component({
   components: {
@@ -46,6 +49,11 @@ export default class What extends Vue {
   }
 
   mounted() {
+    Vue.prototype.$ga.page({
+      page: "/what",
+      title: "What",
+      location: window.location.href
+    });
     // hide the demo cards first
     var demoCards = document.querySelectorAll("#demo-cards .demo-card");
     for (var i = 0; i < demoCards.length; i++) {

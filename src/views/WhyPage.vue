@@ -13,6 +13,9 @@ import ScrollMagic from 'scrollmagic';  // not using global $scrollmagic, since 
 
 import { TweenMax, TimelineMax, Linear } from "gsap/all";
 import "imports-loader?define=>false!scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap";
+import VueAnalytics from 'vue-analytics'; //  GT
+
+
 
 @Component({
   components: {
@@ -39,6 +42,11 @@ export default class Why extends Vue {
   }
 
   mounted() {
+    Vue.prototype.$ga.page({
+      page: "/why",
+      title: "Why",
+      location: window.location.href
+    });
     this.controller = new ScrollMagic.Controller({
       vertical: true
     });

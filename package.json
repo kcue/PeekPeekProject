@@ -17,6 +17,7 @@
     "lodash": "^4.17.15",
     "scrollmagic": "^2.0.6",
     "vue": "^2.6.10",
+    "vue-analytics": "^5.18.0",
     "vue-axios": "^2.1.5",
     "vue-class-component": "^7.0.2",
     "vue-property-decorator": "^8.3.0",
