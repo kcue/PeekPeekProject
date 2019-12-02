@@ -2,8 +2,8 @@
   <section>
     <div class="container" id="partners-section-container">
       <div class="partners-section-text">
-        <h2 class="heading" id="branding"><b>Trusted by</b> </h2>
-        <a id="learn-button" class="button primary-button" href="/what">Learn More</a>
+        <h2 class="heading" id="branding">Trusted by</h2>
+        <a id="partners-learn-button" class="button primary-button" href="/what">Learn More</a>
       </div>
       <div class="swiper-container" id="logo-slider">
         <div class="swiper-wrapper">
@@ -111,8 +111,9 @@ export default class PartnersSection extends Vue {
     }
   }
 
-  #learn-button {
-    margin-top: 2em;
+  #partners-learn-button {
+    margin: 2em 0 0;
+    text-align: center;
   }
 
   #logo-slider {

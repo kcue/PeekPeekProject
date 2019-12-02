@@ -121,15 +121,15 @@ export default class Why extends Vue {
     });
 
     var parallaxObjects = [
-      {
-        elems: document.querySelectorAll("#why-section-container .group:not(.why-cards)"),
-        fromTopVal: 0, toTopVal: -200,
-        fromLeftVal: 0, toLeftVal: 0,
-        triggerElement: "#sections-container",
-        offset: 0,
-        triggerHook: 0,
-        duration: viewportHeight
-      },
+      // {
+      //   elems: document.querySelectorAll("#why-section-container .group:not(.why-cards)"),
+      //   fromTopVal: 0, toTopVal: -200,
+      //   fromLeftVal: 0, toLeftVal: 0,
+      //   triggerElement: "#sections-container",
+      //   offset: 0,
+      //   triggerHook: 0,
+      //   duration: viewportHeight
+      // },
       {
         elems: document.querySelectorAll(".why-cards .text-container"),
         fromTopVal: 30, toTopVal: -20, 
@@ -137,7 +137,7 @@ export default class Why extends Vue {
         triggerElement: "self",
         offset: 0, 
         triggerHook: 0.9,
-        duration: viewportHeight / 2
+        duration: viewportHeight * 0.8
       },
     ];
 
@@ -175,7 +175,7 @@ export default class Why extends Vue {
           triggerElement: elems[j],
           offset: 0,
           triggerHook: 0.8,
-          duration: viewportHeight
+          duration: viewportHeight * 0.8
         })
         .setTween(tween)
         .addTo(this.parallaxController);

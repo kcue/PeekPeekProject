@@ -151,15 +151,15 @@ export default class Who extends Vue {
     });
 
     var parallaxObjects = [
-      {
-        elems: document.querySelectorAll(".heading-group"),
-        fromTopVal: 0, toTopVal: -100,
-        fromLeftVal: 0, toLeftVal: 0,
-        triggerElement: "self",
-        offset: 0,
-        triggerHook: 0,
-        duration: viewportHeight
-      },
+      // {
+      //   elems: document.querySelectorAll(".heading-group"),
+      //   fromTopVal: 0, toTopVal: -100,
+      //   fromLeftVal: 0, toLeftVal: 0,
+      //   triggerElement: "self",
+      //   offset: 0,
+      //   triggerHook: 0,
+      //   duration: viewportHeight
+      // },
       {
         elems: document.querySelectorAll(".who-cards .card"),
         fromTopVal: 0, toTopVal: -150, 
@@ -169,15 +169,15 @@ export default class Who extends Vue {
         triggerHook: 0.3,
         duration: viewportHeight
       },
-      {
-        elems: document.querySelectorAll("#demo-group"),
-        fromTopVal: -10, toTopVal: 50, 
-        fromLeftVal: 0, toLeftVal: 0,
-        triggerElement: "self",
-        offset: 0, 
-        triggerHook: 0.6,
-        duration: viewportHeight
-      },
+      // {
+      //   elems: document.querySelectorAll("#demo-group"),
+      //   fromTopVal: -10, toTopVal: 50, 
+      //   fromLeftVal: 0, toLeftVal: 0,
+      //   triggerElement: "self",
+      //   offset: 0, 
+      //   triggerHook: 0.6,
+      //   duration: viewportHeight
+      // },
     ];
 
     for (var i = 0; i < parallaxObjects.length; i++) {

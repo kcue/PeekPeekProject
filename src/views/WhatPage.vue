@@ -186,15 +186,15 @@ export default class What extends Vue {
     });
 
     var parallaxObjects = [
-      {
-        elems: document.querySelectorAll("#what-section-container .group:not(.what-cards)"),
-        fromTopVal: 0, toTopVal: -200,
-        fromLeftVal: 0, toLeftVal: 0,
-        triggerElement: "#sections-container",
-        offset: -100,
-        triggerHook: 0,
-        duration: viewportHeight
-      },
+      // {
+      //   elems: document.querySelectorAll("#what-section-container .group:not(.what-cards)"),
+      //   fromTopVal: 0, toTopVal: -200,
+      //   fromLeftVal: 0, toLeftVal: 0,
+      //   triggerElement: "#sections-container",
+      //   offset: -100,
+      //   triggerHook: 0,
+      //   duration: viewportHeight
+      // },
       {
         elems: document.querySelectorAll(".what-cards .text-container"),
         fromTopVal: 20, toTopVal: -50, 
@@ -213,33 +213,33 @@ export default class What extends Vue {
         triggerHook: 0.8,
         duration: viewportHeight
       },
-      {
-        elems: document.querySelectorAll(".process-cards-container .card"),
-        fromTopVal: 100, toTopVal: -200, 
-        fromLeftVal: 0, toLeftVal: 0,
-        triggerElement: ".process-cards-container",
-        offset: 0, 
-        triggerHook: 0.3,
-        duration: viewportHeight * 0.75
-      },
-      {
-        elems: document.querySelectorAll("#works-section"),
-        fromTopVal: 0, toTopVal: -300, 
-        fromLeftVal: 0, toLeftVal: 0,
-        triggerElement: "#works-section",
-        offset: 0, 
-        triggerHook: 0.5,
-        duration: viewportHeight
-      },
-      {
-        elems: document.querySelectorAll("#demo-group"),
-        fromTopVal: -10, toTopVal: 50, 
-        fromLeftVal: 0, toLeftVal: 0,
-        triggerElement: "self",
-        offset: 0, 
-        triggerHook: 0.6,
-        duration: viewportHeight
-      },
+      // {
+      //   elems: document.querySelectorAll(".process-cards-container .card"),
+      //   fromTopVal: 100, toTopVal: -200, 
+      //   fromLeftVal: 0, toLeftVal: 0,
+      //   triggerElement: ".process-cards-container",
+      //   offset: 0, 
+      //   triggerHook: 0.3,
+      //   duration: viewportHeight * 0.75
+      // },
+      // {
+      //   elems: document.querySelectorAll("#works-section"),
+      //   fromTopVal: 0, toTopVal: -300, 
+      //   fromLeftVal: 0, toLeftVal: 0,
+      //   triggerElement: "#works-section",
+      //   offset: 0, 
+      //   triggerHook: 0.5,
+      //   duration: viewportHeight
+      // },
+      // {
+      //   elems: document.querySelectorAll("#demo-group"),
+      //   fromTopVal: -10, toTopVal: 50, 
+      //   fromLeftVal: 0, toLeftVal: 0,
+      //   triggerElement: "self",
+      //   offset: 0, 
+      //   triggerHook: 0.6,
+      //   duration: viewportHeight
+      // },
     ];
 
     for (var i = 0; i < parallaxObjects.length; i++) {

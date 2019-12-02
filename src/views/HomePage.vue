@@ -61,6 +61,7 @@ export default class Home extends Vue {
         window.scrollTo(window.scrollX + event.deltaX + event.deltaY, window.scrollY); // Added deltaX to ensure native horizontal scrolling
       } else {
         // For all other browsers
+        event.preventDefault();
         window.scrollTo(window.scrollX + event.deltaY, window.scrollY);
       }
     }
@@ -240,47 +241,66 @@ export default class Home extends Vue {
       refreshInterval: 200
     });
 
+    var parallaxObjects = [];
     if (viewportWidth >= 768) {  // horizontal mode
-      var parallaxObjects = [
-      //   {
-      //     elems: document.querySelectorAll("#why-section-container .group:not(.why-cards)"),
-      //     fromTopVal: 0, toTopVal: -200,
-      //     fromLeftVal: 0, toLeftVal: 0,
-      //     triggerElement: "#sections-container",
-      //     offset: 0,
-      //     triggerHook: 0,
-      //     duration: viewportHeight
-      //   },
-      //   {
-      //     elems: document.querySelectorAll(".why-cards .text-container"),
-      //     fromTopVal: 30, toTopVal: -20, 
-      //     fromLeftVal: 0, toLeftVal: 0,
-      //     triggerElement: "self",
-      //     offset: 0, 
-      //     triggerHook: 0.9,
-      //     duration: viewportHeight / 2
-      //   },
+      parallaxObjects = [
+        {
+          elems: document.querySelectorAll(".heading"),
+          fromTopVal: 0, toTopVal: 0,
+          fromLeftVal: 40, toLeftVal: 0,
+          triggerElement: "self",
+          offset: 0,
+          triggerHook: 1,
+          duration: viewportWidth * 0.5
+        },
+        {
+          elems: document.querySelectorAll(".subheading"),
+          fromTopVal: 0, toTopVal: 0, 
+          fromLeftVal: 20, toLeftVal: 0,
+          triggerElement: "self",
+          offset: 0, 
+          triggerHook: 1,
+          duration: viewportWidth * 0.5
+        },
+        {
+          elems: document.querySelectorAll(".primary-description"),
+          fromTopVal: 0, toTopVal: 0, 
+          fromLeftVal: 70, toLeftVal: 0,
+          triggerElement: "self",
+          offset: 0, 
+          triggerHook: 1,
+          duration: viewportWidth * 0.5
+        },
       ];
     } else {  // vertical mode
-      var parallaxObjects = [
-        // {
-        //   elems: document.querySelectorAll("#why-section-container .group:not(.why-cards)"),
-        //   fromTopVal: 0, toTopVal: -200,
-        //   fromLeftVal: 0, toLeftVal: 0,
-        //   triggerElement: "#sections-container",
-        //   offset: 0,
-        //   triggerHook: 0,
-        //   duration: viewportHeight
-        // },
-        // {
-        //   elems: document.querySelectorAll(".why-cards .text-container"),
-        //   fromTopVal: 30, toTopVal: -20, 
-        //   fromLeftVal: 0, toLeftVal: 0,
-        //   triggerElement: "self",
-        //   offset: 0, 
-        //   triggerHook: 0.9,
-        //   duration: viewportHeight / 2
-        // },
+      parallaxObjects = [
+        {
+          elems: document.querySelectorAll(".heading, #button-prompt, #solution-button, #learn-button, #study-button, #partners-learnbutton"),
+          fromTopVal: 10, toTopVal: -20,
+          fromLeftVal: 0, toLeftVal: 0,
+          triggerElement: "self",
+          offset: 0,
+          triggerHook: 0.9,
+          duration: viewportHeight
+        },
+        {
+          elems: document.querySelectorAll(".subheading"),
+          fromTopVal: 10, toTopVal: -20, 
+          fromLeftVal: 0, toLeftVal: 0,
+          triggerElement: "self",
+          offset: 0, 
+          triggerHook: 0.9,
+          duration: viewportHeight
+        },
+        {
+          elems: document.querySelectorAll(".primary-description"),
+          fromTopVal: 10, toTopVal: -20, 
+          fromLeftVal: 0, toLeftVal: 0,
+          triggerElement: "self",
+          offset: 0, 
+          triggerHook: 0.9,
+          duration: viewportHeight
+        },
       ];
     }
 
@@ -357,7 +377,7 @@ export default class Home extends Vue {
 // transition animations on all sections for this page are found here
 #stats-section::v-deep {
   .heading, .primary-description, #button-prompt, #solution-button {
-    transition: all 0.5s ease-out;
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
     opacity: 0;
     transform: translateY(0.5em);
 
@@ -386,7 +406,7 @@ export default class Home extends Vue {
 
 #video-section::v-deep {
   .heading, .subheading, .button, .video-wrapper {
-    transition: all 0.5s ease-out;
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
     opacity: 0;
     transform: translateY(0.5em);
 
@@ -413,7 +433,7 @@ export default class Home extends Vue {
 
 #hotspot-section::v-deep {
   #city-wrapper {
-    transition: all 0.5s ease-out;
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
     opacity: 0;
     transform: translateY(20%);
 
@@ -429,7 +449,7 @@ export default class Home extends Vue {
 
   .hotspot-titles {
     .heading, .subheading, .primary-description {
-      transition: all 0.5s ease-out;
+      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
       opacity: 0;
       transform: translateY(0.8em);
 
@@ -452,7 +472,7 @@ export default class Home extends Vue {
 
 #case-studies-section::v-deep {
   .heading, .primary-description, .button {
-    transition: all 0.5s ease-out;
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
     opacity: 0;
     transform: translateY(0.8em);
 
@@ -472,7 +492,7 @@ export default class Home extends Vue {
 
 #partners-section::v-deep {
   #branding, #learn-button, #logo-slider {
-    transition: all 0.5s ease-out;
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
     opacity: 0;
     transform: translateY(0.8em);
 

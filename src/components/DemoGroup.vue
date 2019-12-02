@@ -86,8 +86,8 @@ export default class DemoGroup extends Vue {
     window.removeEventListener("resize", (<any> window).demoGroupResize);
     (<any> window).demoGroupResize = undefined;
 
-    this.parallaxController.destroy(true);
-    this.parallaxController = null;
+    // this.parallaxController.destroy(true);
+    // this.parallaxController = null;
   }
 
   data() {
@@ -202,79 +202,79 @@ export default class DemoGroup extends Vue {
   }
 
   initParallax() {
-    // @TODO create factory class for animations
-    var viewportHeight = Vue.prototype.common.getViewportSize().height;
-    var viewportWidth = Vue.prototype.common.getViewportSize().width;
-    var elems: any, scene: any, tween: any;
+    // // @TODO create factory class for animations
+    // var viewportHeight = Vue.prototype.common.getViewportSize().height;
+    // var viewportWidth = Vue.prototype.common.getViewportSize().width;
+    // var elems: any, scene: any, tween: any;
 
-    var isVertical = true;
-    if (viewportWidth >= 768 && this.isHomepage) {
-      isVertical = false;
-    }
+    // var isVertical = true;
+    // if (viewportWidth >= 768 && this.isHomepage) {
+    //   isVertical = false;
+    // }
 
-    this.parallaxController = new ScrollMagic.Controller({
-      vertical: isVertical,
-      refreshInterval: 200
-    });
+    // this.parallaxController = new ScrollMagic.Controller({
+    //   vertical: isVertical,
+    //   refreshInterval: 200
+    // });
 
-    if (viewportWidth >= 768 && this.isHomepage) {  // horizontal mode
-      // initialize parallax for the background position of the images
-      elems = document.querySelectorAll(".demo-img");
-      for (var j = 0; j < elems.length; j++) {
-        tween = new TimelineMax()
-          .add([
-            TweenMax.fromTo(elems[j], 1, 
-              { backgroundPosition: "50% 0", backgroundSize: "auto" }, 
-              { backgroundPosition: "50% 100%", ease: Linear.easeNone}),
-          ]);
-        scene = new ScrollMagic.Scene({
-            triggerElement: elems[j],
-            offset: 0,
-            triggerHook: 0.8,
-            duration: viewportWidth
-          })
-          .setTween(tween)
-          .addTo(this.parallaxController);
-        }
-    } else {  // vertical mode
-      // initialize parallax for the background position of the images
-      elems = document.querySelectorAll(".demo-img");
-      for (var j = 0; j < elems.length; j++) {
-        tween = new TimelineMax()
-          .add([
-            TweenMax.fromTo(elems[j], 1, 
-              { backgroundPosition: "50% 0", backgroundSize: "auto" }, 
-              { backgroundPosition: "50% 100%", ease: Linear.easeNone}),
-          ]);
-        scene = new ScrollMagic.Scene({
-            triggerElement: elems[j],
-            offset: 0,
-            triggerHook: 0.8,
-            duration: viewportHeight
-          })
-          .setTween(tween)
-          .addTo(this.parallaxController);
-      }
+    // if (viewportWidth >= 768 && this.isHomepage) {  // horizontal mode
+    //   // initialize parallax for the background position of the images
+    //   elems = document.querySelectorAll(".demo-img");
+    //   for (var j = 0; j < elems.length; j++) {
+    //     tween = new TimelineMax()
+    //       .add([
+    //         TweenMax.fromTo(elems[j], 1, 
+    //           { backgroundPosition: "50% 0", backgroundSize: "auto" }, 
+    //           { backgroundPosition: "50% 100%", ease: Linear.easeNone}),
+    //       ]);
+    //     scene = new ScrollMagic.Scene({
+    //         triggerElement: elems[j],
+    //         offset: 0,
+    //         triggerHook: 0.8,
+    //         duration: viewportWidth
+    //       })
+    //       .setTween(tween)
+    //       .addTo(this.parallaxController);
+    //     }
+    // } else {  // vertical mode
+    //   // initialize parallax for the background position of the images
+    //   elems = document.querySelectorAll(".demo-img");
+    //   for (var j = 0; j < elems.length; j++) {
+    //     tween = new TimelineMax()
+    //       .add([
+    //         TweenMax.fromTo(elems[j], 1, 
+    //           { backgroundPosition: "50% 0", backgroundSize: "auto" }, 
+    //           { backgroundPosition: "50% 100%", ease: Linear.easeNone}),
+    //       ]);
+    //     scene = new ScrollMagic.Scene({
+    //         triggerElement: elems[j],
+    //         offset: 0,
+    //         triggerHook: 0.8,
+    //         duration: viewportHeight
+    //       })
+    //       .setTween(tween)
+    //       .addTo(this.parallaxController);
+    //   }
 
-      // initialize parallax for the textbox
-      elems = document.querySelectorAll("#demo-cards .text-container");
-      for (var j = 0; j < elems.length; j++) {
-        tween = new TimelineMax()
-          .add([
-            TweenMax.fromTo(elems[j], 1, 
-              { y: 15 }, 
-              { y: -15, ease: Linear.easeNone}),
-          ]);
-        scene = new ScrollMagic.Scene({
-            triggerElement: "#works-container",
-            offset: 0,
-            triggerHook: 0.6,
-            duration: viewportHeight
-          })
-          .setTween(tween)
-          .addTo(this.parallaxController);
-      }
-    }
+    //   // initialize parallax for the textbox
+    //   elems = document.querySelectorAll("#demo-cards .text-container");
+    //   for (var j = 0; j < elems.length; j++) {
+    //     tween = new TimelineMax()
+    //       .add([
+    //         TweenMax.fromTo(elems[j], 1, 
+    //           { y: 15 }, 
+    //           { y: -15, ease: Linear.easeNone}),
+    //       ]);
+    //     scene = new ScrollMagic.Scene({
+    //         triggerElement: (this.isHomepage) ? "#case-studies-section-container" : "#works-container",
+    //         offset: 0,
+    //         triggerHook: 0.6,
+    //         duration: viewportHeight
+    //       })
+    //       .setTween(tween)
+    //       .addTo(this.parallaxController);
+    //   }
+    // }
   }
 }
 </script>
