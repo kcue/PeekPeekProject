@@ -108,7 +108,23 @@ export default class Home extends Vue {
     }
 
     // Hotspot Section Scenes
-    var hsSecElements = document.getElementById("hotspot-section").querySelectorAll("#city-wrapper, .hotspot-titles");
+    var hsSecElements = document.getElementById("hotspot-section").querySelectorAll("#city-wrapper");
+    var hsSecScenes = [];
+    for (var i = 0; i < hsSecElements.length; i++) {
+      hsSecScenes[i] = new ScrollMagic.Scene({
+          triggerElement: hsSecElements[i],
+          offset: 0,
+          triggerHook: 0.8,
+          reverse: false
+        })
+        .setClassToggle(hsSecElements[i], "reveal")
+        .on("enter", function() {
+          (<any> window).initCity();
+        })
+        .addTo(this.controller);
+    }
+    
+    var hsSecElements = document.getElementById("hotspot-section").querySelectorAll(".hotspot-titles");
     var hsSecScenes = [];
     for (var i = 0; i < hsSecElements.length; i++) {
       hsSecScenes[i] = new ScrollMagic.Scene({
