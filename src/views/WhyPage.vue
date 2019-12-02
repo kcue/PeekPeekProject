@@ -125,15 +125,6 @@ export default class Why extends Vue {
         triggerHook: 0,
         duration: viewportHeight
       },
-      // {
-      //   elems: document.querySelectorAll(".why-cards .feature-img"),
-      //   fromTopVal: 20, toTopVal: -20, 
-      //   fromLeftVal: 0, toLeftVal: 0,
-      //   triggerElement: "self",
-      //   offset: 0, 
-      //   triggerHook: 0.8,
-      //   duration: viewportHeight / 2
-      // },
       {
         elems: document.querySelectorAll(".why-cards .text-container"),
         fromTopVal: 30, toTopVal: -20, 
@@ -184,7 +175,6 @@ export default class Why extends Vue {
         .setTween(tween)
         .addTo(this.parallaxController);
     }
-
   }
 }
 </script>

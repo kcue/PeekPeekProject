@@ -21,6 +21,9 @@ import PartnersSection from "@/components/PartnersSection.vue";
 import ContactSection from "@/components/ContactSection.vue";
 import ScrollMagic from 'scrollmagic';  // not using vue-scrollmagic for transitions because it switches between horizontal & vertical layout
 
+import { TweenMax, TimelineMax, Linear } from "gsap/all";
+import "imports-loader?define=>false!scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap";
+
 @Component({
   components: {
     HomeSection,
@@ -35,6 +38,7 @@ import ScrollMagic from 'scrollmagic';  // not using vue-scrollmagic for transit
 export default class Home extends Vue {
   name: string = "home";
   controller: any = null;
+  parallaxController:any = null;
   
   created() {
     document.title = "PeekPeek | Home";
@@ -172,13 +176,18 @@ export default class Home extends Vue {
         .addTo(this.controller);
     }
 
-    (<any> window).homeResize = Vue.prototype.$_.debounce(this.handleResize, 2000)
+    (<any> window).homeResize = Vue.prototype.$_.debounce(this.handleResize, 1000)
     window.addEventListener("resize", (<any> window).homeResize);
+
+    this.initParallax();
   }
 
   beforeDestroy() {
     this.controller.destroy(true);
     this.controller = null;
+
+    this.parallaxController.destroy(true);
+    this.parallaxController = null;
 
     window.onwheel = null;
     window.removeEventListener("resize", (<any> window).homeResize);
@@ -187,11 +196,91 @@ export default class Home extends Vue {
 
   handleResize(): void {
     // this is the resize handler
-    console.log("called handleResize");
+    this.parallaxController.destroy(true);
+    this.parallaxController = null;
+    this.initParallax();
   }
 
-  initParallax(): void {
+  initParallax() {
+    // @TODO create factory class for animations
+    var viewportHeight = Vue.prototype.common.getViewportSize().height;
+    var viewportWidth = Vue.prototype.common.getViewportSize().width;
+    var elems: any, scene: any, tween: any;
 
+    var isVertical = true;
+    if (viewportWidth >= 768) {
+      isVertical = false;
+    }
+
+    this.parallaxController = new ScrollMagic.Controller({
+      vertical: isVertical,
+      refreshInterval: 200
+    });
+
+    if (viewportWidth >= 768) {  // horizontal mode
+      var parallaxObjects = [
+      //   {
+      //     elems: document.querySelectorAll("#why-section-container .group:not(.why-cards)"),
+      //     fromTopVal: 0, toTopVal: -200,
+      //     fromLeftVal: 0, toLeftVal: 0,
+      //     triggerElement: "#sections-container",
+      //     offset: 0,
+      //     triggerHook: 0,
+      //     duration: viewportHeight
+      //   },
+      //   {
+      //     elems: document.querySelectorAll(".why-cards .text-container"),
+      //     fromTopVal: 30, toTopVal: -20, 
+      //     fromLeftVal: 0, toLeftVal: 0,
+      //     triggerElement: "self",
+      //     offset: 0, 
+      //     triggerHook: 0.9,
+      //     duration: viewportHeight / 2
+      //   },
+      ];
+    } else {  // vertical mode
+      var parallaxObjects = [
+        // {
+        //   elems: document.querySelectorAll("#why-section-container .group:not(.why-cards)"),
+        //   fromTopVal: 0, toTopVal: -200,
+        //   fromLeftVal: 0, toLeftVal: 0,
+        //   triggerElement: "#sections-container",
+        //   offset: 0,
+        //   triggerHook: 0,
+        //   duration: viewportHeight
+        // },
+        // {
+        //   elems: document.querySelectorAll(".why-cards .text-container"),
+        //   fromTopVal: 30, toTopVal: -20, 
+        //   fromLeftVal: 0, toLeftVal: 0,
+        //   triggerElement: "self",
+        //   offset: 0, 
+        //   triggerHook: 0.9,
+        //   duration: viewportHeight / 2
+        // },
+      ];
+    }
+
+    for (var i = 0; i < parallaxObjects.length; i++) {
+      var obj = parallaxObjects[i]
+      var elems = obj.elems;
+      for (var j = 0; j < elems.length; j++) {
+        var tween = new TimelineMax()
+          .add([
+            TweenMax.fromTo(elems[j], 1, 
+              { top: obj.fromTopVal, left: obj.fromLeftVal, position: "relative" }, 
+              { top: obj.toTopVal, left: obj.toLeftVal, ease: Linear.easeNone}),
+          ]);
+        var scene = new ScrollMagic.Scene({
+            triggerElement: (obj.triggerElement === "self") ? elems[j] : obj.triggerElement,
+            offset: obj.offset,
+            triggerHook: obj.triggerHook,
+            duration: obj.duration
+          })
+          .setTween(tween)
+          .addTo(this.parallaxController);
+      }
+    }
   }
 
   data() {

@@ -1,15 +1,15 @@
 <template>
   <nav>
-    <router-link to="/"><img id="logo" src="../assets/images/logo.png" @click="common.appScrollTo('#home-section');restoreScroll();" /></router-link>
+    <router-link to="/"><img id="logo" src="../assets/images/logo.png" @click="common.appScrollTo('#home-section');" /></router-link>
     <ul class="nav-buttons">
       <li>
-        <span @click="restoreScroll()" class="nav-item"><router-link to="/who">WHO</router-link></span>
+        <span class="nav-item"><router-link to="/who">WHO</router-link></span>
       </li>
       <li>
-        <span @click="restoreScroll()" class="nav-item"><router-link to="/what">WHAT</router-link></span>
+        <span class="nav-item"><router-link to="/what">WHAT</router-link></span>
       </li>
       <li>
-        <span @click="restoreScroll()" class="nav-item"><router-link to="/why">WHY</router-link></span>
+        <span class="nav-item"><router-link to="/why">WHY</router-link></span>
       </li>
       <li>
         <button class="primary-button" @click="scrollToContact">&nbsp;</button>
@@ -30,19 +30,6 @@ export default class Navigation extends Vue {
     setTimeout(() => {
       contactBtn.click();
     }, 500);
-  }
-  restoreScroll() {
-    document.body.style.overflow = "auto";
-    window.onwheel = (event: any) => {
-      if (navigator.userAgent.includes("Safari") && !navigator.userAgent.includes("Chrome")) {
-        // Need to prevent default behavior for Safari for touchpad scrolling gesture to work
-        event.preventDefault();
-        window.scrollTo(window.scrollX + event.deltaX + event.deltaY, window.scrollY); // Added deltaX to ensure native horizontal scrolling
-      } else {
-        // For all other browsers
-        window.scrollTo(window.scrollX + event.deltaY, window.scrollY);
-      }
-    }
   }
 }
 </script>
