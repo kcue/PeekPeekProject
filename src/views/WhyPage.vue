@@ -10,11 +10,8 @@ import { Component, Vue } from "vue-property-decorator";
 import WhySection from "@/components/WhySection.vue";
 import ContactSection from "@/components/ContactSection.vue";
 import ScrollMagic from 'scrollmagic';  // not using global $scrollmagic, since this page is vertical
-
 import { TweenMax, TimelineMax, Linear } from "gsap/all";
 import "imports-loader?define=>false!scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap";
-import VueAnalytics from 'vue-analytics'; //  GT
-
 
 
 @Component({
