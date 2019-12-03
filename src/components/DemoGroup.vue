@@ -71,8 +71,8 @@ export default class DemoGroup extends Vue {
       oldWidth = newWidth;
 
       // reinitialize parallax
-      this.parallaxController.destroy(true);
-      this.parallaxController = null;
+      // this.parallaxController.destroy(true);
+      // this.parallaxController = null;
       this.initParallax();
     };
     (<any> window).demoGroupResize = Vue.prototype.$_.debounce(demoGroupResize, 1000);

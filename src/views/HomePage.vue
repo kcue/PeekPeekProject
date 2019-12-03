@@ -61,7 +61,6 @@ export default class Home extends Vue {
         window.scrollTo(window.scrollX + event.deltaX + event.deltaY, window.scrollY); // Added deltaX to ensure native horizontal scrolling
       } else {
         // For all other browsers
-        event.preventDefault();
         window.scrollTo(window.scrollX + event.deltaY, window.scrollY);
       }
     }
@@ -76,10 +75,9 @@ export default class Home extends Vue {
     // initialize scrollmagic controller
     // check if horizontal or vertical
     var viewportWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-    var isVerticalLayout = true;  // mobile
-    if (viewportWidth >= 768) {
-      isVerticalLayout = false;
-    }
+    var isVerticalLayout = Vue.prototype.common.isVerticalLayout();  // mobile
+    
+
     this.controller = new ScrollMagic.Controller({
       vertical: isVerticalLayout
     });
@@ -231,10 +229,7 @@ export default class Home extends Vue {
     var viewportWidth = Vue.prototype.common.getViewportSize().width;
     var elems: any, scene: any, tween: any;
 
-    var isVertical = true;
-    if (viewportWidth >= 768) {
-      isVertical = false;
-    }
+    var isVertical = Vue.prototype.common.isVerticalLayout();
 
     this.parallaxController = new ScrollMagic.Controller({
       vertical: isVertical,
@@ -242,7 +237,7 @@ export default class Home extends Vue {
     });
 
     var parallaxObjects = [];
-    if (viewportWidth >= 768) {  // horizontal mode
+    if (!isVertical) {  // horizontal mode
       parallaxObjects = [
         {
           elems: document.querySelectorAll(".heading"),
@@ -273,35 +268,35 @@ export default class Home extends Vue {
         },
       ];
     } else {  // vertical mode
-      parallaxObjects = [
-        {
-          elems: document.querySelectorAll(".heading, #button-prompt, #solution-button, #learn-button, #study-button, #partners-learnbutton"),
-          fromTopVal: 10, toTopVal: -20,
-          fromLeftVal: 0, toLeftVal: 0,
-          triggerElement: "self",
-          offset: 0,
-          triggerHook: 0.9,
-          duration: viewportHeight
-        },
-        {
-          elems: document.querySelectorAll(".subheading"),
-          fromTopVal: 10, toTopVal: -20, 
-          fromLeftVal: 0, toLeftVal: 0,
-          triggerElement: "self",
-          offset: 0, 
-          triggerHook: 0.9,
-          duration: viewportHeight
-        },
-        {
-          elems: document.querySelectorAll(".primary-description"),
-          fromTopVal: 10, toTopVal: -20, 
-          fromLeftVal: 0, toLeftVal: 0,
-          triggerElement: "self",
-          offset: 0, 
-          triggerHook: 0.9,
-          duration: viewportHeight
-        },
-      ];
+      // parallaxObjects = [
+      //   {
+      //     elems: document.querySelectorAll(".heading, #button-prompt, #solution-button, #learn-button, #study-button, #partners-learnbutton"),
+      //     fromTopVal: 10, toTopVal: -20,
+      //     fromLeftVal: 0, toLeftVal: 0,
+      //     triggerElement: "self",
+      //     offset: 0,
+      //     triggerHook: 0.9,
+      //     duration: viewportHeight
+      //   },
+      //   {
+      //     elems: document.querySelectorAll(".subheading"),
+      //     fromTopVal: 10, toTopVal: -20, 
+      //     fromLeftVal: 0, toLeftVal: 0,
+      //     triggerElement: "self",
+      //     offset: 0, 
+      //     triggerHook: 0.9,
+      //     duration: viewportHeight
+      //   },
+      //   {
+      //     elems: document.querySelectorAll(".primary-description"),
+      //     fromTopVal: 10, toTopVal: -20, 
+      //     fromLeftVal: 0, toLeftVal: 0,
+      //     triggerElement: "self",
+      //     offset: 0, 
+      //     triggerHook: 0.9,
+      //     duration: viewportHeight
+      //   },
+      // ];
     }
 
     for (var i = 0; i < parallaxObjects.length; i++) {

@@ -36,7 +36,7 @@ export default class PartnersSection extends Vue {
   numLogos: number = 5;
   mySwiper: any = {};
   swiperResizeHandler: any = Vue.prototype.$_.debounce(this.swiperUpdate, 2000);
-  swiperOptions: object = {
+  swiperOptions: any = {
     direction: "horizontal",
     loop: true,
     loopedSlides: this.numLogos,
@@ -50,20 +50,34 @@ export default class PartnersSection extends Vue {
     speed: 10000,
     freeMode: true,
     freeModeMomentumBounce: false,
-    breakpoints: {
-      768: {
-        direction: "vertical",
-      }
-    },
+    // breakpoints: {
+    //   768: {
+    //     direction: "vertical",
+    //   }
+    // },
   }
 
   swiperUpdate() {
     this.mySwiper.destroy(false, true);
+
+    var isVerticalLayout = Vue.prototype.common.isVerticalLayout()
+    if (isVerticalLayout) {
+      this.swiperOptions.direction = "horizontal";
+    } else {
+      this.swiperOptions.direction = "vertical";
+    }
     this.mySwiper = new Swiper (".swiper-container", this.swiperOptions);
   }
 
   mounted() {
+    var isVerticalLayout = Vue.prototype.common.isVerticalLayout()
+    if (isVerticalLayout) {
+      this.swiperOptions.direction = "horizontal";
+    } else {
+      this.swiperOptions.direction = "vertical";
+    }
     this.mySwiper = new Swiper (".swiper-container", this.swiperOptions);
+
     window.addEventListener('resize', this.swiperResizeHandler);
   }
 

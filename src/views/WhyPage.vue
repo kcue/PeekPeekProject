@@ -131,6 +131,15 @@ export default class Why extends Vue {
       //   duration: viewportHeight
       // },
       {
+        elems: document.querySelectorAll(".feature-img"),
+        fromTopVal: 20, toTopVal: -20, 
+        fromLeftVal: 0, toLeftVal: 0,
+        triggerElement: "self",
+        offset: 0, 
+        triggerHook: 0.8,
+        duration: viewportHeight * 0.8
+      },
+      {
         elems: document.querySelectorAll(".why-cards .text-container"),
         fromTopVal: 30, toTopVal: -20, 
         fromLeftVal: 0, toLeftVal: 0,
@@ -160,25 +169,6 @@ export default class Why extends Vue {
           .setTween(tween)
           .addTo(this.parallaxController);
       }
-    }
-
-    // initialize parallax for the images
-    var elems = document.querySelectorAll(".feature-img");
-    for (var j = 0; j < elems.length; j++) {
-      var tween = new TimelineMax()
-        .add([
-          TweenMax.fromTo(elems[j], 1, 
-            { top: 20, backgroundPosition: "50% 0%", backgroundSize: "cover", position: "relative" }, 
-            { top: -20, backgroundPosition: "50% 100%", ease: Linear.easeNone}),
-        ]);
-      var scene = new ScrollMagic.Scene({
-          triggerElement: elems[j],
-          offset: 0,
-          triggerHook: 0.8,
-          duration: viewportHeight * 0.8
-        })
-        .setTween(tween)
-        .addTo(this.parallaxController);
     }
   }
 }

@@ -92,8 +92,9 @@ export default class StatsSection extends Vue {
     // check if horizontal or vertical
     var viewportHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
     var viewportWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+    
     var isVerticalLayout = true;  // mobile
-    if (viewportWidth >= 768) {
+    if (viewportWidth >= 768 && viewportHeight >= 540) {
       isVerticalLayout = false;
     }
 
