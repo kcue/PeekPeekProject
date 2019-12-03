@@ -46,6 +46,8 @@ export default class Home extends Vue {
   }
 
   mounted() {
+    document.getElementsByTagName("html")[0].classList.add("no-scrollbar");
+
     Vue.prototype.$ga.page({
       page: "/",
       title: "Home",
@@ -205,6 +207,8 @@ export default class Home extends Vue {
   }
 
   beforeDestroy() {
+    document.getElementsByTagName("html")[0].classList.remove("no-scrollbar");
+
     this.controller.destroy(true);
     this.controller = null;
 
@@ -350,7 +354,7 @@ export default class Home extends Vue {
 
 .section {
   position: relative;
-  width: 100vw;
+  width: 100%;
   min-height: $site-min-height;  // TODO: FIGURE OUT THRESHOLD
   min-width: $site-min-width;   // TODO: FIGURE OUT THRESHOLD
   display: block;
