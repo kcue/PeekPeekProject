@@ -40,8 +40,10 @@ export default class DemoGroup extends Vue {
           event.preventDefault();
           event.stopPropagation();
           let targetElement: HTMLElement = <HTMLElement> event.srcElement;
-          targetElement = targetElement.className.toString().includes("demo-section-frame") ? targetElement : <HTMLElement> targetElement.parentElement;
-          this.openCard(targetElement!, cards);
+          if (!targetElement.className.toString().includes("demo-card")) {
+            targetElement = <HTMLElement> targetElement.parentElement;          
+            this.openCard(targetElement!, cards);
+          }
       });
     }
 
@@ -346,6 +348,7 @@ $numCards: 4;
       font-weight: 700;
       font-size: 1em;
       line-height: 1.2em;
+      pointer-events: none;
     }
 
     .demo-subtitle {
@@ -353,6 +356,7 @@ $numCards: 4;
       color: $primary-description-color;
       font-size: 0.8em;
       line-height: 1.2em;
+      pointer-events: none;
     } 
   }
 

@@ -123,7 +123,6 @@ img {
 @include medium-screen-landscape {
   // fix for scrollbar display issues
   html.no-scrollbar {
-    overflow: auto;
     -ms-overflow-style: none; /* IE 11 */
     scrollbar-width: none; /* Firefox 64 */
 
