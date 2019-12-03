@@ -257,7 +257,7 @@ export default class Form extends Vue {
 <style lang="scss">
 #form-container {
   background: url("../assets/images/contactform-bg.svg") center no-repeat;
-  background-size: auto 140vw;
+  background-size: cover;
   display: flex; 
   flex-direction: column;
   align-items: center;
@@ -266,6 +266,7 @@ export default class Form extends Vue {
   @include small-screen-landscape{
     background-size:contain;
   }
+ 
   
   .nav-bar {
     width: 100%;
@@ -308,7 +309,7 @@ export default class Form extends Vue {
     align-items: stretch;
     justify-content: flex-start;
     flex-wrap: nowrap;
-    overflow: hidden;
+    overflow-x: hidden;
     width: 85%;
     height:60%;
     @include medium-screen-landscape{
@@ -339,7 +340,7 @@ export default class Form extends Vue {
       margin-top: 2vh;
       .button-container {
         height: 25vh;
-        max-height: 150px;
+        max-height: 200px;
         display: flex;
         flex-direction: row;
         justify-content: center;

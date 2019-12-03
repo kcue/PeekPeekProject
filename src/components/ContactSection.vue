@@ -158,9 +158,9 @@ export default class ContactSection extends Vue {
 
     .contact-form {
       width: 100vw;
-      height: 140vw;
+      height: auto;
       @include small-screen-landscape {
-        height: 90vw;
+        height: 95vw;
       }
 
       @include medium-screen-landscape {
