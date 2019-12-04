@@ -13,17 +13,18 @@
           >Awesome!</span>
       </h2>
     </div>
-    <!-- <i class="far fa-times-circle closed" id="close-button" @click="exitForm"></i> -->
     
     <div id="form-viewport">
       <!-- INDUSTRY -->
       <div class="form-page" id="first-page">
           <div class="form-buttons-container">
               <div class="button-container">
+
                 <div class="form-button" v-for="item in buttonData.industryPage"
                   @click="buttonClickHandler($event)" :key="item.id">
                     <span >{{item}} </span>
                 </div>
+
               </div>
           </div>
       </div>
@@ -256,22 +257,14 @@ export default class Form extends Vue {
 
 <style lang="scss">
 #form-container {
-  background: url("../assets/images/contactform-bg.svg") center no-repeat;
-  background-size: cover;
   display: flex; 
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  
-  @include small-screen-landscape{
-    background-size:contain;
-  }
  
-  
   .nav-bar {
     width: 100%;
-    margin-top: 2em;
-
+    margin-bottom: 1em;    
     h2 {
       font-size: 1.3em;
       color: $alt-heading-color;
@@ -306,17 +299,15 @@ export default class Form extends Vue {
   #form-viewport {
     display: flex;
     flex-direction: row;
-    align-items: stretch;
+    align-items: center;
     justify-content: flex-start;
     flex-wrap: nowrap;
     overflow-x: hidden;
-    width: 85%;
-    height:60%;
-    @include medium-screen-landscape{
-      height:40%;
-    }
-    @include large-screen-landscape{
-      height:60%;
+    width: 100%;
+    height: auto;
+
+    @include small-screen-landscape {
+      width: 85%;
     }
   }
 
@@ -336,24 +327,31 @@ export default class Form extends Vue {
     }
     
     .form-buttons-container {
-      width: 100%;
-      margin-top: 2vh;
       .button-container {
-        height: 25vh;
-        max-height: 200px;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        @include medium-screen-landscape{
-          max-height: 500px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        grid-column-gap: 1em;
+        grid-row-gap: 1em;
+        justify-items: center;
+
+        @include medium-screen-landscape {
+          grid-row-gap: 0;
         }
+
+        @include large-screen-landscape {
+          display: flex;         
+        }
+
         .form-button {
           transition: all 0.5s ease;
           color: $secondary-button-text-color;
           font-size: 1em;
           font-weight: 700;
-          height: 16vw;
-          width: 24vw;
+          height: 20vw;
+          width: 30vw;
+          min-height: 115px;
+          min-width: 170px;
           display: flex;
           flex-direction: column;
           justify-content: center;
@@ -362,7 +360,7 @@ export default class Form extends Vue {
 
           @include medium-screen-landscape{
             font-size: inherit;
-            width: 12vw;
+            width: 10vw;
             height: 12vh;
           }
 
@@ -378,14 +376,18 @@ export default class Form extends Vue {
               }
             }
           }
+          //For non mobile use specified button layout
+          @include large-screen-landscape {
+            &:nth-child(odd) {
+              align-self: flex-start;
+              margin-bottom: 10%;
+            }
 
-          &:nth-child(odd) {
-            align-self: flex-start;
+            &:nth-child(even) {
+              align-self: flex-end;
+            }
           }
-
-          &:nth-child(even) {
-            align-self: flex-end;
-          }
+         
         }
       }
     }
@@ -410,10 +412,13 @@ export default class Form extends Vue {
         flex-direction: column;
         justify-content: center;
         margin: 2em 0;
-        width: 95%;
-        @include medium-screen-landscape{
+        width: 90%;
+
+        @include medium-screen-landscape {
           flex-direction: row;
+          width: 80%;
         }
+
         .form-element {
           input, textarea {
             width: 100%;
@@ -426,7 +431,7 @@ export default class Form extends Vue {
             color: $secondary-description-color;
             font-weight: 400;
 
-            @include medium-screen-landscape{
+            @include medium-screen-landscape {
               font-size: 0.8em;
             }
           }
@@ -446,19 +451,23 @@ export default class Form extends Vue {
             }
           }
         }
-        .personal-info, .inquiry-container{
-          @include medium-screen-landscape{
+
+        .personal-info, .inquiry-container {
+          @include medium-screen-landscape {
             width: 49%;
           }
         }
+
         .personal-info {
           width: 100%;
           margin-right: 2%;
           padding-bottom: 2%;
+
           & .form-element:nth-child(even) {
-            margin: 0.5em 0;
+            margin: 2% 0;
           }
-          @include medium-screen-landscape{
+
+          @include medium-screen-landscape {
             padding-bottom: 0%;
           }
         }
@@ -471,7 +480,11 @@ export default class Form extends Vue {
             height: 100%;
 
             textarea {
-              height: 100%;
+              height: 10em;
+
+              @include medium-screen-landscape {
+                height: 100%;
+              }
             }
 
             #remaining-characters {

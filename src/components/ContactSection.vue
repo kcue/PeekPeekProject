@@ -155,13 +155,27 @@ export default class ContactSection extends Vue {
     justify-content: center;
     align-items: center;
     z-index: 20;
+    
+    &:before {
+      content: "";
+      display: block;
+      position: absolute;
+      height: 75%;
+      width: 100%;
+      z-index: -1;
+      background: url("../assets/images/contactform-bg.svg") center no-repeat;
+      background-size: cover;
 
+      @include medium-screen-landscape {
+        height: 70%;
+        width: 85%;
+        background-size: contain;
+      }
+    }
+    
     .contact-form {
       width: 100vw;
       height: auto;
-      @include small-screen-landscape {
-        height: 95vw;
-      }
 
       @include medium-screen-landscape {
         width: 80vw;
@@ -171,7 +185,6 @@ export default class ContactSection extends Vue {
         min-width: 800px;
         min-height: 500px;
         width: 60vw;
-        height: 33vw;
       }
     }
   }
