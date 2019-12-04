@@ -42,23 +42,23 @@ export default class StatsSection extends Vue {
       cardData: [
         {
           additionalClass: "",
-          cardHeading: "82%",
-          cardDescription: "Lorem Ipsum is simply dummy text.",
+          cardHeading: "67%",
+          cardDescription: "increase in booking rate",
         },
         {
           additionalClass: "",
-          cardHeading: "90%",
-          cardDescription: "Lorem Ipsum is simply dummy text.",
+          cardHeading: "10x",
+          cardDescription: "longer engagement",
         },
         {
           additionalClass: "highlight",
-          cardHeading: "1%",
-          cardDescription: "Lorem Ipsum is simply dummy text.",
+          cardHeading: "75%",
+          cardDescription: "public wants virtual tour",
         },
         {
           additionalClass: "",
-          cardHeading: "Top5",
-          cardDescription: "Lorem Ipsum is simply dummy text.",
+          cardHeading: "4 weeks",
+          cardDescription: "to recoup ROI",
         }
       ]
     }
@@ -93,10 +93,7 @@ export default class StatsSection extends Vue {
     var viewportHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
     var viewportWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
     
-    var isVerticalLayout = true;  // mobile
-    if (viewportWidth >= 768 && viewportHeight >= 540) {
-      isVerticalLayout = false;
-    }
+    var isVerticalLayout = Vue.prototype.common.isVerticalLayout();  // check if mobile or not
 
     // initialize scrollmagic controller
     this.controller = new ScrollMagic.Controller({
@@ -258,7 +255,8 @@ $overlap-y: 4%;
         display: flex;
         flex-direction: column;
         width: 52%;
-        align-items: center;
+        align-items: flex-start;
+        justify-content: center;
         background-color: rgb(254, 255, 254);
         border-radius: 10px;
         box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.15);

@@ -74,6 +74,14 @@ html {
   @include extra-large-screen-landscape {
     font-size: 18px;
   }
+
+  @include high-res-screen-landscape {
+    font-size: 24px;
+  }
+
+  @include ultra-high-res-screen-landscape {
+    font-size: 28px;
+  }
 }
 
 *, *:before, *:after {
@@ -221,6 +229,11 @@ body {
     @include large-screen-landscape {
       margin-left: 0px;
       margin-right: 20px;
+    }
+
+    @include high-res-screen-landscape {
+      padding: 15px 10px;
+      width: 240px;
     }
 
     &.primary-button {

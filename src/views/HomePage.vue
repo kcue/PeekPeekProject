@@ -222,9 +222,12 @@ export default class Home extends Vue {
 
   handleResize(): void {
     // this is the resize handler
-    this.parallaxController.destroy(true);
-    this.parallaxController = null;
-    this.initParallax();
+    if (Vue.prototype.common.isVerticalLayout()) {
+      this.parallaxController.enabled(false);
+    } else {
+      this.parallaxController.enabled(true);
+    }
+    this.parallaxController.update(true);
   }
 
   initParallax() {
@@ -240,38 +243,36 @@ export default class Home extends Vue {
       refreshInterval: 200
     });
 
-    var parallaxObjects = [];
-    if (!isVertical) {  // horizontal mode
-      parallaxObjects = [
-        {
-          elems: document.querySelectorAll(".heading"),
-          fromTopVal: 0, toTopVal: 0,
-          fromLeftVal: 40, toLeftVal: 0,
-          triggerElement: "self",
-          offset: 0,
-          triggerHook: 1,
-          duration: viewportWidth * 0.5
-        },
-        {
-          elems: document.querySelectorAll(".subheading"),
-          fromTopVal: 0, toTopVal: 0, 
-          fromLeftVal: 20, toLeftVal: 0,
-          triggerElement: "self",
-          offset: 0, 
-          triggerHook: 1,
-          duration: viewportWidth * 0.5
-        },
-        {
-          elems: document.querySelectorAll(".primary-description"),
-          fromTopVal: 0, toTopVal: 0, 
-          fromLeftVal: 70, toLeftVal: 0,
-          triggerElement: "self",
-          offset: 0, 
-          triggerHook: 1,
-          duration: viewportWidth * 0.5
-        },
-      ];
-    } else {  // vertical mode
+    var parallaxObjects = [
+      {
+        elems: document.querySelectorAll(".heading"),
+        fromTopVal: 0, toTopVal: 0,
+        fromLeftVal: 40, toLeftVal: 0,
+        triggerElement: "self",
+        offset: 0,
+        triggerHook: 1,
+        duration: viewportWidth * 0.5
+      },
+      {
+        elems: document.querySelectorAll(".subheading"),
+        fromTopVal: 0, toTopVal: 0, 
+        fromLeftVal: 20, toLeftVal: 0,
+        triggerElement: "self",
+        offset: 0, 
+        triggerHook: 1,
+        duration: viewportWidth * 0.5
+      },
+      {
+        elems: document.querySelectorAll(".primary-description"),
+        fromTopVal: 0, toTopVal: 0, 
+        fromLeftVal: 70, toLeftVal: 0,
+        triggerElement: "self",
+        offset: 0, 
+        triggerHook: 1,
+        duration: viewportWidth * 0.5
+      },
+    ];
+
       // parallaxObjects = [
       //   {
       //     elems: document.querySelectorAll(".heading, #button-prompt, #solution-button, #learn-button, #study-button, #partners-learnbutton"),
@@ -301,19 +302,18 @@ export default class Home extends Vue {
       //     duration: viewportHeight
       //   },
       // ];
-    }
-
+    
     for (var i = 0; i < parallaxObjects.length; i++) {
       var obj = parallaxObjects[i]
-      var elems = obj.elems;
+      elems = obj.elems;
       for (var j = 0; j < elems.length; j++) {
-        var tween = new TimelineMax()
+        tween = new TimelineMax()
           .add([
             TweenMax.fromTo(elems[j], 1, 
               { top: obj.fromTopVal, left: obj.fromLeftVal, position: "relative" }, 
-              { top: obj.toTopVal, left: obj.toLeftVal, ease: Linear.easeNone}),
+              { top: obj.toTopVal, left: obj.toLeftVal, ease: Linear.easeNone }),
           ]);
-        var scene = new ScrollMagic.Scene({
+        scene = new ScrollMagic.Scene({
             triggerElement: (obj.triggerElement === "self") ? elems[j] : obj.triggerElement,
             offset: obj.offset,
             triggerHook: obj.triggerHook,
