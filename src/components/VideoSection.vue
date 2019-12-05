@@ -40,8 +40,9 @@ export default class VideoSection extends Vue {}
   @include medium-screen-landscape {
     display: inline-block;
     min-width: 900px;
-    width: auto;
+    width: 100%;
     height: auto;
+    text-align: center;
 
     &:before {
       display: inline-block;
@@ -56,7 +57,6 @@ export default class VideoSection extends Vue {}
     white-space: initial;
     display: inline-block;
     vertical-align: middle;
-    // margin-top: 40px;   // balance the video arrow margin
 
     .heading, .content-group, #learn-button {
       margin: 2.5% 0 0;
@@ -97,27 +97,32 @@ export default class VideoSection extends Vue {}
       position: relative;
       margin: 5% auto 40px auto;
       min-width: $video-min-width;
-      max-width: $video-max-width;
+      // max-width: $video-max-width;
       width: 80vw;
 
       @include medium-screen-landscape {
-        width: 70vw;
+        width: 62.5%;
         float: left;
         margin: 5% 60px 40px 0;   // margins to make space for the arrow
+      }
+
+      @include high-res-screen-landscape {
+        width: 68%;
       }
 
       iframe {
         min-width: $video-min-width;
         min-height: $video-min-height;
-        max-width: $video-max-width;
-        max-height: $video-max-height;
+        // max-width: $video-max-width;
+        // max-height: $video-max-height;
         width: 80vw;
         height: 50vw;
         box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.15);
 
         @include medium-screen-landscape {
-          width: 70vw;
-          height: 45vw;
+          // max-height: initial;
+          width: 100%;
+          height: 50vh;
         }
       }
 
@@ -141,6 +146,12 @@ export default class VideoSection extends Vue {}
           width: 100px;
           bottom: -40px;
           right: -45px;
+        }
+
+        @include high-res-screen-landscape {
+          width: 160px;
+          bottom: -50px;
+          right: -70px;
         }
       }
     }

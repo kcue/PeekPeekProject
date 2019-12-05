@@ -41,7 +41,7 @@ const common = {
     var viewportHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
     var viewportWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
 
-    if (viewportWidth >= 768 && viewportHeight >= 540) {
+    if (viewportWidth >= 768) {
       return false;
     } else {
       return true;    // mobile layout

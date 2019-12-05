@@ -42,9 +42,6 @@ export default class ContactSection extends Vue {
     this.showContactForm = true;
     Vue.prototype.common.appScrollTo("#contact-section");
     document.body.style.overflow = "hidden";
-    window.onwheel = (event: any) => { 
-      // do nothing
-    }
   }
 
   exitForm() {
@@ -102,6 +99,10 @@ export default class ContactSection extends Vue {
       loop: true
     });
   }
+
+  beforeDestroy() {
+    document.body.style.overflow = "";
+  }
 }
 </script>
 
@@ -119,11 +120,16 @@ export default class ContactSection extends Vue {
     transform: scale(1);
     height: 100%;
     width: 100%;
-    padding: 5vw;
+    padding: 2%;
     position: absolute;
     top: 0;
     left: 0;
     z-index: -1;
+    visibility: hidden;
+
+    @include small-screen-landscape {
+      visibility: visible;
+    }
   }
 
   .contact-section-interlude {

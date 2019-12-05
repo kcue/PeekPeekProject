@@ -1,20 +1,22 @@
 <template>
   <section id="stats-section">
-    <div class="stats-cards">
-      <div class="stats-cards-container">
-        <Card v-for="(card, index) in cardData" :key="index" :cardHeading="card.cardHeading" :cardDescription="card.cardDescription" :id="'stats-card-' + (index + 1)" :class="card.additionalClass" :data-card-heading="card.cardHeading" />
+    <div class="container" id="stats-section-container">
+      <div class="stats-cards">
+        <div class="stats-cards-container">
+          <Card v-for="(card, index) in cardData" :key="index" :cardHeading="card.cardHeading" :cardDescription="card.cardDescription" :id="'stats-card-' + (index + 1)" :class="card.additionalClass" :data-card-heading="card.cardHeading" />
+        </div>
       </div>
-    </div>
-    <div class="stats-captions">
-      <div class="stats-titles">
-        <h2 class="heading">
-          <span class="line">Seeing is&nbsp;</span>
-          <span class="line">believing</span>
-        </h2>
-        <p class="primary-description">90% of customers make purchase decisions based on a website's visual content alone.</p>
-        <p class="primary-description">Impress engage and impace potential customers by adding PeekPeek's 360&deg; virtual reality tour to your website. With our results, we could be the best tool in your toolbox</p>
-        <h3 id="button-prompt">New challenge?</h3>
-        <a id="solution-button" class="button primary-button" href="/who">New solution</a>
+      <div class="stats-captions">
+        <div class="stats-titles">
+          <h2 class="heading">
+            <span class="line">Seeing is&nbsp;</span>
+            <span class="line">believing</span>
+          </h2>
+          <p class="primary-description">90% of customers make purchase decisions based on a website's visual content alone.</p>
+          <p class="primary-description">Impress engage and impace potential customers by adding PeekPeek's 360&deg; virtual reality tour to your website. With our results, we could be the best tool in your toolbox</p>
+          <h3 id="button-prompt">New challenge?</h3>
+          <a id="solution-button" class="button primary-button" href="/who">New solution</a>
+        </div>
       </div>
     </div>
   </section>
@@ -219,15 +221,29 @@ $overlap-y: 4%;
     margin-bottom: 0;
   }
 
+  #stats-section-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    @include medium-screen-landscape {
+      flex-direction: row;
+    }
+  }
+
   .stats-cards {
     margin-top: 5%;
 
     @include medium-screen-landscape {
-      display: inline-block;
-      vertical-align: middle;
+      max-width: 600px;
       width: 50%;
       height: 100%;
       margin-top: 0;
+    }
+
+    @include high-res-screen-landscape {
+      max-width: 1000px;
     }
 
     .stats-cards-container {
@@ -248,6 +264,10 @@ $overlap-y: 4%;
         top: 80vh;
         width: 90%;
         height: 100%;
+      }
+
+      @include high-res-screen-landscape {
+        max-width: 1000px;
       }
 
       .card {
@@ -335,17 +355,18 @@ $overlap-y: 4%;
   }
 
   .stats-captions {
-    display: block; //change
     text-align: left;
     margin: 5% 5vw;
 
     @include medium-screen-landscape {
       width: 50vw;
       max-width: 450px;
-      display: inline-block;
-      vertical-align: middle;
       white-space: initial;
       margin-left: 5vw;
+    }
+
+    @include high-res-screen-landscape {
+      max-width: initial;
     }
 
     .heading {
@@ -364,7 +385,7 @@ $overlap-y: 4%;
     }
 
     #solution-button {
-      margin-left: 20px;
+      margin-left: 1em;
     }
   }
 }

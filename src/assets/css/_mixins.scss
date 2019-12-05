@@ -3,23 +3,23 @@
 }
 
 @mixin medium-screen-landscape {
-  @media (min-width: 768px) and (min-height: 540px) { @content; }
+  @media (min-width: 768px) { @content; }
 }
 
 @mixin large-screen-landscape {
-  @media (min-width: 992px) and (min-height: 540px) { @content; }
+  @media (min-width: 992px) { @content; }
 }
 
 @mixin extra-large-screen-landscape {
-  @media (min-width: 1200px) and (min-height: 768px) { @content; }
+  @media (min-width: 1200px) { @content; }
 }
 
 @mixin high-res-screen-landscape {
-  @media (min-width: 1920px) and (min-height: 1073px) { @content; }
+  @media (min-width: 1600px) { @content; }
 }
 
 @mixin ultra-high-res-screen-landscape {
-  @media (min-width: 2560px) and (min-height: 1073px) { @content; }
+  @media (min-width: 2560px) { @content; }
 }
 
 

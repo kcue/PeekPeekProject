@@ -19,6 +19,14 @@ module.exports = {
     }
   },
   chainWebpack: config => {
+    // safari caching issue
+    if (process.env.NODE_ENV === 'development') {
+      config
+        .output
+        .filename('[name].[hash].js') 
+        .end() 
+    }
+    
     config.module.rules.delete('eslint');    // @TODO configure esLint properly -- disabling for now
     const svgRule = config.module.rule('svg')
 

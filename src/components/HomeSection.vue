@@ -1,6 +1,5 @@
 <template>
   <section>
-    <div id="home-section-trigger" class="trigger"></div>
     <div class="container" id="home-section-container">
       <div class="home-pic">
         <img id="inner" src="../assets/images/home-globe-inner.png" />
@@ -33,7 +32,7 @@ export default class HomeSection extends Vue {
       vertical: false
     });
     const splashScene = new ScrollMagic.Scene({
-        triggerElement: "#home-section-trigger",
+        triggerElement: "#home-section-container",
         triggerHook: 0.5,
         reverse: false // only do once
       })
@@ -91,6 +90,10 @@ export default class HomeSection extends Vue {
         width: 90%;
         max-width: 700px;
       }
+
+      @include high-res-screen-landscape {
+        max-width: initial;
+      }
     }
 
     #outer {
@@ -130,7 +133,7 @@ export default class HomeSection extends Vue {
         margin: 20px 0 10px;
 
         @include medium-screen-landscape {
-          padding-right: 25%;
+          padding-right: 20%;
           margin: 0;
         }
       }
@@ -173,19 +176,23 @@ export default class HomeSection extends Vue {
     .button {
       margin-top: 1em;
 
-      @include medium-screen-landscape {
-        width: 160px;
-      }
+      // @include medium-screen-landscape {
+      //   width: 160px;
+      // }
 
-      @include large-screen-landscape {
-        width: 170px;
-      }
+      // @include large-screen-landscape {
+      //   width: 170px;
+      // }
+
+      // @include high-res-screen-landscape {
+      //   width: 10px;
+      // }
     }
   }
   
   // styles below this point control the animations
   * {
-    transition: opacity 1s ease, width 1s ease, height 1s ease, flex-basis 1s ease, transform 1s ease, font-size 1s ease;
+    transition: opacity 1s ease, width 1s ease, height 1s ease, flex 1s ease, flex-basis 1s ease, transform 1s ease, font-size 1s ease;
   }
 
   &.animated * {
@@ -199,13 +206,13 @@ export default class HomeSection extends Vue {
     flex-basis: 0;
     
     #splash-text {
-      transition: font-size 1s ease 2s, transform 1s ease 0.2s;
+      transition: font-size 1s ease 2s, transform 0.5s ease 0.5s;
       font-size: 3em;
       opacity: 1;
       transform: translateX(0);
 
       @include medium-screen-landscape {
-        transform: translateX(200%);
+        transform: translateX(100vw);
       }
     }
     
@@ -252,7 +259,7 @@ export default class HomeSection extends Vue {
       }
 
       @include extra-large-screen-landscape {
-        flex-basis: 50%;
+        flex-basis: 40%;
       }
       
       #splash-text {

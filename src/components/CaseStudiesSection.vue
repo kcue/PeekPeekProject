@@ -86,6 +86,18 @@ export default class CaseStudiesSection extends Vue {
     @include medium-screen-landscape {
       width: 200px;
     }
+
+    @include extra-large-screen-landscape {
+      width: 250px;
+    }
+
+    @include high-res-screen-landscape {
+      width: 300px;
+    }
+
+    @include ultra-high-res-screen-landscape {
+      width: 400px;
+    }
   }
 }
 </style>

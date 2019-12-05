@@ -51,11 +51,11 @@ nav {
   #logo {
     display: inherit;
     margin: 10px 0 10px 2em;
-    width: 35px;
+    width: 2.2em;
 
     @include small-screen-landscape {
       margin-left: 2.5em;
-      width: 45px;
+      // width: 45px;
     }
   }
 
@@ -68,7 +68,12 @@ nav {
     @include small-screen-landscape {
       width: 10vw;
       min-width: 110px;
-      max-width: 140px; 
+      max-width: 160px; 
+    }
+
+    @include large-screen-landscape {
+      width: 12vw;
+      max-width: 220px;
     }
 
     &:after {
@@ -79,18 +84,17 @@ nav {
       content: "\f0e0";
       position: absolute;
       width: 100%;
-      top: 0;
+      top: 50%;
+      transform: translateY(-50%);
       left: 0;
-      padding: 9px;
       pointer-events: none;
 
+
       @include small-screen-landscape {
-        padding: 10px;
         font-family: "Open Sans";
         font-size: 1em;
         font-weight: 700;
         content: "Contact Us";
-        padding: 8px;
       }
     }
   }
