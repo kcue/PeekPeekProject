@@ -14,7 +14,7 @@ import common from "@/shared/common"
 import VueAnalytics from "vue-analytics";
 
 Vue.use(VueAnalytics, {
-  id: 'UA-153598577-1',
+  id: 'UA87364832-1',
 });
 
 // axios is for API interaction
