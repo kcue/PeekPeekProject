@@ -62,8 +62,8 @@ export default class Home extends Vue {
         event.preventDefault();
         window.scrollTo(window.scrollX + event.deltaX + event.deltaY, window.scrollY); // Added deltaX to ensure native horizontal scrolling
       } else if (navigator.userAgent.includes("Gecko") && navigator.userAgent.includes("Windows")) {
-        event.preventDefault();
-        window.scrollTo(window.scrollX + event.deltaX + event.deltaY, window.scrollY); 
+        // event.preventDefault();
+        // window.scrollTo(window.scrollX + event.deltaX + event.deltaY, window.scrollY); 
       } else {
         // For all other browsers
         window.scrollTo(window.scrollX + event.deltaY, window.scrollY);
@@ -323,7 +323,6 @@ export default class Home extends Vue {
       ];
     }
 
-    
     for (var i = 0; i < parallaxObjects.length; i++) {
       var obj = parallaxObjects[i]
       elems = obj.elems;
