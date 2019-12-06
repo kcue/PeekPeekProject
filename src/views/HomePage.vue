@@ -61,6 +61,9 @@ export default class Home extends Vue {
         // Need to prevent default behavior for Safari for touchpad scrolling gesture to work
         event.preventDefault();
         window.scrollTo(window.scrollX + event.deltaX + event.deltaY, window.scrollY); // Added deltaX to ensure native horizontal scrolling
+      } else if (navigator.userAgent.includes("Gecko") && navigator.userAgent.includes("Windows")) {
+        event.preventDefault();
+        window.scrollTo(window.scrollX + event.deltaX + event.deltaY, window.scrollY); 
       } else {
         // For all other browsers
         window.scrollTo(window.scrollX + event.deltaY, window.scrollY);
@@ -221,13 +224,9 @@ export default class Home extends Vue {
   }
 
   handleResize(): void {
-    // this is the resize handler
-    if (Vue.prototype.common.isVerticalLayout()) {
-      this.parallaxController.enabled(false);
-    } else {
-      this.parallaxController.enabled(true);
-    }
-    this.parallaxController.update(true);
+    this.parallaxController.destroy(true);
+    this.parallaxController = null;
+    this.initParallax();
   }
 
   initParallax() {
@@ -243,65 +242,87 @@ export default class Home extends Vue {
       refreshInterval: 200
     });
 
-    var parallaxObjects = [
-      {
-        elems: document.querySelectorAll(".heading"),
-        fromTopVal: 0, toTopVal: 0,
-        fromLeftVal: 40, toLeftVal: 0,
-        triggerElement: "self",
-        offset: 0,
-        triggerHook: 1,
-        duration: viewportWidth * 0.5
-      },
-      {
-        elems: document.querySelectorAll(".subheading"),
-        fromTopVal: 0, toTopVal: 0, 
-        fromLeftVal: 20, toLeftVal: 0,
-        triggerElement: "self",
-        offset: 0, 
-        triggerHook: 1,
-        duration: viewportWidth * 0.5
-      },
-      {
-        elems: document.querySelectorAll(".primary-description"),
-        fromTopVal: 0, toTopVal: 0, 
-        fromLeftVal: 70, toLeftVal: 0,
-        triggerElement: "self",
-        offset: 0, 
-        triggerHook: 1,
-        duration: viewportWidth * 0.5
-      },
-    ];
+    var parallaxObjects = [];
+    if (!isVertical) {
+      parallaxObjects = [
+        {
+          elems: document.querySelectorAll("#stats-section .heading, #video-section .heading, #hotspot-section .heading, #case-studies-section .heading, #partners-section .heading"),
+          fromTopVal: 0, toTopVal: 0,
+          fromLeftVal: 40, toLeftVal: 0,
+          triggerElement: "self",
+          offset: 0,
+          triggerHook: 1,
+          duration: viewportWidth * 0.5
+        },
+        {
+          elems: document.querySelectorAll("#stats-section .subheading, #video-section .subheading, #hotspot-section .subheading, #case-studies-section .subheading, #partners-section .subheading"),
+          fromTopVal: 0, toTopVal: 0, 
+          fromLeftVal: 20, toLeftVal: 0,
+          triggerElement: "self",
+          offset: 0, 
+          triggerHook: 1,
+          duration: viewportWidth * 0.75
+        },
+        {
+          elems: document.querySelectorAll("#stats-section .primary-description, #video-section .primary-description, #hotspot-section .primary-description, #case-studies-section .primary-description, #partners-section .primary-description"),
+          fromTopVal: 0, toTopVal: 0, 
+          fromLeftVal: 70, toLeftVal: 0,
+          triggerElement: "self",
+          offset: 0, 
+          triggerHook: 1,
+          duration: viewportWidth * 0.5
+        },
+        {
+          elems: document.querySelectorAll("#button-prompt, #solution-button, #learn-button, #study-button, #partners-learn-button"),
+          fromTopVal: 0, toTopVal: 0,
+          fromLeftVal: 90, toLeftVal: 0,
+          triggerElement: "self",
+          offset: 0,
+          triggerHook: 1,
+          duration: viewportWidth * 0.5
+        },
+      ];
+    } else {
+      parallaxObjects = [
+        {
+          elems: document.querySelectorAll("#stats-section .heading, #video-section .heading, #hotspot-section .heading, #case-studies-section .heading, #partners-section .heading"),
+          fromTopVal: 0, toTopVal: 0,
+          fromLeftVal: 0, toLeftVal: 0,
+          triggerElement: "self",
+          offset: 0,
+          triggerHook: 1,
+          duration: 1
+        },
+        {
+          elems: document.querySelectorAll("#stats-section .subheading, #video-section .subheading, #hotspot-section .subheading, #case-studies-section .subheading, #partners-section .subheading"),
+          fromTopVal: 0, toTopVal: 0, 
+          fromLeftVal: 0, toLeftVal: 0,
+          triggerElement: "self",
+          offset: 0, 
+          triggerHook: 1,
+          duration: 1
+        },
+        {
+          elems: document.querySelectorAll("#stats-section .primary-description, #video-section .primary-description, #hotspot-section .primary-description, #case-studies-section .primary-description, #partners-section .primary-description"),
+          fromTopVal: 0, toTopVal: 0, 
+          fromLeftVal: 0, toLeftVal: 0,
+          triggerElement: "self",
+          offset: 0, 
+          triggerHook: 1,
+          duration: 1
+        },
+        {
+          elems: document.querySelectorAll("#button-prompt, #solution-button, #learn-button, #study-button, #partners-learn-button"),
+          fromTopVal: 0, toTopVal: 0,
+          fromLeftVal: 0, toLeftVal: 0,
+          triggerElement: "self",
+          offset: 0,
+          triggerHook: 1,
+          duration: 1
+        },
+      ];
+    }
 
-      // parallaxObjects = [
-      //   {
-      //     elems: document.querySelectorAll(".heading, #button-prompt, #solution-button, #learn-button, #study-button, #partners-learnbutton"),
-      //     fromTopVal: 10, toTopVal: -20,
-      //     fromLeftVal: 0, toLeftVal: 0,
-      //     triggerElement: "self",
-      //     offset: 0,
-      //     triggerHook: 0.9,
-      //     duration: viewportHeight
-      //   },
-      //   {
-      //     elems: document.querySelectorAll(".subheading"),
-      //     fromTopVal: 10, toTopVal: -20, 
-      //     fromLeftVal: 0, toLeftVal: 0,
-      //     triggerElement: "self",
-      //     offset: 0, 
-      //     triggerHook: 0.9,
-      //     duration: viewportHeight
-      //   },
-      //   {
-      //     elems: document.querySelectorAll(".primary-description"),
-      //     fromTopVal: 10, toTopVal: -20, 
-      //     fromLeftVal: 0, toLeftVal: 0,
-      //     triggerElement: "self",
-      //     offset: 0, 
-      //     triggerHook: 0.9,
-      //     duration: viewportHeight
-      //   },
-      // ];
     
     for (var i = 0; i < parallaxObjects.length; i++) {
       var obj = parallaxObjects[i]

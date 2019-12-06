@@ -39,7 +39,7 @@ nav {
   background-color: rgba(#FFF, 0.7);
   transition: all 1s;
   position: fixed;
-  top: 25px;
+  top: 0;
   z-index: 10000;
   display: flex;
   flex-direction: row;
@@ -51,7 +51,7 @@ nav {
   #logo {
     display: inherit;
     margin: 10px 0 10px 2em;
-    width: 2.2em;
+    width: 2.5em;
 
     @include small-screen-landscape {
       margin-left: 2.5em;
@@ -108,7 +108,7 @@ nav {
       text-transform: uppercase;
 
       @include small-screen-landscape {
-        margin: 5px 30px;
+        margin: 5px 2em;
       }
 
       span {

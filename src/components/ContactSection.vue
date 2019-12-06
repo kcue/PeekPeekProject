@@ -41,22 +41,12 @@ export default class ContactSection extends Vue {
   onContactButtonClick() {
     this.showContactForm = true;
     Vue.prototype.common.appScrollTo("#contact-section");
-    document.body.style.overflow = "hidden";
+    document.body.classList.add("noscroll");
   }
 
   exitForm() {
     this.showContactForm = false;
-    document.body.style.overflow = "auto";
-    window.onwheel = (event: any) => {
-      if (navigator.userAgent.includes("Safari") && !navigator.userAgent.includes("Chrome")) {
-        // Need to prevent default behavior for Safari for touchpad scrolling gesture to work
-        event.preventDefault();
-        window.scrollTo(window.scrollX + event.deltaX + event.deltaY, window.scrollY); // Added deltaX to ensure native horizontal scrolling
-      } else {
-        // For all other browsers
-        window.scrollTo(window.scrollX + event.deltaY, window.scrollY);
-      }
-    }
+    document.body.classList.remove("noscroll");
   }
 
   mounted() {
@@ -101,7 +91,7 @@ export default class ContactSection extends Vue {
   }
 
   beforeDestroy() {
-    document.body.style.overflow = "";
+    document.body.classList.remove("noscroll");
   }
 }
 </script>

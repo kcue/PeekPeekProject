@@ -132,10 +132,15 @@ export default class DemoGroup extends Vue {
     }
   }
 
-  openCard(elem: HTMLElement, cards: HTMLCollection) {    
+  openCard(elem: HTMLElement, cards: HTMLCollection) {   
+    let isVerticalLayout = Vue.prototype.common.isVerticalLayout();
+
     let foundIndex: number = -1;
     for (let i = 0; i < cards.length; ++i) {
-      cards[i].classList.add("hidden");
+      if (!isVerticalLayout) {
+        cards[i].classList.add("hidden");
+      }
+      
       if (cards[i].id == elem.id) {
         foundIndex = i; // index of card that was clicked
       }
@@ -146,21 +151,24 @@ export default class DemoGroup extends Vue {
     let currentFrame = document.getElementById(`demo-frame-${foundIndex}`);
 
     // determine position and dimensions of the iframe & close button (should be centered)
-    let viewportWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-    if (viewportWidth < 768) {  // if mobile, set iframe as full-screen
-      document.body.classList.add("noscroll");
+    
+    if (isVerticalLayout) {  // if mobile, set iframe as full-screen
+      // document.body.classList.add("noscroll");
        
-      setTimeout(() => {
-        frameWrapper!.classList.add("fullscreen");
+      // setTimeout(() => {
+      //   frameWrapper!.classList.add("fullscreen");
 
-        setTimeout(() => {
-          frameWrapper!.classList.add("transition");
-          currentFrame!.classList.add("active-frame");
-          closeBtn!.classList.remove("closed");
-        }, 500);
-      }, 500);
+      //   setTimeout(() => {
+      //     frameWrapper!.classList.add("transition");
+      //     currentFrame!.classList.add("active-frame");
+      //     closeBtn!.classList.remove("closed");
+      //   }, 500);
+      // }, 500);
+
+      window.open((<any> currentFrame)!.src, "_blank");
 
     } else {
+      
       currentFrame!.classList.add("centered");
       currentFrame!.classList.add("active-frame");
       

@@ -291,7 +291,7 @@ $overlap-y: 4%;
           flex-direction: column;
           justify-content: center;
           align-items: flex-start;
-          padding: 15%;
+          padding: 15% 10%;
 
           .card-heading {
             font-size: 3em;

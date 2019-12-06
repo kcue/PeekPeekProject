@@ -28,16 +28,23 @@ export default class HomeSection extends Vue {
   controller: any = null;
 
   mounted() {
-    this.controller = new ScrollMagic.Controller({
-      vertical: false
-    });
-    const splashScene = new ScrollMagic.Scene({
-        triggerElement: "#home-section-container",
-        triggerHook: 0.5,
-        reverse: false // only do once
-      })
-      .on("enter", this.splashScreen)
-      .addTo(this.controller);
+    var isVertical = Vue.prototype.common.isVerticalLayout();
+    if (isVertical) {
+      // do not animate home section on vertical layout
+      document.getElementById("home-section-container").classList.add("animate");
+      document.getElementById("home-section-container").classList.add("animated");
+    } else {
+      this.controller = new ScrollMagic.Controller({
+        vertical: false
+      });
+      const splashScene = new ScrollMagic.Scene({
+          triggerElement: "#home-section-container",
+          triggerHook: 0.5,
+          reverse: false // only do once
+        })
+        .on("enter", this.splashScreen)
+        .addTo(this.controller);
+    }
   }
   
   splashScreen() {

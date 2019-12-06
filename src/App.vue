@@ -68,7 +68,7 @@ html {
   }
 
   @include extra-large-screen-landscape {
-    font-size: 20px;
+    font-size: 18px;
   }
 
   @include high-res-screen-landscape {

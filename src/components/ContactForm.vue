@@ -44,8 +44,7 @@
       <!-- AWESOME -->
       <div class="form-page" id="third-page">
         <div class="form-content-container">
-          <p>We will be working hard to create a customized estimation for you very soon.</p>
-          <p>For now, we just need a little bit of information in order to reach out to you.</p>
+          <p>We will be working hard to create a customized estimation for you very soon. For now, we just need a little bit of information in order to reach out to you.</p>
           <div class = "fill-ins">
             <div class="personal-info"> 
               <div class="name form-element" v-bind:class="{error: showNameErr}">
@@ -394,28 +393,29 @@ export default class Form extends Vue {
 
     .form-content-container {
       width: 100%;
-      margin-top: 1em;
+      // margin-top: 1em;
       display: flex;
       flex-direction: column;
       align-items: center;
-
 
       & > p {
         color: $secondary-description-color;    // @TODO CHANGE THIS
         font-weight: 400;
         font-size: 0.9em;
         text-align: center;
+        white-space: initial;
       }
 
       .fill-ins {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        margin: 2em 0;
+        margin: 1em 0;
         width: 90%;
 
         @include medium-screen-landscape {
           flex-direction: row;
+          margin: 2em 0;
           width: 80%;
         }
 
