@@ -61,7 +61,7 @@ export default class Home extends Vue {
         // Need to prevent default behavior for Safari for touchpad scrolling gesture to work
         event.preventDefault();
         window.scrollTo(window.scrollX + event.deltaX + event.deltaY, window.scrollY); // Added deltaX to ensure native horizontal scrolling
-      } else if (navigator.userAgent.includes("Gecko") && navigator.userAgent.includes("Windows")) {
+      } else if (navigator.userAgent.toLowerCase().includes("firefox") && navigator.userAgent.includes("Windows")) {
         // event.preventDefault();
         // window.scrollTo(window.scrollX + event.deltaX + event.deltaY, window.scrollY); 
       } else {
