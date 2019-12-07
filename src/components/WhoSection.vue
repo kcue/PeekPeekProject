@@ -129,6 +129,10 @@ $overlap-y: 5%;
         margin-top: -2em;
       }
 
+      @include high-res-screen-landscape {
+        max-width: 1400px;
+      }
+
       .card {
         min-width: 300px;
         width: 55%;

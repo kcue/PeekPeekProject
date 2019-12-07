@@ -203,7 +203,7 @@ body {
 
   button, a.button {
     display: inline-block;
-    width: 170px;
+    width: 140px;
     padding: 10px 10px;
     margin-left: 10px;
     margin-right: 10px;
@@ -218,6 +218,7 @@ body {
     outline: none;
 
     @include medium-screen-landscape {
+      width: 160px;
       margin-left: 0px;
       margin-right: 10px;
     }
@@ -230,7 +231,7 @@ body {
 
     @include high-res-screen-landscape {
       padding: 15px 10px;
-      width: 240px;
+      width: 250px;
     }
 
     @include ultra-high-res-screen-landscape {

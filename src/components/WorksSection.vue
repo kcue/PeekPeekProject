@@ -62,7 +62,15 @@ export default class WorksSection extends Vue {
 
 @include large-screen-landscape {
   #works-section {
+    min-height: 700px;
     max-height: 1000px;
+  }
+}
+
+@include high-res-screen-landscape {
+  #works-section {
+    min-height: 1200px;
+    max-height: initial;
   }
 }
 </style>

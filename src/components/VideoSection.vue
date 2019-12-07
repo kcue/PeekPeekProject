@@ -32,7 +32,7 @@ export default class VideoSection extends Vue {}
 
 <style lang="scss">
 #video-section {
-  margin-bottom: 50px 0;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -54,6 +54,7 @@ export default class VideoSection extends Vue {}
   }
 
   #video-section-container {
+    height: auto;
     white-space: initial;
     display: inline-block;
     vertical-align: middle;
@@ -123,7 +124,10 @@ export default class VideoSection extends Vue {}
 
         @include high-res-screen-landscape {
           max-height: 500px;
-          // width: 68%;
+        }
+
+        @include ultra-high-res-screen-landscape {
+          max-height: 600px;
         }
       }
 
