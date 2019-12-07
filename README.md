@@ -84,7 +84,7 @@ _More details can be found in AWS documentations (link below)_
       Vue.axios.post('<place URL here>', save);
    ```
 
-##### Notes on Sheet DB:
+#### Notes on Sheet DB:
   - This can be done once, unless intending to generate multiple URLs in order to maintain free status.
   - The edits to the sheet will be under the name of the account holder of the API URL.
 
