@@ -89,9 +89,9 @@ export default class HomeSection extends Vue {
     position: relative;
 
     img {
-      width: 70vh;
+      width: 90%;
       min-width: $site-min-height / 2;
-      max-width: 470px;
+      max-width: 360px;
 
       @include medium-screen-landscape {
         width: 90%;

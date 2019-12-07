@@ -45,9 +45,10 @@ export default class HotspotSection extends Vue {
 <style lang="scss">
 #hotspot-section {
   margin: 50px 0 50px;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
 
   @include medium-screen-landscape {
     display: inline-block;
@@ -66,10 +67,12 @@ export default class HotspotSection extends Vue {
       flex-direction: row;
       justify-content: center;
       min-height: $site-min-height;
+      max-width: 1300px;
+      margin: 0 auto;
     }
 
-    @include extra-large-screen-landscape {
-      height: 800px;
+    @include high-res-screen-landscape {
+      max-width: initial;
     }
   }
 
@@ -126,6 +129,10 @@ export default class HotspotSection extends Vue {
       width: 50%;
       align-self: flex-end;
       margin: 0 0 2.5% -30%;
+    }
+
+    @include extra-large-screen-landscape {
+      margin: 0 0 2.5% -25%;
     }
     
     h2 {

@@ -85,6 +85,7 @@ export default class CaseStudiesSection extends Vue {
   }
 
   #study-button {
+    width: 170px;
     margin-top: 3em;
     margin-left: 0;
 
