@@ -15,6 +15,7 @@
             - [Notes on Sheet DB:](#notes-on-sheet-db)
     - [Pushing Project to S3 Bucket](#pushing-project-to-s3-bucket)
 - [Technology Architecture](#technology-architecture)
+    - [Google Analytics](#google-analytics)
 - [Section Breakdown](#section-breakdown)
     - [Modifying Text, Images and Other Assets](#modifying-text-images-and-other-assets)
         - [Directly on the HTML](#directly-on-the-html)
@@ -110,6 +111,34 @@ The site is fully front-end. There is no dependency for a standalone web server 
 
 The main code in this repository is written in VueJS using Vue-CLI and the `vue-property-decorator` library.
 
+### Google Analytics
+
+Google Analytics has been installed globally in `main.ts` using the [Vue-Analytics](https://github.com/MatteoGabriele/vue-analytics) library. Currently, only page views are being track (visits to the homepage and subpages). If other tracking needs be added, please refer to the `vue-analytics` documentation on how to set them up. 
+
+In `main.ts`:
+```javascript
+import VueAnalytics from "vue-analytics";
+
+Vue.use(VueAnalytics, {
+  id: 'UAXXXXXXX-XX',   // analytics ID here
+});
+```
+
+In `HomePage.vue`
+
+```javascript
+  mounted() {
+    // ...
+
+    Vue.prototype.$ga.page({
+      page: "/",
+      title: "Home",
+      location: window.location.href
+    });  // google analytics
+    
+    // ...
+  }
+```
 
 ## Section Breakdown
 
@@ -209,3 +238,4 @@ This project was completed in accordance to the rules and regulations set upon s
 - [Anime.JS](https://animejs.com/)
 - [AWS Documentation](https://docs.aws.amazon.com/)
 - [Sheet DB](https://sheetdb.io/)
+- [Vue Analytics](https://github.com/MatteoGabriele/vue-analytics)
