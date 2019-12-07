@@ -1,6 +1,11 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Home from "./views/Home.vue";
+
+import Home from "./views/HomePage.vue";
+import Who from "./views/WhoPage.vue";
+import What from "./views/WhatPage.vue";
+import Why from "./views/WhyPage.vue";
+
 
 Vue.use(Router);
 
@@ -11,22 +16,36 @@ export default new Router({
     {
       path: "/",
       name: "home",
-      component: Home
+      component: Home,
     },
     {
-      path: "/about",
-      name: "about",
+      path: "/who",
+      name: "who",
       // route level code-splitting
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () =>
-        import(/* webpackChunkName: "about" */ "./views/About.vue")
+      component: Who,
     },
     {
-      path: "/playground",
-      name: "playground",
-      component: () => 
-        import("./views/Playground.vue")
+      path: "/what",
+      name: "what",
+      component: What,
+        
+    },
+    {
+      path: "/why",
+      name: "why",
+      component: Why,
     }
-  ]
+  ],
+
+  scrollBehavior (to, from, savedPosition) {
+    if (to.hash) {
+      return { selector: to.hash }
+    } else if (savedPosition) {
+      return savedPosition;
+    } else { 
+      return { x: 0, y: 0 }
+    }
+  }
 });

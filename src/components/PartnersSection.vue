@@ -1,119 +1,192 @@
 <template>
-    <section class="peek-section super-wide-peek-section" id="partners-section">
-        <div class="partners-section-text">
-            <h2 class="wide-title" id="branding"><b>Customized branding</b> with PeekPeek</h2>
-            <div class="main-text wide-text" id="examples">
-                <p>
-                    PeekPeek was created to help companies enhance the way that they present themselves through digital means. 
-                    PeekPeek’s WebTour technology converts prospects to customers by allowing them to virtually visit and experience 
-                    a company’s physical location. Surpassing other 3D technologies, WebTour seamlessly integrates customized design, 
-                    digital assets, and interactive features to dramatically augment the experience of users.
-                </p>
-                <a class="link" href="https://www.peekpeek.com/industries">Check out our case studies</a>
-            </div>
+  <section>
+    <div class="container" id="partners-section-container">
+      <div class="partners-section-text">
+        <h2 class="heading" id="branding">Trusted by</h2>
+        <a id="partners-learn-button" class="button primary-button" href="/what">Learn More</a>
+      </div>
+      <div class="swiper-container" id="logo-slider">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide logo" id="Paypal">
+            <img src="../assets/images/partners-paypal.png"/>
+          </div>
+          <div class="swiper-slide logo" id="UCI">
+            <img src="../assets/images/partners-uci.png"/>
+          </div>
+          <div class="swiper-slide logo" id="Hilton">
+            <img src="../assets/images/partners-hilton.png"/>
+          </div>          
+          <div class="swiper-slide logo" id="Pierce">
+            <img src="../assets/images/partners-pierce.png"/>
+          </div>          
+          <div class="swiper-slide logo" id="CSW">
+            <img src="../assets/images/partners-csw.png"/>
+          </div>           
         </div>
-        <div class="partners-section-text-padding"></div>
-        <div class="partners-section-icons">
-            <div class="partners-section-icon-container media" id="Waterford">
-                <img src="../assets/images/City Square Waterford.png"/>
-            </div>
-            <div class="partners-section-icon-container media" id="Felixstowe">
-                <img src="../assets/images/Felixstowe Chamber.png"/>
-            </div>
-            <div class="partners-section-icon-container media" id="Paypal">
-                <img src="../assets/images/Paypal.png"/>
-            </div>
-            <div class="partners-section-icon-container media" id="UCI">
-                <img src="../assets/images/UCI.png"/>
-            </div>
-            <div class="partners-section-icon-container media" id="Hilton">
-                <img src="../assets/images/Hilton.png"/>
-            </div>
-            <div class="partners-section-icon-container media" id="Pierce">
-                <img src="../assets/images/Pierce College.png"/>
-            </div>
-        </div>
-        <div class="partners-section-icons-padding"></div>
-    </section>
+      </div>
+    </div>
+  </section>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 
-@Component
+@Component({})
 export default class PartnersSection extends Vue {
-    
+  numLogos: number = 5;
+  mySwiper: any = {};
+  swiperResizeHandler: any = Vue.prototype.$_.debounce(this.swiperUpdate, 2000);
+  swiperOptions: any = {
+    direction: "horizontal",
+    loop: true,
+    loopedSlides: this.numLogos,
+    loopAdditionalSlides: this.numLogos * 2,
+    sliderPerView: "auto",
+    spaceBetween: 20,
+    autoplay: {
+      delay: 1,
+      disableOnInteraction: false,
+    },
+    speed: 10000,
+    freeMode: true,
+    freeModeMomentumBounce: false,
+    // breakpoints: {
+    //   768: {
+    //     direction: "vertical",
+    //   }
+    // },
+  }
+
+  swiperUpdate() {
+    this.mySwiper.destroy(false, true);
+
+    var isVerticalLayout = Vue.prototype.common.isVerticalLayout()
+    if (isVerticalLayout) {
+      this.swiperOptions.direction = "horizontal";
+    } else {
+      this.swiperOptions.direction = "vertical";
+    }
+    this.mySwiper = new Swiper (".swiper-container", this.swiperOptions);
+  }
+
+  mounted() {
+    var isVerticalLayout = Vue.prototype.common.isVerticalLayout()
+    if (isVerticalLayout) {
+      this.swiperOptions.direction = "horizontal";
+    } else {
+      this.swiperOptions.direction = "vertical";
+    }
+    this.mySwiper = new Swiper (".swiper-container", this.swiperOptions);
+
+    window.addEventListener('resize', this.swiperResizeHandler);
+  }
+
+  beforeDestroy() {
+    window.removeEventListener('resize', this.swiperResizeHandler);
+    this.mySwiper.destroy(true, true);
+  }
 }
 </script>
 
-<style lang="scss" scoped>
-#partners-section {
+<style lang="scss">
+@import "@/assets/css/swiper.min.scss";
+
+.section#partners-section {
+  @include medium-screen-landscape {
+    min-width: 992px;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+  }
+
+  #partners-section-container {
+    min-height: 100vh;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
 
-    .partners-section-text, .partners-section-icons {
-        display: flex;
+    @include medium-screen-landscape {
+      display: flex;
+      flex-direction: row;
+    }
+  }
+
+  .partners-section-text {
+    flex: 0 1 auto;
+    align-self: flex-start;
+    margin-left: 2em;
+    margin-bottom: 3em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    @include medium-screen-landscape {
+      align-self: center;
+      margin-left: 0;
+      margin-bottom: 0;
+      margin-right: 5em;
+    }
+  }
+
+  #partners-learn-button {
+    margin: 2em 0 0;
+    text-align: center;
+  }
+
+  #logo-slider {
+    flex: 0 1 auto;
+    width: 20vh;
+    min-width: 150px;
+    max-width: 200px;
+    height: 20vh;
+    min-height: 150px;
+    max-height: 200px;
+    overflow: visible;
+    margin-left: 0;
+    margin-right: 0;
+
+    @include medium-screen-landscape {
+      min-width: 170px;
+      max-width: 200px;
+      min-height: 170px;
+      max-height: 200px;
     }
 
-    .partners-section-text {
-        width: 80vh;
-        margin-top: 5vh;
-        margin-left: 20px;
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: space-around;
-
-        .wide-text {
-            font-size: 2.8vh;
-            text-align: left;
-        }
-
-        .wide-title {
-            font-weight: normal;
-            text-align: left;
-        }
-
-        p {
-            margin-bottom: 4vh;
-        }
-
-        a {
-            font-size: 2vh;
-            margin-top: 2vh;
-            margin-bottom: 15vh;
-            text-decoration: underline;
-            text-align: left
-        }
+    @include high-res-screen-landscape {
+      min-width: 250px;
+      max-width: 300px;
+      min-height: 250px;
+      max-height: 300px;
     }
 
-    .partners-section-text-padding {
-        width: 50vh;
+    .swiper-slide{
+      /* Center slide contents */  
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
-    .partners-section-icons {
-        width: 102.5vh;
-        flex-wrap: wrap;
-        margin-top: 9vh;
-        margin-bottom: 2.5vh;
+    .swiper-wrapper {
+      -webkit-transition-timing-function: linear !important;
+      -o-transition-timing-function: linear !important;
+      transition-timing-function: linear !important;
+      margin: 0;
 
-        .partners-section-icon-container {
-            width: 50%;
-            max-height: 32%;
-            padding-top: 1vh;
-            padding-bottom: 1vh;
-            display: flex;
-            justify-content: center;
+      .logo {
+        background-color: rgb(254, 255, 254);
+        border-radius: 5px;
+        box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
 
-            img {
-                max-height: 100%;
-                max-width: 100%;
-                object-fit: contain;
-            }
-        }        
-    }   
-
-    .partners-section-icons-padding {
-        width: 30vh;
-    }
+        img {
+          height: 60%;
+          width: 60%;
+          object-fit: contain;              
+        }
+      }
+    }  
+  } 
 }
+  
 </style>

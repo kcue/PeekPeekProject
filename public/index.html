@@ -3,12 +3,62 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800&display=swap" rel="stylesheet">
 
-    <link href="https://fonts.googleapis.com/css?family=Libre+Franklin:400,400i,700&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/f69a92b2c1.js"></script>
-    <script src="assets/smoothscroll.min.js"></script>
+    <script src="scripts/createjs.min.js"></script>
+    <script src="scripts/city-animated.js"></script>
+    <script>
+      // Script for the HotspotSection animated city
+      var canvas, stage, exportRoot, anim_container, dom_overlay_container, fnStartAnimation, city_wrapper;
+  
+      function initCity() {
+        canvas = document.getElementById("city-canvas");
+        anim_container = document.getElementById("city-canvas-container");
+        dom_overlay_container = document.getElementById("dom-overlay-container");
+        city_wrapper = document.getElementById("city-wrapper");
+        var comp=AdobeAn.getComposition("C8988853946B4B0E9C2B031DC42B0D5B");
+        var lib=comp.getLibrary();
+        var loader = new createjs.LoadQueue(false);
+        loader.addEventListener("fileload", function(evt){handleFileLoad(evt,comp)});
+        loader.addEventListener("complete", function(evt){handleComplete(evt,comp)});
+        var lib=comp.getLibrary();
+        lib.properties.manifest[0].src = window.cityAtlasSrc;
+        loader.loadManifest(lib.properties.manifest);
+      }
+
+      function handleFileLoad(evt, comp) {
+        var images=comp.getImages();  
+        if (evt && (evt.item.type == "image")) { images[evt.item.id] = evt.result; }  
+      }
+
+      function handleComplete(evt, comp) {
+        //This function is always called, irrespective of the content. You can use the variable "stage" after it is created in token create_stage.
+        var lib=comp.getLibrary();
+        var ss=comp.getSpriteSheet();
+        var queue = evt.target;
+        var ssMetadata = lib.ssMetadata;
+        for(i=0; i<ssMetadata.length; i++) {
+          ss[ssMetadata[i].name] = new createjs.SpriteSheet( {"images": [queue.getResult(ssMetadata[i].name)], "frames": ssMetadata[i].frames} )
+        }
+        exportRoot = new lib.cityanimated();
+        stage = new lib.Stage(canvas);  
+        //Registers the "tick" event listener.
+        fnStartAnimation = function() {
+          stage.addChild(exportRoot);
+          createjs.Ticker.framerate = lib.properties.fps;
+          createjs.Ticker.addEventListener("tick", stage);
+        }
+
+        //Code to support hidpi screens and responsive scaling.
+        AdobeAn.makeResponsive(true, "both", true, 1, [canvas, anim_container, dom_overlay_container], city_wrapper); 
+        AdobeAn.compositionLoaded(lib.properties.id);
+        fnStartAnimation();
+      }
+    </script>
+
+    <script src="scripts/swiper.min.js"></script>
 
     <title>PeekPeek</title>
   </head>
@@ -17,6 +67,5 @@
       <strong>We're sorry but PeekPeek doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
     <div id="app"></div>
-    <!-- built files will be auto injected -->
   </body>
 </html>

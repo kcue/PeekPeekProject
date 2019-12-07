@@ -1,128 +1,207 @@
 <template>
-    <section class="peek-section" id="contact-section">
-        <div class="contact-section-interlude">
-            <p>So, </p>
-            <p>your turn</p>
+  <section>
+    <div class="container" id="contact-section-container">
+      <contactSectionSVG id="contactSectionSVG" style="" />
+      <div class="contact-section-interlude">
+        <h2 class="subheading">{{ interludeText }}</h2>
+      </div>
+      <div class="contact-section-main">
+        <h2 class="heading">{{ headingTextLine1 }}</h2>
+        <h2 class="heading">{{ headingTextLine2 }}</h2>
+        <button class="primary-button" @click="onContactButtonClick">{{ contactUsButtonText }}</button>
+      </div>
+      <transition name="fade">
+        <div class="modal-backdrop" v-on:click.self="exitForm" v-if="showContactForm">
+          <ContactForm @exitForm="exitForm" class="contact-form" ></ContactForm>
         </div>
-        <div class="contact-section-main">
-            <h1>Tell me</h1>
-            <h1>your story</h1>
-            <button @click="onContactButtonClicked">Contact Us</button>
-        </div>
-        <transition name="fade">
-        </transition>
-        <transition name="fade">
-            <div class="transition-container" v-if="showContactForm">
-                <div class="contact-form-overlay" @click="exitForm"></div>
-                <Form class="contact-form"></Form>
-            </div>
-        </transition>
-       
-    </section>
+      </transition>
+    </div>
+  </section>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import Form from '@/components/Form.vue';
+import { Component, Prop, Vue } from "vue-property-decorator";
+import ContactForm from "@/components/ContactForm.vue";
+
+import contactSectionSVG from "@/assets/images/contact-rings.svg?inline";
 
 @Component({
-    components: {
-        Form,
-    }
+  components: {
+    ContactForm,
+    contactSectionSVG,
+  }
 })
 export default class ContactSection extends Vue {
-    showContactForm: boolean = false;
+  @Prop() private interludeText!: string;
+  @Prop() private headingTextLine1!: string;
+  @Prop() private headingTextLine2!: string;
+  @Prop() private contactUsButtonText!: string;
 
-    onContactButtonClicked() {
-        this.showContactForm = true;
-        try {
-            document.getElementById('first-page')!.style.left = '0';
-            document.getElementById('second-page')!.style.left = '100%';
-            document.getElementById('third-page')!.style.left = '200%';
-        } catch (e) {}
-        
-    }
+  showContactForm: boolean = false;
+  onContactButtonClick() {
+    this.showContactForm = true;
+    Vue.prototype.common.appScrollTo("#contact-section");
+    document.body.classList.add("noscroll");
+  }
 
-    exitForm() {
-        this.showContactForm = false;
-    }
+  exitForm() {
+    this.showContactForm = false;
+    document.body.classList.remove("noscroll");
+  }
+
+  mounted() {
+    // Animate Background Rings 
+    // NOTE: something is wrong with path points for ring_1.
+    // consider reworking SVG files, but not animating works visually more
+    // thus, we are not animating ring_1
+    const duration: number = 10000;
+    Vue.prototype.$anime({
+      targets: "#ring_2",
+      d: [
+        { value: document.getElementById("ring_3").getAttribute("d") },
+        { value: document.getElementById("ring_2").getAttribute("d") },
+      ],
+      // direction: 'alternate',
+      easing: "linear",
+      duration: duration,
+      loop: true
+    });
+    Vue.prototype.$anime({
+      targets: "#ring_3",
+      d: [
+        { value: document.getElementById("ring_4").getAttribute("d") },
+        { value: document.getElementById("ring_3").getAttribute("d") },
+      ],
+      // direction: 'alternate',
+      easing: "linear",
+      duration: duration,
+      loop: true
+    });
+    Vue.prototype.$anime({
+      targets: "#ring_4",
+      d: [
+        { value: document.getElementById("ring_2").getAttribute("d") },
+        { value: document.getElementById("ring_4").getAttribute("d") },
+      ],
+      // direction: 'alternate',
+      easing: "linear",
+      duration: duration,
+      loop: true
+    });
+
+    (<any> window).contactFormResize = Vue.prototype.$_.debounce(this.contactFormResize, 1000);
+    window.addEventListener("resize", (<any> window).contactFormResize);
+  }
+
+  beforeDestroy() {
+    document.body.classList.remove("noscroll");
+
+    window.removeEventListener("resize", (<any> window).contactFormResize);
+    (<any> window).contactFormResize = undefined;
+  }
+
+  contactFormResize() {
+    this.exitForm();
+  }
 }
 </script>
 
 <style lang="scss" scoped>
-.fade-enter-active, .fade-leave-active {
-        transition: opacity .5s;
-    }
-
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-    opacity: 0;
-}
-
-a {
-    text-decoration: none;
-    color: white;
-}
-
-#contact-section {
+#contact-section-container {
+  min-height: $site-min-height;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+  position: relative;
+
+  #contactSectionSVG {
+    transform: scale(1);
+    height: 100%;
+    width: 100%;
+    padding: 2%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    visibility: hidden;
+
+    @include small-screen-landscape {
+      visibility: visible;
+    }
+  }
 
   .contact-section-interlude {
-    margin-top: 100px;
-
-    p {
-        font-size: 5.5vh;
-        text-align: left;
+    h2 {
+      text-align: center;
     }
   }
 
   .contact-section-main {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-
-    h1 {
+    h2 {
       margin-top: 0;
       margin-bottom: 0;
       text-align: center;
     }
-}
+  }
 
-.contact-form {
-        position: fixed;
-        width: 100vw;
-        height: 80vh;
-        left: 0;
-        top: 10vh;
-        border-radius: 2vh;
+  button {
+    display: block;
+    margin: 3em auto 0;
+  }
 
-        z-index: 20;
+  .modal-backdrop {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 20;
+    
+    &:before {
+      content: "";
+      display: block;
+      position: absolute;
+      height: 75%;
+      width: 100%;
+      z-index: -1;
+      background: url("../assets/images/contactform-bg.svg") center no-repeat;
+      background-size: cover;
+
+      @include medium-screen-landscape {
+        height: 70%;
+        width: 85%;
+        background-size: contain;
+      }
+
+      @include high-res-screen-landscape {
+        height: 80%;
+      }
     }
+    
+    .contact-form {
+      width: 100vw;
+      height: auto;
 
-    .transition-container {
-        z-index: 18;
+      @include medium-screen-landscape {
+        width: 80vw;
+      }
 
-        .contact-form-overlay {
-            background-color: black;
-            opacity: 0.75;
+      @include large-screen-landscape {
+        min-width: 800px;
+        max-width: 950px;
+        min-height: 500px;
+        width: 60vw;
+      }
 
-            width: 100vw;
-            height: 100vh;
-            
-            position: fixed;
-            top: 0;
-            left: 0;
-
-            z-index: 19;
-        }
+      @include high-res-screen-landscape {
+        max-width: 1250px;
+      }
     }
+  }
 }
-
-button {
-    font-size: 4vh;
-    width: 300px;
-    margin: 20px auto 20px auto;
-
-    cursor: pointer;
-}
-
 </style>

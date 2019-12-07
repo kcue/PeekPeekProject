@@ -1,0 +1,105 @@
+@mixin small-screen-landscape {
+  @media (min-width: 576px) { @content; }
+}
+
+@mixin medium-screen-landscape {
+  @media (min-width: 768px) { @content; }
+}
+
+@mixin large-screen-landscape {
+  @media (min-width: 992px) { @content; }
+}
+
+@mixin extra-large-screen-landscape {
+  @media (min-width: 1200px) { @content; }
+}
+
+@mixin high-res-screen-landscape {
+  @media (min-width: 1600px) and (min-height: 800px) { @content; }
+}
+
+@mixin ultra-high-res-screen-landscape {
+  @media (min-width: 2560px) and (min-height: 800px) { @content; }
+}
+
+
+// The following mixins are common styles found in the WHO, WHAT & WHY pages
+// these are the styles for animating the heading for the WHO, WHAT & WHY pages
+@mixin subpage-heading-transition-styles {
+  .heading, .subheading, .alt-subheading {
+    transition: opacity 0.5s ease-out 0.2s, transform 0.5s ease-out 0.2s;
+    opacity: 0;
+    transform: translateY(0.5em);
+  }
+
+  .subheading {
+    transition-delay: 0.5s;
+  }
+
+  .alt-subheading {
+    transition-delay: 0.8s;
+  }
+
+  &.reveal {
+    .heading, .subheading, .alt-subheading {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+@mixin featurecard-vertical-transition-styles {
+  .feature-card {
+    & > img, & > .text-container {
+      transition: opacity 0.8s ease-out 0.2s, transform 0.8s ease-out 0.2s;
+      opacity: 0;
+      transform: translateY(20%);
+    }
+
+    & > .text-container {
+      transition-delay: 0.5s;
+    }
+
+    &.reveal {
+      & > img, & > .text-container {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  }
+}
+
+@mixin works-section-vertical-transition-styles {
+  #works-section::v-deep {
+    // only need to animate heading here because
+    // the transition css are already declared in DemoGroup.vue
+    h2 {
+      transition: opacity 0.5s ease-out 0.2s, transform 0.5s ease-out 0.2s;
+      opacity: 0;
+      transform: translateY(1em);
+
+      &.reveal {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  }
+}
+
+// these are the styles for animating the contact section on a vertical layout
+@mixin contact-section-vertical-transition-styles {
+  #contact-section::v-deep {
+    .contact-section-interlude .subheading, 
+    .contact-section-main .heading, 
+    .contact-section-main button {
+      transition: transform 0.5s ease-out 0.2s, opacity 0.5s ease-out 0.2s;
+      opacity: 0;
+      transform: translateY(0.5em);
+
+      &.reveal {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  }
+}

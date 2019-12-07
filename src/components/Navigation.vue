@@ -1,28 +1,18 @@
 <template>
   <nav>
-    <div class="nav-backdrop"></div>
-    <a href="/"><img id="logo" src="../assets/images/117-peek-teal.png"/> </a>
+    <router-link to="/"><img id="logo" src="../assets/images/logo.png" @click="common.appScrollTo('#home-section');" /></router-link>
     <ul class="nav-buttons">
       <li>
-        <span class="nav-item">
-          <a target="_blank" href="https://www.peekpeek.com/about-us">Who</a>
-        </span>
+        <span class="nav-item"><router-link to="/who">WHO</router-link></span>
       </li>
       <li>
-        <span class="nav-item">
-          <a target="_blank" href="https://www.peekpeek.com/about-us">What</a>
-        </span>
+        <span class="nav-item"><router-link to="/what">WHAT</router-link></span>
       </li>
       <li>
-        <span class="nav-item">
-          <a target="_blank" href="https://www.peekpeek.com/industries">Why</a>
-        </span>
+        <span class="nav-item"><router-link to="/why">WHY</router-link></span>
       </li>
       <li>
-        <button @click="scrollToContact">
-          <!-- <a style="color: white" href="https://www.peekpeek.com/contact">Contact Us</a> -->
-          Contact Us
-        </button>
+        <button class="primary-button" @click="scrollToContact">&nbsp;</button>
       </li>
     </ul>
   </nav>
@@ -31,84 +21,115 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 
-@Component
+@Component({})
 export default class Navigation extends Vue {
   scrollToContact() {
-    const contactSection: HTMLElement = document.getElementById('contact-section')!;
-    window.scrollTo({
-      "left": contactSection.offsetLeft,
-      "behavior": "smooth"
-    })
+    Vue.prototype.common.appScrollTo("#contact-section");
     
-    const contactSectionComponent: any = this.$parent.$children[this.$parent.$children.length - 1];
-    if (window.scrollX === contactSection.offsetLeft) {
-      contactSectionComponent.onContactButtonClicked();
-    } else {
-      setTimeout(() => {
-        contactSectionComponent.onContactButtonClicked();
-      }, 1750)
-    }
+    let contactBtn: HTMLElement = document.querySelector(".contact-section-main button") as HTMLElement;
+    setTimeout(() => {
+      contactBtn.click();
+    }, 500);
   }
 }
 </script>
 
-<style lang="scss" scoped>
-a {
-  text-decoration: none;
-  color: #16a4a9;
-}
+<style lang="scss">
 nav {
+  background-color: rgba(#FFF, 0.7);
   transition: all 1s;
-  z-index: 11;
+  position: fixed;
+  top: 0;
+  z-index: 10000;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100vw;
+  min-width: $site-min-width;
 
   #logo {
-    margin: 2vh 0 2vh 0;
-    padding: 0 3vh 0 3vh;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 6vh;
+    display: inherit;
+    margin: 10px 0 10px 2em;
+    width: 2.5em;
+
+    @include small-screen-landscape {
+      margin-left: 2.5em;
+      // width: 45px;
+    }
+  }
+
+  button.primary-button {
+    display: inline-block;
+    position: relative;
+    width: 32px;
+    margin: 0;
+
+    @include small-screen-landscape {
+      width: 10vw;
+      min-width: 110px;
+      max-width: 160px; 
+    }
+
+    @include large-screen-landscape {
+      width: 12vw;
+      max-width: 220px;
+    }
+
+    &:after {
+      display: block;
+      font-family: "Font Awesome 5 Free";
+      font-weight: 400;
+      font-size: 1.4em;
+      content: "\f0e0";
+      position: absolute;
+      width: 100%;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 0;
+      pointer-events: none;
+
+
+      @include small-screen-landscape {
+        font-family: "Open Sans";
+        font-size: 1em;
+        font-weight: 700;
+        content: "Contact Us";
+      }
+    }
   }
 
   .nav-buttons {
+    margin-left: 20px;
+
     li {
       display: inline-block;
-      margin: 10px 25px;
+      margin: 5px 15px;
+      text-transform: uppercase;
 
-      text-transform: capitalize;
+      @include small-screen-landscape {
+        margin: 5px 2em;
+      }
 
       span {
-        font-size: 2.4vh;
-        color: #16a4a9;
+        font-size: 0.85em;
+        font-weight: 700;
+        color: $heading-color;
         text-transform: uppercase;
+
+        &::after {
+          display: block;
+          content: "";
+          border-bottom: solid 2px $heading-color;
+          transform: scaleX(0);
+          transition: transform 250ms ease-in-out;
+        }
+
+        &:hover::after {
+          transform: scaleX(0.9);
+        }
       }
-
-      button {
-        cursor: pointer;
-      }
-    }
-
-    span::after {
-      display: block;
-      content: "";
-      border-bottom: solid 2px #17a4a9;
-      transform: scaleX(0);
-      transition: transform 250ms ease-in-out;
-    }
-
-    span:hover::after {
-      transform: scaleX(0.9);
     }
   }
-}
-
-.nav-backdrop {
-  position: absolute;
-  border-radius: 50px;
-  top: 23px;
-  height: 50px;
-  width: 100vw;
-  background-color: rgba(251, 246, 240, 0.8);
-  z-index: -1;
 }
 </style>
