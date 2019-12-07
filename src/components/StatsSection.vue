@@ -1,20 +1,22 @@
 <template>
   <section id="stats-section">
-    <div class="stats-cards">
-      <div class="stats-cards-container">
-        <Card v-for="(card, index) in cardData" :key="index" :cardHeading="card.cardHeading" :cardDescription="card.cardDescription" :id="'stats-card-' + (index + 1)" :class="card.additionalClass" />
+    <div class="container" id="stats-section-container">
+      <div class="stats-cards">
+        <div class="stats-cards-container">
+          <Card v-for="(card, index) in cardData" :key="index" :cardHeading="card.cardHeading" :cardDescription="card.cardDescription" :id="'stats-card-' + (index + 1)" :class="card.additionalClass" :data-card-heading="card.cardHeading" />
+        </div>
       </div>
-    </div>
-    <div class="stats-captions">
-      <div class="stats-titles">
-        <h2 class="heading">
-          <span class="line">Seeing is&nbsp;</span>
-          <span class="line">believing</span>
-        </h2>
-        <p class="primary-description">90% of customers make purchase decisions based on a website's visual content alone.</p>
-        <p class="primary-description">Impress engage and impace potential customers by adding PeekPeek's 360&deg; virtual reality tour to your website. With our results, we could be the best tool in your toolbox</p>
-        <h3 id="button-prompt">New challenge?</h3>
-        <a id="solution-button" class="button primary-button" href="/who">New solution</a>
+      <div class="stats-captions">
+        <div class="stats-titles">
+          <h2 class="heading">
+            <span class="line">Seeing is&nbsp;</span>
+            <span class="line">believing</span>
+          </h2>
+          <p class="primary-description">90% of customers make purchase decisions based on a website's visual content alone.</p>
+          <p class="primary-description">Impress engage and impace potential customers by adding PeekPeek's 360&deg; virtual reality tour to your website. With our results, we could be the best tool in your toolbox</p>
+          <h3 id="button-prompt">New challenge?</h3>
+          <a id="solution-button" class="button primary-button" href="/who">New solution</a>
+        </div>
       </div>
     </div>
   </section>
@@ -23,9 +25,10 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import Card from "@/components/Card.vue";
-import { TweenMax, TimelineMax, Power1 } from "gsap";
 
-let scenes: any;
+import { TweenMax, TimelineMax, Power1 } from "gsap/all";
+import ScrollMagic from 'scrollmagic';
+import "imports-loader?define=>false!scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap";
 
 @Component({
   components: {
@@ -33,48 +36,72 @@ let scenes: any;
   }
 })
 export default class StatsSection extends Vue {
+  controller: any = null;
+  scenes: any = [];
+
   data() {
     return {
       cardData: [
         {
           additionalClass: "",
-          cardHeading: "82%",
-          cardDescription: "Lorem Ipsum is simply dummy text.",
+          cardHeading: "67%",
+          cardDescription: "increase in booking rate",
         },
         {
           additionalClass: "",
-          cardHeading: "90%",
-          cardDescription: "Lorem Ipsum is simply dummy text.",
+          cardHeading: "10x",
+          cardDescription: "longer engagement",
         },
         {
           additionalClass: "highlight",
-          cardHeading: "1%",
-          cardDescription: "Lorem Ipsum is simply dummy text.",
+          cardHeading: "75%",
+          cardDescription: "public wants virtual tour",
         },
         {
           additionalClass: "",
-          cardHeading: "Top5",
-          cardDescription: "Lorem Ipsum is simply dummy text.",
+          cardHeading: "4 weeks",
+          cardDescription: "to recoup ROI",
         }
       ]
     }
   }
 
   mounted() {
-    // @TODO FIX -- THIS WILL DUPLICATE
-    scenes = []; 
+    this.scenes = []; 
     this.cardAnimation();
-    window.addEventListener("resize", () => {
-      // restart the animations on resize
-      for (let i = 0; i < scenes.length; ++i) {
-        scenes[i].destroy(true);
-      }
-      scenes = [];
-      this.cardAnimation();
-    });
+    (<any> window).statsCardsResize = Vue.prototype.$_.debounce(this.statsCardsResize, 1000);
+    window.addEventListener("resize", (<any> window).statsCardsResize);
   }
 
-  cardAnimation(){
+  beforeDestroy() {
+    this.controller.destroy(true);
+    this.controller = null;
+
+    window.removeEventListener("resize", (<any> window).statsCardsResize);
+    (<any> window).statsCardsResize = undefined;
+  }
+
+  statsCardsResize(): void {
+    // restart the animations on resize
+    for (let i = 0; i < this.scenes.length; ++i) {
+      this.scenes[i].destroy(true);
+    }
+    this.scenes = [];
+    this.cardAnimation();
+  } 
+
+  cardAnimation() {
+    // check if horizontal or vertical
+    var viewportHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+    var viewportWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+    
+    var isVerticalLayout = Vue.prototype.common.isVerticalLayout();  // check if mobile or not
+
+    // initialize scrollmagic controller
+    this.controller = new ScrollMagic.Controller({
+      vertical: isVerticalLayout,
+    });
+
     let cards = document.getElementsByClassName("card");
     let cardContainer= <HTMLElement> document.getElementsByClassName("stats-cards-container")[0];
     let cardheight = (<HTMLElement> cards[0])!.clientHeight;
@@ -82,6 +109,7 @@ export default class StatsSection extends Vue {
     let containerHeight = cardContainer!.offsetHeight;
     let containerWidth = cardContainer!.offsetWidth;
     for (let i = 0; i < cards.length; ++i) {
+      (<HTMLElement> cards[i]).removeAttribute("style"); // clear inline styles
       let cardPosX = (<HTMLElement> cards[i])!.offsetLeft;
       let cardPosY = (<HTMLElement> cards[i])!.offsetTop;
       var flightPath = {
@@ -89,57 +117,61 @@ export default class StatsSection extends Vue {
           curviness: 1.25,
 
           values: [
-            // { x: 0, y:  (-cardheight * 0.6 * i) - (cardheight / 2)},
-            // { x: cardPosX, y: cardPosY}
-
-            
-
-            { x: 0 , y: 0 },
-            { x: 0, y: -cardheight*.6*i - cardheight/2},
-            { x: i % 2 === 0 ? containerWidth*0.25 : -containerWidth*0.25, y: -containerHeight*0.8}
+            { x: 0, y: 0 },
+            //{ x: 0, y: -(-cardheight * 0.6 * i) - (cardheight / 2) },
+            { x: (i % 2 === 0) ? (containerWidth * 0.25) : (-containerWidth * 0.25), y: (viewportHeight * 0.8)}
           ]
         }
       };
       var treeTween = TweenMax.to(cards[i], 1, { 
-        css:{
-          bezier: flightPath.tree
+        css: {
+          bezier: flightPath.tree,
+          autoAlpha: 1
         }, 
-        ease: Power1.easeInOut
+        ease: Power1.easeInOut,
+        overwrite: true
       });
-      
-      // cards[i]!.style.alignItems = (i % 2 === 0) ? "flex-end" : "flex-start";
+      if (!isVerticalLayout) {
+        // change values for horizontal layout
+        flightPath.tree.values = [
+          { x: 0, y: 0 },
+          { x: 0, y: (-cardheight * 0.6 * i) - (cardheight / 2) },
+          { x: (i % 2 === 0) ? (containerWidth * 0.25) : (-containerWidth * 0.25), y: -containerHeight * 0.8 }
+        ];
+      }
       
       // Getting the width of the element
       let elementWidth = document.getElementById(cards[0].id)!.clientWidth;
       
       // this adds the scenes for the cards moving
-      let scene = new Vue.prototype.$scrollmagic.scene({
-        duration: window.innerWidth * 0.65,
-        offset: window.innerWidth / 3,
-        triggerHook: 'onEnter',
-        triggerElement: '#stats-section'
+      let scene = new ScrollMagic.Scene({
+        duration: (isVerticalLayout) ? (viewportHeight * 0.75) : (viewportWidth * 0.75),
+        offset: 0,
+        triggerHook: "onEnter",
+        triggerElement: "#stats-section"
       });
-      scenes.push(scene);
-      Vue.prototype.$scrollmagic.addScene(
+      this.scenes.push(scene);
+      this.controller.addScene(
         scene.setTween(treeTween)
-      )
+      );
 
       // this adds the scenes for the numbers changing
-      let numberScene = new Vue.prototype.$scrollmagic.scene({
+      let numberScene = new ScrollMagic.Scene({
         duration: 2000,
         reverse: false,
-        triggerHook: 'onEnter',
-        triggerElement: `#${cards[i].id}`})
-        .on("enter", () => this.animateValue(cards[i].getElementsByClassName("card-heading")[0]));
-      Vue.prototype.$scrollmagic.addScene(numberScene)
+        triggerHook: 0.5,
+        triggerElement: "#stats-section"
+      })
+      .on("enter", () => this.animateValue(cards[i].getElementsByClassName("card-heading")[0], (<HTMLElement> cards[i]).dataset.cardHeading))
+      .addTo(this.controller);
     }
   }
 
   // this method is for the percentages changing
-  animateValue(obj:Element, start = 0, end:any = null, duration = 1500) {
+  animateValue(obj:Element, data:string, start = 0, end:any = null, duration = 1500) {
     if (obj) {
       // save starting text for later (and as a fallback text if JS not running and/or google)
-      var textStarting = obj.innerHTML;
+      var textStarting = data;
       // remove non-numeric from starting text if not specified
       end = end || parseInt(textStarting.replace(/\D/g, ""));
       var range = end - start;
@@ -161,7 +193,7 @@ export default class StatsSection extends Vue {
         // replace numeric digits only in the original string
         obj.innerHTML = textStarting.replace(/([0-9]+)/g, text);
         if (value == end) {
-            clearInterval(timer);
+          clearInterval(timer);
         }
       }
       timer = setInterval(run, stepTime);
@@ -173,16 +205,14 @@ export default class StatsSection extends Vue {
 
 <style lang="scss">
 // $card-base-height: 200px;
-$overlap-x: 5%;
+$overlap-x: 7.5%;
 $overlap-y: 4%;
 
 #stats-section {
   margin-bottom: 50px;
   flex-direction: row;
   position: relative;
-  //display: flex;
-
-
+ 
   @include medium-screen-landscape {
     width: 100vw;
     min-width: 1000px;
@@ -191,22 +221,34 @@ $overlap-y: 4%;
     margin-bottom: 0;
   }
 
+  #stats-section-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    @include medium-screen-landscape {
+      flex-direction: row;
+    }
+  }
+
   .stats-cards {
     margin-top: 5%;
 
     @include medium-screen-landscape {
-      display: inline-block;
-      vertical-align: middle;
+      max-width: 600px;
       width: 50%;
       height: 100%;
       margin-top: 0;
     }
 
+    @include high-res-screen-landscape {
+      max-width: 1000px;
+    }
+
     .stats-cards-container {
-      // width: 51.25vh;
-      // height: 51.25vh;
       position: relative;
-      top: 80vh;
+      top: -80vh;
       width: 80%;
       min-width: $site-min-width;
       max-width: 600px;
@@ -219,16 +261,22 @@ $overlap-y: 4%;
       justify-content: center;
 
       @include medium-screen-landscape {
+        top: 80vh;
         width: 90%;
         height: 100%;
-        margin-left: 20px;
+      }
+
+      @include high-res-screen-landscape {
+        max-width: 1000px;
       }
 
       .card {
+        opacity: 0;
         display: flex;
         flex-direction: column;
         width: 52%;
-        align-items: center;
+        align-items: flex-start;
+        justify-content: center;
         background-color: rgb(254, 255, 254);
         border-radius: 10px;
         box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.15);
@@ -243,7 +291,7 @@ $overlap-y: 4%;
           flex-direction: column;
           justify-content: center;
           align-items: flex-start;
-          padding: 15%;
+          padding: 15% 10%;
 
           .card-heading {
             font-size: 3em;
@@ -278,50 +326,47 @@ $overlap-y: 4%;
 
       .card:nth-child(1) {
         z-index: 4;
-        // top:0 px;
-        // margin-top: 0;
-        // margin-right: $overlap-x;
+        margin-top: 0;
+        margin-right: $overlap-x;
         // align-self: flex-end;
       }
 
       .card:nth-child(2) {
         z-index: 2;
-        // top:10 px;
-        // margin-top: -1 * $overlap-y;
-        // margin-left: 0;
+        margin-top: -1 * $overlap-y;
+        margin-left: 0;
         // align-self: flex-start;
       }
 
       .card:nth-child(3) {
         z-index: 3;
-        // top:20 px;
-        // margin-top: -4 * $overlap-y;
-        // margin-right: 0;
+        margin-top: -4 * $overlap-y;
+        margin-right: 0;
         // align-self: flex-end;
       }
 
       .card:nth-child(4) {
         z-index: 1;
-        // top:30 px;
-        // margin-top: -2 * $overlap-y;
-        // margin-left: $overlap-x;
+        margin-top: -2 * $overlap-y;
+        margin-left: $overlap-x;
         // align-self: flex-start;
       }
     }
   }
 
   .stats-captions {
-    display: block; //change
     text-align: left;
     margin: 5% 5vw;
 
     @include medium-screen-landscape {
       width: 50vw;
       max-width: 450px;
-      display: inline-block;
-      vertical-align: middle;
       white-space: initial;
       margin-left: 5vw;
+    }
+
+    @include high-res-screen-landscape {
+      max-width: initial;
     }
 
     .heading {
@@ -340,7 +385,7 @@ $overlap-y: 4%;
     }
 
     #solution-button {
-      margin-left: 20px;
+      margin-left: 1em;
     }
   }
 }

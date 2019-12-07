@@ -1,7 +1,7 @@
 <template>
   <section>
     <div class="container" id="case-studies-section-container">
-      <DemoGroup />
+      <DemoGroup v-bind:is-homepage="true" />
       <div class="demo-section-text">
         <h2 class="heading">
           <span class="line">Every single&nbsp;</span>
@@ -85,6 +85,18 @@ export default class CaseStudiesSection extends Vue {
 
     @include medium-screen-landscape {
       width: 200px;
+    }
+
+    @include extra-large-screen-landscape {
+      width: 250px;
+    }
+
+    @include high-res-screen-landscape {
+      width: 300px;
+    }
+
+    @include ultra-high-res-screen-landscape {
+      width: 400px;
     }
   }
 }

@@ -4,10 +4,7 @@
       <FeatureCard v-for="(item, index) in cardData" :key="index" :id="'demo-card-' + index" :class="'demo-card ' + item.layoutClasses">
         <h6 slot="title" class="demo-title">{{item.title}}</h6>
         <p slot="content" class="demo-subtitle">{{item.subtitle}}</p>
-        <img slot="img" :src="imagePath(item.img)"/> 
-        <!-- <div slot="img" class="demo-img-parent">
-          <div :style="{ backgroundImage: `url(${imagePath(item.img)})` }"></div>
-        </div> -->
+        <div slot="img" class="demo-img" :style="{ backgroundImage: `url(${imagePath(item.img)})` }"></div>
       </FeatureCard>
     </div>
     <div id="iframes-wrapper" @click="closeAll">
@@ -18,8 +15,12 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue } from "vue-property-decorator";
 import FeatureCard from "@/components/FeatureCard.vue";
+
+import ScrollMagic from 'scrollmagic';
+import { TweenMax, TimelineMax, Linear } from "gsap/all";
+import "imports-loader?define=>false!scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap";
 
 @Component({
   components: {
@@ -27,6 +28,10 @@ import FeatureCard from "@/components/FeatureCard.vue";
   }
 })
 export default class DemoGroup extends Vue {
+  @Prop({ default: false }) private isHomepage!: boolean;
+
+  parallaxController:any = null;
+
   mounted() {
     let cards = document.getElementById("demo-cards")!.children;
     for (let i = 0; i < cards.length; ++i) {
@@ -35,8 +40,10 @@ export default class DemoGroup extends Vue {
           event.preventDefault();
           event.stopPropagation();
           let targetElement: HTMLElement = <HTMLElement> event.srcElement;
-          targetElement = targetElement.className.toString().includes("demo-section-frame") ? targetElement : <HTMLElement> targetElement.parentElement;
-          this.openCard(targetElement!, cards);
+          if (!targetElement.className.toString().includes("demo-card")) {
+            targetElement = <HTMLElement> targetElement.parentElement;          
+            this.openCard(targetElement!, cards);
+          }
       });
     }
 
@@ -56,7 +63,7 @@ export default class DemoGroup extends Vue {
         var padding: number = 10;
         var closeBtn: HTMLElement = document.getElementById("close-button");
         var currentFrame: HTMLElement = document.querySelector(".active-frame");
-        if (window.getComputedStyle(currentFrame).opacity != "0") {
+        if (currentFrame && window.getComputedStyle(currentFrame).opacity != "0") {
           var closeBtnX = currentFrame!.offsetLeft - padding - closeBtn.offsetWidth;
           var closeBtnY = currentFrame!.offsetTop;
           closeBtn.style.left = closeBtnX + "px";
@@ -64,14 +71,25 @@ export default class DemoGroup extends Vue {
         }
       }
       oldWidth = newWidth;
+
+      // reinitialize parallax
+      // this.parallaxController.destroy(true);
+      // this.parallaxController = null;
+      this.initParallax();
     };
     (<any> window).demoGroupResize = Vue.prototype.$_.debounce(demoGroupResize, 1000);
     window.addEventListener("resize", (<any> window).demoGroupResize);
+
+    // initialize parallax effects
+    this.initParallax();
   }
 
   beforeDestroy() {
     window.removeEventListener("resize", (<any> window).demoGroupResize);
     (<any> window).demoGroupResize = undefined;
+
+    // this.parallaxController.destroy(true);
+    // this.parallaxController = null;
   }
 
   data() {
@@ -84,28 +102,28 @@ export default class DemoGroup extends Vue {
       cardData: [
         {
           layoutClasses: "",
-          iframe: "http://vr.peekpeek.com/UCI_ARC/",
+          iframe: "http://vr.peekpeek.com/uci_business",
           title: "University of California, Irvine",
-          subtitle: "Anteater Recreational Center Tour",
-          img: "demo-uci_arc.png",
+          subtitle: "Paul Merage Tour",
+          img: "demo-uci_pm.jpg",
         },
         {
           layoutClasses: "",
-          iframe: "http://panosensing.com/temp/peekpeek/LB_Rec_Center/v3.html",
-          title: "Cal State Long Beach",
-          subtitle: "Wellness Center Tour",
-          img: "demo-csulb.png",
+          iframe: "http://vr.peekpeek.com/millennium_biltmore_la",
+          title: "Millennium Biltmore LA",
+          subtitle: "Hotel Tour",
+          img: "demo-millenium_biltmore.jpg",
         },
         {
           layoutClasses: "",
-          iframe: "http://panosensing.com/temp/peekpeek/LB_Rec_Center/v3.html",
+          iframe: "http://vr.peekpeek.com/fot",
           title: "Fish on Tap",
           subtitle: "Restaurant Tour",
           img: "demo-fish_on_tap.png",
         },
         {
           layoutClasses: "",
-          iframe: "http://panosensing.com/temp/peekpeek/LB_Rec_Center/v3.html",
+          iframe: "http://vr.peekpeek.com/wce",
           title: "West Covina Estates",
           subtitle: "Home Tour",
           img: "demo-west_covina.png",
@@ -114,10 +132,15 @@ export default class DemoGroup extends Vue {
     }
   }
 
-  openCard(elem: HTMLElement, cards: HTMLCollection) {    
+  openCard(elem: HTMLElement, cards: HTMLCollection) {   
+    let isVerticalLayout = Vue.prototype.common.isVerticalLayout();
+
     let foundIndex: number = -1;
     for (let i = 0; i < cards.length; ++i) {
-      cards[i].classList.add("hidden");
+      if (!isVerticalLayout) {
+        cards[i].classList.add("hidden");
+      }
+      
       if (cards[i].id == elem.id) {
         foundIndex = i; // index of card that was clicked
       }
@@ -128,21 +151,24 @@ export default class DemoGroup extends Vue {
     let currentFrame = document.getElementById(`demo-frame-${foundIndex}`);
 
     // determine position and dimensions of the iframe & close button (should be centered)
-    let viewportWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-    if (viewportWidth < 768) {  // if mobile, set iframe as full-screen
-      document.body.classList.add("noscroll");
+    
+    if (isVerticalLayout) {  // if mobile, set iframe as full-screen
+      // document.body.classList.add("noscroll");
        
-      setTimeout(() => {
-        frameWrapper!.classList.add("fullscreen");
+      // setTimeout(() => {
+      //   frameWrapper!.classList.add("fullscreen");
 
-        setTimeout(() => {
-          frameWrapper!.classList.add("transition");
-          currentFrame!.classList.add("active-frame");
-          closeBtn!.classList.remove("closed");
-        }, 500);
-      }, 500);
+      //   setTimeout(() => {
+      //     frameWrapper!.classList.add("transition");
+      //     currentFrame!.classList.add("active-frame");
+      //     closeBtn!.classList.remove("closed");
+      //   }, 500);
+      // }, 500);
+
+      window.open((<any> currentFrame)!.src, "_blank");
 
     } else {
+      
       currentFrame!.classList.add("centered");
       currentFrame!.classList.add("active-frame");
       
@@ -183,6 +209,82 @@ export default class DemoGroup extends Vue {
       frameWrapper!.classList.remove("fullscreen");
       currentFrame!.classList.remove("centered");
     }, 1000);
+  }
+
+  initParallax() {
+    // // @TODO create factory class for animations
+    // var viewportHeight = Vue.prototype.common.getViewportSize().height;
+    // var viewportWidth = Vue.prototype.common.getViewportSize().width;
+    // var elems: any, scene: any, tween: any;
+
+    // var isVertical = true;
+    // if (viewportWidth >= 768 && this.isHomepage) {
+    //   isVertical = false;
+    // }
+
+    // this.parallaxController = new ScrollMagic.Controller({
+    //   vertical: isVertical,
+    //   refreshInterval: 200
+    // });
+
+    // if (viewportWidth >= 768 && this.isHomepage) {  // horizontal mode
+    //   // initialize parallax for the background position of the images
+    //   elems = document.querySelectorAll(".demo-img");
+    //   for (var j = 0; j < elems.length; j++) {
+    //     tween = new TimelineMax()
+    //       .add([
+    //         TweenMax.fromTo(elems[j], 1, 
+    //           { backgroundPosition: "50% 0", backgroundSize: "auto" }, 
+    //           { backgroundPosition: "50% 100%", ease: Linear.easeNone}),
+    //       ]);
+    //     scene = new ScrollMagic.Scene({
+    //         triggerElement: elems[j],
+    //         offset: 0,
+    //         triggerHook: 0.8,
+    //         duration: viewportWidth
+    //       })
+    //       .setTween(tween)
+    //       .addTo(this.parallaxController);
+    //     }
+    // } else {  // vertical mode
+    //   // initialize parallax for the background position of the images
+    //   elems = document.querySelectorAll(".demo-img");
+    //   for (var j = 0; j < elems.length; j++) {
+    //     tween = new TimelineMax()
+    //       .add([
+    //         TweenMax.fromTo(elems[j], 1, 
+    //           { backgroundPosition: "50% 0", backgroundSize: "auto" }, 
+    //           { backgroundPosition: "50% 100%", ease: Linear.easeNone}),
+    //       ]);
+    //     scene = new ScrollMagic.Scene({
+    //         triggerElement: elems[j],
+    //         offset: 0,
+    //         triggerHook: 0.8,
+    //         duration: viewportHeight
+    //       })
+    //       .setTween(tween)
+    //       .addTo(this.parallaxController);
+    //   }
+
+    //   // initialize parallax for the textbox
+    //   elems = document.querySelectorAll("#demo-cards .text-container");
+    //   for (var j = 0; j < elems.length; j++) {
+    //     tween = new TimelineMax()
+    //       .add([
+    //         TweenMax.fromTo(elems[j], 1, 
+    //           { y: 15 }, 
+    //           { y: -15, ease: Linear.easeNone}),
+    //       ]);
+    //     scene = new ScrollMagic.Scene({
+    //         triggerElement: (this.isHomepage) ? "#case-studies-section-container" : "#works-container",
+    //         offset: 0,
+    //         triggerHook: 0.6,
+    //         duration: viewportHeight
+    //       })
+    //       .setTween(tween)
+    //       .addTo(this.parallaxController);
+    //   }
+    // }
   }
 }
 </script>
@@ -254,6 +356,7 @@ $numCards: 4;
       font-weight: 700;
       font-size: 1em;
       line-height: 1.2em;
+      pointer-events: none;
     }
 
     .demo-subtitle {
@@ -261,13 +364,15 @@ $numCards: 4;
       color: $primary-description-color;
       font-size: 0.8em;
       line-height: 1.2em;
+      pointer-events: none;
     } 
   }
 
-  img {
+  .demo-img {
     height: 100%;
     width: 100%;
-    object-fit: cover;
+    background-position: 50% 50%;
+    background-size: cover;
     box-shadow: 0px 0px 20px rgba(#000, 0.1);
   }
 
@@ -377,6 +482,7 @@ $numCards: 4;
         min-width: 180px;
         max-width: 300px;
         width: calc(100vw / #{$numCards});   // 4 = number of demos
+        min-height: 380px;
         height: 70%;
 
         .text-container {
@@ -390,7 +496,7 @@ $numCards: 4;
           z-index: 0;
         }
 
-        img {
+        .demo-img {
           box-shadow: -5px 10px 20px rgba(#000, 0.1);
           width: 80%;
           position: absolute;

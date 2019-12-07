@@ -35,6 +35,17 @@ const common = {
     if (elem != undefined) {
       Vue.prototype.$scrollmagic.scrollTo(elem);
     }
+  },
+
+  isVerticalLayout: () => {
+    var viewportHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+    var viewportWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+
+    if (viewportWidth >= 768) {
+      return false;
+    } else {
+      return true;    // mobile layout
+    }
   }
 }
 

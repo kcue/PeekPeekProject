@@ -41,25 +41,12 @@ export default class ContactSection extends Vue {
   onContactButtonClick() {
     this.showContactForm = true;
     Vue.prototype.common.appScrollTo("#contact-section");
-    document.body.style.overflow = "hidden";
-    window.onwheel = (event: any) => { 
-      // do nothing
-    }
+    document.body.classList.add("noscroll");
   }
 
   exitForm() {
     this.showContactForm = false;
-    document.body.style.overflow = "auto";
-    window.onwheel = (event: any) => {
-      if (navigator.userAgent.includes("Safari") && !navigator.userAgent.includes("Chrome")) {
-        // Need to prevent default behavior for Safari for touchpad scrolling gesture to work
-        event.preventDefault();
-        window.scrollTo(window.scrollX + event.deltaX + event.deltaY, window.scrollY); // Added deltaX to ensure native horizontal scrolling
-      } else {
-        // For all other browsers
-        window.scrollTo(window.scrollX + event.deltaY, window.scrollY);
-      }
-    }
+    document.body.classList.remove("noscroll");
   }
 
   mounted() {
@@ -102,6 +89,10 @@ export default class ContactSection extends Vue {
       loop: true
     });
   }
+
+  beforeDestroy() {
+    document.body.classList.remove("noscroll");
+  }
 }
 </script>
 
@@ -119,11 +110,16 @@ export default class ContactSection extends Vue {
     transform: scale(1);
     height: 100%;
     width: 100%;
-    padding: 5vw;
+    padding: 2%;
     position: absolute;
     top: 0;
     left: 0;
     z-index: -1;
+    visibility: hidden;
+
+    @include small-screen-landscape {
+      visibility: visible;
+    }
   }
 
   .contact-section-interlude {
@@ -155,11 +151,28 @@ export default class ContactSection extends Vue {
     justify-content: center;
     align-items: center;
     z-index: 20;
+    
+    &:before {
+      content: "";
+      display: block;
+      position: absolute;
+      height: 75%;
+      width: 100%;
+      z-index: -1;
+      background: url("../assets/images/contactform-bg.svg") center no-repeat;
+      background-size: cover;
 
+      @include medium-screen-landscape {
+        height: 70%;
+        width: 85%;
+        background-size: contain;
+      }
+    }
+    
     .contact-form {
-      width: 90vw;
-      height: 50vw;
-      
+      width: 100vw;
+      height: auto;
+
       @include medium-screen-landscape {
         width: 80vw;
       }
@@ -168,7 +181,6 @@ export default class ContactSection extends Vue {
         min-width: 800px;
         min-height: 500px;
         width: 60vw;
-        height: 35vw;
       }
     }
   }

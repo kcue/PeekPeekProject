@@ -1,6 +1,6 @@
 <template>
   <nav>
-    <router-link to="/"><img id="logo" src="../assets/images/logo.png" @click="common.appScrollTo('#home-section')" /></router-link>
+    <router-link to="/"><img id="logo" src="../assets/images/logo.png" @click="common.appScrollTo('#home-section');" /></router-link>
     <ul class="nav-buttons">
       <li>
         <span class="nav-item"><router-link to="/who">WHO</router-link></span>
@@ -36,10 +36,10 @@ export default class Navigation extends Vue {
 
 <style lang="scss">
 nav {
-  background-color: rgba(#FFF, 0.85);
+  background-color: rgba(#FFF, 0.7);
   transition: all 1s;
   position: fixed;
-  top: 25px;
+  top: 0;
   z-index: 10000;
   display: flex;
   flex-direction: row;
@@ -48,15 +48,14 @@ nav {
   width: 100vw;
   min-width: $site-min-width;
 
-
   #logo {
     display: inherit;
     margin: 10px 0 10px 2em;
-    width: 35px;
+    width: 2.5em;
 
     @include small-screen-landscape {
       margin-left: 2.5em;
-      width: 45px;
+      // width: 45px;
     }
   }
 
@@ -69,7 +68,12 @@ nav {
     @include small-screen-landscape {
       width: 10vw;
       min-width: 110px;
-      max-width: 140px; 
+      max-width: 160px; 
+    }
+
+    @include large-screen-landscape {
+      width: 12vw;
+      max-width: 220px;
     }
 
     &:after {
@@ -80,18 +84,17 @@ nav {
       content: "\f0e0";
       position: absolute;
       width: 100%;
-      top: 0;
+      top: 50%;
+      transform: translateY(-50%);
       left: 0;
-      padding: 9px;
       pointer-events: none;
 
+
       @include small-screen-landscape {
-        padding: 10px;
         font-family: "Open Sans";
         font-size: 1em;
         font-weight: 700;
         content: "Contact Us";
-        padding: 8px;
       }
     }
   }
@@ -105,7 +108,7 @@ nav {
       text-transform: uppercase;
 
       @include small-screen-landscape {
-        margin: 5px 30px;
+        margin: 5px 2em;
       }
 
       span {

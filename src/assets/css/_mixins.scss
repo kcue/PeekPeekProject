@@ -7,11 +7,19 @@
 }
 
 @mixin large-screen-landscape {
-  @media (min-width: 992px) and (min-height: 540px) { @content; }
+  @media (min-width: 992px) { @content; }
 }
 
 @mixin extra-large-screen-landscape {
-  @media (min-width: 1200px) and (min-height: 768px) { @content; }
+  @media (min-width: 1200px) { @content; }
+}
+
+@mixin high-res-screen-landscape {
+  @media (min-width: 1600px) { @content; }
+}
+
+@mixin ultra-high-res-screen-landscape {
+  @media (min-width: 2560px) { @content; }
 }
 
 
@@ -19,7 +27,7 @@
 // these are the styles for animating the heading for the WHO, WHAT & WHY pages
 @mixin subpage-heading-transition-styles {
   .heading, .subheading, .alt-subheading {
-    transition: all 0.5s ease-out 0.2s;
+    transition: opacity 0.5s ease-out 0.2s, transform 0.5s ease-out 0.2s;
     opacity: 0;
     transform: translateY(0.5em);
   }
@@ -43,7 +51,7 @@
 @mixin featurecard-vertical-transition-styles {
   .feature-card {
     & > img, & > .text-container {
-      transition: all 0.8s ease-out 0.2s;
+      transition: opacity 0.8s ease-out 0.2s, transform 0.8s ease-out 0.2s;
       opacity: 0;
       transform: translateY(20%);
     }
@@ -66,7 +74,7 @@
     // only need to animate heading here because
     // the transition css are already declared in DemoGroup.vue
     h2 {
-      transition: all 0.5s ease-out 0.2s;
+      transition: opacity 0.5s ease-out 0.2s, transform 0.5s ease-out 0.2s;
       opacity: 0;
       transform: translateY(1em);
 
@@ -84,7 +92,7 @@
     .contact-section-interlude .subheading, 
     .contact-section-main .heading, 
     .contact-section-main button {
-      transition: all 0.5s ease-out 0.2s;
+      transition: transform 0.5s ease-out 0.2s, opacity 0.5s ease-out 0.2s;
       opacity: 0;
       transform: translateY(0.5em);
 

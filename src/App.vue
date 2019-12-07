@@ -67,12 +67,16 @@ html {
     font-size: 16px;
   }
 
-  @include large-screen-landscape {
-    font-size: 16px;
-  }
-
   @include extra-large-screen-landscape {
     font-size: 18px;
+  }
+
+  @include high-res-screen-landscape {
+    font-size: 26px;
+  }
+
+  @include ultra-high-res-screen-landscape {
+    font-size: 32px;
   }
 }
 
@@ -118,6 +122,18 @@ img {
 
 .fade-enter, .fade-leave-to {
   opacity: 0;
+}
+
+@include medium-screen-landscape {
+  // fix for scrollbar display issues
+  html.no-scrollbar {
+    -ms-overflow-style: none; /* IE 11 */
+    scrollbar-width: none; /* Firefox 64 */
+
+    &::-webkit-scrollbar {
+      display: none; /* Safari */
+    }
+  } 
 }
 
 /* Global Styles */
@@ -209,6 +225,16 @@ body {
     @include large-screen-landscape {
       margin-left: 0px;
       margin-right: 20px;
+      width: 190px;
+    }
+
+    @include high-res-screen-landscape {
+      padding: 15px 10px;
+      width: 240px;
+    }
+
+    @include ultra-high-res-screen-landscape {
+      width: 290px;
     }
 
     &.primary-button {

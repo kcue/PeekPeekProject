@@ -12,6 +12,9 @@ import WhoSection from "@/components/WhoSection.vue";
 import WorksSection from "@/components/WorksSection.vue";
 import ContactSection from "@/components/ContactSection.vue";
 import ScrollMagic from 'scrollmagic';  // not using global $scrollmagic, since this page is vertical
+import { TweenMax, TimelineMax, Linear } from "gsap/all";
+import "imports-loader?define=>false!scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap";
+
 
 @Component({
   components: {
@@ -23,6 +26,7 @@ import ScrollMagic from 'scrollmagic';  // not using global $scrollmagic, since 
 export default class Who extends Vue {
   name: string = "who";
   controller: any = null;
+  parallaxController:any = null;
   
   created() {
     document.title = "PeekPeek | Who";
@@ -39,6 +43,11 @@ export default class Who extends Vue {
   }
 
   mounted() {
+    Vue.prototype.$ga.page({
+      page: "/who",
+      title: "Who",
+      location: window.location.href
+    });
     // hide the demo cards first
     var demoCards = document.querySelectorAll("#demo-cards .demo-card");
     for (var i = 0; i < demoCards.length; i++) {
@@ -47,7 +56,8 @@ export default class Who extends Vue {
 
     // initialize scrollmagic controller
     this.controller = new ScrollMagic.Controller({
-      vertical: true
+      vertical: true,
+      refreshInterval: 200
     });
 
     // Who Section Scenes
@@ -75,16 +85,16 @@ export default class Who extends Vue {
       .setClassToggle(worksSecHeading, "reveal")
       .addTo(this.controller);
 
-    var worksSecCards = document.getElementById("demo-cards");
+    var worksSecCardsGroup = document.getElementById("demo-cards");
     var worksSecCardsScene = new ScrollMagic.Scene({
-        triggerElement: worksSecCards,
+        triggerElement: worksSecCardsGroup,
         offset: 0,
         triggerHook: 0.7,
         reverse: false
       })
       .on("enter", function() {
-        worksSecCards!.classList.add("reveal");
-        var worksSecCard = worksSecCards.children;
+        worksSecCardsGroup!.classList.add("reveal");
+        var worksSecCard = worksSecCardsGroup.children;
         for (var i = 0; i < worksSecCard.length; i++) {
           worksSecCard[i]!.classList.remove("hidden");
         }
@@ -104,11 +114,92 @@ export default class Who extends Vue {
         .setClassToggle(contactElements[i], "reveal")
         .addTo(this.controller);
     }
+
+    // initialize resize handler
+    (<any> window).homeResize = Vue.prototype.$_.debounce(this.handleResize, 1000);
+    window.addEventListener("resize", (<any> window).homeResize);
+
+    // initialize parallax effects
+    this.initParallax();
   }
 
   beforeDestroy() {
     this.controller.destroy(true);
     this.controller = null;
+
+    this.parallaxController.destroy(true);
+    this.parallaxController = null;
+
+    window.removeEventListener("resize", (<any> window).homeResize);
+    (<any> window).homeResize = undefined;  // workaround
+  }
+
+  handleResize(): void {
+    // this is the resize handler
+    this.parallaxController.destroy(true);
+    this.parallaxController = null;
+    this.initParallax();
+  }
+
+  initParallax() {
+    // @TODO create factory class for animations
+    var viewportHeight = Vue.prototype.common.getViewportSize().height;
+
+    this.parallaxController = new ScrollMagic.Controller({
+      vertical: true,
+      refreshInterval: 200
+    });
+
+    var parallaxObjects = [
+      // {
+      //   elems: document.querySelectorAll(".heading-group"),
+      //   fromTopVal: 0, toTopVal: -100,
+      //   fromLeftVal: 0, toLeftVal: 0,
+      //   triggerElement: "self",
+      //   offset: 0,
+      //   triggerHook: 0,
+      //   duration: viewportHeight
+      // },
+      {
+        elems: document.querySelectorAll(".who-cards .card"),
+        fromTopVal: 0, toTopVal: -150, 
+        fromLeftVal: 0, toLeftVal: 0,
+        triggerElement: ".who-cards-container",
+        offset: 0, 
+        triggerHook: 0.3,
+        duration: viewportHeight
+      },
+      // {
+      //   elems: document.querySelectorAll("#demo-group"),
+      //   fromTopVal: -10, toTopVal: 50, 
+      //   fromLeftVal: 0, toLeftVal: 0,
+      //   triggerElement: "self",
+      //   offset: 0, 
+      //   triggerHook: 0.6,
+      //   duration: viewportHeight
+      // },
+    ];
+
+    for (var i = 0; i < parallaxObjects.length; i++) {
+      var obj = parallaxObjects[i]
+      var elems = obj.elems;
+      for (var j = 0; j < elems.length; j++) {
+        var tween = new TimelineMax()
+          .add([
+            TweenMax.fromTo(elems[j], 1, 
+              { top: obj.fromTopVal, left: obj.fromLeftVal, position: "relative" }, 
+              { top: obj.toTopVal, left: obj.toLeftVal, ease: Linear.easeNone}),
+          ]);
+        var scene = new ScrollMagic.Scene({
+            triggerElement: (obj.triggerElement === "self") ? elems[j] : obj.triggerElement,
+            offset: obj.offset,
+            triggerHook: obj.triggerHook,
+            duration: obj.duration
+          })
+          .setTween(tween)
+          .addTo(this.parallaxController);
+      }
+    }
   }
 }
 </script>
@@ -139,11 +230,14 @@ export default class Who extends Vue {
 // transition animations on all sections for this page are found here
 #who-section::v-deep {
   .heading-group {
+    position: relative;
+
     @include subpage-heading-transition-styles;
   }
 
   .top-image, .bottom-image {
-    transition: all 1s ease-out 0.2s;
+    position: relative;
+    transition: opacity 1s ease-out 0.2s, transform 1s ease-out 0.2s;
     opacity: 0;
 
     &.reveal {
@@ -162,7 +256,8 @@ export default class Who extends Vue {
 
   .who-cards {
     .card {
-      transition: all 0.7s ease-out 0.2s;
+      position: relative;
+      transition: opacity 0.7s ease-out 0.2s, transform 0.7s ease-out 0.2s;
       opacity: 0;
 
       &:nth-child(odd) {

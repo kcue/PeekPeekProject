@@ -1,6 +1,5 @@
 <template>
   <section>
-    <div id="home-section-trigger" class="trigger"></div>
     <div class="container" id="home-section-container">
       <div class="home-pic">
         <img id="inner" src="../assets/images/home-globe-inner.png" />
@@ -22,35 +21,49 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import ScrollMagic from 'scrollmagic'; 
 
 @Component({})
 export default class HomeSection extends Vue {
+  controller: any = null;
+
   mounted() {
-    var startSplashScreen = this.splashScreen;
-    const splashScene = Vue.prototype.$scrollmagic.scene({
-        triggerElement: "#home-section-trigger",
-        triggerHook: 0.5,
-        reverse: false // only do once
-      })
-      .on('start', function() {
-        setTimeout(function() { 
-          startSplashScreen();
-        }, 1000);
+    var isVertical = Vue.prototype.common.isVerticalLayout();
+    if (isVertical) {
+      // do not animate home section on vertical layout
+      document.getElementById("home-section-container").classList.add("animate");
+      document.getElementById("home-section-container").classList.add("animated");
+    } else {
+      this.controller = new ScrollMagic.Controller({
+        vertical: false
       });
-		Vue.prototype.$scrollmagic.addScene(splashScene);
+      const splashScene = new ScrollMagic.Scene({
+          triggerElement: "#home-section-container",
+          triggerHook: 0.5,
+          reverse: false // only do once
+        })
+        .on("enter", this.splashScreen)
+        .addTo(this.controller);
+    }
   }
   
   splashScreen() {
-    document.getElementById("home-section-container")!.classList.add("animate");
+    setTimeout(function() {
+      var elem = document.getElementById("home-section-container");
+      if (elem) {
+        (<HTMLElement> elem)!.classList.add("animate");
 
-    // after 5 seconds (animation delay limit), add animated class to override any transition effects
-    setTimeout(function() { 
-      document.getElementById("home-section-container")!.classList.add("animated");
-    }, 5000);
+        // after 5 seconds (animation delay limit), add animated class to override any transition effects
+        setTimeout(function() { 
+          (<HTMLElement> elem)!.classList.add("animated");
+        }, 5000);
+      }
+    }, 1000);
   }
 
   beforeDestroy() {
-    Vue.prototype.$scrollmagic.destroy(true);
+    this.controller.destroy(true);
+    this.controller = null;
   }
 }
 </script>
@@ -83,6 +96,10 @@ export default class HomeSection extends Vue {
       @include medium-screen-landscape {
         width: 90%;
         max-width: 700px;
+      }
+
+      @include high-res-screen-landscape {
+        max-width: initial;
       }
     }
 
@@ -123,7 +140,7 @@ export default class HomeSection extends Vue {
         margin: 20px 0 10px;
 
         @include medium-screen-landscape {
-          padding-right: 25%;
+          padding-right: 20%;
           margin: 0;
         }
       }
@@ -166,19 +183,23 @@ export default class HomeSection extends Vue {
     .button {
       margin-top: 1em;
 
-      @include medium-screen-landscape {
-        width: 160px;
-      }
+      // @include medium-screen-landscape {
+      //   width: 160px;
+      // }
 
-      @include large-screen-landscape {
-        width: 170px;
-      }
+      // @include large-screen-landscape {
+      //   width: 170px;
+      // }
+
+      // @include high-res-screen-landscape {
+      //   width: 10px;
+      // }
     }
   }
   
   // styles below this point control the animations
   * {
-    transition: opacity 1s ease, width 1s ease, height 1s ease, flex-basis 1s ease, transform 1s ease, font-size 1s ease;
+    transition: opacity 1s ease, width 1s ease, height 1s ease, flex 1s ease, flex-basis 1s ease, transform 1s ease, font-size 1s ease;
   }
 
   &.animated * {
@@ -192,9 +213,14 @@ export default class HomeSection extends Vue {
     flex-basis: 0;
     
     #splash-text {
-      transition: font-size 1s ease 2s;
+      transition: font-size 1s ease 2s, transform 0.5s ease 0.5s;
       font-size: 3em;
       opacity: 1;
+      transform: translateX(0);
+
+      @include medium-screen-landscape {
+        transform: translateX(100vw);
+      }
     }
     
     #highlight-text {
@@ -240,12 +266,13 @@ export default class HomeSection extends Vue {
       }
 
       @include extra-large-screen-landscape {
-        flex-basis: 50%;
+        flex-basis: 40%;
       }
       
       #splash-text {
         font-size: 1.2em;
         opacity: 1;
+        transform: translateX(0);
       }
       
       #highlight-text {

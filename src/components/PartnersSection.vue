@@ -2,8 +2,8 @@
   <section>
     <div class="container" id="partners-section-container">
       <div class="partners-section-text">
-        <h2 class="heading" id="branding"><b>Trusted by</b> </h2>
-        <a id="learn-button" class="button primary-button" href="/what">Learn More</a>
+        <h2 class="heading" id="branding">Trusted by</h2>
+        <a id="partners-learn-button" class="button primary-button" href="/what">Learn More</a>
       </div>
       <div class="swiper-container" id="logo-slider">
         <div class="swiper-wrapper">
@@ -36,7 +36,7 @@ export default class PartnersSection extends Vue {
   numLogos: number = 5;
   mySwiper: any = {};
   swiperResizeHandler: any = Vue.prototype.$_.debounce(this.swiperUpdate, 2000);
-  swiperOptions: object = {
+  swiperOptions: any = {
     direction: "horizontal",
     loop: true,
     loopedSlides: this.numLogos,
@@ -50,20 +50,34 @@ export default class PartnersSection extends Vue {
     speed: 10000,
     freeMode: true,
     freeModeMomentumBounce: false,
-    breakpoints: {
-      768: {
-        direction: "vertical",
-      }
-    },
+    // breakpoints: {
+    //   768: {
+    //     direction: "vertical",
+    //   }
+    // },
   }
 
   swiperUpdate() {
     this.mySwiper.destroy(false, true);
+
+    var isVerticalLayout = Vue.prototype.common.isVerticalLayout()
+    if (isVerticalLayout) {
+      this.swiperOptions.direction = "horizontal";
+    } else {
+      this.swiperOptions.direction = "vertical";
+    }
     this.mySwiper = new Swiper (".swiper-container", this.swiperOptions);
   }
 
   mounted() {
+    var isVerticalLayout = Vue.prototype.common.isVerticalLayout()
+    if (isVerticalLayout) {
+      this.swiperOptions.direction = "horizontal";
+    } else {
+      this.swiperOptions.direction = "vertical";
+    }
     this.mySwiper = new Swiper (".swiper-container", this.swiperOptions);
+
     window.addEventListener('resize', this.swiperResizeHandler);
   }
 
@@ -79,17 +93,19 @@ export default class PartnersSection extends Vue {
 
 .section#partners-section {
   @include medium-screen-landscape {
-    min-width: 800px;
+    min-width: 100vw;
     width: auto;
     height: 100vh;
     margin: 0;
-    padding: 0 100px;
   }
 
   #partners-section-container {
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
+    overflow: hidden;
 
     @include medium-screen-landscape {
       display: flex;
@@ -98,6 +114,7 @@ export default class PartnersSection extends Vue {
   }
 
   .partners-section-text {
+    flex: 0 1 35%;
     min-width: 450px;
     width: 30vw;
     margin-left: 20px;
@@ -111,11 +128,13 @@ export default class PartnersSection extends Vue {
     }
   }
 
-  #learn-button {
-    margin-top: 2em;
+  #partners-learn-button {
+    margin: 2em 0 0;
+    text-align: center;
   }
 
   #logo-slider {
+    flex: 0 1 auto;
     width: 20vh;
     min-width: 150px;
     max-width: 200px;
@@ -123,6 +142,8 @@ export default class PartnersSection extends Vue {
     min-height: 150px;
     max-height: 200px;
     overflow: visible;
+    margin-left: 0;
+    margin-right: 0;
 
     @include medium-screen-landscape {
       min-width: 170px;
