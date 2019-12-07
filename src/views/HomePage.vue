@@ -62,8 +62,7 @@ export default class Home extends Vue {
         event.preventDefault();
         window.scrollTo(window.scrollX + event.deltaX + event.deltaY, window.scrollY); // Added deltaX to ensure native horizontal scrolling
       } else if (navigator.userAgent.toLowerCase().includes("firefox") && navigator.userAgent.includes("Windows")) {
-        // event.preventDefault();
-        // window.scrollTo(window.scrollX + event.deltaX + event.deltaY, window.scrollY); 
+        window.scrollTo(window.scrollX + event.deltaX + (event.deltaY * 20), window.scrollY); 
       } else {
         // For all other browsers
         window.scrollTo(window.scrollX + event.deltaY, window.scrollY);

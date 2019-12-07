@@ -19,7 +19,7 @@
 }
 
 @mixin ultra-high-res-screen-landscape {
-  @media (min-width: 2560px) { @content; }
+  @media (min-width: 2560px) and (min-height: 800px) { @content; }
 }
 
 
