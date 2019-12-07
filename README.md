@@ -1,3 +1,5 @@
+![PeekPeek](src/assets/images/logo.png)
+
 # PeekPeek
 
 ## Contents
@@ -202,7 +204,8 @@ Jonathan Bui, Ken Cue, Thu Hyunh, Sazeda Sultana, Glen Wu
 ## Useful References 
 - [Vue CLI Configuration Reference](https://cli.vuejs.org/config/)
 - [Vue Property Decorator](https://github.com/kaorun343/vue-property-decorator)
-- [ScrollMagic API]()
-- [GreenSock Animation Plugin]()
-- [AWS Documentation]()
+- [ScrollMagic](https://scrollmagic.io/)
+- [GreenSock Animation Plugin](https://greensock.com/)
+- [Anime.JS](https://animejs.com/)
+- [AWS Documentation](https://docs.aws.amazon.com/)
 - [Sheet DB](https://sheetdb.io/)
