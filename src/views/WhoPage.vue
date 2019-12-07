@@ -35,9 +35,9 @@ export default class Who extends Vue {
   data() {
     return {
       headingTitle: "Results",
-      interludeText: "So, your turn",
-      headingTextLine1: "So who are",
-      headingTextLine2: "you?",
+      interludeText: "Can you tell me more",
+      headingTextLine1: "about who",
+      headingTextLine2: "you are?",
       contactUsButtonText: "Tell me More"
     };
   }

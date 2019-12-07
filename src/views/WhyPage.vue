@@ -31,9 +31,9 @@ export default class Why extends Vue {
 
   data() {
     return {
-      interludeText: "So, your turn",
-      headingTextLine1: "What about",
-      headingTextLine2: "you?",
+      interludeText: "Can you tell me more",
+      headingTextLine1: "about how we",
+      headingTextLine2: "can help?",
       contactUsButtonText: "Get quote"
     };
   }

@@ -542,7 +542,7 @@ $numCards: 4;
   #demo-group {
     #demo-cards {
       .demo-card {
-        max-width: 450px;
+        max-width: 500px;
       }
     }
   }

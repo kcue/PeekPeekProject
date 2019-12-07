@@ -38,9 +38,9 @@ export default class What extends Vue {
   data() {
     return {
       headingTitle: "Featured Work",
-      interludeText: "So, your turn",
-      headingTextLine1: "What about",
-      headingTextLine2: "you?",
+      interludeText: "Can you tell me more",
+      headingTextLine1: "about what",
+      headingTextLine2: "you do?",
       contactUsButtonText: "Get quote"
     };
   }
