@@ -234,6 +234,7 @@ $overlap-y: 4%;
 
   .stats-cards {
     margin-top: 5%;
+    width: 100%;
 
     @include medium-screen-landscape {
       max-width: 600px;

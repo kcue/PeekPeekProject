@@ -57,15 +57,17 @@ export default class Home extends Vue {
     // Scrolling vertically will move the page horizontally
     // Only activated when the website is stacked horizontally
     window.onwheel = (event: any) => {
-      if (navigator.userAgent.includes("Safari") && !navigator.userAgent.includes("Chrome")) {
-        // Need to prevent default behavior for Safari for touchpad scrolling gesture to work
-        event.preventDefault();
-        window.scrollTo(window.scrollX + event.deltaX + event.deltaY, window.scrollY); // Added deltaX to ensure native horizontal scrolling
-      } else if (navigator.userAgent.toLowerCase().includes("firefox") && navigator.userAgent.includes("Windows")) {
-        window.scrollTo(window.scrollX + event.deltaX + (event.deltaY * 20), window.scrollY); 
-      } else {
-        // For all other browsers
-        window.scrollTo(window.scrollX + event.deltaY, window.scrollY);
+      if (window.getComputedStyle(document.body).overflow !== "hidden") {
+        if (navigator.userAgent.includes("Safari") && !navigator.userAgent.includes("Chrome")) {
+          // Need to prevent default behavior for Safari for touchpad scrolling gesture to work
+          event.preventDefault();
+          window.scrollTo(window.scrollX + event.deltaX + event.deltaY, window.scrollY); // Added deltaX to ensure native horizontal scrolling
+        } else if (navigator.userAgent.toLowerCase().includes("firefox") && navigator.userAgent.includes("Windows")) {
+          window.scrollTo(window.scrollX + event.deltaX + (event.deltaY * 20), window.scrollY); 
+        } else {
+          // For all other browsers
+          window.scrollTo(window.scrollX + event.deltaY, window.scrollY);
+        }
       }
     }
   

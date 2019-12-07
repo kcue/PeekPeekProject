@@ -328,6 +328,8 @@ export default class Form extends Vue {
     }
     
     .form-buttons-container {
+      width: 100%;
+
       .button-container {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -363,6 +365,14 @@ export default class Form extends Vue {
             font-size: inherit;
             width: 10vw;
             height: 12vh;
+          }
+
+          @include large-screen-landscape {
+            width: 25%;
+          }
+
+          @include high-res-screen-landscape {
+            height: 20vh;
           }
 
           @for $i from 1 through 4 {

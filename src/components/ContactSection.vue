@@ -88,10 +88,20 @@ export default class ContactSection extends Vue {
       duration: duration,
       loop: true
     });
+
+    (<any> window).contactFormResize = Vue.prototype.$_.debounce(this.contactFormResize, 1000);
+    window.addEventListener("resize", (<any> window).contactFormResize);
   }
 
   beforeDestroy() {
     document.body.classList.remove("noscroll");
+
+    window.removeEventListener("resize", (<any> window).contactFormResize);
+    (<any> window).contactFormResize = undefined;
+  }
+
+  contactFormResize() {
+    this.exitForm();
   }
 }
 </script>
@@ -167,6 +177,10 @@ export default class ContactSection extends Vue {
         width: 85%;
         background-size: contain;
       }
+
+      @include high-res-screen-landscape {
+        height: 80%;
+      }
     }
     
     .contact-form {
@@ -179,8 +193,13 @@ export default class ContactSection extends Vue {
 
       @include large-screen-landscape {
         min-width: 800px;
+        max-width: 950px;
         min-height: 500px;
         width: 60vw;
+      }
+
+      @include high-res-screen-landscape {
+        max-width: 1250px;
       }
     }
   }
