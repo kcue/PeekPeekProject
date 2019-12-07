@@ -78,6 +78,10 @@ $overlap-y: 5%;
           min-width: 280px;
           max-width: 380px;
           width: 35%;
+
+          @include high-res-screen-landscape {
+            max-width: 550px;
+          }
         }
 
         &.what-cards {
@@ -111,7 +115,7 @@ $overlap-y: 5%;
       .what-cards-container {
         width: 75%;
         min-width: $site-min-width;
-        max-width: 760px;
+        max-width: 950px;
         margin: 1.5em auto 0;
         white-space: initial;
         display: flex;
@@ -119,10 +123,15 @@ $overlap-y: 5%;
         align-items: center;
         justify-content: center;
 
+        @include medium-screen-landscape {
+          width: 85%;
+        }
+
         .feature-card {
           display: flex;
           flex-direction: column;
           justify-content: center;
+          width: 100%;
 
           img {
             align-self: flex-start;
@@ -133,6 +142,10 @@ $overlap-y: 5%;
             min-height: 220px;
             max-height: 300px;
             height: 40vh;
+
+            @include high-res-screen-landscape {
+              max-height: 500px;
+            }
           }
 
           .text-container {

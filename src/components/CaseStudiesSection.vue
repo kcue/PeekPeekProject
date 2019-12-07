@@ -37,12 +37,12 @@ export default class CaseStudiesSection extends Vue {
 
 <style lang="scss">
 #case-studies-section {
-  padding: 50px 0;
+  min-height: 100vh;
 
   @include medium-screen-landscape {
+    min-width: 100vw;
     width: auto;
     margin-right: 100px;
-    padding: 0;
   }
 }
 

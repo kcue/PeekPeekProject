@@ -248,7 +248,7 @@ export default class Home extends Vue {
         {
           elems: document.querySelectorAll("#stats-section .heading, #video-section .heading, #hotspot-section .heading, #case-studies-section .heading, #partners-section .heading"),
           fromTopVal: 0, toTopVal: 0,
-          fromLeftVal: 40, toLeftVal: 0,
+          fromLeftVal: 50, toLeftVal: 0,
           triggerElement: "self",
           offset: 0,
           triggerHook: 1,
@@ -257,7 +257,7 @@ export default class Home extends Vue {
         {
           elems: document.querySelectorAll("#stats-section .subheading, #video-section .subheading, #hotspot-section .subheading, #case-studies-section .subheading, #partners-section .subheading"),
           fromTopVal: 0, toTopVal: 0, 
-          fromLeftVal: 20, toLeftVal: 0,
+          fromLeftVal: 30, toLeftVal: 0,
           triggerElement: "self",
           offset: 0, 
           triggerHook: 1,
@@ -275,7 +275,7 @@ export default class Home extends Vue {
         {
           elems: document.querySelectorAll("#button-prompt, #solution-button, #learn-button, #study-button, #partners-learn-button"),
           fromTopVal: 0, toTopVal: 0,
-          fromLeftVal: 90, toLeftVal: 0,
+          fromLeftVal: 30, toLeftVal: 0,
           triggerElement: "self",
           offset: 0,
           triggerHook: 1,

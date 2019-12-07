@@ -140,7 +140,7 @@ export default class DemoGroup extends Vue {
       if (!isVerticalLayout) {
         cards[i].classList.add("hidden");
       }
-      
+
       if (cards[i].id == elem.id) {
         foundIndex = i; // index of card that was clicked
       }
@@ -533,6 +533,16 @@ $numCards: 4;
             transform: translateY(-120vh);
           }
         }
+      }
+    }
+  }
+}
+
+@include high-res-screen-landscape {
+  #demo-group {
+    #demo-cards {
+      .demo-card {
+        max-width: 450px;
       }
     }
   }

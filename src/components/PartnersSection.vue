@@ -93,8 +93,8 @@ export default class PartnersSection extends Vue {
 
 .section#partners-section {
   @include medium-screen-landscape {
-    min-width: 100vw;
-    width: auto;
+    min-width: 992px;
+    width: 100vw;
     height: 100vh;
     margin: 0;
   }
@@ -114,17 +114,19 @@ export default class PartnersSection extends Vue {
   }
 
   .partners-section-text {
-    flex: 0 1 35%;
-    min-width: 450px;
-    width: 30vw;
-    margin-left: 20px;
+    flex: 0 1 auto;
+    align-self: flex-start;
+    margin-left: 2em;
     margin-bottom: 3em;
     display: flex;
     flex-direction: column;
     justify-content: center;
 
     @include medium-screen-landscape {
+      align-self: center;
+      margin-left: 0;
       margin-bottom: 0;
+      margin-right: 5em;
     }
   }
 
@@ -150,6 +152,13 @@ export default class PartnersSection extends Vue {
       max-width: 200px;
       min-height: 170px;
       max-height: 200px;
+    }
+
+    @include high-res-screen-landscape {
+      min-width: 250px;
+      max-width: 300px;
+      min-height: 250px;
+      max-height: 300px;
     }
 
     .swiper-slide{
