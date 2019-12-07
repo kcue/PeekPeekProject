@@ -471,7 +471,8 @@ $numCards: 4;
 
 @include medium-screen-landscape {
   #demo-group {
-    margin-left: 1em;  // leave room for the shadow
+    padding-left: 2em;  // leave room for the shadow
+    padding-right: 2em;
     height: 100%;
     width: auto;
 

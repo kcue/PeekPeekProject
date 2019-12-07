@@ -328,7 +328,11 @@ export default class Form extends Vue {
     }
     
     .form-buttons-container {
-      width: 100%;
+      display: flex;
+
+      @include large-screen-landscape {
+        width: 100%;
+      }
 
       .button-container {
         display: grid;
@@ -337,13 +341,15 @@ export default class Form extends Vue {
         grid-column-gap: 1em;
         grid-row-gap: 1em;
         justify-items: center;
+        width: 100%;
+        margin: 0 auto;
 
         @include medium-screen-landscape {
-          grid-row-gap: 0;
+          grid-row-gap: 0.5em;
         }
 
         @include large-screen-landscape {
-          display: flex;         
+          display: flex; 
         }
 
         .form-button {
@@ -353,8 +359,8 @@ export default class Form extends Vue {
           font-weight: 700;
           height: 20vw;
           width: 30vw;
-          min-height: 115px;
-          min-width: 170px;
+          min-height: 100px;
+          min-width: 150px;
           display: flex;
           flex-direction: column;
           justify-content: center;
@@ -431,6 +437,15 @@ export default class Form extends Vue {
           width: 80%;
         }
 
+        @include high-res-screen-landscape {
+          margin: 1em 0 1.5em;
+          width: 90%;
+        }
+
+        p {
+          font-size: 0.8em;
+        }
+
         .form-element {
           input, textarea {
             width: 100%;
@@ -457,7 +472,6 @@ export default class Form extends Vue {
             p {
               color: $form-error-color;
               text-align: right;
-              font-size: 0.8em;
               font-weight: 400;
               line-height: 1.6em;
             }
