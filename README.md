@@ -199,7 +199,7 @@ If this project were to be imrpoved further in the future, the following are are
 This project was completed in accordance to the rules and regulations set upon students completing their project at the University of California, Irvine. Since the website was completed for credit as part of a college course, the programmers/designers do not hold any rights related to the code used to create this project. For all NPM libraries, please refer to package.json for a full list of licensing information from all libraries used.
 
 ## Developer Contact Information
-Jonathan Bui, Ken Cue, Thu Hyunh, Sazeda Sultana, Glen Wu
+[Jonathan Bui](mailto:jhbui1@uci.edu), [Ken Cue](mailto:kcue@uci.edu), [Thu Hyunh](mailto:thuah@uci.edu), [Sazeda Sultana](mailto:sazedas@uci.edu), [Glen Wu](mailto:haiminw@uci.edu)
 
 ## Useful References 
 - [Vue CLI Configuration Reference](https://cli.vuejs.org/config/)
