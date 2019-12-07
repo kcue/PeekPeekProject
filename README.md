@@ -71,12 +71,12 @@ _More details can be found in AWS documentations (link below)_
 ### Configuring Sheet DB 
 1. Create/Log in to the [Sheet DB](https://sheetdb.io/) account.
 2. Create a Google Spreadsheet with the following headers set up (case-sensitive):
-  - Industry
-  - Location 
-  - Name 
-  - Email
-  - Phone
-  - Inquiry
+   - Industry
+   - Location 
+   - Name 
+   - Email
+   - Phone
+   - Inquiry
 3. Generate an API URL that is connected to the sheet created in step 2.
 4. Make sure the API only allows `POST` requests. (disable all other types of requests)
 5. In `ContactForm.vue`, look for the line containing the API call and replace the URL.
