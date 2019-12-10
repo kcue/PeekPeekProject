@@ -101,7 +101,9 @@ export default class ContactSection extends Vue {
   }
 
   contactFormResize() {
-    this.exitForm();
+    if (this.showContactForm) {
+      Vue.prototype.common.appScrollTo("#contact-section");
+    }
   }
 }
 </script>
