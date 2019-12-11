@@ -81,14 +81,13 @@ _More details can be found in AWS documentations (link below)_
 3. Generate an API URL that is connected to the sheet created in step 2.
 4. Make sure the API only allows `POST` requests. (disable all other types of requests)
 5. In `ContactForm.vue`, look for the line containing the API call and replace the URL.
-   ```javascript
-  Vue.axios.post('<place URL here>', save);
-   ```
+    ```
+    Vue.axios.post("<place URL here>", save);
+    ```
 
 #### Notes on Sheet DB:
   - This can be done once, unless intending to generate multiple URLs in order to maintain free status.
   - The edits to the sheet will be under the name of the account holder of the API URL.
-
 
 ### Pushing Project to S3 Bucket
 1. Build the project
