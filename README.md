@@ -40,19 +40,27 @@
 
 ### Development Setup
 1. Install node & npm
-    On MacOS:
-    On Windows:
-    On Ubuntu:
-        ```
-            $ sudo apt update
-            $ curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
-            $ sudo apt install nodejs
-            $ node --version
-            $ npm --version
-        ```
-2. Install Vue-CLI globally: `npm install -g vue-cli`
-3. Go to project directory, and install project dependencies with: `npm install`
-4. Start the local development server: `npm run serve`
+    - On MacOS or Windows: follow instructions [here](https://nodejs.org/en/download/)
+    - On Ubuntu:
+      ```
+      $ sudo apt update
+      $ curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+      $ sudo apt install node
+      $ node --version
+      $ npm --version
+      ```
+2. Install Vue-CLI globally: 
+    ```
+    $ npm install -g vue-cli
+    ```
+3. Go to project directory (where `package.json` lives), and install project dependencies with:
+    ```
+    $ npm install
+    ````
+4. Start the local development server: 
+    ```
+    $ npm run serve
+    ```
 5. You can view the site through the browser on `localhost:8080`
 
 ### Development Notes
